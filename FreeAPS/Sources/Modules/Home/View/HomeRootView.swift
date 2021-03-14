@@ -8,12 +8,15 @@ extension Home {
         var mainChart: some View {
             GeometryReader { geo in
                 ScrollView(.horizontal, showsIndicators: false) {
-                    CombinedChartView(
-                        maxWidth: geo.size.width,
-                        showHours: showHours,
-                        glucoseData: $viewModel.glucose,
-                        predictionsData: .constant([])
-                    )
+                    ZStack {
+                        MeshView()
+                        CombinedChartView(
+                            maxWidth: geo.size.width,
+                            showHours: showHours,
+                            glucoseData: $viewModel.glucose,
+                            predictionsData: .constant([])
+                        )
+                    }
                 }
             }
             .padding(.vertical)
@@ -37,8 +40,7 @@ extension Home {
         }
 
         var body: some View {
-            viewModel.setFilteredGlucoseHours(hours: 24)
-            return GeometryReader { geo in
+            GeometryReader { geo in
                 VStack {
                     Group {
                         Text("Header")
@@ -47,8 +49,8 @@ extension Home {
                         HoursPickerView(selectedHour: $showHours).padding(.horizontal)
 
                         mainChart
-                            .frame(height: geo.size.height * 0.6)
 
+                            .frame(height: geo.size.height * 0.6)
                             .padding(.horizontal)
 
                         previewChart

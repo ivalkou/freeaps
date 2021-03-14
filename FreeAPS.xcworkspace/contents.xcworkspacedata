@@ -5,6 +5,9 @@
       location = "group:FreeAPS.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:Dependecies/SwiftCharts/SwiftCharts.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Dependecies/MKRingProgressView/MKRingProgressView.xcodeproj">
    </FileRef>
    <FileRef

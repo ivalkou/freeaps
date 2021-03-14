@@ -6,7 +6,7 @@ extension Home {
         @Injected() var broadcaster: Broadcaster!
         @Injected() var settingsManager: SettingsManager!
 
-        private(set) var filteredGlucoseHours = 3
+        private(set) var filteredGlucoseHours = 24
 
         @Published var glucose: [BloodGlucose] = []
         @Published var suggestion: Suggestion?
