@@ -6,27 +6,31 @@ struct GlucoseInformationBarView: View {
     let glucoseDelta: Double
     let direction: BloodGlucose.Direction
 
-    var body: some View {
+    var infos: some View {
         let halvedEntryData = data.halve()
-        HStack {
-            VStack {
-                ForEach(halvedEntryData, id: \.self) { half in
-                    HStack {
-                        ForEach(half, id: \.self) { dataEntry in
-                            Text(
-                                dataEntry.label + "\n" +
-                                    APSDataFormatter.format(
-                                        inputValue: dataEntry.value,
-                                        to: dataEntry.type
-                                    )
-                            )
-                            .font(.footnote)
-                            .informationBarEntryStyle()
-                            .padding(.bottom, 1)
-                        }
+        return VStack {
+            ForEach(halvedEntryData, id: \.self) { half in
+                HStack {
+                    ForEach(half, id: \.self) { dataEntry in
+                        Text(
+                            dataEntry.label + "\n" +
+                                APSDataFormatter.format(
+                                    inputValue: Double(dataEntry.value),
+                                    to: dataEntry.type
+                                )
+                        )
+                        .font(.footnote)
+                        .informationBarEntryStyle()
+                        .padding(.bottom, 1)
                     }
                 }
             }
+        }
+    }
+
+    var body: some View {
+        HStack {
+            infos
             Text(APSDataFormatter.format(inputValue: glucoseValue, to: .glucose))
                 .font(.largeTitle)
                 .foregroundColor(Color(.systemBlue))

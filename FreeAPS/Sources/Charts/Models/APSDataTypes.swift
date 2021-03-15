@@ -1,6 +1,6 @@
 import Foundation
 
-enum APSDataTypes {
+enum APSDataTypes: CaseIterable {
     case delta
     case glucose
     case cob

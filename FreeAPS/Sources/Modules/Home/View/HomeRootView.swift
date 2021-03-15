@@ -24,9 +24,32 @@ extension Home {
             }
         }
 
+        var info: [InformationBarEntryData] {
+            APSDataTypes.allCases.compactMap { dataType in
+                createAPSInfo(for: dataType, suggestion: viewModel.suggestion)
+            }
+        }
+
+        // Handle nil properly
+        var currenGlucose: Double {
+            Double(viewModel.glucose.last?.sgv ?? 0)
+        }
+
+        // Handle nil properly
+        var delta: Double {
+            currenGlucose - Double(viewModel.glucose.suffix(2).first?.sgv ?? 0)
+        }
+
+        var direction: BloodGlucose.Direction {
+            viewModel.glucose.last?.direction ?? BloodGlucose.Direction.none
+        }
+
         var body: some View {
             GeometryReader { geo in
                 VStack {
+                    GlucoseInformationBarView(data: info, glucoseValue: currenGlucose, glucoseDelta: delta, direction: direction)
+                        .frame(height: 150)
+                        .padding(.horizontal)
                     HoursPickerView(selectedHour: $showHours).padding(.horizontal)
 
                     MainChartView(
@@ -89,7 +112,15 @@ extension Home {
     }
 }
 
-private func createPredictionData(for type: PredictionType, suggestion: Suggestion?) -> PredictionLineData? {
+private func createPredictionData(
+    for type: PredictionType,
+    suggestion: Suggestion?
+) -> PredictionLineData?
+{
+    if suggestion == nil {
+        return nil
+    }
+
     let predictions: [Int]?
     let lastDate = suggestion?.deliverAt ?? Date()
 
@@ -114,4 +145,35 @@ private func createPredictionData(for type: PredictionType, suggestion: Suggesti
         return PredictionLineData(type: type, values: glucose)
     }
     return nil
+}
+
+// TODO: Implement delta, direction, sage and cage
+private func createAPSInfo(
+    for type: APSDataTypes,
+    suggestion: Suggestion?
+) -> InformationBarEntryData?
+{
+    if suggestion == nil {
+        return nil
+    }
+
+    switch type {
+    case .basal:
+        guard let rate = suggestion?.rate else {
+            return nil
+        }
+        return InformationBarEntryData(label: "Basal", value: rate, type: type)
+    case .cob:
+        guard let cob = suggestion?.cob else {
+            return nil
+        }
+        return InformationBarEntryData(label: "COB", value: cob, type: type)
+    case .iob:
+        guard let iob = suggestion?.iob else {
+            return nil
+        }
+        return InformationBarEntryData(label: "IOB", value: iob, type: type)
+    default:
+        return nil
+    }
 }

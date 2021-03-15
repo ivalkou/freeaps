@@ -24,6 +24,6 @@ extension NumberIndicatorsView {
 
     var values: [Int] {
         let step = (maxValue - minValue) / 4
-        return (1 ..< 5).map { (step + step * $0) / 18 }.reversed()
+        return (1 ..< 5).map { step + step * $0 }.reversed()
     }
 }
