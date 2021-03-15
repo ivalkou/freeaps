@@ -1,6 +1,6 @@
 import SwiftUI
 
-enum PredictionType: String {
+enum PredictionType: String, CaseIterable {
     case iob
     case cob
     case zt

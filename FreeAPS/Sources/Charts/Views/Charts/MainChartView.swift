@@ -3,7 +3,7 @@ import SwiftUI
 struct MainChartView: View {
     let showHours: Int
     @Binding var glucoseData: [BloodGlucose]
-    @Binding var predictionsData: [PredictionLineData]
+    var predictionsData: [PredictionLineData]
 
     var body: some View {
         let allValues = getAllValues()
@@ -18,7 +18,7 @@ struct MainChartView: View {
                             maxWidth: geo.size.width,
                             showHours: showHours,
                             glucoseData: $glucoseData,
-                            predictionsData: $predictionsData
+                            predictionsData: predictionsData
                         )
                     }
                 }

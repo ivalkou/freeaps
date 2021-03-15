@@ -148,7 +148,6 @@
 		388E5A6025B6F2310019842D /* Autosens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388E5A5F25B6F2310019842D /* Autosens.swift */; };
 		389442CB25F65F7100FA1F27 /* NightscoutTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389442CA25F65F7100FA1F27 /* NightscoutTreatment.swift */; };
 		3895E4C625B9E00D00214B37 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3895E4C525B9E00D00214B37 /* Preferences.swift */; };
-		389FE32A25F3AC44002E92E0 /* GlucoseChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389FE32925F3AC44002E92E0 /* GlucoseChartView.swift */; };
 		38A00B1F25FC00F7006BC0B0 /* Autotune.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A00B1E25FC00F7006BC0B0 /* Autotune.swift */; };
 		38A00B2325FC2B55006BC0B0 /* LRUCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A00B2225FC2B55006BC0B0 /* LRUCache.swift */; };
 		38A00B2E25FCD582006BC0B0 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 38A00B2D25FCD582006BC0B0 /* Charts */; };
@@ -445,7 +444,6 @@
 		388E5A5F25B6F2310019842D /* Autosens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autosens.swift; sourceTree = "<group>"; };
 		389442CA25F65F7100FA1F27 /* NightscoutTreatment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightscoutTreatment.swift; sourceTree = "<group>"; };
 		3895E4C525B9E00D00214B37 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
-		389FE32925F3AC44002E92E0 /* GlucoseChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseChartView.swift; sourceTree = "<group>"; };
 		38A00B1E25FC00F7006BC0B0 /* Autotune.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autotune.swift; sourceTree = "<group>"; };
 		38A00B2225FC2B55006BC0B0 /* LRUCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LRUCache.swift; sourceTree = "<group>"; };
 		38A0363A25ECF07E00FCBB52 /* GlucoseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseStorage.swift; sourceTree = "<group>"; };
@@ -745,7 +743,6 @@
 			isa = PBXGroup;
 			children = (
 				3811DE2E25C9D49500A708ED /* HomeRootView.swift */,
-				389FE32925F3AC44002E92E0 /* GlucoseChartView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1734,7 +1731,6 @@
 				382C133725F13A1E00715CE1 /* InsulinSensitivities.swift in Sources */,
 				3811DE7B25C9D6D300A708ED /* LoginProvider.swift in Sources */,
 				383948D625CD4D8900E91849 /* FileStorage.swift in Sources */,
-				389FE32A25F3AC44002E92E0 /* GlucoseChartView.swift in Sources */,
 				3811DE4125C9D4A100A708ED /* SettingsRootView.swift in Sources */,
 				388E595C25AD948C0019842D /* FreeAPSApp.swift in Sources */,
 				6610FA2A25FAED29004781D7 /* GlucosePointView.swift in Sources */,

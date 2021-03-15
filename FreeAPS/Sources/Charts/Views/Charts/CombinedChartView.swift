@@ -4,7 +4,7 @@ struct CombinedChartView: View {
     let maxWidth: CGFloat
     let showHours: Int
     @Binding var glucoseData: [BloodGlucose]
-    @Binding var predictionsData: [PredictionLineData]
+    var predictionsData: [PredictionLineData]
     var body: some View {
         let allValues = getAllValues()
         let minValue = allValues.min() ?? 40
@@ -24,7 +24,7 @@ struct CombinedChartView: View {
                 minValue: minValue,
                 maxValue: maxValue,
                 maxWidth: maxWidth,
-                data: $predictionsData,
+                data: predictionsData,
                 showHours: showHours
             )
         }

@@ -31,6 +31,16 @@ struct BloodGlucose: JSON, Identifiable, Hashable {
     var glucose: Int?
 
     var isStateValid: Bool { sgv ?? 0 >= 39 && noise ?? 1 != 4 }
+
+    init(sgv: Int, dateString: Date) {
+        self.sgv = sgv
+        self.dateString = dateString
+        date = 0
+        filtered = nil
+        noise = nil
+        glucose = nil
+        direction = nil
+    }
 }
 
 enum GlucoseUnits: String, JSON {
