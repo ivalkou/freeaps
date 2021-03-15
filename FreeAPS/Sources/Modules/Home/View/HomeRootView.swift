@@ -5,25 +5,6 @@ extension Home {
         @EnvironmentObject var viewModel: ViewModel<Provider>
         @State var showHours = 1
 
-        var mainChart: some View {
-            GeometryReader { geo in
-                ScrollView(.horizontal, showsIndicators: false) {
-                    ZStack {
-                        MeshView()
-                        CombinedChartView(
-                            maxWidth: geo.size.width,
-                            showHours: showHours,
-                            glucoseData: $viewModel.glucose,
-                            predictionsData: .constant([])
-                        )
-                    }
-                }
-            }
-            .padding(.vertical)
-            .background(Color(.systemGray6))
-            .cornerRadius(12)
-        }
-
         var previewChart: some View {
             GeometryReader { geo in
                 CombinedChartView(
@@ -33,8 +14,6 @@ extension Home {
                     predictionsData: .constant([])
                 )
             }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical)
             .background(Color(.systemGray6))
             .cornerRadius(10)
         }
@@ -42,28 +21,22 @@ extension Home {
         var body: some View {
             GeometryReader { geo in
                 VStack {
-                    Group {
-                        Text("Header")
-                    }
-                    ScrollView(.vertical, showsIndicators: false) {
-                        HoursPickerView(selectedHour: $showHours).padding(.horizontal)
+                    HoursPickerView(selectedHour: $showHours).padding(.horizontal)
 
-                        mainChart
+                    MainChartView(showHours: showHours, glucoseData: $viewModel.glucose, predictionsData: .constant([]))
+                        .frame(maxHeight: .infinity)
+                        .padding(.horizontal)
 
-                            .frame(height: geo.size.height * 0.6)
-                            .padding(.horizontal)
+                    previewChart
+                        .frame(height: 50)
+                        .padding(.horizontal)
 
-                        previewChart
-                            .frame(height: 50)
-                            .padding(.horizontal)
-                        // GlucoseChartView(glucose: $viewModel.glucose, suggestion: $viewModel.suggestion).frame(height: 150)
-                        if let reason = viewModel.suggestion?.reason {
-                            Text(reason).font(.caption).padding()
-                        }
-                        Button(action: viewModel.runLoop) {
-                            Text("Run loop now").buttonBackground().padding()
-                        }.foregroundColor(.white)
-                    }
+//                    if let reason = viewModel.suggestion?.reason {
+//                        Text(reason).font(.caption).padding()
+//                    }
+                    Button(action: viewModel.runLoop) {
+                        Text("Run loop now").buttonBackground().padding()
+                    }.foregroundColor(.white)
 
                     ZStack {
                         Rectangle().fill(Color.gray.opacity(0.2)).frame(height: 50 + geo.safeAreaInsets.bottom)
@@ -107,3 +80,5 @@ extension Home {
         }
     }
 }
+
+private func

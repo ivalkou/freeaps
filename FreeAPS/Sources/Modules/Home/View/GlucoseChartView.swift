@@ -25,23 +25,8 @@ struct GlucoseChartView: UIViewRepresentable {
     }
 
     private func makeDataPointsFor(view: LineChartView) {
-        guard !glucose.isEmpty else {
-            return
-        }
 
-        let dataPoints = glucose.map {
-            ChartDataEntry(x: $0.dateString.timeIntervalSince1970, y: Double($0.sgv ?? 0))
-        }
-
-        let data = MyLineChartDataSet(entries: dataPoints, label: "BG")
-        data.drawCirclesEnabled = true
-        data.circleRadius = 2
-        data.setCircleColor(.green)
-        data.setColor(.green)
-        data.lineWidth = 0
-        data.drawValuesEnabled = false
-
-        var series = [data]
+        var series = []
 
         let lastDate = suggestion?.deliverAt ?? Date()
 
@@ -117,61 +102,3 @@ struct GlucoseChartView: UIViewRepresentable {
     }
 }
 
-class MyLineChartDataSet: LineChartDataSet {
-    override func entryIndex(x xValue: Double, closestToY yValue: Double, rounding: ChartDataSetRounding) -> Int {
-        var closest = partitioningIndex { $0.x >= xValue }
-        if closest >= endIndex {
-            closest = endIndex - 1
-        }
-
-        let closestXValue = self[closest].x
-
-        switch rounding {
-        case .up:
-            // If rounding up, and found x-value is lower than specified x, and we can go upper...
-            if closestXValue < xValue, closest < index(before: endIndex)
-            {
-                formIndex(after: &closest)
-            }
-
-        case .down:
-            // If rounding down, and found x-value is upper than specified x, and we can go lower...
-            if closestXValue > xValue, closest > startIndex
-            {
-                formIndex(before: &closest)
-            }
-
-        case .closest:
-            break
-        }
-
-        // Search by closest to y-value
-        if !yValue.isNaN
-        {
-            while closest > startIndex, self[index(before: closest)].x == closestXValue
-            {
-                formIndex(before: &closest)
-            }
-
-            var closestYValue = self[closest].y
-            var closestYIndex = closest
-
-            while closest < index(before: endIndex)
-            {
-                formIndex(after: &closest)
-                let value = self[closest]
-
-                if value.x != closestXValue { break }
-                if abs(value.y - yValue) <= abs(closestYValue - yValue)
-                {
-                    closestYValue = yValue
-                    closestYIndex = closest
-                }
-            }
-
-            closest = closestYIndex
-        }
-
-        return closest
-    }
-}
