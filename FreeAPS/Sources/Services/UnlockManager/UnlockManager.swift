@@ -25,13 +25,7 @@ final class BaseUnlockManager: UnlockManager {
 
             let reason = "We need to unlock your data."
 
-            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-                context.evaluatePolicy(
-                    .deviceOwnerAuthenticationWithBiometrics,
-                    localizedReason: reason,
-                    reply: handler
-                )
-            } else if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+            if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
                 context.evaluatePolicy(
                     .deviceOwnerAuthentication,
                     localizedReason: reason,
