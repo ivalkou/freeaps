@@ -15,12 +15,12 @@ extension ManualTempBasal {
             Form {
                 Section {
                     HStack {
-                        Text("Amount")
+                        Text(NSLocalizedString("Amount", comment: "Amount"))
                         Spacer()
                         DecimalTextField("0", value: $viewModel.rate, formatter: formatter, autofocus: true, cleanInput: true)
                         Text("U/hr").foregroundColor(.secondary)
                     }
-                    Picker(selection: $viewModel.durationIndex, label: Text("Duration")) {
+                    Picker(selection: $viewModel.durationIndex, label: Text(NSLocalizedString("Duration", comment: "Duration"))) {
                         ForEach(0 ..< viewModel.durationValues.count) { index in
                             Text(
                                 String(
@@ -35,14 +35,14 @@ extension ManualTempBasal {
 
                 Section {
                     Button { viewModel.enact() }
-                    label: { Text("Enact") }
+                    label: { Text(NSLocalizedString("Enact", comment: "Enact")) }
                     Button { viewModel.cancel() }
-                    label: { Text("Cancel Temp Basal") }
+                    label: { Text(NSLocalizedString("Cancel Temp Basal", comment: "Cancel Temp Basal")) }
                 }
             }
-            .navigationTitle("Manual Temp Basal")
+            .navigationTitle(NSLocalizedString("Manual Temp Basal", comment: "Manual Temp Basal"))
             .navigationBarTitleDisplayMode(.automatic)
-            .navigationBarItems(leading: Button("Close", action: viewModel.hideModal))
+            .navigationBarItems(leading: Button(NSLocalizedString("Close", comment: "Close"), action: viewModel.hideModal))
         }
     }
 }

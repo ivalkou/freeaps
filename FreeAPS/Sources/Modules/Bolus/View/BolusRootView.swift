@@ -13,16 +13,16 @@ extension Bolus {
 
         var body: some View {
             Form {
-                Section(header: Text("Recommendation")) {
+                Section(header: Text(NSLocalizedString("Recommandation", comment: "StringRecommendation"))) {
                     if viewModel.waitForSuggestion {
                         HStack {
-                            Text("Wait please").foregroundColor(.secondary)
+                            Text(NSLocalizedString("Wait please", comment: "Wait please")).foregroundColor(.secondary)
                             Spacer()
                             ProgressView()
                         }
                     } else {
                         HStack {
-                            Text("Insulin required").foregroundColor(.secondary)
+                            Text(NSLocalizedString("Insulin required", comment: "Insulin required")).foregroundColor(.secondary)
                             Spacer()
                             Text(formatter.string(from: viewModel.inslinRequired as NSNumber)! + " U").foregroundColor(.secondary)
                         }.contentShape(Rectangle())
@@ -30,7 +30,7 @@ extension Bolus {
                                 viewModel.amount = viewModel.inslinRecommended
                             }
                         HStack {
-                            Text("Insulin recommended")
+                            Text(NSLocalizedString("Insulin recommanded", comment: "Insulin recommended"))
                             Spacer()
                             Text(formatter.string(from: viewModel.inslinRecommended as NSNumber)! + " U")
                         }.contentShape(Rectangle())
@@ -41,9 +41,9 @@ extension Bolus {
                 }
 
                 if !viewModel.waitForSuggestion {
-                    Section(header: Text("Bolus")) {
+                    Section(header: Text(NSLocalizedString("Bolus", comment: "Bolus"))) {
                         HStack {
-                            Text("Amount")
+                            Text(NSLocalizedString("Amount Bolus", comment: "Amount"))
                             Spacer()
                             DecimalTextField(
                                 "0",
@@ -58,21 +58,25 @@ extension Bolus {
 
                     Section {
                         Button { viewModel.add() }
-                        label: { Text("Enact bolus") }
+                        label: { Text(NSLocalizedString("Enact bolus", comment: "Enact Bolus")) }
 
                         if viewModel.waitForSuggestionInitial {
                             Button { viewModel.showModal(for: nil) }
-                            label: { Text("Continue without bolus") }
+                            label: { Text(NSLocalizedString("Continue without bolus", comment: "Continue without bolus")) }
                         } else {
                             Button { viewModel.addWithoutBolus() }
-                            label: { Text("Add insulin without actually bolusing") }
+                            label: {
+                                Text(NSLocalizedString(
+                                    "Add insulin without actually bolusing",
+                                    comment: "Add insulin without actually bolusing"
+                                )) }
                         }
                     }
                 }
             }
-            .navigationTitle("Enact Bolus")
+            .navigationTitle(NSLocalizedString("Enact Bolus Titre", comment: "Enact Bolus title"))
             .navigationBarTitleDisplayMode(.automatic)
-            .navigationBarItems(leading: Button("Close", action: viewModel.hideModal))
+            .navigationBarItems(leading: Button(NSLocalizedString("Close", comment: "Close"), action: viewModel.hideModal))
         }
     }
 }

@@ -251,6 +251,7 @@
 		C967DACD3B1E638F8B43BE06 /* ManualTempBasalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCFE0781F9074C2917890E8 /* ManualTempBasalViewModel.swift */; };
 		CA370FC152BC98B3D1832968 /* BasalProfileEditorRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8BCB0C37DEB5EC377B9612 /* BasalProfileEditorRootView.swift */; };
 		CDB87FA71A93F3739D3D338E /* NightscoutConfigBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111579A6E3AC6BFA79C4DD43 /* NightscoutConfigBuilder.swift */; };
+		CE97273B26222D56000AAD3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE97273D26222D56000AAD3B /* Localizable.strings */; };
 		D2165E9D78EFF692C1DED1C6 /* AddTempTargetDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8A42073A2D03A278914448 /* AddTempTargetDataFlow.swift */; };
 		D6D02515BBFBE64FEBE89856 /* DataTableRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E04BA5E0A003DE8E0A9C6 /* DataTableRootView.swift */; };
 		D6DEC113821A7F1056C4AA1E /* NightscoutConfigDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2A13DF0EDEEEDC4106AA2A /* NightscoutConfigDataFlow.swift */; };
@@ -545,6 +546,8 @@
 		C19984D62EFC0035A9E9644D /* BolusProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BolusProvider.swift; sourceTree = "<group>"; };
 		C377490C77661D75E8C50649 /* ManualTempBasalRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ManualTempBasalRootView.swift; sourceTree = "<group>"; };
 		C8D1A7CA8C10C4403D4BBFA7 /* BolusDataFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BolusDataFlow.swift; sourceTree = "<group>"; };
+		CE97273C26222D56000AAD3B /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CE97273F26222D59000AAD3B /* fr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CFCFE0781F9074C2917890E8 /* ManualTempBasalViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ManualTempBasalViewModel.swift; sourceTree = "<group>"; };
 		D0BDC6993C1087310EDFC428 /* CREditorRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CREditorRootView.swift; sourceTree = "<group>"; };
 		D295A3F870E826BE371C0BB5 /* AutotuneConfigViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AutotuneConfigViewModel.swift; sourceTree = "<group>"; };
@@ -685,6 +688,7 @@
 				3811DE1425C9D40400A708ED /* Router */,
 				3811DE9125C9D88200A708ED /* Services */,
 				3883582E25EEAFC000E024B2 /* Views */,
+				CE97273D26222D56000AAD3B /* Localizable.strings */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1553,6 +1557,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 388E594F25AD948C0019842D;
 			packageReferences = (
@@ -1578,6 +1583,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				388E596025AD948E0019842D /* Assets.xcassets in Resources */,
+				CE97273B26222D56000AAD3B /* Localizable.strings in Resources */,
 				388E597225AD9CF10019842D /* json in Resources */,
 				388E596F25AD96040019842D /* javascript in Resources */,
 			);
@@ -1860,6 +1866,18 @@
 			targetProxy = 38FCF3F225E9028E0078B0D1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CE97273D26222D56000AAD3B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE97273C26222D56000AAD3B /* en */,
+				CE97273F26222D59000AAD3B /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		388E596525AD948E0019842D /* Debug */ = {

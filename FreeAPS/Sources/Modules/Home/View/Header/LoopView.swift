@@ -33,7 +33,7 @@ struct LoopView: View {
                 }
             }
             if isLooping {
-                Text("looping").font(.caption2)
+                Text(NSLocalizedString("looping", comment: "Looping in progress")).font(.caption2)
             } else if actualSuggestion?.timestamp != nil {
                 Text(timeString).font(.caption2)
                     .foregroundColor(.secondary)
@@ -48,7 +48,10 @@ struct LoopView: View {
         if minAgo > 1440 {
             return "--"
         }
-        return "\(minAgo) min ago"
+        return String(
+            format: NSLocalizedString("%d min ago", comment: ""),
+            minAgo
+        )
     }
 
     private var color: Color {

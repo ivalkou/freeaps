@@ -5,9 +5,9 @@ extension RequestPermissions {
         @EnvironmentObject var viewModel: ViewModel<Provider>
 
         var body: some View {
-            Text("RequestPermissions screen")
-                .navigationBarTitle("RequestPermissions")
-                .navigationBarItems(leading: Button("Close", action: viewModel.hideModal))
+            Text(NSLocalizedString("RequestPermissions screen", comment: "RequestPermissions screen"))
+                .navigationBarTitle(NSLocalizedString("RequestPermissions", comment: "RequestPermissions"))
+                .navigationBarItems(leading: Button(NSLocalizedString("Close", comment: "Close"), action: viewModel.hideModal))
         }
     }
 }

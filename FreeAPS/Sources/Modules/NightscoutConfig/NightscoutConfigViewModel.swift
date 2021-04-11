@@ -43,7 +43,7 @@ extension NightscoutConfig {
 
         func connect() {
             guard let url = URL(string: url) else {
-                message = "Invalid URL"
+                message = NSLocalizedString("Invalid URL", comment: "Invalid URL")
                 return
             }
             connecting = true
@@ -58,7 +58,7 @@ extension NightscoutConfig {
                     }
                     self.connecting = false
                 } receiveValue: {
-                    self.message = "Connected!"
+                    self.message = NSLocalizedString("Connected!", comment: "Connected!")
                     self.keychain.setValue(self.url, forKey: Config.urlKey)
                     self.keychain.setValue(self.secret, forKey: Config.secretKey)
                 }

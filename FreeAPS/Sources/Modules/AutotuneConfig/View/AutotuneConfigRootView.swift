@@ -21,24 +21,24 @@ extension AutotuneConfig {
         var body: some View {
             Form {
                 Section {
-                    Toggle("Use Autotune", isOn: $viewModel.useAutotune)
+                    Toggle(NSLocalizedString("use Autotune", comment: "Use Autotune"), isOn: $viewModel.useAutotune)
                 }
 
                 Section {
                     Button { viewModel.run() }
-                    label: { Text("Run now") }
+                    label: { Text(NSLocalizedString("Run now", comment: "Run now")) }
                 }
 
                 if let autotune = viewModel.autotune {
                     Section {
                         HStack {
-                            Text("Carb ratio")
+                            Text(NSLocalizedString("Carb ratio", comment: "Carb ratio"))
                             Spacer()
                             Text(isfFormatter.string(from: autotune.carbRatio as NSNumber) ?? "0")
                             Text("g/U").foregroundColor(.secondary)
                         }
                         HStack {
-                            Text("Sensitivity")
+                            Text(NSLocalizedString("Sensitivity", comment: "Sensitivity"))
                             Spacer()
                             if viewModel.units == .mmolL {
                                 Text(isfFormatter.string(from: autotune.sensitivity.asMmolL as NSNumber) ?? "0")
@@ -49,7 +49,7 @@ extension AutotuneConfig {
                         }
                     }
 
-                    Section(header: Text("Basal profile")) {
+                    Section(header: Text(NSLocalizedString("Basal profile", comment: "Basal profile"))) {
                         ForEach(0 ..< autotune.basalProfile.count, id: \.self) { index in
                             HStack {
                                 Text(autotune.basalProfile[index].start).foregroundColor(.secondary)
@@ -62,12 +62,12 @@ extension AutotuneConfig {
 
                     Section {
                         Button { viewModel.delete() }
-                        label: { Text("Delete autotune data") }
+                        label: { Text(NSLocalizedString("Delete autotune data", comment: "Delete autotune data")) }
                             .foregroundColor(.red)
                     }
                 }
             }
-            .navigationTitle("Autotune")
+            .navigationTitle(NSLocalizedString("Autotune", comment: "Autotune Title"))
             .navigationBarTitleDisplayMode(.automatic)
         }
     }

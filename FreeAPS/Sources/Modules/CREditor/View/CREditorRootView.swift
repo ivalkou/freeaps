@@ -21,28 +21,28 @@ extension CREditor {
         var body: some View {
             Form {
                 if let autotune = viewModel.autotune {
-                    Section(header: Text("Autotune")) {
+                    Section(header: Text(NSLocalizedString("Autotune", comment: "Autotune Carb Ratio"))) {
                         HStack {
-                            Text("Calculated Ratio")
+                            Text(NSLocalizedString("Calculated Ratio", comment: "Calculated Ratio"))
                             Spacer()
                             Text(rateFormatter.string(from: autotune.carbRatio as NSNumber) ?? "0")
                             Text("g/U").foregroundColor(.secondary)
                         }
                     }
                 }
-                Section(header: Text("Schedule")) {
+                Section(header: Text(NSLocalizedString("Schedule", comment: "Schedule"))) {
                     list
                     addButton
                 }
                 Section {
                     Button { viewModel.save() }
                     label: {
-                        Text("Save")
+                        Text(NSLocalizedString("Save", comment: "Save"))
                     }
                     .disabled(viewModel.items.isEmpty)
                 }
             }
-            .navigationTitle("Carb Ratios")
+            .navigationTitle(NSLocalizedString("Carb Ratios", comment: "Carb Ratios Title"))
             .navigationBarTitleDisplayMode(.automatic)
             .navigationBarItems(
                 trailing: EditButton()
@@ -57,8 +57,8 @@ extension CREditor {
             GeometryReader { geometry in
                 VStack {
                     HStack {
-                        Text("Ratio").frame(width: geometry.size.width / 2)
-                        Text("Time").frame(width: geometry.size.width / 2)
+                        Text(NSLocalizedString("Ratio", comment: "Ratio Carb")).frame(width: geometry.size.width / 2)
+                        Text(NSLocalizedString("Time", comment: "Time")).frame(width: geometry.size.width / 2)
                     }
                     HStack(spacing: 0) {
                         Picker(selection: $viewModel.items[index].rateIndex, label: EmptyView()) {
@@ -97,12 +97,12 @@ extension CREditor {
                 ForEach(viewModel.items.indexed(), id: \.1.id) { index, item in
                     NavigationLink(destination: pickers(for: index)) {
                         HStack {
-                            Text("Ratio").foregroundColor(.secondary)
+                            Text(NSLocalizedString("Ratio", comment: "Ratio Carb")).foregroundColor(.secondary)
                             Text(
                                 "\(rateFormatter.string(from: viewModel.rateValues[item.rateIndex] as NSNumber) ?? "0") g/U"
                             )
                             Spacer()
-                            Text("starts at").foregroundColor(.secondary)
+                            Text(NSLocalizedString("starts at", comment: "starts at")).foregroundColor(.secondary)
                             Text(
                                 "\(dateFormatter.string(from: Date(timeIntervalSince1970: viewModel.timeValues[item.timeIndex])))"
                             )
@@ -121,7 +121,7 @@ extension CREditor {
 
             switch editMode {
             case .inactive:
-                return AnyView(Button(action: onAdd) { Text("Add") })
+                return AnyView(Button(action: onAdd) { Text(NSLocalizedString("Add", comment: "Add")) })
             default:
                 return AnyView(EmptyView())
             }

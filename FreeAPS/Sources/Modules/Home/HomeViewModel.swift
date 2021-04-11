@@ -199,7 +199,7 @@ extension Home {
 
         private func setStatusTitle() {
             guard let suggestion = suggestion else {
-                statusTitle = "No suggestion"
+                statusTitle = NSLocalizedString("No suggestion", comment: "Status Title : No Suggestion")
                 return
             }
 
@@ -210,11 +210,17 @@ extension Home {
                let timestamp = enactedSuggestion.timestamp,
                enactedSuggestion.deliverAt == suggestion.deliverAt, suggestion.rate != nil || suggestion.units != nil
             {
-                statusTitle = "Enacted at \(dateFormatter.string(from: timestamp))"
+                statusTitle = String(
+                    format: NSLocalizedString("Enacted at %@", comment: "Enacted at a date"),
+                    dateFormatter.string(from: timestamp)
+                )
             } else if let suggestedDate = suggestion.deliverAt {
-                statusTitle = "Suggested at \(dateFormatter.string(from: suggestedDate))"
+                statusTitle = String(
+                    format: NSLocalizedString("Suggested at %@", comment: "Suggested at a date"),
+                    dateFormatter.string(from: suggestedDate)
+                )
             } else {
-                statusTitle = "Suggested"
+                statusTitle = NSLocalizedString("Suggested", comment: "Status Title : Suggest")
             }
         }
 

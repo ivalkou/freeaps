@@ -22,7 +22,7 @@ extension ConfigEditor {
                     }
                 }
                 .navigationBarItems(
-                    trailing: Button("Save", action: viewModel.save)
+                    trailing: Button(NSLocalizedString("Save", comment: "Save"), action: viewModel.save)
                 )
                 .sheet(isPresented: $showShareSheet) {
                     ShareSheet(activityItems: [viewModel.provider.urlFor(file: viewModel.file)!])

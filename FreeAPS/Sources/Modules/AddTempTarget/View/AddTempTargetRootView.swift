@@ -17,61 +17,61 @@ extension AddTempTarget {
         var body: some View {
             Form {
                 if !viewModel.presets.isEmpty {
-                    Section(header: Text("Presets")) {
+                    Section(header: Text(NSLocalizedString("Presets", comment: "Presets title"))) {
                         ForEach(viewModel.presets) { preset in
                             presetView(for: preset)
                         }
                     }
                 }
 
-                Section(header: Text("Custom")) {
+                Section(header: Text(NSLocalizedString("Custom", comment: "Custom target temp"))) {
                     HStack {
-                        Text("Bottom target")
+                        Text(NSLocalizedString("Bottom target", comment: "Bottom target temp"))
                         Spacer()
                         DecimalTextField("0", value: $viewModel.low, formatter: formatter, cleanInput: true)
                         Text(viewModel.units.rawValue).foregroundColor(.secondary)
                     }
                     HStack {
-                        Text("Top target")
+                        Text(NSLocalizedString("Top target", comment: "Top target temp"))
                         Spacer()
                         DecimalTextField("0", value: $viewModel.high, formatter: formatter, cleanInput: true)
                         Text(viewModel.units.rawValue).foregroundColor(.secondary)
                     }
                     HStack {
-                        Text("Duration")
+                        Text(NSLocalizedString("Duration", comment: "Duration target temp"))
                         Spacer()
                         DecimalTextField("0", value: $viewModel.duration, formatter: formatter, cleanInput: true)
-                        Text("minutes").foregroundColor(.secondary)
+                        Text(NSLocalizedString("minutes", comment: "minutes target temp")).foregroundColor(.secondary)
                     }
-                    DatePicker("Date", selection: $viewModel.date)
+                    DatePicker(NSLocalizedString("Date", comment: "Date"), selection: $viewModel.date)
                     Button { isPromtPresented = true }
-                    label: { Text("Save as preset") }
+                    label: { Text(NSLocalizedString("Save as preset", comment: "Save as preset")) }
                 }
 
                 Section {
                     Button { viewModel.enact() }
-                    label: { Text("Enact") }
+                    label: { Text(NSLocalizedString("Enact temp target", comment: "Enact temp target")) }
                     Button { viewModel.cancel() }
-                    label: { Text("Cancel Temp Target") }
+                    label: { Text(NSLocalizedString("Cancel temp target", comment: "Cancel temp target")) }
                 }
             }
             .popover(isPresented: $isPromtPresented) {
                 Form {
-                    Section(header: Text("Enter preset name")) {
+                    Section(header: Text(NSLocalizedString("Enter preset name", comment: "Enter preset name"))) {
                         TextField("Name", text: $viewModel.newPresetName)
                         Button {
                             viewModel.save()
                             isPromtPresented = false
                         }
-                        label: { Text("Save") }
+                        label: { Text(NSLocalizedString("Save", comment: "Save preset name")) }
                         Button { isPromtPresented = false }
-                        label: { Text("Cancel") }
+                        label: { Text(NSLocalizedString("Cancel", comment: "Cancel preset name")) }
                     }
                 }
             }
-            .navigationTitle("Enact Temp Target")
+            .navigationTitle(NSLocalizedString("Enact temp target", comment: "Enact temp target"))
             .navigationBarTitleDisplayMode(.automatic)
-            .navigationBarItems(leading: Button("Close", action: viewModel.hideModal))
+            .navigationBarItems(leading: Button(NSLocalizedString("Close", comment: "Close"), action: viewModel.hideModal))
         }
 
         private func presetView(for preset: TempTarget) -> some View {
@@ -113,9 +113,17 @@ extension AddTempTarget {
                     .padding(.vertical)
                     .onTapGesture {
                         removeAlert = Alert(
-                            title: Text("A you sure?"),
-                            message: Text("Delete preset \"\(preset.displayName)\""),
-                            primaryButton: .destructive(Text("Delete"), action: { viewModel.removePreset(id: preset.id) }),
+                            title: Text(NSLocalizedString("A you sure?", comment: "A you sure delete preset?")),
+                            message: Text(
+                                String(
+                                    format: NSLocalizedString("Delete preset %@", comment: "Delete preset %@"),
+                                    preset.displayName
+                                )
+                            ),
+                            primaryButton: .destructive(
+                                Text(NSLocalizedString("Delete", comment: "Delete")),
+                                action: { viewModel.removePreset(id: preset.id) }
+                            ),
                             secondaryButton: .cancel()
                         )
                         isRemoveAlertPresented = true
