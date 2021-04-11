@@ -13,12 +13,12 @@ extension NightscoutConfig {
         var body: some View {
             Form {
                 Section {
-                    TextField("URL", text: $viewModel.url)
+                    TextField(NSLocalizedString("URL", comment: "URL"), text: $viewModel.url)
                         .disableAutocorrection(true)
                         .textContentType(.URL)
                         .autocapitalization(.none)
                         .keyboardType(.URL)
-                    SecureField("API secret", text: $viewModel.secret)
+                    SecureField(NSLocalizedString("API secret", comment: "API secret"), text: $viewModel.secret)
                         .disableAutocorrection(true)
                         .autocapitalization(.none)
                         .textContentType(.password)
@@ -28,7 +28,7 @@ extension NightscoutConfig {
                     }
                     if viewModel.connecting {
                         HStack {
-                            Text("Connecting...")
+                            Text(NSLocalizedString("Connecting...", comment: "Connecting..."))
                             Spacer()
                             ProgressView()
                         }
@@ -36,24 +36,28 @@ extension NightscoutConfig {
                 }
 
                 Section {
-                    Button("Connect") { viewModel.connect() }
+                    Button(NSLocalizedString("Connect", comment: "Connect")) { viewModel.connect() }
                         .disabled(viewModel.url.isEmpty || viewModel.connecting)
-                    Button("Delete") { viewModel.delete() }.foregroundColor(.red).disabled(viewModel.connecting)
+                    Button(NSLocalizedString("Delete", comment: "Delete")) { viewModel.delete() }.foregroundColor(.red)
+                        .disabled(viewModel.connecting)
                 }
 
                 Section {
-                    Toggle("Allow uploads", isOn: $viewModel.isUploadEnabled)
+                    Toggle(NSLocalizedString("Allow uploads", comment: "Allow uploads"), isOn: $viewModel.isUploadEnabled)
                 }
 
-                Section(header: Text("Local glucose source")) {
-                    Toggle("Use local glucose server", isOn: $viewModel.useLocalSource)
+                Section(header: Text(NSLocalizedString("Local glucose source", comment: "Local glucose source"))) {
+                    Toggle(
+                        NSLocalizedString("Use local glucose server", comment: "Use local glucose server"),
+                        isOn: $viewModel.useLocalSource
+                    )
                     HStack {
-                        Text("Port")
+                        Text(NSLocalizedString("Port", comment: "Port"))
                         DecimalTextField("", value: $viewModel.localPort, formatter: portFormater)
                     }
                 }
             }
-            .navigationBarTitle("Nightscout Config", displayMode: .automatic)
+            .navigationBarTitle(NSLocalizedString("Nightscout Config", comment: "Nightscout Config"), displayMode: .automatic)
         }
     }
 }

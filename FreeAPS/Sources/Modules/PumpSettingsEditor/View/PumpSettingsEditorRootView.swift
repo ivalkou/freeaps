@@ -12,18 +12,26 @@ extension PumpSettingsEditor {
 
         var body: some View {
             Form {
-                Section(header: Text("Delivery limits")) {
+                Section(header: Text(NSLocalizedString("Delivery limits", comment: "Delivery limits"))) {
                     HStack {
-                        Text("Max Basal")
-                        DecimalTextField("hours", value: $viewModel.maxBasal, formatter: formatter)
+                        Text(NSLocalizedString("Max Basal", comment: "Max Basal"))
+                        DecimalTextField(
+                            NSLocalizedString("hours", comment: "hours"),
+                            value: $viewModel.maxBasal,
+                            formatter: formatter
+                        )
                     }
                     HStack {
-                        Text("Max Bolus")
-                        DecimalTextField("U/hr", value: $viewModel.maxBolus, formatter: formatter)
+                        Text(NSLocalizedString("Max Bolus", comment: "Max Bolus"))
+                        DecimalTextField(
+                            NSLocalizedString("U/hr", comment: "U/hr"),
+                            value: $viewModel.maxBolus,
+                            formatter: formatter
+                        )
                     }
                 }
 
-                Section(header: Text("Duration of Insulin Action")) {
+                Section(header: Text(NSLocalizedString("Duration of Insulin Action", comment: "Duration of Insulin Action"))) {
                     HStack {
                         Text("DIA")
                         DecimalTextField("hours", value: $viewModel.dia, formatter: formatter)
@@ -37,13 +45,17 @@ extension PumpSettingsEditor {
                         }
                         Button { viewModel.save() }
                         label: {
-                            Text(viewModel.syncInProgress ? "Saving..." : "Save on Pump")
+                            Text(
+                                viewModel
+                                    .syncInProgress ? NSLocalizedString("Saving...", comment: "Saving...") :
+                                    NSLocalizedString("Save on Pump", comment: "Save on Pump")
+                            )
                         }
                         .disabled(viewModel.syncInProgress)
                     }
                 }
             }
-            .navigationTitle("Pump Settings")
+            .navigationTitle(NSLocalizedString("Pump Settings", comment: "Pump Settings"))
             .navigationBarTitleDisplayMode(.automatic)
         }
     }

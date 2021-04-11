@@ -8,25 +8,32 @@ extension Settings {
         var body: some View {
             Form {
                 Section(header: Text("FreeAPS X v\(viewModel.buildNumber)")) {
-                    Toggle("Closed loop", isOn: $viewModel.closedLoop)
+                    Toggle(NSLocalizedString("Closed loop", comment: "Closed loop"), isOn: $viewModel.closedLoop)
                 }
 
-                Section(header: Text("Devices")) {
-                    Text("Pump").chevronCell().navigationLink(to: .pumpConfig, from: self)
+                Section(header: Text(NSLocalizedString("Devices", comment: "Devices"))) {
+                    Text(NSLocalizedString("Pump", comment: "Pump")).chevronCell().navigationLink(to: .pumpConfig, from: self)
                 }
 
-                Section(header: Text("Services")) {
+                Section(header: Text(NSLocalizedString("Services", comment: "Services"))) {
                     Text("Nightscout").chevronCell().navigationLink(to: .nighscoutConfig, from: self)
                 }
 
-                Section(header: Text("Configuration")) {
-                    Text("Preferences").chevronCell().navigationLink(to: .preferencesEditor, from: self)
-                    Text("Pump Settings").chevronCell().navigationLink(to: .pumpSettingsEditor, from: self)
-                    Text("Basal Profile").chevronCell().navigationLink(to: .basalProfileEditor, from: self)
-                    Text("Insulin Sensitivities").chevronCell().navigationLink(to: .isfEditor, from: self)
-                    Text("Carb Ratios").chevronCell().navigationLink(to: .crEditor, from: self)
-                    Text("Target Ranges").chevronCell().navigationLink(to: .targetsEditor, from: self)
-                    Text("Autotune").chevronCell().navigationLink(to: .autotuneConfig, from: self)
+                Section(header: Text(NSLocalizedString("Configuration", comment: "Configuration"))) {
+                    Text(NSLocalizedString("Preferences Conf", comment: "Preferences")).chevronCell()
+                        .navigationLink(to: .preferencesEditor, from: self)
+                    Text(NSLocalizedString("Pump Settings Conf", comment: "Pump Settings")).chevronCell()
+                        .navigationLink(to: .pumpSettingsEditor, from: self)
+                    Text(NSLocalizedString("Basal Profile Conf", comment: "Basal Profile")).chevronCell()
+                        .navigationLink(to: .basalProfileEditor, from: self)
+                    Text(NSLocalizedString("Insulin Sensitivities Conf", comment: "Insulin Sensitivities")).chevronCell()
+                        .navigationLink(to: .isfEditor, from: self)
+                    Text(NSLocalizedString("Carb Ratios Conf", comment: "Carb Ratios")).chevronCell()
+                        .navigationLink(to: .crEditor, from: self)
+                    Text(NSLocalizedString("Target Ranges Conf", comment: "Target Ranges")).chevronCell()
+                        .navigationLink(to: .targetsEditor, from: self)
+                    Text(NSLocalizedString("Autotune Conf", comment: "Autotune")).chevronCell()
+                        .navigationLink(to: .autotuneConfig, from: self)
                 }
 
                 if viewModel.debugOptions {
@@ -85,7 +92,7 @@ extension Settings {
                 }
 
                 Section {
-                    Text("Share logs").chevronCell()
+                    Text(NSLocalizedString("Share logs", comment: "Share logs")).chevronCell()
                         .onTapGesture {
                             showShareSheet = true
                         }
@@ -94,8 +101,8 @@ extension Settings {
             .sheet(isPresented: $showShareSheet) {
                 ShareSheet(activityItems: viewModel.logItems())
             }
-            .navigationTitle("Settings")
-            .navigationBarItems(leading: Button("Close", action: viewModel.hideModal))
+            .navigationTitle(NSLocalizedString("Settings", comment: "Settings"))
+            .navigationBarItems(leading: Button(NSLocalizedString("Close", comment: "Close"), action: viewModel.hideModal))
             .navigationBarTitleDisplayMode(.automatic)
         }
     }

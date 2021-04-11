@@ -12,9 +12,9 @@ extension Main {
                 }
                 .alert(isPresented: $viewModel.isAlertPresented) {
                     Alert(
-                        title: Text("Important message"),
+                        title: Text(NSLocalizedString("Important message", comment: "Important message")),
                         message: Text(viewModel.alertMessage),
-                        dismissButton: .default(Text("Dismiss"))
+                        dismissButton: .default(Text(NSLocalizedString("Dismiss", comment: "Dismiss")))
                     )
                 }
         }

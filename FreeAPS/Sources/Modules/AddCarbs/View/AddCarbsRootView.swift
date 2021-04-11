@@ -15,22 +15,22 @@ extension AddCarbs {
             Form {
                 Section {
                     HStack {
-                        Text("Amount")
+                        Text(NSLocalizedString("Amount Carbs", comment: "Amount Carbs"))
                         Spacer()
                         DecimalTextField("0", value: $viewModel.carbs, formatter: formatter, autofocus: true, cleanInput: true)
-                        Text("grams").foregroundColor(.secondary)
+                        Text(NSLocalizedString("grams", comment: "Grams unit")).foregroundColor(.secondary)
                     }
-                    DatePicker("Date", selection: $viewModel.date)
+                    DatePicker(NSLocalizedString("Date", comment: "Date"), selection: $viewModel.date)
                 }
 
                 Section {
                     Button { viewModel.add() }
-                    label: { Text("Add") }
+                    label: { Text(NSLocalizedString("Add Carbs", comment: "Add Carbs")) }
                 }
             }
-            .navigationTitle("Add Carbs")
+            .navigationTitle(NSLocalizedString("Add Carbs Title", comment: "Add Carbs Title"))
             .navigationBarTitleDisplayMode(.automatic)
-            .navigationBarItems(leading: Button("Close", action: viewModel.hideModal))
+            .navigationBarItems(leading: Button(NSLocalizedString("Close", comment: "Close"), action: viewModel.hideModal))
         }
     }
 }

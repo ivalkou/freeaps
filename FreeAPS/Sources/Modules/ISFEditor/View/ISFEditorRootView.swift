@@ -22,9 +22,9 @@ extension ISFEditor {
         var body: some View {
             Form {
                 if let autotune = viewModel.autotune {
-                    Section(header: Text("Autotune")) {
+                    Section(header: Text(NSLocalizedString("Autotune", comment: "Autotune"))) {
                         HStack {
-                            Text("Calculated Sensitivity")
+                            Text(NSLocalizedString("Calculated Sensitivity", comment: "Calculated Sensitivity"))
                             Spacer()
                             if viewModel.units == .mmolL {
                                 Text(rateFormatter.string(from: autotune.sensitivity.asMmolL as NSNumber) ?? "0")
@@ -36,33 +36,33 @@ extension ISFEditor {
                     }
                 }
                 if let newISF = viewModel.autosensISF {
-                    Section(header: Text("Autosens")) {
+                    Section(header: Text(NSLocalizedString("Autosens", comment: "Autosens"))) {
                         HStack {
-                            Text("Sensitivity Ratio")
+                            Text(NSLocalizedString("Sensitivity Ratio", comment: "Sensitivity Ratio"))
                             Spacer()
                             Text(rateFormatter.string(from: viewModel.autosensRatio as NSNumber) ?? "1")
                         }
                         HStack {
-                            Text("Calculated Sensitivity")
+                            Text(NSLocalizedString("Calculated Sensitivity", comment: "Calculated Sensitivity"))
                             Spacer()
                             Text(rateFormatter.string(from: newISF as NSNumber) ?? "0")
                             Text(viewModel.units.rawValue + "/U").foregroundColor(.secondary)
                         }
                     }
                 }
-                Section(header: Text("Schedule")) {
+                Section(header: Text(NSLocalizedString("Schedule", comment: "Schedule"))) {
                     list
                     addButton
                 }
                 Section {
                     Button { viewModel.save() }
                     label: {
-                        Text("Save")
+                        Text(NSLocalizedString("Save", comment: "Save"))
                     }
                     .disabled(viewModel.items.isEmpty)
                 }
             }
-            .navigationTitle("Insulin Sensitivities")
+            .navigationTitle(NSLocalizedString("Insulin Sensitivities", comment: "Insulin Sensitivities"))
             .navigationBarTitleDisplayMode(.automatic)
             .navigationBarItems(
                 trailing: EditButton()
@@ -77,8 +77,8 @@ extension ISFEditor {
             GeometryReader { geometry in
                 VStack {
                     HStack {
-                        Text("Rate").frame(width: geometry.size.width / 2)
-                        Text("Time").frame(width: geometry.size.width / 2)
+                        Text(NSLocalizedString("Rate", comment: "Rate")).frame(width: geometry.size.width / 2)
+                        Text(NSLocalizedString("Time", comment: "Time")).frame(width: geometry.size.width / 2)
                     }
                     HStack(spacing: 0) {
                         Picker(selection: $viewModel.items[index].rateIndex, label: EmptyView()) {
@@ -117,12 +117,12 @@ extension ISFEditor {
                 ForEach(viewModel.items.indexed(), id: \.1.id) { index, item in
                     NavigationLink(destination: pickers(for: index)) {
                         HStack {
-                            Text("Rate").foregroundColor(.secondary)
+                            Text(NSLocalizedString("Rate", comment: "Rate")).foregroundColor(.secondary)
                             Text(
                                 "\(rateFormatter.string(from: viewModel.rateValues[item.rateIndex] as NSNumber) ?? "0") \(viewModel.units.rawValue)/U"
                             )
                             Spacer()
-                            Text("starts at").foregroundColor(.secondary)
+                            Text(NSLocalizedString("starts at", comment: "starts at")).foregroundColor(.secondary)
                             Text(
                                 "\(dateFormatter.string(from: Date(timeIntervalSince1970: viewModel.timeValues[item.timeIndex])))"
                             )
@@ -141,7 +141,7 @@ extension ISFEditor {
 
             switch editMode {
             case .inactive:
-                return AnyView(Button(action: onAdd) { Text("Add") })
+                return AnyView(Button(action: onAdd) { Text(NSLocalizedString("Add", comment: "Add")) })
             default:
                 return AnyView(EmptyView())
             }

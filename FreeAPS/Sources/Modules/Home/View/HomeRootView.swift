@@ -137,7 +137,7 @@ extension Home {
                 }
                 Spacer()
                 if let progress = viewModel.bolusProgress {
-                    Text("Bolusing")
+                    Text(NSLocalizedString("Bolusing", comment: "Bolusing"))
                         .font(.system(size: 12, weight: .bold)).foregroundColor(.insulin)
                     ProgressView(value: Double(progress))
                         .progressViewStyle(BolusProgressViewStyle())
@@ -255,7 +255,7 @@ extension Home {
                 }
                 .edgesIgnoringSafeArea(.vertical)
             }
-            .navigationTitle("Home")
+            .navigationTitle(NSLocalizedString("Home", comment: "Home title"))
             .navigationBarHidden(true)
             .ignoresSafeArea(.keyboard)
             .popup(isPresented: isStatusPopupPresented, alignment: .top, direction: .top) {

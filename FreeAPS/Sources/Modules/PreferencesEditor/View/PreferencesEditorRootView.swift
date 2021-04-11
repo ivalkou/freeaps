@@ -13,15 +13,15 @@ extension PreferencesEditor {
         var body: some View {
             Form {
                 Section(header: Text("FreeAPS X")) {
-                    Picker("Glucose units", selection: $viewModel.unitsIndex) {
+                    Picker(NSLocalizedString("Glucose units", comment: "Glucose units"), selection: $viewModel.unitsIndex) {
                         Text("mg/dL").tag(0)
                         Text("mmol/L").tag(1)
                     }
 
-                    Toggle("Remote control", isOn: $viewModel.allowAnnouncements)
+                    Toggle(NSLocalizedString("Remote control", comment: "Remote control"), isOn: $viewModel.allowAnnouncements)
 
                     HStack {
-                        Text("Recommended Insulin Fraction")
+                        Text(NSLocalizedString("Recommended Insulin Fraction", comment: "Recommended Insulin Fraction"))
                         DecimalTextField("", value: $viewModel.insulinReqFraction, formatter: formatter)
                     }
                 }
@@ -46,11 +46,11 @@ extension PreferencesEditor {
                 }
 
                 Section {
-                    Text("Edit settings json").chevronCell()
+                    Text(NSLocalizedString("Edit settings json", comment: "Edit settings json")).chevronCell()
                         .navigationLink(to: .configEditor(file: OpenAPS.FreeAPS.settings), from: self)
                 }
             }
-            .navigationTitle("Preferences")
+            .navigationTitle(NSLocalizedString("Preferences", comment: "Preferences"))
             .navigationBarTitleDisplayMode(.automatic)
         }
     }
