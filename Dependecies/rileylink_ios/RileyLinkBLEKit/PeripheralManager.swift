@@ -51,6 +51,11 @@ class PeripheralManager: NSObject {
 
     // Confined to `queue`
     private var needsConfiguration = true
+    
+    // add for OL management
+    var writePsw = false
+    var logString = ""
+    // end for OL Management
 
     weak var delegate: PeripheralManagerDelegate? {
         didSet {
@@ -95,6 +100,9 @@ extension PeripheralManager {
 
 protocol PeripheralManagerDelegate: class {
     func peripheralManager(_ manager: PeripheralManager, didUpdateValueFor characteristic: CBCharacteristic)
+    
+    //add for OL management
+    func peripheralManager(_ manager: PeripheralManager, didUpdateNotificationStateFor characteristic: CBCharacteristic)
 
     func peripheralManager(_ manager: PeripheralManager, didReadRSSI RSSI: NSNumber, error: Error?)
 
@@ -374,6 +382,8 @@ extension PeripheralManager: CBPeripheralDelegate {
         }
 
         commandLock.unlock()
+        // add OL management
+        delegate?.peripheralManager(self, didUpdateNotificationStateFor: characteristic)
     }
 
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
@@ -417,7 +427,7 @@ extension PeripheralManager: CBPeripheralDelegate {
             }
         } else if let macro = configuration.valueUpdateMacros[characteristic.uuid] {
             macro(self)
-        } else if commandConditions.isEmpty {
+        } else { // add OL Management : if commandConditions.isEmpty {
             notifyDelegate = true // execute after the unlock
         }
 

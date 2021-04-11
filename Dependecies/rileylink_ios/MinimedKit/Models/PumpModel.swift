@@ -51,7 +51,8 @@ public enum PumpModel: String {
     }
     
     public var hasMySentry: Bool {
-        return generation >= 23
+        //return generation >= 23
+        return false
     }
     
     var hasLowSuspend: Bool {
