@@ -200,6 +200,19 @@
 		38E98A3725F5509500C0CED0 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E98A3625F5509500C0CED0 /* String+Extensions.swift */; };
 		38EA05DA261F6E7C0064E39B /* SimpleLogReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EA05D9261F6E7C0064E39B /* SimpleLogReporter.swift */; };
 		38EA0600262091870064E39B /* BolusProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EA05FF262091870064E39B /* BolusProgressViewStyle.swift */; };
+		38EA064426224F470064E39B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EA064326224F470064E39B /* WidgetKit.framework */; };
+		38EA064626224F470064E39B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EA064526224F470064E39B /* SwiftUI.framework */; };
+		38EA064926224F470064E39B /* FreeAPSWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EA064826224F470064E39B /* FreeAPSWidget.swift */; };
+		38EA064C26224F490064E39B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38EA064B26224F490064E39B /* Assets.xcassets */; };
+		38EA064E26224F490064E39B /* FreeAPSWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 38EA064A26224F470064E39B /* FreeAPSWidget.intentdefinition */; };
+		38EA064F26224F490064E39B /* FreeAPSWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 38EA064A26224F470064E39B /* FreeAPSWidget.intentdefinition */; };
+		38EA065226224F490064E39B /* FreeAPSWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38EA064226224F470064E39B /* FreeAPSWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		38EA06592622559E0064E39B /* CurrentGlucoseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AAF85425FFF846004AF583 /* CurrentGlucoseView.swift */; };
+		38EA065C262255BC0064E39B /* Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383948D925CD64D500E91849 /* Glucose.swift */; };
+		38EA065F262255CB0064E39B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388E5A5B25B6F0770019842D /* JSON.swift */; };
+		38EA0662262255F40064E39B /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3811DE5425C9D4D500A708ED /* Formatters.swift */; };
+		38EA06652622567C0064E39B /* Decimal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3871F39E25ED895A0013ECB5 /* Decimal+Extensions.swift */; };
+		38EA0668262256E00064E39B /* BloodGlucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3870FF4225EC13F40088248F /* BloodGlucose.swift */; };
 		38F37828261260DC009DB701 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F37827261260DC009DB701 /* Color+Extensions.swift */; };
 		38F3B2EF25ED8E2A005C48AA /* TempTargetsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F3B2EE25ED8E2A005C48AA /* TempTargetsStorage.swift */; };
 		38FCF3D625E8FDF40078B0D1 /* MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FCF3D525E8FDF40078B0D1 /* MD5.swift */; };
@@ -269,6 +282,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		38EA065026224F490064E39B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 388E595025AD948C0019842D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38EA064126224F470064E39B;
+			remoteInfo = FreeAPSWidgetExtension;
+		};
 		38FCF3F225E9028E0078B0D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 388E595025AD948C0019842D /* Project object */;
@@ -301,6 +321,17 @@
 				38887DE925F61F7500944304 /* MockKitUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38EA065326224F490064E39B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				38EA065226224F490064E39B /* FreeAPSWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -483,6 +514,13 @@
 		38E98A3625F5509500C0CED0 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		38EA05D9261F6E7C0064E39B /* SimpleLogReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLogReporter.swift; sourceTree = "<group>"; };
 		38EA05FF262091870064E39B /* BolusProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BolusProgressViewStyle.swift; sourceTree = "<group>"; };
+		38EA064226224F470064E39B /* FreeAPSWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FreeAPSWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		38EA064326224F470064E39B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		38EA064526224F470064E39B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		38EA064826224F470064E39B /* FreeAPSWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeAPSWidget.swift; sourceTree = "<group>"; };
+		38EA064A26224F470064E39B /* FreeAPSWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = FreeAPSWidget.intentdefinition; sourceTree = "<group>"; };
+		38EA064B26224F490064E39B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		38EA064D26224F490064E39B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38F37827261260DC009DB701 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		38F3783A2613555C009DB701 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		38F3B2EE25ED8E2A005C48AA /* TempTargetsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTargetsStorage.swift; sourceTree = "<group>"; };
@@ -581,6 +619,15 @@
 				38887DE225F61F7500944304 /* LoopKitUI.framework in Frameworks */,
 				38887DE625F61F7500944304 /* MockKit.framework in Frameworks */,
 				38887DF025F61F7500944304 /* MinimedKitUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38EA063F26224F470064E39B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38EA064626224F470064E39B /* SwiftUI.framework in Frameworks */,
+				38EA064426224F470064E39B /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1014,6 +1061,7 @@
 			children = (
 				388E595A25AD948C0019842D /* FreeAPS */,
 				38FCF3EE25E9028E0078B0D1 /* FreeAPSTests */,
+				38EA064726224F470064E39B /* FreeAPSWidget */,
 				388E595925AD948C0019842D /* Products */,
 				38B17B8525DD93BA005CAE3D /* Frameworks */,
 			);
@@ -1024,6 +1072,7 @@
 			children = (
 				388E595825AD948C0019842D /* FreeAPS.app */,
 				38FCF3ED25E9028E0078B0D1 /* FreeAPSTests.xctest */,
+				38EA064226224F470064E39B /* FreeAPSWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1154,6 +1203,8 @@
 				38887DDD25F61F7500944304 /* RileyLinkKit.framework */,
 				38887DDE25F61F7500944304 /* RileyLinkKitUI.framework */,
 				38887DDF25F61F7500944304 /* SwiftCharts.framework */,
+				38EA064326224F470064E39B /* WidgetKit.framework */,
+				38EA064526224F470064E39B /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1204,6 +1255,17 @@
 				38E98A2F25F52FF700C0CED0 /* Config.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		38EA064726224F470064E39B /* FreeAPSWidget */ = {
+			isa = PBXGroup;
+			children = (
+				38EA064826224F470064E39B /* FreeAPSWidget.swift */,
+				38EA064A26224F470064E39B /* FreeAPSWidget.intentdefinition */,
+				38EA064B26224F490064E39B /* Assets.xcassets */,
+				38EA064D26224F490064E39B /* Info.plist */,
+			);
+			path = FreeAPSWidget;
 			sourceTree = "<group>";
 		};
 		38FCF3EE25E9028E0078B0D1 /* FreeAPSTests */ = {
@@ -1493,10 +1555,12 @@
 				388E595525AD948C0019842D /* Frameworks */,
 				388E595625AD948C0019842D /* Resources */,
 				3821ECD025DC703C00BC42AD /* Embed Frameworks */,
+				38EA065326224F490064E39B /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				38EA065126224F490064E39B /* PBXTargetDependency */,
 			);
 			name = FreeAPS;
 			packageProductDependencies = (
@@ -1509,6 +1573,23 @@
 			productName = FreeAPS;
 			productReference = 388E595825AD948C0019842D /* FreeAPS.app */;
 			productType = "com.apple.product-type.application";
+		};
+		38EA064126224F470064E39B /* FreeAPSWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38EA065626224F490064E39B /* Build configuration list for PBXNativeTarget "FreeAPSWidgetExtension" */;
+			buildPhases = (
+				38EA063E26224F470064E39B /* Sources */,
+				38EA063F26224F470064E39B /* Frameworks */,
+				38EA064026224F470064E39B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FreeAPSWidgetExtension;
+			productName = FreeAPSWidgetExtension;
+			productReference = 38EA064226224F470064E39B /* FreeAPSWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 		38FCF3EC25E9028E0078B0D1 /* FreeAPSTests */ = {
 			isa = PBXNativeTarget;
@@ -1540,6 +1621,9 @@
 					388E595725AD948C0019842D = {
 						CreatedOnToolsVersion = 12.3;
 					};
+					38EA064126224F470064E39B = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					38FCF3EC25E9028E0078B0D1 = {
 						CreatedOnToolsVersion = 12.4;
 						TestTargetID = 388E595725AD948C0019842D;
@@ -1568,6 +1652,7 @@
 			targets = (
 				388E595725AD948C0019842D /* FreeAPS */,
 				38FCF3EC25E9028E0078B0D1 /* FreeAPSTests */,
+				38EA064126224F470064E39B /* FreeAPSWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1580,6 +1665,14 @@
 				388E596025AD948E0019842D /* Assets.xcassets in Resources */,
 				388E597225AD9CF10019842D /* json in Resources */,
 				388E596F25AD96040019842D /* javascript in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38EA064026224F470064E39B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38EA064C26224F490064E39B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1654,6 +1747,7 @@
 				38A0364225ED069400FCBB52 /* TempBasal.swift in Sources */,
 				3811DE1725C9D40400A708ED /* Screen.swift in Sources */,
 				383948DA25CD64D500E91849 /* Glucose.swift in Sources */,
+				38EA064F26224F490064E39B /* FreeAPSWidget.intentdefinition in Sources */,
 				388E596C25AD95110019842D /* OpenAPS.swift in Sources */,
 				384E803825C388640086DB71 /* Script.swift in Sources */,
 				3811DE0925C9D32F00A708ED /* BaseViewModel.swift in Sources */,
@@ -1843,6 +1937,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		38EA063E26224F470064E39B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38EA0662262255F40064E39B /* Formatters.swift in Sources */,
+				38EA06652622567C0064E39B /* Decimal+Extensions.swift in Sources */,
+				38EA064926224F470064E39B /* FreeAPSWidget.swift in Sources */,
+				38EA065F262255CB0064E39B /* JSON.swift in Sources */,
+				38EA06592622559E0064E39B /* CurrentGlucoseView.swift in Sources */,
+				38EA065C262255BC0064E39B /* Glucose.swift in Sources */,
+				38EA064E26224F490064E39B /* FreeAPSWidget.intentdefinition in Sources */,
+				38EA0668262256E00064E39B /* BloodGlucose.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		38FCF3E925E9028E0078B0D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1854,6 +1963,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		38EA065126224F490064E39B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38EA064126224F470064E39B /* FreeAPSWidgetExtension */;
+			targetProxy = 38EA065026224F490064E39B /* PBXContainerItemProxy */;
+		};
 		38FCF3F325E9028E0078B0D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 388E595725AD948C0019842D /* FreeAPS */;
@@ -1985,6 +2099,7 @@
 		388E596825AD948E0019842D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_GROUP_ID = "group.$(PRODUCT_BUNDLE_IDENTIFIER)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2011,6 +2126,7 @@
 		388E596925AD948E0019842D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APP_GROUP_ID = "group.$(PRODUCT_BUNDLE_IDENTIFIER)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -2029,6 +2145,50 @@
 				MARKETING_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.artpancreas.FreeAPS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		38EA065426224F490064E39B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BA7ZHP4963;
+				INFOPLIST_FILE = FreeAPSWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.artpancreas.FreeAPS.FreeAPSWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		38EA065526224F490064E39B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = BA7ZHP4963;
+				INFOPLIST_FILE = FreeAPSWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.artpancreas.FreeAPS.FreeAPSWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2093,6 +2253,15 @@
 			buildConfigurations = (
 				388E596825AD948E0019842D /* Debug */,
 				388E596925AD948E0019842D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		38EA065626224F490064E39B /* Build configuration list for PBXNativeTarget "FreeAPSWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38EA065426224F490064E39B /* Debug */,
+				38EA065526224F490064E39B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
