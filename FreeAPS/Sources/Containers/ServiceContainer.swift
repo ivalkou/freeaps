@@ -15,5 +15,7 @@ enum ServiceContainer: DependeciesContainer {
             reporter.setup()
             return reporter
         }
+
+        container.register(AppExtensionsManager.self) { _ in BaseAppExtensionsManager(resolver: resolver) }
     }
 }
