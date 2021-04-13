@@ -8,31 +8,31 @@ extension Settings {
         var body: some View {
             Form {
                 Section(header: Text("FreeAPS X v\(viewModel.buildNumber)")) {
-                    Toggle(NSLocalizedString("Closed loop", comment: "Closed loop"), isOn: $viewModel.closedLoop)
+                    Toggle("Closed loop", isOn: $viewModel.closedLoop)
                 }
 
-                Section(header: Text(NSLocalizedString("Devices", comment: "Devices"))) {
-                    Text(NSLocalizedString("Pump", comment: "Pump")).chevronCell().navigationLink(to: .pumpConfig, from: self)
+                Section(header: Text("Devices")) {
+                    Text("Pump").chevronCell().navigationLink(to: .pumpConfig, from: self)
                 }
 
-                Section(header: Text(NSLocalizedString("Services", comment: "Services"))) {
+                Section(header: Text("Services")) {
                     Text("Nightscout").chevronCell().navigationLink(to: .nighscoutConfig, from: self)
                 }
 
-                Section(header: Text(NSLocalizedString("Configuration", comment: "Configuration"))) {
-                    Text(NSLocalizedString("Preferences Conf", comment: "Preferences")).chevronCell()
+                Section(header: Text("Configuration")) {
+                    Text("Preferences Conf").chevronCell()
                         .navigationLink(to: .preferencesEditor, from: self)
-                    Text(NSLocalizedString("Pump Settings Conf", comment: "Pump Settings")).chevronCell()
+                    Text("Pump Settings Conf").chevronCell()
                         .navigationLink(to: .pumpSettingsEditor, from: self)
-                    Text(NSLocalizedString("Basal Profile Conf", comment: "Basal Profile")).chevronCell()
+                    Text("Basal Profile Conf").chevronCell()
                         .navigationLink(to: .basalProfileEditor, from: self)
-                    Text(NSLocalizedString("Insulin Sensitivities Conf", comment: "Insulin Sensitivities")).chevronCell()
+                    Text("Insulin Sensitivities Conf").chevronCell()
                         .navigationLink(to: .isfEditor, from: self)
-                    Text(NSLocalizedString("Carb Ratios Conf", comment: "Carb Ratios")).chevronCell()
+                    Text("Carb Ratios Conf").chevronCell()
                         .navigationLink(to: .crEditor, from: self)
-                    Text(NSLocalizedString("Target Ranges Conf", comment: "Target Ranges")).chevronCell()
+                    Text("Target Ranges Conf").chevronCell()
                         .navigationLink(to: .targetsEditor, from: self)
-                    Text(NSLocalizedString("Autotune Conf", comment: "Autotune")).chevronCell()
+                    Text("Autotune Conf").chevronCell()
                         .navigationLink(to: .autotuneConfig, from: self)
                 }
 
@@ -92,7 +92,7 @@ extension Settings {
                 }
 
                 Section {
-                    Text(NSLocalizedString("Share logs", comment: "Share logs")).chevronCell()
+                    Text("Share logs").chevronCell()
                         .onTapGesture {
                             showShareSheet = true
                         }
@@ -101,8 +101,8 @@ extension Settings {
             .sheet(isPresented: $showShareSheet) {
                 ShareSheet(activityItems: viewModel.logItems())
             }
-            .navigationTitle(NSLocalizedString("Settings", comment: "Settings"))
-            .navigationBarItems(leading: Button(NSLocalizedString("Close", comment: "Close"), action: viewModel.hideModal))
+            .navigationTitle("Settings")
+            .navigationBarItems(leading: Button("Close", action: viewModel.hideModal))
             .navigationBarTitleDisplayMode(.automatic)
         }
     }

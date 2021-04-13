@@ -12,26 +12,26 @@ extension PumpSettingsEditor {
 
         var body: some View {
             Form {
-                Section(header: Text(NSLocalizedString("Delivery limits", comment: "Delivery limits"))) {
+                Section(header: Text("Delivery limits")) {
                     HStack {
-                        Text(NSLocalizedString("Max Basal", comment: "Max Basal"))
+                        Text("Max Basal")
                         DecimalTextField(
-                            NSLocalizedString("hours", comment: "hours"),
+                            "hours",
                             value: $viewModel.maxBasal,
                             formatter: formatter
                         )
                     }
                     HStack {
-                        Text(NSLocalizedString("Max Bolus", comment: "Max Bolus"))
+                        Text("Max Bolus")
                         DecimalTextField(
-                            NSLocalizedString("U/hr", comment: "U/hr"),
+                            "U/hr",
                             value: $viewModel.maxBolus,
                             formatter: formatter
                         )
                     }
                 }
 
-                Section(header: Text(NSLocalizedString("Duration of Insulin Action", comment: "Duration of Insulin Action"))) {
+                Section(header: Text("Duration of Insulin Action")) {
                     HStack {
                         Text("DIA")
                         DecimalTextField("hours", value: $viewModel.dia, formatter: formatter)
@@ -47,15 +47,14 @@ extension PumpSettingsEditor {
                         label: {
                             Text(
                                 viewModel
-                                    .syncInProgress ? NSLocalizedString("Saving...", comment: "Saving...") :
-                                    NSLocalizedString("Save on Pump", comment: "Save on Pump")
+                                    .syncInProgress ? "Saving..." : "Save on Pump"
                             )
                         }
                         .disabled(viewModel.syncInProgress)
                     }
                 }
             }
-            .navigationTitle(NSLocalizedString("Pump Settings", comment: "Pump Settings"))
+            .navigationTitle("Pump Settings")
             .navigationBarTitleDisplayMode(.automatic)
         }
     }

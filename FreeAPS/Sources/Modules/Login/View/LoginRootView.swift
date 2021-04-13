@@ -6,14 +6,14 @@ extension Login {
 
         var body: some View {
             VStack {
-                Text(NSLocalizedString("Disclaimer", comment: "Disclaimer")).font(.title)
+                Text("Disclaimer").font(.title)
                 Spacer()
                 Text(
-                    NSLocalizedString("Disclaimer Description", comment: "Disclaimer Description")
+                    "Disclaimer Description"
                 )
                 Spacer()
                 Button(action: viewModel.login) {
-                    Text(NSLocalizedString("Agree and Continue", comment: "Agree and continue"))
+                    Text("Agree and Continue")
                         .frame(maxWidth: .infinity)
                         .foregroundColor(.white)
                         .buttonBackground()

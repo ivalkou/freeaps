@@ -18,10 +18,10 @@ extension PreferencesEditor {
                         Text("mmol/L").tag(1)
                     }
 
-                    Toggle(NSLocalizedString("Remote control", comment: "Remote control"), isOn: $viewModel.allowAnnouncements)
+                    Toggle("Remote control", isOn: $viewModel.allowAnnouncements)
 
                     HStack {
-                        Text(NSLocalizedString("Recommended Insulin Fraction", comment: "Recommended Insulin Fraction"))
+                        Text("Recommended Insulin Fraction")
                         DecimalTextField("", value: $viewModel.insulinReqFraction, formatter: formatter)
                     }
                 }
@@ -46,11 +46,11 @@ extension PreferencesEditor {
                 }
 
                 Section {
-                    Text(NSLocalizedString("Edit settings json", comment: "Edit settings json")).chevronCell()
+                    Text("Edit settings json").chevronCell()
                         .navigationLink(to: .configEditor(file: OpenAPS.FreeAPS.settings), from: self)
                 }
             }
-            .navigationTitle(NSLocalizedString("Preferences", comment: "Preferences"))
+            .navigationTitle("Preferences")
             .navigationBarTitleDisplayMode(.automatic)
         }
     }

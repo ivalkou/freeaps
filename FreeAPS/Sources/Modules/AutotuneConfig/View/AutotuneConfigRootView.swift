@@ -26,19 +26,19 @@ extension AutotuneConfig {
 
                 Section {
                     Button { viewModel.run() }
-                    label: { Text(NSLocalizedString("Run now", comment: "Run now")) }
+                    label: { Text("Run now") }
                 }
 
                 if let autotune = viewModel.autotune {
                     Section {
                         HStack {
-                            Text(NSLocalizedString("Carb ratio", comment: "Carb ratio"))
+                            Text("Carb ratio")
                             Spacer()
                             Text(isfFormatter.string(from: autotune.carbRatio as NSNumber) ?? "0")
                             Text("g/U").foregroundColor(.secondary)
                         }
                         HStack {
-                            Text(NSLocalizedString("Sensitivity", comment: "Sensitivity"))
+                            Text("Sensitivity")
                             Spacer()
                             if viewModel.units == .mmolL {
                                 Text(isfFormatter.string(from: autotune.sensitivity.asMmolL as NSNumber) ?? "0")
@@ -49,7 +49,7 @@ extension AutotuneConfig {
                         }
                     }
 
-                    Section(header: Text(NSLocalizedString("Basal profile", comment: "Basal profile"))) {
+                    Section(header: Text("Basal profile")) {
                         ForEach(0 ..< autotune.basalProfile.count, id: \.self) { index in
                             HStack {
                                 Text(autotune.basalProfile[index].start).foregroundColor(.secondary)
@@ -62,12 +62,12 @@ extension AutotuneConfig {
 
                     Section {
                         Button { viewModel.delete() }
-                        label: { Text(NSLocalizedString("Delete autotune data", comment: "Delete autotune data")) }
+                        label: { Text("Delete autotune data") }
                             .foregroundColor(.red)
                     }
                 }
             }
-            .navigationTitle(NSLocalizedString("Autotune", comment: "Autotune Title"))
+            .navigationTitle("Autotune")
             .navigationBarTitleDisplayMode(.automatic)
         }
     }

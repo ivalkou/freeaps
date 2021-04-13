@@ -20,7 +20,7 @@ extension BasalProfileEditor {
 
         var body: some View {
             Form {
-                Section(header: Text(NSLocalizedString("Schedule", comment: "Schedule"))) {
+                Section(header: Text("Schedule")) {
                     list
                     addButton
                 }
@@ -33,15 +33,14 @@ extension BasalProfileEditor {
                         label: {
                             Text(
                                 viewModel
-                                    .syncInProgress ? NSLocalizedString("Saving...", comment: "Saving...") :
-                                    NSLocalizedString("Save on Pump", comment: "Save on Pump")
+                                    .syncInProgress ? "Saving..." : "Save on Pump"
                             )
                         }
                         .disabled(viewModel.syncInProgress || viewModel.items.isEmpty)
                     }
                 }
             }
-            .navigationTitle(NSLocalizedString("Basal Profile", comment: "Basal Profile"))
+            .navigationTitle("Basal Profile")
             .navigationBarTitleDisplayMode(.automatic)
             .navigationBarItems(
                 trailing: EditButton()
@@ -56,8 +55,8 @@ extension BasalProfileEditor {
             GeometryReader { geometry in
                 VStack {
                     HStack {
-                        Text(NSLocalizedString("Rate", comment: "Rate basal profile")).frame(width: geometry.size.width / 2)
-                        Text(NSLocalizedString("Time", comment: "Time basal profile")).frame(width: geometry.size.width / 2)
+                        Text("Rate").frame(width: geometry.size.width / 2)
+                        Text("Time").frame(width: geometry.size.width / 2)
                     }
                     HStack(spacing: 0) {
                         Picker(selection: $viewModel.items[index].rateIndex, label: EmptyView()) {
@@ -96,12 +95,12 @@ extension BasalProfileEditor {
                 ForEach(viewModel.items.indexed(), id: \.1.id) { index, item in
                     NavigationLink(destination: pickers(for: index)) {
                         HStack {
-                            Text(NSLocalizedString("Rate", comment: "Rate basal profile")).foregroundColor(.secondary)
+                            Text("Rate").foregroundColor(.secondary)
                             Text(
                                 "\(rateFormatter.string(from: viewModel.rateValues[item.rateIndex] as NSNumber) ?? "0") U/hr"
                             )
                             Spacer()
-                            Text(NSLocalizedString("starts at", comment: "starts at")).foregroundColor(.secondary)
+                            Text("starts at").foregroundColor(.secondary)
                             Text(
                                 "\(dateFormatter.string(from: Date(timeIntervalSince1970: viewModel.timeValues[item.timeIndex])))"
                             )
@@ -120,7 +119,7 @@ extension BasalProfileEditor {
 
             switch editMode {
             case .inactive:
-                return AnyView(Button(action: onAdd) { Text(NSLocalizedString("Add", comment: "Add profile basal")) })
+                return AnyView(Button(action: onAdd) { Text("Add") })
             default:
                 return AnyView(EmptyView())
             }

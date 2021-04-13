@@ -33,7 +33,7 @@ struct LoopView: View {
                 }
             }
             if isLooping {
-                Text(NSLocalizedString("looping", comment: "Looping in progress")).font(.caption2)
+                Text("looping").font(.caption2)
             } else if actualSuggestion?.timestamp != nil {
                 Text(timeString).font(.caption2)
                     .foregroundColor(.secondary)
