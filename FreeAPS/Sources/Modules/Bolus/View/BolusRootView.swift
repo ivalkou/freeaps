@@ -13,7 +13,7 @@ extension Bolus {
 
         var body: some View {
             Form {
-                Section(header: Text("Recommandation")) {
+                Section(header: Text("Recommendation")) {
                     if viewModel.waitForSuggestion {
                         HStack {
                             Text("Wait please").foregroundColor(.secondary)
