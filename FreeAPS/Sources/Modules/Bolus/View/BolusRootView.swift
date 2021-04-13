@@ -30,7 +30,7 @@ extension Bolus {
                                 viewModel.amount = viewModel.inslinRecommended
                             }
                         HStack {
-                            Text("Insulin recommanded")
+                            Text("Insulin recommended")
                             Spacer()
                             Text(formatter.string(from: viewModel.inslinRecommended as NSNumber)! + " U")
                         }.contentShape(Rectangle())
@@ -66,15 +66,12 @@ extension Bolus {
                         } else {
                             Button { viewModel.addWithoutBolus() }
                             label: {
-                                Text(
-                                    "Add insulin without actually bolusing"
-
-                                ) }
+                                Text("Add insulin without actually bolusing") }
                         }
                     }
                 }
             }
-            .navigationTitle("Enact Bolus Titre")
+            .navigationTitle("Enact Bolus Title")
             .navigationBarTitleDisplayMode(.automatic)
             .navigationBarItems(leading: Button("Close", action: viewModel.hideModal))
         }

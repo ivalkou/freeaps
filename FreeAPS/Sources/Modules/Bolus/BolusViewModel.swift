@@ -39,14 +39,10 @@ extension Bolus {
                 return
             }
             unlockmanager.unlock()
-                .sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .failure: ()
-                    case .finished:
-                        self.apsManager.enactBolus(amount: Double(self.amount), isSMB: false)
-                        self.showModal(for: nil)
-                    }
-                }, receiveValue: { _ in })
+                .sink { _ in } receiveValue: {
+                    self.apsManager.enactBolus(amount: Double(self.amount), isSMB: false)
+                    self.showModal(for: nil)
+                }
                 .store(in: &lifetime)
         }
 

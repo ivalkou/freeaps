@@ -13,7 +13,7 @@ extension PreferencesEditor {
         var body: some View {
             Form {
                 Section(header: Text("FreeAPS X")) {
-                    Picker(NSLocalizedString("Glucose units", comment: "Glucose units"), selection: $viewModel.unitsIndex) {
+                    Picker("Glucose units", selection: $viewModel.unitsIndex) {
                         Text("mg/dL").tag(0)
                         Text("mmol/L").tag(1)
                     }

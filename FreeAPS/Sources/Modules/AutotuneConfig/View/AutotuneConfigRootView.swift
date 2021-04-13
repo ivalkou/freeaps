@@ -21,7 +21,7 @@ extension AutotuneConfig {
         var body: some View {
             Form {
                 Section {
-                    Toggle(NSLocalizedString("use Autotune", comment: "Use Autotune"), isOn: $viewModel.useAutotune)
+                    Toggle("use Autotune", isOn: $viewModel.useAutotune)
                 }
 
                 Section {
