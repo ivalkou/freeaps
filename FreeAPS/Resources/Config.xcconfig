@@ -1,1 +1,2 @@
 BUILD_VERSION = 0.1.12
+BUNDLE_ID = ru.artpancreas.FreeAPS

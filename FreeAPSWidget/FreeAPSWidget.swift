@@ -4,25 +4,20 @@ import WidgetKit
 
 struct Provider: TimelineProvider {
     func placeholder(in _: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), lastGlucose: nil)
+        SimpleEntry(date: Date(), lastGlucose: nil, delta: nil)
     }
 
     func getSnapshot(in _: Context, completion: @escaping (SimpleEntry) -> Void) {
-        let entry = SimpleEntry(date: Date(), lastGlucose: nil)
+        let glucose = UserDefaults.appGroup?.getValue(BloodGlucose.self, forKey: "RecentGlucose")
+        let delta = UserDefaults.appGroup?.getValue(Int.self, forKey: "GlucoseDelta")
+        let entry = SimpleEntry(date: Date(), lastGlucose: glucose, delta: delta)
         completion(entry)
     }
 
     func getTimeline(in _: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
-        let entry = SimpleEntry(date: Date(), lastGlucose: BloodGlucose(
-            _id: "sd",
-            sgv: 100,
-            direction: .flat,
-            date: Decimal(Date().timeIntervalSince1970 * 1000),
-            dateString: Date(),
-            filtered: nil,
-            noise: 1,
-            glucose: 100
-        ))
+        let glucose = UserDefaults.appGroup?.getValue(BloodGlucose.self, forKey: "RecentGlucose")
+        let delta = UserDefaults.appGroup?.getValue(Int.self, forKey: "GlucoseDelta")
+        let entry = SimpleEntry(date: Date(), lastGlucose: glucose, delta: delta)
 
         let timeline = Timeline(
             entries: [entry],
@@ -34,7 +29,9 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+
     let lastGlucose: BloodGlucose?
+    let delta: Int?
 }
 
 struct FreeAPSWidgetEntryView: View {
@@ -43,7 +40,7 @@ struct FreeAPSWidgetEntryView: View {
     var body: some View {
         CurrentGlucoseView(
             recentGlucose: .constant(entry.lastGlucose),
-            delta: .constant(5),
+            delta: .constant(entry.delta),
             units: .mmolL
         )
     }
@@ -56,8 +53,8 @@ struct FreeAPSWidgetEntryView: View {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             FreeAPSWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("FreeAPS X status")
+        .description("FreeAPS X status")
         .supportedFamilies([.systemMedium])
     }
 }
@@ -65,7 +62,7 @@ struct FreeAPSWidgetEntryView: View {
 struct FreeAPSWidget_Previews: PreviewProvider {
     static var previews: some View {
         let glucose = BloodGlucose(
-            _id: "sd",
+            _id: "000000",
             sgv: 100,
             direction: .flat,
             date: Decimal(Date().timeIntervalSince1970 * 1000),
@@ -74,7 +71,7 @@ struct FreeAPSWidget_Previews: PreviewProvider {
             noise: 1,
             glucose: 100
         )
-        return FreeAPSWidgetEntryView(entry: SimpleEntry(date: Date(), lastGlucose: glucose))
+        return FreeAPSWidgetEntryView(entry: SimpleEntry(date: Date(), lastGlucose: glucose, delta: 0))
             .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }

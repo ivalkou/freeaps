@@ -31,6 +31,7 @@ private extension Swinject.Resolver {
         _ = resolver.resolve(APSManager.self)!
         _ = resolver.resolve(FetchGlucoseManager.self)!
         _ = resolver.resolve(FetchTreatmentsManager.self)!
+        _ = resolver.resolve(AppExtensionsManager.self)!
     }
 
     var body: some Scene {
