@@ -20,19 +20,19 @@ extension TargetsEditor {
 
         var body: some View {
             Form {
-                Section(header: Text(NSLocalizedString("Schedule", comment: "Schedule"))) {
+                Section(header: Text("Schedule")) {
                     list
                     addButton
                 }
                 Section {
                     Button { viewModel.save() }
                     label: {
-                        Text(NSLocalizedString("Save", comment: "Save"))
+                        Text("Save")
                     }
                     .disabled(viewModel.items.isEmpty)
                 }
             }
-            .navigationTitle(NSLocalizedString("Target Ranges", comment: "Target Ranges"))
+            .navigationTitle("Target Ranges")
             .navigationBarTitleDisplayMode(.automatic)
             .navigationBarItems(
                 trailing: EditButton()
@@ -47,9 +47,9 @@ extension TargetsEditor {
             GeometryReader { geometry in
                 VStack {
                     HStack {
-                        Text(NSLocalizedString("Low target", comment: "Low target")).frame(width: geometry.size.width / 3)
-                        Text(NSLocalizedString("High target", comment: "High target")).frame(width: geometry.size.width / 3)
-                        Text(NSLocalizedString("Time", comment: "Time")).frame(width: geometry.size.width / 3)
+                        Text("Low target").frame(width: geometry.size.width / 3)
+                        Text("High target").frame(width: geometry.size.width / 3)
+                        Text("Time").frame(width: geometry.size.width / 3)
                     }
                     HStack(spacing: 0) {
                         Picker(selection: $viewModel.items[index].lowIndex, label: EmptyView()) {
@@ -105,7 +105,7 @@ extension TargetsEditor {
                             )
                             Text("\(viewModel.units.rawValue)").foregroundColor(.secondary)
                             Spacer()
-                            Text(NSLocalizedString("starts at", comment: "starts at")).foregroundColor(.secondary)
+                            Text("starts at").foregroundColor(.secondary)
                             Text(
                                 "\(dateFormatter.string(from: Date(timeIntervalSince1970: viewModel.timeValues[item.timeIndex])))"
                             )
@@ -124,7 +124,7 @@ extension TargetsEditor {
 
             switch editMode {
             case .inactive:
-                return AnyView(Button(action: onAdd) { Text(NSLocalizedString("Add", comment: "Add")) })
+                return AnyView(Button(action: onAdd) { Text("Add") })
             default:
                 return AnyView(EmptyView())
             }
