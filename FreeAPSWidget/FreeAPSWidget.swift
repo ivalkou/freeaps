@@ -21,7 +21,7 @@ struct Provider: TimelineProvider {
 
         let timeline = Timeline(
             entries: [entry],
-            policy: .after(Date().addingTimeInterval(60 * 15))
+            policy: .atEnd
         )
         completion(timeline)
     }
