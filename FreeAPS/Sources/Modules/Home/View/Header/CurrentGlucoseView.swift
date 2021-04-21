@@ -42,6 +42,7 @@ struct CurrentGlucoseView: View {
                 )
                 .font(.system(size: 24, weight: .bold))
                 .fixedSize()
+                .foregroundColor(colorOfGlucose)
                 image.padding(.bottom, 2)
 
             }.padding(.leading, 4)
@@ -60,6 +61,22 @@ struct CurrentGlucoseView: View {
         }
     }
 
+    var colorOfGlucose: Color {
+        guard var recentBG = recentGlucose?.glucose
+        else { return .loopYellow }
+
+        recentBG /= 18 // convert to mmol/l for calculation
+
+        switch recentBG {
+        case 4 ... 7:
+            return .loopGreen
+        case 8 ... 9:
+            return .loopYellow
+        default:
+            return .loopRed
+        }
+    }
+    
     var image: Image {
         guard let direction = recentGlucose?.direction else {
             return Image(systemName: "arrow.left.and.right")
