@@ -1598,7 +1598,6 @@
 				da,
 				nl,
 				fr,
-				"fr-CA",
 				fi,
 				de,
 				el,

@@ -75,7 +75,7 @@ extension PreferencesEditor {
                     keypath: \.highTemptargetRaisesSensitivity,
                     value: preferences.highTemptargetRaisesSensitivity,
                     infoText: NSLocalizedString(
-                        "Defaults to false. When set to true, raises sensitivity (lower sensitivity ratio) for temp targets set to >= 111. Synonym for exercise_mode. The higher your temp target above 110 will result in more sensitive (lower) ratios, e.g., temp target of 120 results in sensitivy ratio of 0.75, while 140 results in 0.6 (with default halfBasalTarget of 160).",
+                        "Defaults to false. When set to true, raises sensitivity (lower sensitivity ratio) for temp targets set to >= 111. Synonym for exercise_mode. The higher your temp target above 110 will result in more sensitive (lower) ratios, e.g., temp target of 120 results in sensitivity ratio of 0.75, while 140 results in 0.6 (with default halfBasalTarget of 160).",
                         comment: "High Temptarget Raises Sensitivity"
                     ),
                     settable: self
@@ -85,7 +85,7 @@ extension PreferencesEditor {
                     keypath: \.lowTemptargetLowersSensitivity,
                     value: preferences.lowTemptargetLowersSensitivity,
                     infoText: NSLocalizedString(
-                        "Defaults to false. When set to true, can lower sensitivity (higher sensitivity ratio) for temptargets <= 99. The lower your temp target below 100 will result in less sensitive (higher) ratios, e.g., temp target of 95 results in sensitivy ratio of 1.09, while 85 results in 1.33 (with default halfBasalTarget of 160).",
+                        "Defaults to false. When set to true, can lower sensitivity (higher sensitivity ratio) for temptargets <= 99. The lower your temp target below 100 will result in less sensitive (higher) ratios, e.g., temp target of 95 results in sensitivity ratio of 1.09, while 85 results in 1.33 (with default halfBasalTarget of 160).",
                         comment: "Low Temptarget Lowers Sensitivity"
                     ),
                     settable: self
@@ -145,7 +145,7 @@ extension PreferencesEditor {
                     keypath: \.skipNeutralTemps,
                     value: preferences.skipNeutralTemps,
                     infoText: NSLocalizedString(
-                        "Defaults to false, so that OpenAPS will set temps whenever it can, so it will be easier to see if the system is working, even when you are offline. This means OpenAPS will set a “neutral” temp (same as your default basal) if no adjustments are needed. If you are a light sleeper and the “on the hour” buzzing or beeping wakes you up (even in vibrate mode), you may want to turn this to “true” to skip setting neutral temps. However, we recommend leaving neutral temps enabled for most people who will be using this system on the go and out of constant connectivity.\n\nNote: if set to true, in order to reduce notifications at the top of the hour, it will also attempt to cancel temp basals (unless BG or minGuardBG is below threshold and a zero-temp is needed) prior to the top of the hour. Normally a new temp basal will be set (if still needed) after the top of the hour, but that may be delayed if the rig has issues connecting to the pump. People who want to minimize the ‘on the hour’ temp basal notification beeps/vibrations may choose to accept that risk and choose to set skip_neutral_temps to true.",
+                        "Defaults to false, so that FreeAPS X will set temps whenever it can, so it will be easier to see if the system is working, even when you are offline. This means FreeAPS X will set a “neutral” temp (same as your default basal) if no adjustments are needed. This is an old setting for OpenAPS to have the options to minimise sounds and notifications from the 'rig', that may wake you up during the night.",
                         comment: "Skip Neutral Temps"
                     ),
                     settable: self
@@ -400,7 +400,7 @@ extension PreferencesEditor {
                     displayName: "Bolus Increment",
                     keypath: \.bolusIncrement,
                     value: preferences.bolusIncrement,
-                    infoText: NSLocalizedString("Smallest bolus amount enacted", comment: "Bolus Increment"),
+                    infoText: NSLocalizedString("Smallest possible bolus amount", comment: "Bolus Increment"),
                     settable: self
                 ),
                 Field(
