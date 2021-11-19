@@ -8,6 +8,7 @@ extension Home {
         @Injected() var settingsManager: SettingsManager!
         @Injected() var apsManager: APSManager!
         @Injected() var nightscoutManager: NightscoutManager!
+        @Injected() var calendarManager: CalendarManager!
         private let timer = DispatchTimer(timeInterval: 5)
         private(set) var filteredHours = 24
 
@@ -41,6 +42,7 @@ extension Home {
         @Published var errorDate: Date? = nil
         @Published var bolusProgress: Decimal?
         @Published var eventualBG: Int?
+        @Published var isf: Int?
         @Published var carbsRequired: Decimal?
         @Published var allowManualTemp = false
         @Published var units: GlucoseUnits = .mmolL
@@ -145,6 +147,7 @@ extension Home {
                 } else {
                     self.glucoseDelta = nil
                 }
+                self.calendarManager.createEvent(for: self.recentGlucose, delta: self.glucoseDelta)
             }
         }
 
@@ -246,6 +249,7 @@ extension Home {
             }
 
             eventualBG = suggestion.eventualBG
+            isf = suggestion.isf
         }
 
         private func setupReservoir() {
@@ -274,6 +278,8 @@ extension Home {
                 url = URL(string: "spikeapp://")!
             case "http://127.0.0.1:17580":
                 url = URL(string: "diabox://")!
+            case CGMType.libreTransmitter.appURL?.absoluteString:
+                showModal(for: .libreConfig)
             default: break
             }
             UIApplication.shared.open(url, options: [:], completionHandler: nil)

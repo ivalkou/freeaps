@@ -401,9 +401,204 @@ Enact a temp Basal or a temp target */
 /* Other CGM setting */
 "Other" = "Altro";
 
+
+/* Calendar and Libre transmitter settings --------------*/
+/* */
+
+"Configure Libre Transmitter" = "Configure Libre Transmitter";
+
+/* */
+"Calibrations" = "Calibrations";
+
+/* */
+"Create events in calendar" = "Create events in calendar";
+
+/* */
+"Calendar" = "Calendar";
+
+/* */
+"Other" = "Other";
+
+/* */
+"Libre Transmitter" = "Libre Transmitter";
+
+/* */
+"Libre Transmitters" = "Libre Transmitters";
+
+/* */
+"Bluetooth Transmitters" = "Bluetooth Transmitters";
+
+/* */
+"Modes" = "Modes";
+
+/* Libre 2 Direct */
+"Libre 2 Direct" = "Libre 2 Direct";
+
+/* */
+"Select the third party transmitter you want to connect to" = "Select the third party transmitter you want to connect to";
+
+/* State was restored */
+"State was restored" = "State was restored";
+
+/* The short unit display string for millimoles of glucose per liter */
+"mmol/L" = "mmol/L";
+
+/* The short unit display string for milligrams of glucose per decilter */
+"mg/dL" = "mg/dL";
+
+/* */
+"Add calibration" = "Add calibration";
+
+/* When adding capillary glucose meater reading */
+"Meter glucose" = "Meter glucose";
+
+/* */
+"Info" = "Info";
+
+/*v*/
+"Slope" = "Slope";
+
+/* */
+"Intercept" = "Intercept";
+
+/* */
+"Chart" = "Chart";
+
+/* */
+"Remove" = "Remove";
+
+/* */
+"Remove Last" = "Remove Last";
+
+/* */
+"Remove All" = "Remove All";
+
+/* */
+"Calibrations" = "Calibrations";
+
+/* */
+"About the Process" = "About the Process";
+
+/* */
+"Please make sure that your Libre 2 sensor is already activated and finished warming up. If you have other apps connecting to the sensor via bluetooth, these need to be shut down or uninstalled. \n\n You can only have one app communicating with the sensor via bluetooth. Then press the \"pariring and connection\" button below to start the process. Please note that the bluetooth connection might take up to a couple of minutes before it starts working." = "Please make sure that your Libre 2 sensor is already activated and finished warming up. If you have other apps connecting to the sensor via bluetooth, these need to be shut down or uninstalled. \n\n You can only have one app communicating with the sensor via bluetooth. Then press the \"pariring and connection\" button below to start the process. Please note that the bluetooth connection might take up to a couple of minutes before it starts working.";
+
+/* */
+"Pairinginfo" = "Pairinginfo";
+
+/* */
+"PatchInfo" = "PatchInfo";
+
+/* */
+"Calibrationinfo" = "Calibrationinfo";
+
+/* */
+"Unknown" = "Unknown";
+
+/* */
+"Not paired yet" = "Not paired yet";
+
+/* */
+"Pair Sensor & connect" = "Pair Sensor & connect";
+
+/* */
+"Phone NFC required!" = "Phone NFC required!";
+
+/* */
+"Your phone or app is not enabled for NFC communications, which is needed to pair to libre2 sensors" = "Your phone or app is not enabled for NFC communications, which is needed to pair to libre2 sensors";
+
+/* Bluetooth Power Off */
+"Bluetooth Power Off" = "Bluetooth Power Off";
+
+/* Please turn on Bluetooth */
+"Please turn on Bluetooth" = "Please turn on Bluetooth";
+
+/* No Libre Transmitter Selected */
+"No Libre Transmitter Selected" = "No Libre Transmitter Selected";
+
+/* Delete Transmitter and start anew. */
+"Delete CGMManager and start anew. Your libreoopweb credentials will be preserved" = "Delete CGMManager and start anew. Your libreoopweb credentials will be preserved";
+
+/* Invalid libre checksum */
+"Invalid libre checksum" = "Invalid libre checksum";
+
+/* Libre sensor was incorrectly read, CRCs were not valid */
+"Libre sensor was incorrectly read, CRCs were not valid" = "Libre sensor was incorrectly read, CRCs were not valid";
+
+/* Glucose */
+"Glucose" = "Glucose";
+
+/* LOWALERT! */
+"LOWALERT!" = "LOWALERT!";
+
+/* HIGHALERT! */
+"HIGHALERT!" = "HIGHALERT!";
+
+/* (Snoozed)*/
+"(Snoozed)" = "(Snoozed)";
+
+/* Glucose: %@ */
+"Glucose: %@" = "Glucose: %@";
+
+/* Transmitter: %@ */
+"Transmitter: %@" = "Transmitter: %@";
+
+/* No Sensor Detected */
+"No Sensor Detected" = "No Sensor Detected";
+
+/* This might be an intermittent problem, but please check that your transmitter is tightly secured over your sensor */
+"This might be an intermittent problem, but please check that your transmitter is tightly secured over your sensor" = "This might be an intermittent problem, but please check that your transmitter is tightly secured over your sensor";
+
+/* New Sensor Detected */
+"New Sensor Detected" = "New Sensor Detected";
+
+/* Please wait up to 30 minutes before glucose readings are available! */
+"Please wait up to 30 minutes before glucose readings are available!" = "Please wait up to 30 minutes before glucose readings are available!";
+
+/* Invalid Glucose sample detected, try again later */
+"Invalid Glucose sample detected, try again later" = "Invalid Glucose sample detected, try again later";
+
+/* ensor might have temporarily stopped, fallen off or is too cold or too warm */
+"Sensor might have temporarily stopped, fallen off or is too cold or too warm" = "Sensor might have temporarily stopped, fallen off or is too cold or too warm";
+
+/* Invalid Sensor Detected */
+"Invalid Sensor Detected" = "Invalid Sensor Detected";
+
+/* Detected sensor seems not to be a libre 1 sensor! */
+"Detected sensor seems not to be a libre 1 sensor!" = "Detected sensor seems not to be a libre 1 sensor!";
+
+/* Detected sensor is invalid: %@ */
+"Detected sensor is invalid: %@" = "Detected sensor is invalid: %@";
+
+/* Low Battery */
+"Low Battery" = "Low Battery";
+
+/* Battery is running low %@, consider charging your %@ device as soon as possible */
+"Battery is running low %@, consider charging your %@ device as soon as possible" = "Battery is running low %@, consider charging your %@ device as soon as possible";
+
+/* Extracting calibrationdata from sensor */
+"Extracting calibrationdata from sensor" = "Extracting calibrationdata from sensor";
+
+/* Sensor Ending Soon */
+"Sensor Ending Soon" = "Sensor Ending Soon";
+
+/* Current Sensor is Ending soon! Sensor Life left in %@ */
+"Current Sensor is Ending soon! Sensor Life left in %@" = "Current Sensor is Ending soon! Sensor Life left in %@";
+
+
+/* Headers for settings ------------------- */
+
+
+"OpenAPS main settings" = "OpenAPS main settings";
+
+"OpenAPS SMB settings" = "OpenAPS SMB settings";
+
+"OpenAPS targets settings" = "OpenAPS targets settings";
+
+"OpenAPS other settings" = "OpenAPS other settings";
+
 /*
   Infotexts from openaps.docs and androidaps.docs
-  FreeAPS
+  FreeAPS X
 */
 /* ”Rewind Resets Autosens” */
 
@@ -437,7 +632,7 @@ Enact a temp Basal or a temp target */
 "Many people occasionally forget to resume / unsuspend their pump after reconnecting it. If you’re one of them, and you are willing to reliably set a zero temp basal whenever suspending and disconnecting your pump, this feature has your back. If enabled, it will automatically resume / unsuspend the pump if you forget to do so before your zero temp expires. As long as the zero temp is still running, it will leave the pump suspended." = "Molte persone di tanto in tanto dimenticano di riprendere / rimuovere la sospensione del microinfusore dopo averlo riconnesso. Se sei uno di loro, e si è disposti a impostare in modo affidabile una basale temporanea zero ogni volta che sospende e scollega la pompa, questa funzione ha un senso. Se abilitata, ripristinerà automaticamente / annullerà la sospensione del microinfusore se lo dimentichi prima che scada la basale temporanea zero. Finché la basale temporanea zero è ancora in funzione, lascerà la pompa sospesa.";
 
 /* "Enable UAM" */
-"With this option enabled, the SMB algorithm can recognize unannounced meals. This is helpful, if you forget to tell AndroidAPS about your carbs or estimate your carbs wrong and the amount of entered carbs is wrong or if a meal with lots of fat and protein has a longer duration than expected. Without any carb entry, UAM can recognize fast glucose increasments caused by carbs, adrenaline, etc, and tries to adjust it with SMBs. This also works the opposite way: if there is a fast glucose decreasement, it can stop SMBs earlier." = "Con questa opzione abilitata, l'algoritmo SMB può riconoscere i pasti senza preavviso. Questo è utile, se dimenticate di dire ad AndroidAPS i vostri carboidrati o stimate i vostri carboidrati in modo sbagliato o la quantità di carboidrati inseriti è sbagliata o se un pasto è particolarmente ricco di grassi e proteine ed ha una durata più lunga di quanto previsto. Senza alcuna voce di carboidrati, UAM può riconoscere aumenti rapidi di glucosio causati da carboidrati, adrenalina, ecc, e cerca di regolarlo con le SMB. Questo funziona anche in modo opposto: se c'è una rapida diminuzione del glucosio, può fermare SMB prima.";
+"With this option enabled, the SMB algorithm can recognize unannounced meals. This is helpful, if you forget to tell FreeAPS X about your carbs or estimate your carbs wrong and the amount of entered carbs is wrong or if a meal with lots of fat and protein has a longer duration than expected. Without any carb entry, UAM can recognize fast glucose increasments caused by carbs, adrenaline, etc, and tries to adjust it with SMBs. This also works the opposite way: if there is a fast glucose decreasement, it can stop SMBs earlier." = "Con questa opzione abilitata, l'algoritmo SMB può riconoscere i pasti senza preavviso. Questo è utile, se dimenticate di dire ad FreeAPS X i vostri carboidrati o stimate i vostri carboidrati in modo sbagliato o la quantità di carboidrati inseriti è sbagliata o se un pasto è particolarmente ricco di grassi e proteine ed ha una durata più lunga di quanto previsto. Senza alcuna voce di carboidrati, UAM può riconoscere aumenti rapidi di glucosio causati da carboidrati, adrenalina, ecc, e cerca di regolarlo con le SMB. Questo funziona anche in modo opposto: se c'è una rapida diminuzione del glucosio, può fermare SMB prima.";
 
 /* Enable SMB With COB" */
 
@@ -510,7 +705,7 @@ Enact a temp Basal or a temp target */
 "Smallest possible bolus amount" = "Minimo bolo consentito";
 
 /* "Insulin Peak Time" */
-"Time of maximum blood glucose lowering effect of insulin, in minutes" = "Tempo del massimo effetto ipoglicemizzante dell’insulina, in minuti";
+"Time of maximum blood glucose lowering effect of insulin, in minutes. Beware: Oref assumes for ultra-papid (Lyumjev) & rapid-acting (Fiasp) curves minimal (35 & 50 min) and maximal (100 & 120 min) applicable insulinPeakTimes. Using a custom insulinPeakTime outside these bounds will result in issues with FreeAPS-X, longer loop calculations and possible red loops." = "Tempo del massimo effetto ipoglicemizzante dell’insulina, in minuti";
 
 /* "Carbs Req Threshold" */
 "Grams of carbsReq to trigger a pushover. Defaults to 1 (for 1 gram of carbohydrate). Can be increased if you only want to get Pushover for carbsReq at X threshold." = "Grammi di CarboidratiRichiesti per attivare un pushover. Predefiniti a 1 (per 1 grammo di carboidrati). Può essere aumentato se si desidera solo ottenere Pushover per CarboidratiRichiesti alla soglia X.";

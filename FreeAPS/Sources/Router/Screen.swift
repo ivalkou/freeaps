@@ -16,11 +16,13 @@ enum Screen: Identifiable, Hashable {
     case preferencesEditor
     case addCarbs
     case addTempTarget
-    case bolus(waitForDuggestion: Bool)
+    case bolus(waitForSuggestion: Bool)
     case manualTempBasal
     case autotuneConfig
     case dataTable
     case cgm
+    case libreConfig
+    case calibrations
 
     var id: Int { String(reflecting: self).hashValue }
 }
@@ -66,6 +68,10 @@ extension Screen {
             DataTable.RootView(resolver: resolver)
         case .cgm:
             CGM.RootView(resolver: resolver)
+        case .libreConfig:
+            LibreConfig.RootView(resolver: resolver)
+        case .calibrations:
+            Calibrations.RootView(resolver: resolver)
         }
     }
 
