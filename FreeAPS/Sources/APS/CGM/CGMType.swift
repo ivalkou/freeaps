@@ -7,6 +7,7 @@ enum CGMType: String, JSON, CaseIterable, Identifiable {
     case xdrip
     case dexcomG6
     case dexcomG5
+    case simulator
 
     var displayName: String {
         switch self {
@@ -18,6 +19,8 @@ enum CGMType: String, JSON, CaseIterable, Identifiable {
             return "Dexcom G6"
         case .dexcomG5:
             return "Dexcom G5"
+        case .simulator:
+            return "Glucose Simulator"
         }
     }
 
@@ -31,6 +34,8 @@ enum CGMType: String, JSON, CaseIterable, Identifiable {
             return URL(string: "dexcomg6://")!
         case .dexcomG5:
             return URL(string: "dexcomgcgm://")!
+        case .simulator:
+            return nil
         }
     }
 }
