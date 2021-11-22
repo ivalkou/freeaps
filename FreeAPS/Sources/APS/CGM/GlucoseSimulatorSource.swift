@@ -30,7 +30,8 @@ final class GlucoseSimulatorSource: GlucoseSource {
         // min time period to publish data
         static let workInterval: TimeInterval = 300
         // default BloodGlucose item at first run
-        static let defaultBGItems = 500
+        // 288 = 1 day * 24 hours * 60 minites * 60 seconds / workInterval
+        static let defaultBGItems = 288
     }
 
     @Persisted(key: "GlucoseSimulatorLastGlucose") private var lastGlucose = 100
@@ -130,6 +131,7 @@ class IntelligentGenerator: BloodGlucoseGenerator {
             direction: BloodGlucose.Direction(rawValue: trandsStepDirection),
             date: Decimal(Int(date.timeIntervalSince1970) * 1000),
             dateString: date,
+            unfiltered: nil,
             filtered: nil,
             noise: nil,
             glucose: currentGlucose,
@@ -159,21 +161,7 @@ class IntelligentGenerator: BloodGlucoseGenerator {
     }
 
     private func getDirection(fromGlucose from: Int, toGlucose to: Int) -> BloodGlucose.Direction {
-        let diff = to - from
-        switch diff {
-        case ...(-15):
-            return .doubleDown
-        case -15 ... -5:
-            return .singleDown
-        case -5 ... 5:
-            return .flat
-        case 5 ... 15:
-            return .singleUp
-        case 15...:
-            return .doubleUp
-        default:
-            return .flat
-        }
+        BloodGlucose.Direction(trend: to - from)
     }
 
     private func generateNewTrend() {
