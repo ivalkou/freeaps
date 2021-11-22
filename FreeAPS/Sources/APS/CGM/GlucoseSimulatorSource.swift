@@ -130,6 +130,7 @@ class IntelligentGenerator: BloodGlucoseGenerator {
             direction: BloodGlucose.Direction(rawValue: trandsStepDirection),
             date: Decimal(Int(date.timeIntervalSince1970) * 1000),
             dateString: date,
+            unfiltered: nil,
             filtered: nil,
             noise: nil,
             glucose: currentGlucose,

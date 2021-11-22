@@ -252,6 +252,12 @@
 		E974172296125A5AE99E634C /* PumpConfigRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD22C985B79A2F0D2EA3D9D /* PumpConfigRootView.swift */; };
 		F5CA3DB1F9DC8B05792BBFAA /* CGMDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B5C0607505A38F256BF99A /* CGMDataFlow.swift */; };
 		F5F7E6C1B7F098F59EB67EC5 /* TargetsEditorDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49538D56989D8DA6FCF538 /* TargetsEditorDataFlow.swift */; };
+		F90692A7274B75510037068D /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F90692A6274B75510037068D /* HealthKit.framework */; };
+		F90692AA274B7AAE0037068D /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90692A9274B7AAE0037068D /* HealthKitManager.swift */; };
+		F90692CF274B999A0037068D /* HealthKitDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90692CE274B999A0037068D /* HealthKitDataFlow.swift */; };
+		F90692D1274B99B60037068D /* HealthKitProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90692D0274B99B60037068D /* HealthKitProvider.swift */; };
+		F90692D3274B9A130037068D /* AppleHealthKitRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90692D2274B9A130037068D /* AppleHealthKitRootView.swift */; };
+		F90692D6274B9A450037068D /* HealthKitStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90692D5274B9A450037068D /* HealthKitStateModel.swift */; };
 		FA630397F76B582C8D8681A7 /* BasalProfileEditorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42369F66CF91F30624C0B3A6 /* BasalProfileEditorProvider.swift */; };
 /* End PBXBuildFile section */
 
@@ -565,6 +571,12 @@
 		E2EBA7C03C26FCC67E16D798 /* LibreConfigProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LibreConfigProvider.swift; sourceTree = "<group>"; };
 		E68CDC1E5C438D1BEAD4CF24 /* LibreConfigStateModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LibreConfigStateModel.swift; sourceTree = "<group>"; };
 		E9AAB83FB6C3B41EFD1846A0 /* AddTempTargetRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddTempTargetRootView.swift; sourceTree = "<group>"; };
+		F90692A6274B75510037068D /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		F90692A9274B7AAE0037068D /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		F90692CE274B999A0037068D /* HealthKitDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitDataFlow.swift; sourceTree = "<group>"; };
+		F90692D0274B99B60037068D /* HealthKitProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitProvider.swift; sourceTree = "<group>"; };
+		F90692D2274B9A130037068D /* AppleHealthKitRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleHealthKitRootView.swift; sourceTree = "<group>"; };
+		F90692D5274B9A450037068D /* HealthKitStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitStateModel.swift; sourceTree = "<group>"; };
 		FBB3BAE7494CB771ABAC7B8B /* ISFEditorRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ISFEditorRootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -586,6 +598,7 @@
 				386A124C271704DA00DDC61C /* CGMBLEKit.framework in Frameworks */,
 				38887DFA25F61F7600944304 /* RileyLinkKit.framework in Frameworks */,
 				38887DF625F61F7600944304 /* OmniKitUI.framework in Frameworks */,
+				F90692A7274B75510037068D /* HealthKit.framework in Frameworks */,
 				38887DE425F61F7500944304 /* LoopTestingKit.framework in Frameworks */,
 				3833B46D26012030003021B3 /* Algorithms in Frameworks */,
 				38887DFC25F61F7600944304 /* RileyLinkKitUI.framework in Frameworks */,
@@ -669,6 +682,7 @@
 		3811DE0325C9D31700A708ED /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F90692CD274B99850037068D /* HealthKit */,
 				6DC5D590658EF8B8DF94F9F5 /* AddCarbs */,
 				A9A4C88374496B3C89058A89 /* AddTempTarget */,
 				672F63EEAE27400625E14BAD /* AutotuneConfig */,
@@ -795,6 +809,7 @@
 		3811DE9125C9D88200A708ED /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F90692A8274B7A980037068D /* HealthKit */,
 				3862CC2C2743F9DC00BF832C /* Calendar */,
 				38AEE75025F021F10013F05B /* SettingsManager */,
 				38B4F3C425E5016800E76A18 /* Notifications */,
@@ -1101,6 +1116,7 @@
 		38B17B8525DD93BA005CAE3D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F90692A6274B75510037068D /* HealthKit.framework */,
 				386A124B271704DA00DDC61C /* CGMBLEKit.framework */,
 				38887E2025F6209B00944304 /* SwiftCharts.framework */,
 				38887DD025F61F7500944304 /* LoopKit.framework */,
@@ -1495,6 +1511,33 @@
 			path = CGM;
 			sourceTree = "<group>";
 		};
+		F90692A8274B7A980037068D /* HealthKit */ = {
+			isa = PBXGroup;
+			children = (
+				F90692A9274B7AAE0037068D /* HealthKitManager.swift */,
+			);
+			path = HealthKit;
+			sourceTree = "<group>";
+		};
+		F90692CD274B99850037068D /* HealthKit */ = {
+			isa = PBXGroup;
+			children = (
+				F90692CE274B999A0037068D /* HealthKitDataFlow.swift */,
+				F90692D0274B99B60037068D /* HealthKitProvider.swift */,
+				F90692D5274B9A450037068D /* HealthKitStateModel.swift */,
+				F90692D4274B9A160037068D /* View */,
+			);
+			path = HealthKit;
+			sourceTree = "<group>";
+		};
+		F90692D4274B9A160037068D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F90692D2274B9A130037068D /* AppleHealthKitRootView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1665,6 +1708,7 @@
 				38FCF3FD25E997A80078B0D1 /* PumpHistoryStorage.swift in Sources */,
 				38D0B3B625EBE24900CB6E88 /* Battery.swift in Sources */,
 				38C4D33725E9A1A300D30B77 /* DispatchQueue+Extensions.swift in Sources */,
+				F90692CF274B999A0037068D /* HealthKitDataFlow.swift in Sources */,
 				3862CC2E2743F9F700BF832C /* CalendarManager.swift in Sources */,
 				38B4F3C325E2A20B00E76A18 /* PumpSetupView.swift in Sources */,
 				382C134B25F14E3700715CE1 /* BGTargets.swift in Sources */,
@@ -1786,6 +1830,7 @@
 				389ECDFE2601061500D86C4F /* View+Snapshot.swift in Sources */,
 				38FEF3FE2738083E00574A46 /* CGMProvider.swift in Sources */,
 				38E98A3725F5509500C0CED0 /* String+Extensions.swift in Sources */,
+				F90692D1274B99B60037068D /* HealthKitProvider.swift in Sources */,
 				385CEAC125F2EA52002D6D5B /* Announcement.swift in Sources */,
 				8B759CFCF47B392BB365C251 /* BasalProfileEditorDataFlow.swift in Sources */,
 				389442CB25F65F7100FA1F27 /* NightscoutTreatment.swift in Sources */,
@@ -1793,6 +1838,7 @@
 				63E890B4D951EAA91C071D5C /* BasalProfileEditorStateModel.swift in Sources */,
 				38FEF3FA2737E42000574A46 /* BaseStateModel.swift in Sources */,
 				385CEA8225F23DFD002D6D5B /* NightscoutStatus.swift in Sources */,
+				F90692AA274B7AAE0037068D /* HealthKitManager.swift in Sources */,
 				38887CCE25F5725200944304 /* IOBEntry.swift in Sources */,
 				38E98A2425F52C9300C0CED0 /* Logger.swift in Sources */,
 				CA370FC152BC98B3D1832968 /* BasalProfileEditorRootView.swift in Sources */,
@@ -1834,9 +1880,11 @@
 				38569353270B5E350002C50D /* CGMRootView.swift in Sources */,
 				69A31254F2451C20361D172F /* BolusStateModel.swift in Sources */,
 				0CEA2EA070AB041AF3E3745B /* BolusRootView.swift in Sources */,
+				F90692D3274B9A130037068D /* AppleHealthKitRootView.swift in Sources */,
 				3862CC1F273FDC9200BF832C /* CalibrationsChart.swift in Sources */,
 				711C0CB42CAABE788916BC9D /* ManualTempBasalDataFlow.swift in Sources */,
 				BF1667ADE69E4B5B111CECAE /* ManualTempBasalProvider.swift in Sources */,
+				F90692D6274B9A450037068D /* HealthKitStateModel.swift in Sources */,
 				C967DACD3B1E638F8B43BE06 /* ManualTempBasalStateModel.swift in Sources */,
 				7BCFACB97C821041BA43A114 /* ManualTempBasalRootView.swift in Sources */,
 				38A00B2325FC2B55006BC0B0 /* LRUCache.swift in Sources */,

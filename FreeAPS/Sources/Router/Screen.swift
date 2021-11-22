@@ -21,6 +21,7 @@ enum Screen: Identifiable, Hashable {
     case autotuneConfig
     case dataTable
     case cgm
+    case healthkit
     case libreConfig
     case calibrations
 
@@ -68,6 +69,8 @@ extension Screen {
             DataTable.RootView(resolver: resolver)
         case .cgm:
             CGM.RootView(resolver: resolver)
+        case .healthkit:
+            AppleHealthKit.RootView(resolver: resolver)
         case .libreConfig:
             LibreConfig.RootView(resolver: resolver)
         case .calibrations:

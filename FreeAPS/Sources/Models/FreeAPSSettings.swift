@@ -14,6 +14,7 @@ struct FreeAPSSettings: JSON, Equatable {
     var cgm: CGMType = .nightscout
     var uploadGlucose: Bool = false
     var useCalendar: Bool = false
+    var useAppleHealth: Bool = false
 }
 
 extension FreeAPSSettings: Decodable {
@@ -72,6 +73,10 @@ extension FreeAPSSettings: Decodable {
 
         if let useCalendar = try? container.decode(Bool.self, forKey: .useCalendar) {
             settings.useCalendar = useCalendar
+        }
+
+        if let useAppleHealth = try? container.decode(Bool.self, forKey: .useAppleHealth) {
+            settings.useAppleHealth = useAppleHealth
         }
 
         self = settings
