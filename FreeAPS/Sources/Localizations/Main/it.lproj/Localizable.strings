@@ -38,25 +38,19 @@
 "Done" = "Fatto";
 
 /*  */
-"Wait please" = "Aspetta perfavore";
+"Wait please" = "Attendere prego";
 
 /*  */
-"Agree and continue" = "Sei d’accordo e continui";
-
-/* Disclaimer when opening app for first time*/
-"Disclaimer" = "Dichiarazione di esclusione e responsabilità";
-
-/* Disclaimer Description */
-"FreeAPS X is in an active development state. We do not recommend to use the system for everyday control of blood glucose! Use it for testing purposes only at your own risk. We are not responsible for your decisions and actions." = "FreeAPS X è in continuo stato di sviluppo. Non consigliamo di usare il sistema per il controllo della glicemia nell’uso quotidiano! Usatelo per scopo di test e a vostro rischio e pericolo. Non siamo responsabili delle vostre azioni e decisioni.";
+"Agree and continue" = "Acconsenti e Continua";
 
 /* Enacted at a date */
 "Enacted at %@" = "Eseguito alle %@";
 
 /* Home title */
-"Home" = "Schermata principale";
+"Home" = "Home";
 
 /* Looping in progress */
-"looping" = "loop attivo";
+"looping" = "in loop";
 
 /* min ago since last loop */
 "min ago" = "minuti fa";
@@ -318,10 +312,10 @@ Enact a temp Basal or a temp target */
 "U" = "U";
 
 /* Unit per hour with space */
-" U/hr" = " U/hr";
+" U/hr" = " U/ora";
 
 /* Number of units per hour*/
-"%@ U/hr" = "%@ U/hr";
+"%@ U/hr" = "%@ U/ora";
 
 /* Number of units insulin delivered */
 "%@ U" = "%@ U";
@@ -333,7 +327,7 @@ Enact a temp Basal or a temp target */
 " g" = " g";
 
 /* when 0 U/hr */
-"0 U/hr" = "0 U/hr";
+"0 U/hr" = "0 U/ora";
 
 /* abbreviation for days */
 "d" = "gg";
@@ -401,9 +395,452 @@ Enact a temp Basal or a temp target */
 /* Other CGM setting */
 "Other" = "Altro";
 
+
+/* Calendar and Libre transmitter settings --------------*/
+/* */
+
+"Configure Libre Transmitter" = "Configura Libre Transmitter";
+
+/* */
+"Calibrations" = "Calibrazioni";
+
+/* */
+"Create events in calendar" = "Crea eventi nel calendario";
+
+/* */
+"Calendar" = "Calendario";
+
+/* */
+"Other" = "Altro";
+
+/* */
+"Libre Transmitter" = "Libre Transmitter";
+
+/* */
+"Libre Transmitters" = "Libre Transmitter";
+
+/* */
+"Bluetooth Transmitters" = "Trasmettitori Bluetooth";
+
+/* */
+"Modes" = "Modalità";
+
+/* Libre 2 Direct */
+"Libre 2 Direct" = "Libre 2 Direct";
+
+/* */
+"Select the third party transmitter you want to connect to" = "Seleziona il trasmettitore di terze parti cui vuoi connetterti";
+
+/* State was restored */
+"State was restored" = "Lo stato è stato ripristinato";
+
+/* The short unit display string for millimoles of glucose per liter */
+"mmol/L" = "mmol/L";
+
+/* The short unit display string for milligrams of glucose per decilter */
+"mg/dL" = "mg/dL";
+
+/* */
+"Add calibration" = "Aggiungi calibrazione";
+
+/* When adding capillary glucose meater reading */
+"Meter glucose" = "Misuratore di glucosio";
+
+/* */
+"Info" = "Info";
+
+/*v*/
+"Slope" = "Pendenza";
+
+/* */
+"Intercept" = "Intercetta";
+
+/* */
+"Chart" = "Grafico";
+
+/* */
+"Remove" = "Rimuovi";
+
+/* */
+"Remove Last" = "Rimuovi Ultimo";
+
+/* */
+"Remove All" = "Rimuovi Tutto";
+
+/* */
+"Calibrations" = "Calibrazioni";
+
+/* */
+"About the Process" = "Sul Processo";
+
+/* */
+"Please make sure that your Libre 2 sensor is already activated and finished warming up. If you have other apps connecting to the sensor via bluetooth, these need to be shut down or uninstalled. \n\n You can only have one app communicating with the sensor via bluetooth. Then press the \"pariring and connection\" button below to start the process. Please note that the bluetooth connection might take up to a couple of minutes before it starts working." = "Please make sure that your Libre 2 sensor is already activated and finished warming up. If you have other apps connecting to the sensor via bluetooth, these need to be shut down or uninstalled. \n\n You can only have one app communicating with the sensor via bluetooth. Then press the \"pariring and connection\" button below to start the process. Please note that the bluetooth connection might take up to a couple of minutes before it starts working.";
+
+/* */
+"Pairinginfo" = "Pairinginfo";
+
+/* */
+"PatchInfo" = "PatchInfo";
+
+/* */
+"Calibrationinfo" = "Calibrationinfo";
+
+/* */
+"Unknown" = "Sconosciuto";
+
+/* */
+"Not paired yet" = "Non ancora associato";
+
+/* */
+"Pair Sensor & connect" = "Associa Sensore e connetti";
+
+/* */
+"Phone NFC required!" = "NFC Telefono necessario!";
+
+/* */
+"Your phone or app is not enabled for NFC communications, which is needed to pair to libre2 sensors" = "Il tuo telefono o l'app non sono abilitati per le comunicazioni NFC, necessarie per associarsi ai sensori libre2";
+
+/* Bluetooth Power Off */
+"Bluetooth Power Off" = "Bluetooth Disabilitato";
+
+/* Please turn on Bluetooth */
+"Please turn on Bluetooth" = "Please turn on Bluetooth";
+
+/* No Libre Transmitter Selected */
+"No Libre Transmitter Selected" = "No Libre Transmitter Selected";
+
+/* Delete Transmitter and start anew. */
+"Delete CGMManager and start anew. Your libreoopweb credentials will be preserved" = "Delete CGMManager and start anew. Your libreoopweb credentials will be preserved";
+
+/* Invalid libre checksum */
+"Invalid libre checksum" = "Invalid libre checksum";
+
+/* Libre sensor was incorrectly read, CRCs were not valid */
+"Libre sensor was incorrectly read, CRCs were not valid" = "Libre sensor was incorrectly read, CRCs were not valid";
+
+/* Glucose */
+"Glucose" = "Glucose";
+
+/* LOWALERT! */
+"LOWALERT!" = "LOWALERT!";
+
+/* HIGHALERT! */
+"HIGHALERT!" = "HIGHALERT!";
+
+/* (Snoozed)*/
+"(Snoozed)" = "(Snoozed)";
+
+/* Glucose: %@ */
+"Glucose: %@" = "Glucose: %@";
+
+/* Transmitter: %@%% */
+"Transmitter: %@%%" = "Transmitter: %@%%";
+
+/* No Sensor Detected */
+"No Sensor Detected" = "No Sensor Detected";
+
+/* This might be an intermittent problem, but please check that your transmitter is tightly secured over your sensor */
+"This might be an intermittent problem, but please check that your transmitter is tightly secured over your sensor" = "This might be an intermittent problem, but please check that your transmitter is tightly secured over your sensor";
+
+/* New Sensor Detected */
+"New Sensor Detected" = "New Sensor Detected";
+
+/* Please wait up to 30 minutes before glucose readings are available! */
+"Please wait up to 30 minutes before glucose readings are available!" = "Please wait up to 30 minutes before glucose readings are available!";
+
+/* Invalid Glucose sample detected, try again later */
+"Invalid Glucose sample detected, try again later" = "Invalid Glucose sample detected, try again later";
+
+/* ensor might have temporarily stopped, fallen off or is too cold or too warm */
+"Sensor might have temporarily stopped, fallen off or is too cold or too warm" = "Sensor might have temporarily stopped, fallen off or is too cold or too warm";
+
+/* Invalid Sensor Detected */
+"Invalid Sensor Detected" = "Invalid Sensor Detected";
+
+/* Detected sensor seems not to be a libre 1 sensor! */
+"Detected sensor seems not to be a libre 1 sensor!" = "Detected sensor seems not to be a libre 1 sensor!";
+
+/* Detected sensor is invalid: %@ */
+"Detected sensor is invalid: %@" = "Detected sensor is invalid: %@";
+
+/* Low Battery */
+"Low battery" = "Low battery";
+
+/* */
+"Invalid sensor" = "Invalid sensor";
+
+/* */
+"Sensor change" = "Sensor change";
+
+/* */
+"Sensor expires soon" = "Sensor expires soon";
+
+/* Battery is running low %@, consider charging your %@ device as soon as possible */
+"Battery is running low %@, consider charging your %@ device as soon as possible" = "Battery is running low %@, consider charging your %@ device as soon as possible";
+
+/* Extracting calibrationdata from sensor */
+"Extracting calibrationdata from sensor" = "Extracting calibrationdata from sensor";
+
+/* Sensor Ending Soon */
+"Sensor Ending Soon" = "Sensor Ending Soon";
+
+/* Current Sensor is Ending soon! Sensor Life left in %@ */
+"Current Sensor is Ending soon! Sensor Life left in %@" = "Current Sensor is Ending soon! Sensor Life left in %@";
+
+/* */
+"Libre Bluetooth" = "Libre Bluetooth";
+
+/* */
+"Snooze Alerts" = "Snooze Alerts";
+
+/* */
+"Last measurement" = "Last measurement";
+
+/* */
+"Sensor Footer checksum" = "Sensor Footer checksum";
+
+/* */
+"Last Blood Sugar prediction" = "Last Blood Sugar prediction";
+
+/* */
+"CurrentBG" = "CurrentBG";
+
+/* */
+"Sensor Info" = "Sensor Info";
+
+/* */
+"Sensor Age" = "Sensor Age";
+
+/* */
+"Sensor Age Left" = "Sensor Age Left";
+
+/* */
+"Sensor Endtime" = "Sensor Endtime";
+
+/* */
+"Sensor State" = "Sensor State";
+
+/* */
+"Sensor Serial" = "Sensor Serial";
+
+/* */
+"Transmitter Info" = "Transmitter Info";
+
+/* */
+"Hardware" = "Hardware";
+
+/* */
+"Firmware" = "Firmware";
+
+/* */
+"Connection State" = "Connection State";
+
+/* */
+"Transmitter Type" = "Transmitter Type";
+
+/* */
+"Sensor Type" = "Sensor Type";
+
+/* */
+"Factory Calibration Parameters" = "Factory Calibration Parameters";
+
+/* */
+"Valid for footer" = "Valid for footer";
+
+/* */
+"Edit calibrations" = "Edit calibrations";
+
+/* */
+"edit calibration clicked" = "edit calibration clicked";
+
+/* */
+"Delete CGM" = "Delete CGM";
+/* */
+"Are you sure you want to remove this cgm from loop?" = "Are you sure you want to remove this cgm from loop?";
+
+/* */
+"There is no undo" = "Impossibile annullare";
+
+/* */
+"Advanced" = "Avanzate";
+
+/* */
+"Alarms" = "Sveglie";
+
+/* */
+"Glucose Settings" = "Impostazioni di Glucose";
+
+/* */
+"Notifications" = "Notifiche";
+
+/* */
+"Export logs" = "Esporta i registri";
+
+/* */
+"Export not available" = "Esportazione non disponibile";
+
+/* */
+"Log export requires ios 15" = "L'esportazione del registro richiede iOS 15";
+
+/* */
+"Got it!" = "Capito!";
+
+/* */
+"Saved to %@" = "Salvato in %@";
+
+/* */
+"No logs available" = "Nessun registro disponibile";
+
+/* */
+"Glucose Notification visibility" = "Visibilità delle Notifiche di Glucose";
+
+/* */
+"Always Notify Glucose" = "Notifica Sempre Glucose";
+
+/* */
+"Notify per reading" = "Notifica per lettura";
+
+/* */
+"Value" = "Valore";
+
+/* */
+"Adds Phone Battery" = "Aggiungi Batteria del Telefono";
+
+/* */
+"Adds Transmitter Battery" = "Adds Transmitter Battery";
+
+/* */
+"Also vibrate" = "Also vibrate";
+
+/* */
+"Additional notification types" = "Aggiungi tipi di notifica";
+
+/* */
+"Misc" = "Varie";
+
+/* */
+"Unit override" = "Sovrascrizione unità";
+
+/* */
+"Low" = "Basso";
+
+/* */
+"High" = "High";
+
+/* */
+"glucose" = "glucose";
+
+/* */
+"Schedule " = "Schedule ";
+
+/* */
+"tapped save schedules" = "ha toccato salva pianificazioni";
+
+/* */
+"Error" = "Errore";
+
+/* */
+"Some ui element was incorrectly specified" = "Alcuni elementi dell'ui sono stati specificati erroneamente";
+
+/* */
+"Success" = "Successo";
+
+/* */
+"Schedules were saved successfully!" = "Pianificazioni salvate correttamente!";
+
+/* */
+"High Glucose Alarm active" = "Sveglia Glucosio Alto attiva";
+
+/* */
+"Low Glucose Alarm active" = "Sveglia Glucosio Basso attiva";
+
+/* */
+"No Glucose Alarm active" = "Nessuna Sveglia Glucosio attiva";
+
+/* */
+"snoozing until %@" = "posticipando fino %@";
+
+/* */
+"not snoozing" = "non posticipando";
+
+/* */
+"nothing to see here" = "niente da vedere qui";
+
+/* */
+"snooze from testview clicked" = "posticipa dal testview cliccato";
+
+/* */
+"will snooze for %@ until %@" = "posticiperà per %@ fino a %@";
+
+/* */
+"Click to Snooze Alerts" = "Clicca per Posticipare gli Avvisi";
+
+/* */
+"Strength" = "Intensità";
+
+/* */
+"Hold the top of your iPhone near the sensor to pair" = "Tieni la parte superiore del tuo iPhone affianco al sensore per abbinarlo";
+
+/* */
+"Sensor not found" = "Sensore non trovato";
+
+/* */
+"Also play alert sound" = "Riproduci anche suono d'avviso";
+
+/* */
+"Notification Settings" = "Impostazioni di Notifica";
+
+/* */
+"Found devices: %d" = "Dispositivi trovati: %d";
+
+/* */
+"Backfill options" = "Backfill options";
+
+/* */
+"Backfilling from trend is currently not well supported by Loop" = "Backfilling from trend is currently not well supported by Loop";
+
+/* */
+"Backfill from history" = "Backfill from history";
+
+/* */
+"Backfill from trend" = "Backfill from trend";
+
+/* */
+"Debug options" = "Debug options";
+
+/* */
+"Adds a lot of data to the Issue Report " = "Adds a lot of data to the Issue Report ";
+
+/* */
+"Persist sensordata" = "Persist sensordata";
+
+/* */
+"Battery" = "Battery";
+
+
+
+/* Headers for settings ------------------- */
+
+
+"OpenAPS main settings" = "Impostazioni principali di OpenAPS";
+
+"OpenAPS SMB settings" = "Impostazioni SMB di OpenAPS";
+
+"OpenAPS targets settings" = "Impostazioni degli obiettivi di OpenAPS";
+
+"OpenAPS other settings" = "Altre impostazioni di OpenAPS";
+
+
+/* Glucose Simulator CGM */
+"Glucose Simulator" = "Glucose Simulator";
+
+/* Restored state message */
+"Bluetooth State restored (APS restarted?). Found %d peripherals, and connected to %@ with identifier %@" = "Bluetooth State restored (APS restarted?). Found %d peripherals, and connected to %@ with identifier %@";
+
+
 /*
   Infotexts from openaps.docs and androidaps.docs
-  FreeAPS
+  FreeAPS X
 */
 /* ”Rewind Resets Autosens” */
 
@@ -437,7 +874,7 @@ Enact a temp Basal or a temp target */
 "Many people occasionally forget to resume / unsuspend their pump after reconnecting it. If you’re one of them, and you are willing to reliably set a zero temp basal whenever suspending and disconnecting your pump, this feature has your back. If enabled, it will automatically resume / unsuspend the pump if you forget to do so before your zero temp expires. As long as the zero temp is still running, it will leave the pump suspended." = "Molte persone di tanto in tanto dimenticano di riprendere / rimuovere la sospensione del microinfusore dopo averlo riconnesso. Se sei uno di loro, e si è disposti a impostare in modo affidabile una basale temporanea zero ogni volta che sospende e scollega la pompa, questa funzione ha un senso. Se abilitata, ripristinerà automaticamente / annullerà la sospensione del microinfusore se lo dimentichi prima che scada la basale temporanea zero. Finché la basale temporanea zero è ancora in funzione, lascerà la pompa sospesa.";
 
 /* "Enable UAM" */
-"With this option enabled, the SMB algorithm can recognize unannounced meals. This is helpful, if you forget to tell AndroidAPS about your carbs or estimate your carbs wrong and the amount of entered carbs is wrong or if a meal with lots of fat and protein has a longer duration than expected. Without any carb entry, UAM can recognize fast glucose increasments caused by carbs, adrenaline, etc, and tries to adjust it with SMBs. This also works the opposite way: if there is a fast glucose decreasement, it can stop SMBs earlier." = "Con questa opzione abilitata, l'algoritmo SMB può riconoscere i pasti senza preavviso. Questo è utile, se dimenticate di dire ad AndroidAPS i vostri carboidrati o stimate i vostri carboidrati in modo sbagliato o la quantità di carboidrati inseriti è sbagliata o se un pasto è particolarmente ricco di grassi e proteine ed ha una durata più lunga di quanto previsto. Senza alcuna voce di carboidrati, UAM può riconoscere aumenti rapidi di glucosio causati da carboidrati, adrenalina, ecc, e cerca di regolarlo con le SMB. Questo funziona anche in modo opposto: se c'è una rapida diminuzione del glucosio, può fermare SMB prima.";
+"With this option enabled, the SMB algorithm can recognize unannounced meals. This is helpful, if you forget to tell FreeAPS X about your carbs or estimate your carbs wrong and the amount of entered carbs is wrong or if a meal with lots of fat and protein has a longer duration than expected. Without any carb entry, UAM can recognize fast glucose increasments caused by carbs, adrenaline, etc, and tries to adjust it with SMBs. This also works the opposite way: if there is a fast glucose decreasement, it can stop SMBs earlier." = "Con questa opzione abilitata, l'algoritmo SMB può riconoscere i pasti senza preavviso. Questo è utile, se dimenticate di dire ad FreeAPS X i vostri carboidrati o stimate i vostri carboidrati in modo sbagliato o la quantità di carboidrati inseriti è sbagliata o se un pasto è particolarmente ricco di grassi e proteine ed ha una durata più lunga di quanto previsto. Senza alcuna voce di carboidrati, UAM può riconoscere aumenti rapidi di glucosio causati da carboidrati, adrenalina, ecc, e cerca di regolarlo con le SMB. Questo funziona anche in modo opposto: se c'è una rapida diminuzione del glucosio, può fermare SMB prima.";
 
 /* Enable SMB With COB" */
 
@@ -510,7 +947,7 @@ Enact a temp Basal or a temp target */
 "Smallest possible bolus amount" = "Minimo bolo consentito";
 
 /* "Insulin Peak Time" */
-"Time of maximum blood glucose lowering effect of insulin, in minutes" = "Tempo del massimo effetto ipoglicemizzante dell’insulina, in minuti";
+"Time of maximum blood glucose lowering effect of insulin, in minutes. Beware: Oref assumes for ultra-papid (Lyumjev) & rapid-acting (Fiasp) curves minimal (35 & 50 min) and maximal (100 & 120 min) applicable insulinPeakTimes. Using a custom insulinPeakTime outside these bounds will result in issues with FreeAPS-X, longer loop calculations and possible red loops." = "Tempo del massimo effetto ipoglicemizzante dell’insulina, in minuti";
 
 /* "Carbs Req Threshold" */
 "Grams of carbsReq to trigger a pushover. Defaults to 1 (for 1 gram of carbohydrate). Can be increased if you only want to get Pushover for carbsReq at X threshold." = "Grammi di CarboidratiRichiesti per attivare un pushover. Predefiniti a 1 (per 1 grammo di carboidrati). Può essere aumentato se si desidera solo ottenere Pushover per CarboidratiRichiesti alla soglia X.";

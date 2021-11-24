@@ -1,37 +1,58 @@
 import SwiftUI
+import Swinject
 
 extension CGM {
     struct RootView: BaseView {
-        @EnvironmentObject var viewModel: ViewModel<Provider>
+        let resolver: Resolver
+        @StateObject var state = StateModel()
 
         var body: some View {
             Form {
                 Section {
-                    Picker("Type", selection: $viewModel.cgm) {
+                    Picker("Type", selection: $state.cgm) {
                         ForEach(CGMType.allCases) {
                             Text($0.displayName).tag($0)
                         }
                     }
                 }
-                if [.dexcomG5, .dexcomG6].contains(viewModel.cgm) {
+                if [.dexcomG5, .dexcomG6].contains(state.cgm) {
                     Section(header: Text("Transmitter ID")) {
-                        TextField("XXXXXX", text: $viewModel.transmitterID, onCommit: {
+                        TextField("XXXXXX", text: $state.transmitterID, onCommit: {
                             UIApplication.shared.endEditing()
-                            viewModel.onChangeID()
+                            state.onChangeID()
                         })
                             .disableAutocorrection(true)
                             .autocapitalization(.allCharacters)
                             .keyboardType(.asciiCapable)
                     }
                     .onDisappear {
-                        viewModel.onChangeID()
+                        state.onChangeID()
+                    }
+                }
+
+                if state.cgm == .libreTransmitter {
+                    Button("Configure Libre Transmitter") {
+                        state.showModal(for: .libreConfig)
+                    }
+                    Text("Calibrations").navigationLink(to: .calibrations, from: self)
+                }
+
+                Section(header: Text("Calendar")) {
+                    Toggle("Create events in calendar", isOn: $state.createCalendarEvents)
+                    if state.calendarIDs.isNotEmpty {
+                        Picker("Calendar", selection: $state.currentCalendarID) {
+                            ForEach(state.calendarIDs, id: \.self) {
+                                Text($0).tag($0)
+                            }
+                        }
                     }
                 }
 
                 Section(header: Text("Other")) {
-                    Toggle("Upload glucose to Nightscout", isOn: $viewModel.uploadGlucose)
+                    Toggle("Upload glucose to Nightscout", isOn: $state.uploadGlucose)
                 }
             }
+            .onAppear(perform: configureView)
             .navigationTitle("CGM")
             .navigationBarTitleDisplayMode(.automatic)
         }

@@ -6,7 +6,7 @@ final class DexcomSource: GlucoseSource {
     private let processQueue = DispatchQueue(label: "DexcomSource.processQueue")
 
     private let dexcomManager = TransmitterManager(
-        state: TransmitterManagerState(transmitterID: UserDefaults.standard.dexcomTransmitterID ?? "8MBPEY")
+        state: TransmitterManagerState(transmitterID: UserDefaults.standard.dexcomTransmitterID ?? "000000")
     )
 
     private var promise: Future<[BloodGlucose], Error>.Promise?
@@ -47,10 +47,12 @@ extension DexcomSource: TransmitterManagerDelegate {
             let value = Int(quantity.doubleValue(for: .milligramsPerDeciliter))
 
             return BloodGlucose(
+                _id: glucose.syncIdentifier,
                 sgv: value,
                 direction: .init(trend: glucose.trend),
                 date: Decimal(Int(glucose.readDate.timeIntervalSince1970 * 1000)),
                 dateString: glucose.readDate,
+                unfiltered: nil,
                 filtered: nil,
                 noise: nil,
                 glucose: value,

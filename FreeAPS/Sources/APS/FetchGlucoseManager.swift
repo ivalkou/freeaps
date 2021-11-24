@@ -11,12 +11,14 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
     @Injected() var nightscoutManager: NightscoutManager!
     @Injected() var apsManager: APSManager!
     @Injected() var settingsManager: SettingsManager!
+    @Injected() var libreTransmitter: LibreTransmitterSource!
 
     private var lifetime = Lifetime()
     private let timer = DispatchTimer(timeInterval: 1.minutes.timeInterval)
 
     private lazy var appGroupSource = AppGroupSource()
     private lazy var dexcomSource = DexcomSource()
+    private lazy var simulatorSource = GlucoseSimulatorSource()
 
     init(resolver: Resolver) {
         injectServices(resolver)
@@ -33,9 +35,16 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
         case .dexcomG5,
              .dexcomG6:
             glucoseSource = dexcomSource
-        case .nightscout,
-             .none:
+        case .nightscout:
             glucoseSource = nightscoutManager
+        case .simulator:
+            glucoseSource = simulatorSource
+        case .libreTransmitter:
+            glucoseSource = libreTransmitter
+        }
+
+        if settingsManager.settings.cgm != .libreTransmitter {
+            libreTransmitter.manager = nil
         }
     }
 
@@ -72,6 +81,7 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
             .publisher(for: \.dexcomTransmitterID)
             .removeDuplicates()
             .sink { id in
+                guard [.dexcomG5, .dexcomG6].contains(self.settingsManager.settings.cgm) else { return }
                 if id != self.dexcomSource.transmitterID {
                     self.dexcomSource = DexcomSource()
                 }

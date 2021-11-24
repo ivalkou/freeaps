@@ -1,25 +1,35 @@
 import SwiftUI
+import Swinject
 
 extension Main {
     struct RootView: BaseView {
-        @EnvironmentObject var viewModel: ViewModel<Provider>
-
-        @ViewBuilder func presentedView() -> some View {
-            viewModel.cachedView(for: viewModel.scene.screen)
-        }
+        let resolver: Resolver
+        @StateObject var state = StateModel()
+        @EnvironmentObject var appDelegate: AppDelegate
 
         var body: some View {
-            presentedView()
-                .sheet(isPresented: $viewModel.isModalPresented) {
-                    NavigationView { self.viewModel.modal!.view }
+            router.view(for: .home)
+                .sheet(isPresented: $state.isModalPresented) {
+                    NavigationView { self.state.modal!.view }
                         .navigationViewStyle(StackNavigationViewStyle())
                 }
-                .alert(isPresented: $viewModel.isAlertPresented) {
+                .alert(isPresented: $state.isAlertPresented) {
                     Alert(
                         title: Text("Important message"),
-                        message: Text(viewModel.alertMessage),
-                        dismissButton: .default(Text("Dismiss"))
+                        message: Text(state.alertMessage),
+                        dismissButton: .default(Text("Dismiss")) {
+                            state.isAlertPresented = false
+                            state.alertMessage = ""
+                        }
                     )
+                }
+                .onAppear(perform: configureView)
+                .onReceive(appDelegate.$notificationAction) { action in
+                    switch action {
+                    case .snoozeAlert:
+                        state.showModal(for: .libreConfig)
+                    default: break
+                    }
                 }
         }
     }
