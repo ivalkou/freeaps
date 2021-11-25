@@ -8,14 +8,15 @@ extension AppleHealthKit {
 
         var body: some View {
             Form {
-                Section(
-                    footer:
-                    Text("FreeAPS X can write your blood glucose to Apple Health App")
-                        .font(.caption)
-                ) {
+                Section {
                     Toggle("Connect to Apple Health", isOn: $state.useAppleHealth)
-                        .onChange(of: state.useAppleHealth) { _ in
+                    if state.needShowInformationTextForSetPermissions {
+                        HStack {
+                            Image(systemName: "exclamationmark.circle.fill")
+                            Text("For write data to Apple Health you must give permissions in Settings > Health > Data Access")
+                                .font(.caption)
                         }
+                    }
                 }
             }
             .onAppear(perform: configureView)

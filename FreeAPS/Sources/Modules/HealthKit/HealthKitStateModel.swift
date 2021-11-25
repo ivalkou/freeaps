@@ -3,43 +3,53 @@ import SwiftUI
 
 extension AppleHealthKit {
     final class StateModel: BaseStateModel<Provider> {
+        var healthKitManager = BaseHealthKitManager()
+
         @Injected() var settingsManager: SettingsManager!
-        var healthKitManager: HealthKitManager!
 
         @Published var useAppleHealth = false
-
-        @Injected() var libreSource: LibreTransmitterSource!
-        @Injected() var calendarManager: CalendarManager!
-
-        @Published var cgm: CGMType = .nightscout
-        @Published var transmitterID = ""
-        @Published var uploadGlucose = false
-        @Published var createCalendarEvents = false
-        @Published var calendarIDs: [String] = []
-        @Published var currentCalendarID: String = ""
-        @Persisted(key: "CalendarManager.currentCalendarID") var storedCalendarID: String? = nil
+        @Published var didRequestAppleHealthPermissions = false
+        @Published var needShowInformationTextForSetPermissions = false
 
         override func subscribe() {
-            healthKitManager = BaseHealthKitManager()
             useAppleHealth = settingsManager.settings.useAppleHealth
+
+            $needShowInformationTextForSetPermissions
+                .removeDuplicates()
+                .sink { [weak self] value in
+                    self?.settingsManager.settings.needShowInformationTextForSetPermissions = value
+                }
+                .store(in: &lifetime)
 
             $useAppleHealth
                 .removeDuplicates()
                 .sink { [weak self] value in
                     guard let self = self else { return }
-                    
-                    self.healthKitManager.checkRequestPermissionStatus { result in
-                        switch result {
-                        case .success(let status) where status == .needRequest:
-                            self.healthKitManager.requestPermission(completion: nil)
-                        case .success(let status) where status == .didRequest:
-                            return
-                        default:
-                            return
-                        }
+                    guard value else {
+                        self.settingsManager.settings.useAppleHealth = false
+                        self.needShowInformationTextForSetPermissions = false
+                        return
                     }
-                    // self.healthKitManager.requestPermission()
-                    self.settingsManager.settings.useAppleHealth = value
+
+                    if !self.didRequestAppleHealthPermissions {
+                        self.healthKitManager.requestPermission { status, error in
+                            guard error == nil else {
+                                return
+                            }
+                            self.settingsManager.settings.useAppleHealth = status
+                            DispatchQueue.main.async {
+                                self.didRequestAppleHealthPermissions = true
+                                if !self.healthKitManager.areAllowAllPermissions {
+                                    self.needShowInformationTextForSetPermissions = true
+                                }
+                            }
+                        }
+                    } else {
+                        if !self.healthKitManager.areAllowAllPermissions {
+                            self.needShowInformationTextForSetPermissions = true
+                        }
+                        self.settingsManager.settings.useAppleHealth = true
+                    }
                 }
                 .store(in: &lifetime)
         }

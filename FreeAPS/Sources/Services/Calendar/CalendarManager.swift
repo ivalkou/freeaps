@@ -15,8 +15,8 @@ final class BaseCalendarManager: CalendarManager, Injectable {
     @Persisted(key: "CalendarManager.currentCalendarID") var currentCalendarID: String? = nil
     @Injected() private var settingsManager: SettingsManager!
 
-    init(resilver: Resolver) {
-        injectServices(resilver)
+    init(resolver: Resolver) {
+        injectServices(resolver)
     }
 
     func requestAccessIfNeeded() -> AnyPublisher<Bool, Never> {
