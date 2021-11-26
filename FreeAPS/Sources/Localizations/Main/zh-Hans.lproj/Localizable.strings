@@ -43,12 +43,6 @@
 /*  */
 "Agree and continue" = "同意并继续";
 
-/* Disclaimer when opening app for first time*/
-"Disclaimer" = "声明";
-
-/* Disclaimer Description */
-"FreeAPS X is in an active development state. We do not recommend to use the system for everyday control of blood glucose! Use it for testing purposes only at your own risk. We are not responsible for your decisions and actions." = "FreeAPS X正处于快发开发状态。我们不建议将该系统用于日常的血糖控制! 仅用于测试目的，风险自负。我们对您的决定和行为不负责任。";
-
 /* Enacted at a date */
 "Enacted at %@" = "运行于 %@";
 
@@ -539,8 +533,8 @@ Enact a temp Basal or a temp target */
 /* Glucose: %@ */
 "Glucose: %@" = "Glucose: %@";
 
-/* Transmitter: %@ */
-"Transmitter: %@" = "Transmitter: %@";
+/* Transmitter: %@%% */
+"Transmitter: %@%%" = "Transmitter: %@%%";
 
 /* No Sensor Detected */
 "No Sensor Detected" = "No Sensor Detected";
@@ -570,7 +564,16 @@ Enact a temp Basal or a temp target */
 "Detected sensor is invalid: %@" = "Detected sensor is invalid: %@";
 
 /* Low Battery */
-"Low Battery" = "Low Battery";
+"Low battery" = "Low battery";
+
+/* */
+"Invalid sensor" = "Invalid sensor";
+
+/* */
+"Sensor change" = "Sensor change";
+
+/* */
+"Sensor expires soon" = "Sensor expires soon";
 
 /* Battery is running low %@, consider charging your %@ device as soon as possible */
 "Battery is running low %@, consider charging your %@ device as soon as possible" = "Battery is running low %@, consider charging your %@ device as soon as possible";
@@ -584,6 +587,237 @@ Enact a temp Basal or a temp target */
 /* Current Sensor is Ending soon! Sensor Life left in %@ */
 "Current Sensor is Ending soon! Sensor Life left in %@" = "Current Sensor is Ending soon! Sensor Life left in %@";
 
+/* */
+"Libre Bluetooth" = "Libre Bluetooth";
+
+/* */
+"Snooze Alerts" = "Snooze Alerts";
+
+/* */
+"Last measurement" = "Last measurement";
+
+/* */
+"Sensor Footer checksum" = "Sensor Footer checksum";
+
+/* */
+"Last Blood Sugar prediction" = "Last Blood Sugar prediction";
+
+/* */
+"CurrentBG" = "CurrentBG";
+
+/* */
+"Sensor Info" = "Sensor Info";
+
+/* */
+"Sensor Age" = "Sensor Age";
+
+/* */
+"Sensor Age Left" = "Sensor Age Left";
+
+/* */
+"Sensor Endtime" = "Sensor Endtime";
+
+/* */
+"Sensor State" = "Sensor State";
+
+/* */
+"Sensor Serial" = "Sensor Serial";
+
+/* */
+"Transmitter Info" = "Transmitter Info";
+
+/* */
+"Hardware" = "Hardware";
+
+/* */
+"Firmware" = "Firmware";
+
+/* */
+"Connection State" = "Connection State";
+
+/* */
+"Transmitter Type" = "Transmitter Type";
+
+/* */
+"Sensor Type" = "Sensor Type";
+
+/* */
+"Factory Calibration Parameters" = "Factory Calibration Parameters";
+
+/* */
+"Valid for footer" = "Valid for footer";
+
+/* */
+"Edit calibrations" = "Edit calibrations";
+
+/* */
+"edit calibration clicked" = "edit calibration clicked";
+
+/* */
+"Delete CGM" = "Delete CGM";
+/* */
+"Are you sure you want to remove this cgm from loop?" = "Are you sure you want to remove this cgm from loop?";
+
+/* */
+"There is no undo" = "There is no undo";
+
+/* */
+"Advanced" = "Advanced";
+
+/* */
+"Alarms" = "Alarms";
+
+/* */
+"Glucose Settings" = "Glucose Settings";
+
+/* */
+"Notifications" = "Notifications";
+
+/* */
+"Export logs" = "Export logs";
+
+/* */
+"Export not available" = "Export not available";
+
+/* */
+"Log export requires ios 15" = "Log export requires ios 15";
+
+/* */
+"Got it!" = "Got it!";
+
+/* */
+"Saved to %@" = "Saved to %@";
+
+/* */
+"No logs available" = "No logs available";
+
+/* */
+"Glucose Notification visibility" = "Glucose Notification visibility";
+
+/* */
+"Always Notify Glucose" = "Always Notify Glucose";
+
+/* */
+"Notify per reading" = "Notify per reading";
+
+/* */
+"Value" = "Value";
+
+/* */
+"Adds Phone Battery" = "Adds Phone Battery";
+
+/* */
+"Adds Transmitter Battery" = "Adds Transmitter Battery";
+
+/* */
+"Also vibrate" = "Also vibrate";
+
+/* */
+"Additional notification types" = "Additional notification types";
+
+/* */
+"Misc" = "Misc";
+
+/* */
+"Unit override" = "Unit override";
+
+/* */
+"Low" = "Low";
+
+/* */
+"High" = "High";
+
+/* */
+"glucose" = "glucose";
+
+/* */
+"Schedule " = "Schedule ";
+
+/* */
+"tapped save schedules" = "tapped save schedules";
+
+/* */
+"Error" = "Error";
+
+/* */
+"Some ui element was incorrectly specified" = "Some ui element was incorrectly specified";
+
+/* */
+"Success" = "Success";
+
+/* */
+"Schedules were saved successfully!" = "Schedules were saved successfully!";
+
+/* */
+"High Glucose Alarm active" = "High Glucose Alarm active";
+
+/* */
+"Low Glucose Alarm active" = "Low Glucose Alarm active";
+
+/* */
+"No Glucose Alarm active" = "No Glucose Alarm active";
+
+/* */
+"snoozing until %@" = "snoozing until %@";
+
+/* */
+"not snoozing" = "not snoozing";
+
+/* */
+"nothing to see here" = "nothing to see here";
+
+/* */
+"snooze from testview clicked" = "snooze from testview clicked";
+
+/* */
+"will snooze for %@ until %@" = "will snooze for %@ until %@";
+
+/* */
+"Click to Snooze Alerts" = "Click to Snooze Alerts";
+
+/* */
+"Strength" = "Strength";
+
+/* */
+"Hold the top of your iPhone near the sensor to pair" = "Hold the top of your iPhone near the sensor to pair";
+
+/* */
+"Sensor not found" = "Sensor not found";
+
+/* */
+"Also play alert sound" = "Also play alert sound";
+
+/* */
+"Notification Settings" = "Notification Settings";
+
+/* */
+"Found devices: %d" = "Found devices: %d";
+
+/* */
+"Backfill options" = "Backfill options";
+
+/* */
+"Backfilling from trend is currently not well supported by Loop" = "Backfilling from trend is currently not well supported by Loop";
+
+/* */
+"Backfill from history" = "Backfill from history";
+
+/* */
+"Backfill from trend" = "Backfill from trend";
+
+/* */
+"Debug options" = "Debug options";
+
+/* */
+"Adds a lot of data to the Issue Report " = "Adds a lot of data to the Issue Report ";
+
+/* */
+"Persist sensordata" = "Persist sensordata";
+
+/* */
+"Battery" = "Battery";
+
+
 
 /* Headers for settings ------------------- */
 
@@ -595,6 +829,14 @@ Enact a temp Basal or a temp target */
 "OpenAPS targets settings" = "OpenAPS targets settings";
 
 "OpenAPS other settings" = "OpenAPS other settings";
+
+
+/* Glucose Simulator CGM */
+"Glucose Simulator" = "Glucose Simulator";
+
+/* Restored state message */
+"Bluetooth State restored (APS restarted?). Found %d peripherals, and connected to %@ with identifier %@" = "Bluetooth State restored (APS restarted?). Found %d peripherals, and connected to %@ with identifier %@";
+
 
 /*
   Infotexts from openaps.docs and androidaps.docs
