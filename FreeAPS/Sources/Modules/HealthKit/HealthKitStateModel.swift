@@ -12,7 +12,9 @@ extension AppleHealthKit {
         override func subscribe() {
             useAppleHealth = settingsManager.settings.useAppleHealth
 
-            subscribeSetting(\.needShowInformationTextForSetPermissions, on: $needShowInformationTextForSetPermissions)
+            subscribeSetting(\.needShowInformationTextForSetPermissions, on: $needShowInformationTextForSetPermissions) { _ in
+                needShowInformationTextForSetPermissions = false
+            }
 
             $useAppleHealth
                 .removeDuplicates()

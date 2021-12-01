@@ -100,7 +100,7 @@ extension FreeAPSSettings: Decodable {
         ) {
             settings.needShowInformationTextForSetPermissions = needShowInformationTextForSetPermissions
         }
-        
+
         if let glucoseBadge = try? container.decode(Bool.self, forKey: .glucoseBadge) {
             settings.glucoseBadge = glucoseBadge
         }

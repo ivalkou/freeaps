@@ -2588,7 +2588,7 @@
 				CODE_SIGN_ENTITLEMENTS = FreeAPSWatch/FreeAPSWatch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(BUILD_VERSION)";
-				DEVELOPMENT_TEAM = "${DEVELOPER_TEAM}";
+				DEVELOPMENT_TEAM = 34E923QGF6;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = FreeAPSWatch_WatchKit_Extension;
 				INFOPLIST_KEY_CFBundleDisplayName = FreeAPSWatch;
@@ -2602,7 +2602,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
 		};
@@ -2618,7 +2618,7 @@
 				CODE_SIGN_ENTITLEMENTS = FreeAPSWatch/FreeAPSWatch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(BUILD_VERSION)";
-				DEVELOPMENT_TEAM = "${DEVELOPER_TEAM}";
+				DEVELOPMENT_TEAM = 34E923QGF6;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = FreeAPSWatch_WatchKit_Extension;
 				INFOPLIST_KEY_CFBundleDisplayName = FreeAPSWatch;
@@ -2632,7 +2632,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Release;
 		};
@@ -2647,13 +2647,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(BUILD_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "\"FreeAPSWatch WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = BA7ZHP4963;
+				DEVELOPMENT_TEAM = 34E923QGF6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FreeAPSWatch WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "FreeAPSWatch WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = FreeAPSWatch_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2667,7 +2668,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Debug;
 		};
@@ -2682,13 +2683,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(BUILD_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "\"FreeAPSWatch WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = BA7ZHP4963;
+				DEVELOPMENT_TEAM = 34E923QGF6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FreeAPSWatch WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "FreeAPSWatch WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = FreeAPSWatch_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2702,7 +2704,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
 			};
 			name = Release;
 		};

@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>WKAppBundleIdentifier</key>
+	<string>ru.artpancreas.34E923QGF6.FreeAPS.watchkitapp</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
