@@ -14,6 +14,6 @@ final class ServiceAssembly: Assembly {
             return reporter
         }
         container.register(CalendarManager.self) { r in BaseCalendarManager(resolver: r) }
-        container.register(HealthKitManager.self) { _ in BaseHealthKitManager() }
+        container.register(HealthKitManager.self) { r in BaseHealthKitManager(resolver: r) }
     }
 }

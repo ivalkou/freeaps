@@ -3,9 +3,7 @@ import SwiftUI
 
 extension AppleHealthKit {
     final class StateModel: BaseStateModel<Provider> {
-        var healthKitManager = BaseHealthKitManager()
-
-        @Injected() var settingsManager: SettingsManager!
+        @Injected() var healthKitManager: HealthKitManager!
 
         @Published var useAppleHealth = false
         @Published var didRequestAppleHealthPermissions = false
@@ -14,12 +12,7 @@ extension AppleHealthKit {
         override func subscribe() {
             useAppleHealth = settingsManager.settings.useAppleHealth
 
-            $needShowInformationTextForSetPermissions
-                .removeDuplicates()
-                .sink { [weak self] value in
-                    self?.settingsManager.settings.needShowInformationTextForSetPermissions = value
-                }
-                .store(in: &lifetime)
+            subscribeSetting(\.needShowInformationTextForSetPermissions, on: $needShowInformationTextForSetPermissions)
 
             $useAppleHealth
                 .removeDuplicates()

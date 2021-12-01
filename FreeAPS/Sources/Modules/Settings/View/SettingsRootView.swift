@@ -82,6 +82,8 @@ extension Settings {
                         }
 
                         Group {
+                            Text("HealthKit")
+                                .navigationLink(to: .configEditor(file: OpenAPS.HealthKit.downloadedGlucose), from: self)
                             Text("Target presets")
                                 .navigationLink(to: .configEditor(file: OpenAPS.FreeAPS.tempTargetsPresets), from: self)
                             Text("Calibrations")

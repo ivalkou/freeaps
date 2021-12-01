@@ -1,5 +1,6 @@
 import Foundation
 import HealthKit
+import Swinject
 
 protocol HealthKitManager {
     /// Storage of HealthKit
@@ -17,9 +18,11 @@ protocol HealthKitManager {
     func save(bloodGlucoses: [BloodGlucose], completion: ((Result<Bool, Error>) -> Void)?)
 }
 
-final class BaseHealthKitManager: HealthKitManager {
+final class BaseHealthKitManager: HealthKitManager, Injectable {
+    @Injected() private var fileStorage: FileStorage!
+
     private enum Config {
-        // unwraped HKobjects
+        // unwraped HKObjects
         static var permissions: Set<HKSampleType> {
             var result: Set<HKSampleType> = []
             for permission in optionalPermissions {
@@ -55,6 +58,17 @@ final class BaseHealthKitManager: HealthKitManager {
         return result
     }
 
+    init(resolver: Resolver) {
+        injectServices(resolver)
+        guard isAvailableOnCurrentDevice, let bjObject = Config.HealthBGObject else {
+            return
+        }
+        if isAvailableFor(object: bjObject) {
+            debug(.service, "Create HealthKit Observer for Blood Glucose")
+            createObserver()
+        }
+    }
+
     func isAvailableFor(object: HKObjectType) -> Bool {
         let status = store.authorizationStatus(for: object)
         switch status {
@@ -88,12 +102,18 @@ final class BaseHealthKitManager: HealthKitManager {
                 unit: .milligramsPerDeciliter,
                 doubleValue: Double(bgItem.glucose!)
             )
+
             let bjObjectSample = HKQuantitySample(
                 type: Config.HealthBGObject!,
                 quantity: bgQuantity,
                 start: bgItem.dateString,
-                end: bgItem.dateString
+                end: bgItem.dateString,
+                metadata: [
+                    "HKMetadataKeyExternalUUID": bgItem.id,
+                    "didSyncWithFreeAPSX": true
+                ]
             )
+
             store.save(bjObjectSample) { status, error in
                 guard error == nil else {
                     completion?(Result.failure(error!))
@@ -102,6 +122,41 @@ final class BaseHealthKitManager: HealthKitManager {
                 completion?(Result.success(status))
             }
         }
+    }
+
+    func createObserver() {
+        guard let bgType = Config.HealthBGObject else {
+            fatalError("*** Unable to get the Blood Glucose type ***")
+        }
+
+        let query = HKObserverQuery(sampleType: bgType, predicate: nil) { _, _, observerError in
+
+            if let _ = observerError {
+                return
+            }
+
+            let query = HKSampleQuery(
+                sampleType: bgType,
+                predicate: nil,
+                limit: Int(HKObjectQueryNoLimit),
+                sortDescriptors: nil
+            ) { _, results, _ in
+
+                guard let samples = results as? [HKQuantitySample] else {
+                    return
+                }
+
+                var result = [HealthKitSample]()
+                for sample in samples {
+                    if sample.wasUserEntered {
+                        result.append(HealthKitSample(healthKitId: sample.uuid.uuidString))
+                    }
+                }
+                self.fileStorage.save(result, as: OpenAPS.HealthKit.downloadedGlucose)
+            }
+            self.store.execute(query)
+        }
+        store.execute(query)
     }
 }
 

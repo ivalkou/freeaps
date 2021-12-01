@@ -255,6 +255,7 @@
 		E00EEC0727368630002FF094 /* APSAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00EEC0127368630002FF094 /* APSAssembly.swift */; };
 		E00EEC0827368630002FF094 /* NetworkAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00EEC0227368630002FF094 /* NetworkAssembly.swift */; };
 		E013D872273AC6FE0014109C /* GlucoseSimulatorSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013D871273AC6FE0014109C /* GlucoseSimulatorSource.swift */; };
+		E0D4F80527513ECF00BDF1FE /* HealthKitSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4F80427513ECF00BDF1FE /* HealthKitSample.swift */; };
 		E13B7DAB2A435F57066AF02E /* TargetsEditorStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F58DDD71F0E795464FA3F0 /* TargetsEditorStateModel.swift */; };
 		E25073BC86C11C3D6A42F5AC /* CalibrationsStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DFCE895C930F784EF11843 /* CalibrationsStateModel.swift */; };
 		E39E418C56A5A46B61D960EE /* ConfigEditorStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B4F8B4194BB7E260EF251 /* ConfigEditorStateModel.swift */; };
@@ -591,6 +592,7 @@
 		E00EEC0127368630002FF094 /* APSAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APSAssembly.swift; sourceTree = "<group>"; };
 		E00EEC0227368630002FF094 /* NetworkAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAssembly.swift; sourceTree = "<group>"; };
 		E013D871273AC6FE0014109C /* GlucoseSimulatorSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseSimulatorSource.swift; sourceTree = "<group>"; };
+		E0D4F80427513ECF00BDF1FE /* HealthKitSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSample.swift; sourceTree = "<group>"; };
 		E2EBA7C03C26FCC67E16D798 /* LibreConfigProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LibreConfigProvider.swift; sourceTree = "<group>"; };
 		E68CDC1E5C438D1BEAD4CF24 /* LibreConfigStateModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LibreConfigStateModel.swift; sourceTree = "<group>"; };
 		E9AAB83FB6C3B41EFD1846A0 /* AddTempTargetRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddTempTargetRootView.swift; sourceTree = "<group>"; };
@@ -624,12 +626,7 @@
 				3818AA6E274C26A500843DB3 /* RileyLinkKitUI.framework in Frameworks */,
 				3818AA5A274C26A300843DB3 /* LoopKitUI.framework in Frameworks */,
 				38B17B6625DD90E0005CAE3D /* SwiftDate in Frameworks */,
-				38887DF425F61F7600944304 /* OmniKit.framework in Frameworks */,
-				386A124C271704DA00DDC61C /* CGMBLEKit.framework in Frameworks */,
-				38887DFA25F61F7600944304 /* RileyLinkKit.framework in Frameworks */,
-				38887DF625F61F7600944304 /* OmniKitUI.framework in Frameworks */,
 				F90692A7274B75510037068D /* HealthKit.framework in Frameworks */,
-				38887DE425F61F7500944304 /* LoopTestingKit.framework in Frameworks */,
 				3818AA60274C26A300843DB3 /* Crypto.framework in Frameworks */,
 				3833B46D26012030003021B3 /* Algorithms in Frameworks */,
 				3818AA62274C26A400843DB3 /* MinimedKit.framework in Frameworks */,
@@ -1058,6 +1055,7 @@
 				3818AA44274C229000843DB3 /* Packages */,
 				388E595925AD948C0019842D /* Products */,
 				3818AA48274C267000843DB3 /* Frameworks */,
+				E0D4F8032751223B00BDF1FE /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1118,6 +1116,7 @@
 				38A0364125ED069400FCBB52 /* TempBasal.swift */,
 				3871F39B25ED892B0013ECB5 /* TempTarget.swift */,
 				3811DE8E25C9D80400A708ED /* User.swift */,
+				E0D4F80427513ECF00BDF1FE /* HealthKitSample.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1175,32 +1174,6 @@
 				38AEE75125F022080013F05B /* SettingsManager.swift */,
 			);
 			path = SettingsManager;
-			sourceTree = "<group>";
-		};
-		38B17B8525DD93BA005CAE3D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F90692A6274B75510037068D /* HealthKit.framework */,
-				386A124B271704DA00DDC61C /* CGMBLEKit.framework */,
-				38887E2025F6209B00944304 /* SwiftCharts.framework */,
-				38887DD025F61F7500944304 /* LoopKit.framework */,
-				38887DD125F61F7500944304 /* LoopKitUI.framework */,
-				38887DD225F61F7500944304 /* LoopTestingKit.framework */,
-				38887DD325F61F7500944304 /* MockKit.framework */,
-				38887DD425F61F7500944304 /* MockKitUI.framework */,
-				38887DD525F61F7500944304 /* MKRingProgressView.framework */,
-				38887DD625F61F7500944304 /* Crypto.framework */,
-				38887DD725F61F7500944304 /* MinimedKit.framework */,
-				38887DD825F61F7500944304 /* MinimedKitUI.framework */,
-				38887DD925F61F7500944304 /* NightscoutUploadKit.framework */,
-				38887DDA25F61F7500944304 /* OmniKit.framework */,
-				38887DDB25F61F7500944304 /* OmniKitUI.framework */,
-				38887DDC25F61F7500944304 /* RileyLinkBLEKit.framework */,
-				38887DDD25F61F7500944304 /* RileyLinkKit.framework */,
-				38887DDE25F61F7500944304 /* RileyLinkKitUI.framework */,
-				38887DDF25F61F7500944304 /* SwiftCharts.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		38B4F3C425E5016800E76A18 /* Notifications */ = {
@@ -1538,6 +1511,14 @@
 				E00EEC0227368630002FF094 /* NetworkAssembly.swift */,
 			);
 			path = Assemblies;
+			sourceTree = "<group>";
+		};
+		E0D4F8032751223B00BDF1FE /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				F90692A6274B75510037068D /* HealthKit.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		E42231DBF0DBE2B4B92D1B15 /* CREditor */ = {
@@ -1957,6 +1938,7 @@
 				D2165E9D78EFF692C1DED1C6 /* AddTempTargetDataFlow.swift in Sources */,
 				38E4451E274DB04600EC9A94 /* AppDelegate.swift in Sources */,
 				5BFA1C2208114643B77F8CEB /* AddTempTargetProvider.swift in Sources */,
+				E0D4F80527513ECF00BDF1FE /* HealthKitSample.swift in Sources */,
 				919DBD08F13BAFB180DF6F47 /* AddTempTargetStateModel.swift in Sources */,
 				8BC2F5A29AD1ED08AC0EE013 /* AddTempTargetRootView.swift in Sources */,
 				38A00B1F25FC00F7006BC0B0 /* Autotune.swift in Sources */,
@@ -2207,7 +2189,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "${DEVELOPER_TEAM}";
+				DEVELOPMENT_TEAM = 34E923QGF6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FreeAPS/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -2241,7 +2223,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = "${DEVELOPER_TEAM}";
+				DEVELOPMENT_TEAM = 34E923QGF6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FreeAPS/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
