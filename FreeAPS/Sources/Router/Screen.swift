@@ -24,6 +24,8 @@ enum Screen: Identifiable, Hashable {
     case healthkit
     case libreConfig
     case calibrations
+    case notificationsConfig
+    case snooze
 
     var id: Int { String(reflecting: self).hashValue }
 }
@@ -75,6 +77,10 @@ extension Screen {
             LibreConfig.RootView(resolver: resolver)
         case .calibrations:
             Calibrations.RootView(resolver: resolver)
+        case .notificationsConfig:
+            NotificationsConfig.RootView(resolver: resolver)
+        case .snooze:
+            Snooze.RootView(resolver: resolver)
         }
     }
 

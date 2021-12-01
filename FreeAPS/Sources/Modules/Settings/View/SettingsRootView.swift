@@ -21,6 +21,7 @@ extension Settings {
                     Text("Nightscout").navigationLink(to: .nighscoutConfig, from: self)
                     Text("CGM").navigationLink(to: .cgm, from: self)
                     Text("Apple Health").navigationLink(to: .healthkit, from: self)
+                    Text("Notifications").navigationLink(to: .notificationsConfig, from: self)
                 }
 
                 Section(header: Text("Configuration")) {

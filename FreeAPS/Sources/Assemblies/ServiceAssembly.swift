@@ -15,5 +15,7 @@ final class ServiceAssembly: Assembly {
         }
         container.register(CalendarManager.self) { r in BaseCalendarManager(resolver: r) }
         container.register(HealthKitManager.self) { r in BaseHealthKitManager(resolver: r) }
+        container.register(UserNotificationsManager.self) { r in BaseUserNotificationsManager(resolver: r) }
+        container.register(WatchManager.self) { r in BaseWatchManager(resolver: r) }
     }
 }
