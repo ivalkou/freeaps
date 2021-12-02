@@ -34,6 +34,12 @@ struct MainView: View {
                 ConfirmationView(success: $state.confirmationSuccess)
                     .background(Rectangle().fill(.black))
             }
+
+            if state.isConfirmationBolusViewActive {
+                BolusConfirmationView()
+                    .environmentObject(state)
+                    .background(Rectangle().fill(.black))
+            }
         }
         .frame(maxHeight: .infinity)
         .padding()
@@ -54,7 +60,10 @@ struct MainView: View {
                         Text(state.glucose).font(.largeTitle)
                             .scaledToFill()
                             .minimumScaleFactor(0.5)
+                            .padding(.top, 4)
                         Text(state.trend)
+                            .scaledToFill()
+                            .minimumScaleFactor(0.5)
                     }
                     Text(state.delta).font(.caption2)
                         .scaledToFill()
@@ -191,7 +200,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let state = WatchStateModel()
 
-        state.glucose = "888"
+        state.glucose = "15,8"
         state.delta = "+888"
         state.iob = 100.38
         state.cob = 112.123
@@ -204,6 +213,7 @@ struct ContentView_Previews: PreviewProvider {
         return Group {
             MainView()
             MainView().previewDevice("Apple Watch Series 5 - 40mm")
+            MainView().previewDevice("Apple Watch Series 3 - 38mm")
         }.environmentObject(state)
     }
 }
