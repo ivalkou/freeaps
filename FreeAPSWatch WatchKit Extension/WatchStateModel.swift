@@ -9,6 +9,7 @@ class WatchStateModel: NSObject, ObservableObject {
     @Published var glucose = "00"
     @Published var trend = "→"
     @Published var delta = "+00"
+    @Published var eventualBG = ""
     @Published var lastLoopDate: Date?
     @Published var glucoseDate: Date?
     @Published var bolusIncrement: Decimal?
@@ -25,9 +26,14 @@ class WatchStateModel: NSObject, ObservableObject {
     @Published var isTempTargetViewActive = false
     @Published var isBolusViewActive = false
     @Published var isConfirmationViewActive = false
+    @Published var isConfirmationBolusViewActive = false
     @Published var confirmationSuccess: Bool?
+    @Published var lastUpdate: Date = .distantPast
+    @Published var timerDate = Date()
+    @Published var pendingBolus: Double?
 
     private var lifetime = Set<AnyCancellable>()
+    let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
 
     init(session: WCSession = .default) {
         self.session = session
@@ -68,10 +74,18 @@ class WatchStateModel: NSObject, ObservableObject {
         }
     }
 
-    func enactBolus(amount: Double) {
+    func addBolus(amount: Double) {
+        isBolusViewActive = false
+        pendingBolus = amount
+        isConfirmationBolusViewActive = true
+    }
+
+    func enactBolus() {
+        isConfirmationBolusViewActive = false
+        guard let amount = pendingBolus else { return }
+
         confirmationSuccess = nil
         isConfirmationViewActive = true
-        isBolusViewActive = false
         session.sendMessage(["bolus": amount], replyHandler: completionHandler) { error in
             print(error.localizedDescription)
             DispatchQueue.main.async {
@@ -81,6 +95,10 @@ class WatchStateModel: NSObject, ObservableObject {
     }
 
     func requestState() {
+        guard session.activationState == .activated else {
+            session.activate()
+            return
+        }
         session.sendMessage(["stateRequest": true], replyHandler: nil) { error in
             print("WatchStateModel error: " + error.localizedDescription)
         }
@@ -126,6 +144,8 @@ class WatchStateModel: NSObject, ObservableObject {
         cob = state.cob
         tempTargets = state.tempTargets
         bolusAfterCarbs = state.bolusAfterCarbs ?? true
+        eventualBG = state.eventualBG ?? ""
+        lastUpdate = Date()
     }
 }
 
