@@ -25,15 +25,6 @@ struct ConfirmationView: View {
             .frame(width: 50, height: 50)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onTapGesture {
-            toggleState()
-        }
-    }
-
-    func toggleState() {
-        withAnimation(.easeIn.speed(1)) {
-            success = success == nil ? true : success == true ? false : nil
-        }
     }
 }
 
@@ -51,7 +42,7 @@ struct ConfirmationView_Previews: PreviewProvider {
     }
 }
 
-private struct BlinkingView: View {
+struct BlinkingView: View {
     let count: UInt
     let size: CGFloat
 
