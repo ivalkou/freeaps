@@ -39,13 +39,13 @@ final class GlucoseSimulatorSource: GlucoseSource {
     @Persisted(key: "GlucoseSimulatorLastFetchDate") private var lastFetchDate: Date! = nil
 
     init() {
-        if lastFetchDate == nil {
-            var lastDate = Date()
-            for _ in 1 ... Config.defaultBGItems {
-                lastDate = lastDate.addingTimeInterval(-Config.workInterval)
-            }
-            lastFetchDate = lastDate
+        // if lastFetchDate == nil {
+        var lastDate = Date()
+        for _ in 1 ... Config.defaultBGItems {
+            lastDate = lastDate.addingTimeInterval(-Config.workInterval)
         }
+        lastFetchDate = lastDate
+        // }
     }
 
     private lazy var generator: BloodGlucoseGenerator = {
@@ -92,8 +92,8 @@ protocol BloodGlucoseGenerator {
 class IntelligentGenerator: BloodGlucoseGenerator {
     private enum Config {
         // max and min glucose of trend's target
-        static let maxGlucose = 320
-        static let minGlucose = 45
+        static let maxGlucose = 120 // 320
+        static let minGlucose = 80 // 45
     }
 
     // target glucose of trend
@@ -141,6 +141,8 @@ class IntelligentGenerator: BloodGlucoseGenerator {
     }
 
     private func setNewRandomTarget() {
+        trendTargetValue = Array(Config.minGlucose ... Config.maxGlucose).randomElement()!
+        return
         guard trendTargetValue > 0 else {
             trendTargetValue = Array(80 ... 110).randomElement()!
             return

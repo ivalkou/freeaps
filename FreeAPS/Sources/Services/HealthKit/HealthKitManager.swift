@@ -126,7 +126,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
 
     func createObserver() {
         guard let bgType = Config.HealthBGObject else {
-            fatalError("*** Unable to get the Blood Glucose type ***")
+            fatalError("Unable to get the Blood Glucose type")
         }
 
         let query = HKObserverQuery(sampleType: bgType, predicate: nil) { _, _, observerError in
@@ -149,7 +149,10 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 var result = [HealthKitSample]()
                 for sample in samples {
                     if sample.wasUserEntered {
-                        result.append(HealthKitSample(healthKitId: sample.uuid.uuidString))
+//                        result.append(HealthKitSample(
+//                            healthKitId: sample.uuid.uuidString,
+//                            date: String(sample.startDate.timeIntervalSince1970)
+//                        ))
                     }
                 }
                 self.fileStorage.save(result, as: OpenAPS.HealthKit.downloadedGlucose)
@@ -158,6 +161,8 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         }
         store.execute(query)
     }
+
+    private func removeOldImportedBloodGlucose() {}
 }
 
 enum HealthKitPermissionRequestStatus {
