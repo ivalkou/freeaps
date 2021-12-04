@@ -32,6 +32,8 @@ extension AppleHealthKit {
                                 return
                             }
                             self.settingsManager.settings.useAppleHealth = status
+                            self.healthKitManager.enableBackgroundDelivery()
+                            self.healthKitManager.createObserver()
                             DispatchQueue.main.async {
                                 self.didRequestAppleHealthPermissions = true
                                 if !self.healthKitManager.areAllowAllPermissions {
@@ -44,6 +46,8 @@ extension AppleHealthKit {
                             self.needShowInformationTextForSetPermissions = true
                         }
                         self.settingsManager.settings.useAppleHealth = true
+                        self.healthKitManager.enableBackgroundDelivery()
+                        self.healthKitManager.createObserver()
                     }
                 }
                 .store(in: &lifetime)

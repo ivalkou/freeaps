@@ -16,10 +16,15 @@ protocol HealthKitManager {
     func requestPermission(completion: ((Bool, Error?) -> Void)?)
     /// Save blood glucose data to HealthKit store
     func save(bloodGlucoses: [BloodGlucose], completion: ((Result<Bool, Error>) -> Void)?)
+    /// Create observer for data passing beetwen Health Store and FreeAPS
+    func createObserver()
+    /// Enable background delivering objects from Apple Health to FreeAPS
+    func enableBackgroundDelivery()
 }
 
 final class BaseHealthKitManager: HealthKitManager, Injectable {
     @Injected() private var fileStorage: FileStorage!
+    @Injected() private var glucoseStorage: GlucoseStorage!
 
     private enum Config {
         // unwraped HKObjects
@@ -34,6 +39,8 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         static let optionalPermissions = Set([Config.HealthBGObject])
         // link to object in HealthKit
         static let HealthBGObject = HKObjectType.quantityType(forIdentifier: .bloodGlucose)
+
+        static let frequencyBackgroundDeliveryBloodGlucoseFromHealth = HKUpdateFrequency(rawValue: 10)!
     }
 
     // App must have only one HealthKit Store
@@ -67,6 +74,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             debug(.service, "Create HealthKit Observer for Blood Glucose")
             createObserver()
         }
+        enableBackgroundDelivery()
     }
 
     func isAvailableFor(object: HKObjectType) -> Bool {
@@ -110,7 +118,9 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 end: bgItem.dateString,
                 metadata: [
                     "HKMetadataKeyExternalUUID": bgItem.id,
-                    "didSyncWithFreeAPSX": true
+                    "HKMetadataKeySyncIdentifier": bgItem.id,
+                    "HKMetadataKeySyncVersion": 1,
+                    "fromFreeAPSX": true
                 ]
             )
 
@@ -129,40 +139,120 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             fatalError("Unable to get the Blood Glucose type")
         }
 
-        let query = HKObserverQuery(sampleType: bgType, predicate: nil) { _, _, observerError in
+        let query = HKObserverQuery(sampleType: bgType, predicate: nil) { [unowned self] _, _, observerError in
 
             if let _ = observerError {
                 return
             }
 
-            let query = HKSampleQuery(
-                sampleType: bgType,
-                predicate: nil,
-                limit: Int(HKObjectQueryNoLimit),
-                sortDescriptors: nil
-            ) { _, results, _ in
+            // loading only daily bg
+            let predicate = HKQuery.predicateForSamples(
+                withStart: Date().addingTimeInterval(-1.days.timeInterval),
+                end: nil,
+                options: .strictStartDate
+            )
 
-                guard let samples = results as? [HKQuantitySample] else {
-                    return
-                }
-
-                var result = [HealthKitSample]()
-                for sample in samples {
-                    if sample.wasUserEntered {
-//                        result.append(HealthKitSample(
-//                            healthKitId: sample.uuid.uuidString,
-//                            date: String(sample.startDate.timeIntervalSince1970)
-//                        ))
-                    }
-                }
-                self.fileStorage.save(result, as: OpenAPS.HealthKit.downloadedGlucose)
-            }
-            self.store.execute(query)
+            store.execute(getQueryForDeletedBloodGlucose(sampleType: bgType, predicate: predicate))
+            store.execute(getQueryForAddedBloodGlucose(sampleType: bgType, predicate: predicate))
         }
         store.execute(query)
     }
 
-    private func removeOldImportedBloodGlucose() {}
+    func enableBackgroundDelivery() {
+        guard let bgType = Config.HealthBGObject else {
+            fatalError("Unable to get the Blood Glucose type")
+        }
+
+        store.enableBackgroundDelivery(
+            for: bgType,
+            frequency: Config.frequencyBackgroundDeliveryBloodGlucoseFromHealth
+        ) { status, e in
+            guard e == nil else {
+                error(Logger.Category.service, "Can not enable background delivery for Apple Health", description: nil, error: e!)
+            }
+            debug(.service, "HealthKit background delivery status is \(status)")
+        }
+    }
+
+    private func getQueryForDeletedBloodGlucose(sampleType: HKQuantityType, predicate: NSPredicate) -> HKQuery {
+        let query = HKAnchoredObjectQuery(
+            type: sampleType,
+            predicate: predicate,
+            anchor: nil,
+            limit: 1000
+        ) { [unowned self] _, _, deletedObjects, _, _ in
+            guard let samples = deletedObjects else {
+                return
+            }
+
+            DispatchQueue.global(qos: .utility).async {
+                var removingBGID = [String]()
+                samples.forEach {
+                    if let idString = $0.metadata?["HKMetadataKeySyncIdentifier"] as? String {
+                        removingBGID.append(idString)
+                    } else {
+                        removingBGID.append($0.uuid.uuidString)
+                    }
+                }
+                glucoseStorage.removeGlucose(byIDCollection: removingBGID)
+            }
+        }
+        return query
+    }
+
+    private func getQueryForAddedBloodGlucose(sampleType: HKQuantityType, predicate: NSPredicate) -> HKQuery {
+        let query = HKSampleQuery(
+            sampleType: sampleType,
+            predicate: predicate,
+            limit: Int(HKObjectQueryNoLimit),
+            sortDescriptors: nil
+        ) { [unowned self] _, results, _ in
+
+            guard let samples = results as? [HKQuantitySample] else {
+                return
+            }
+
+            let oldSamples: [HealthKitSample] = fileStorage
+                .retrieve(OpenAPS.HealthKit.downloadedGlucose, as: [HealthKitSample].self) ?? []
+
+            var newSamples = [HealthKitSample]()
+            for sample in samples {
+                if sample.wasUserEntered {
+                    newSamples.append(HealthKitSample(
+                        healthKitId: sample.uuid.uuidString,
+                        date: sample.startDate,
+                        glucose: Int(round(sample.quantity.doubleValue(for: .milligramsPerDeciliter)))
+                    ))
+                }
+            }
+
+            newSamples = newSamples
+                .filter { !oldSamples.contains($0) }
+
+            newSamples.forEach({ sample in
+                let glucose = BloodGlucose(
+                    _id: sample.healthKitId,
+                    sgv: nil,
+                    direction: nil,
+                    date: Decimal(Int(sample.date.timeIntervalSince1970) * 1000),
+                    dateString: sample.date,
+                    unfiltered: nil,
+                    filtered: nil,
+                    noise: nil,
+                    glucose: sample.glucose,
+                    type: nil
+                )
+                glucoseStorage.storeGlucose([glucose])
+            })
+
+            let savingSamples = (newSamples + oldSamples)
+                .removeDublicates()
+                .filter { $0.date >= Date().addingTimeInterval(-1.days.timeInterval) }
+
+            self.fileStorage.save(savingSamples, as: OpenAPS.HealthKit.downloadedGlucose)
+        }
+        return query
+    }
 }
 
 enum HealthKitPermissionRequestStatus {
