@@ -182,7 +182,6 @@
 		38E87403274F78C000975559 /* libswiftCoreNFC.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E87402274F78C000975559 /* libswiftCoreNFC.tbd */; settings = {ATTRIBUTES = (Weak, ); }; };
 		38E87408274F9AD000975559 /* UserNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E87407274F9AD000975559 /* UserNotificationsManager.swift */; };
 		38E8751F27554D5700975559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E8751E27554D5700975559 /* Assets.xcassets */; };
-		38E8752527554D5700975559 /* FreeAPSWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38E8752427554D5700975559 /* FreeAPSWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		38E8752A27554D5700975559 /* FreeAPSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E8752927554D5700975559 /* FreeAPSApp.swift */; };
 		38E8752C27554D5700975559 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E8752B27554D5700975559 /* MainView.swift */; };
 		38E8752E27554D5700975559 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E8752D27554D5700975559 /* NotificationController.swift */; };
@@ -190,7 +189,6 @@
 		38E8753227554D5700975559 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E8753127554D5700975559 /* ComplicationController.swift */; };
 		38E8753427554D5800975559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E8753327554D5800975559 /* Assets.xcassets */; };
 		38E8753727554D5900975559 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38E8753627554D5800975559 /* Preview Assets.xcassets */; };
-		38E8753C27554D5900975559 /* FreeAPSWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 38E8751C27554D5500975559 /* FreeAPSWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		38E8754527554D8800975559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388E595F25AD948E0019842D /* Assets.xcassets */; };
 		38E8754627554D8A00975559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 388E595F25AD948E0019842D /* Assets.xcassets */; };
 		38E8754727554DF100975559 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F37827261260DC009DB701 /* Color+Extensions.swift */; };
@@ -283,6 +281,8 @@
 		D76333C9256787610B3B4875 /* AutotuneConfigStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D295A3F870E826BE371C0BB5 /* AutotuneConfigStateModel.swift */; };
 		DBA5254DBB2586C98F61220C /* ISFEditorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9F137F126D9F8DEB799F26 /* ISFEditorProvider.swift */; };
 		DD399FB31EACB9343C944C4C /* PreferencesEditorStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA3E609094E064C99A4752C /* PreferencesEditorStateModel.swift */; };
+		E0012E8B2757FE3E00F67E3D /* FreeAPSWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 38E8751C27554D5500975559 /* FreeAPSWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E0012E8C2757FE7000F67E3D /* FreeAPSWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38E8752427554D5700975559 /* FreeAPSWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E00EEC0327368630002FF094 /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00EEBFD27368630002FF094 /* ServiceAssembly.swift */; };
 		E00EEC0427368630002FF094 /* SecurityAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00EEBFE27368630002FF094 /* SecurityAssembly.swift */; };
 		E00EEC0527368630002FF094 /* StorageAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00EEBFF27368630002FF094 /* StorageAssembly.swift */; };
@@ -365,7 +365,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				38E8753C27554D5900975559 /* FreeAPSWatch.app in Embed Watch Content */,
+				E0012E8B2757FE3E00F67E3D /* FreeAPSWatch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,7 +376,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				38E8753C27554D5900975559 /* FreeAPSWatch WatchKit Extension.appex in Embed App Extensions */,
+				E0012E8C2757FE7000F67E3D /* FreeAPSWatch WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1195,6 +1195,7 @@
 				38E8752827554D5700975559 /* FreeAPSWatch WatchKit Extension */,
 				388E595925AD948C0019842D /* Products */,
 				3818AA48274C267000843DB3 /* Frameworks */,
+				E0D4F8032751223B00BDF1FE /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1718,6 +1719,14 @@
 				E00EEC0227368630002FF094 /* NetworkAssembly.swift */,
 			);
 			path = Assemblies;
+			sourceTree = "<group>";
+		};
+		E0D4F8032751223B00BDF1FE /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				F90692A6274B75510037068D /* HealthKit.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		E42231DBF0DBE2B4B92D1B15 /* CREditor */ = {
@@ -2524,7 +2533,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 34E923QGF6;
+				DEVELOPMENT_TEAM = ${DEVELOPER_TEAM};
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FreeAPS/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -2560,7 +2569,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 34E923QGF6;
+				DEVELOPMENT_TEAM = ${DEVELOPER_TEAM};
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FreeAPS/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -2596,7 +2605,7 @@
 				CODE_SIGN_ENTITLEMENTS = FreeAPSWatch/FreeAPSWatch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(BUILD_VERSION)";
-				DEVELOPMENT_TEAM = 34E923QGF6;
+				DEVELOPMENT_TEAM = ${DEVELOPER_TEAM};
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = FreeAPSWatch_WatchKit_Extension;
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_DISPLAY_NAME)";
@@ -2626,7 +2635,7 @@
 				CODE_SIGN_ENTITLEMENTS = FreeAPSWatch/FreeAPSWatch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(BUILD_VERSION)";
-				DEVELOPMENT_TEAM = 34E923QGF6;
+				DEVELOPMENT_TEAM = ${DEVELOPER_TEAM};
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = FreeAPSWatch_WatchKit_Extension;
 				INFOPLIST_KEY_CFBundleDisplayName = "$(APP_DISPLAY_NAME)";
@@ -2655,7 +2664,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(BUILD_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "\"FreeAPSWatch WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = 34E923QGF6;
+				DEVELOPMENT_TEAM = ${DEVELOPER_TEAM};
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FreeAPSWatch WatchKit Extension/Info.plist";
@@ -2691,7 +2700,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(BUILD_VERSION)";
 				DEVELOPMENT_ASSET_PATHS = "\"FreeAPSWatch WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = 34E923QGF6;
+				DEVELOPMENT_TEAM = ${DEVELOPER_TEAM};
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "FreeAPSWatch WatchKit Extension/Info.plist";
