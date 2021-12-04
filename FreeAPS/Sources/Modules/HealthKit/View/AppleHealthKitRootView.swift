@@ -9,18 +9,23 @@ extension AppleHealthKit {
         var body: some View {
             Form {
                 Section {
-                    Toggle("Connect to Apple Health", isOn: $state.useAppleHealth)
+                    Toggle(NSLocalizedString("Connect to Apple Health", comment: ""), isOn: $state.useAppleHealth)
                     if state.needShowInformationTextForSetPermissions {
                         HStack {
                             Image(systemName: "exclamationmark.circle.fill")
-                            Text("For write data to Apple Health you must give permissions in Settings > Health > Data Access")
-                                .font(.caption)
+                            Text(
+                                NSLocalizedString(
+                                    "For write data to Apple Health you must give permissions in Settings > Health > Data Access",
+                                    comment: ""
+                                )
+                            )
+                            .font(.caption)
                         }
                     }
                 }
             }
             .onAppear(perform: configureView)
-            .navigationTitle("Apple Health")
+            .navigationTitle(NSLocalizedString("Apple Health", comment: ""))
             .navigationBarTitleDisplayMode(.automatic)
         }
     }

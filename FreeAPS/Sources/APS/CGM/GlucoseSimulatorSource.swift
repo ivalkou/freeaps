@@ -141,8 +141,6 @@ class IntelligentGenerator: BloodGlucoseGenerator {
     }
 
     private func setNewRandomTarget() {
-        trendTargetValue = Array(Config.minGlucose ... Config.maxGlucose).randomElement()!
-        return
         guard trendTargetValue > 0 else {
             trendTargetValue = Array(80 ... 110).randomElement()!
             return
