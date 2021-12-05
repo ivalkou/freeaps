@@ -6,17 +6,13 @@ extension AppleHealthKit {
         @Injected() var healthKitManager: HealthKitManager!
 
         @Published var useAppleHealth = false
-        @Published var didRequestAppleHealthPermissions = false
         @Published var needShowInformationTextForSetPermissions = false
 
         override func subscribe() {
             useAppleHealth = settingsManager.settings.useAppleHealth
-            subscribeSetting(\.needShowInformationTextForSetPermissions, on: $needShowInformationTextForSetPermissions) { _ in
-                needShowInformationTextForSetPermissions = false
-            }
+            needShowInformationTextForSetPermissions = settingsManager.settings.needShowInformationTextForSetPermissions
 
-            didRequestAppleHealthPermissions = settingsManager.settings.didRequestAppleHealthPermissions
-            subscribeSetting(\.didRequestAppleHealthPermissions, on: $didRequestAppleHealthPermissions) { _ in }
+            subscribeSetting(\.needShowInformationTextForSetPermissions, on: $needShowInformationTextForSetPermissions) { _ in }
 
             $useAppleHealth
                 .removeDuplicates()
@@ -28,28 +24,18 @@ extension AppleHealthKit {
                         return
                     }
 
-                    if !self.didRequestAppleHealthPermissions {
-                        self.healthKitManager.requestPermission { status, error in
-                            guard error == nil else {
-                                return
-                            }
-                            self.settingsManager.settings.useAppleHealth = status
-                            self.healthKitManager.enableBackgroundDelivery()
-                            self.healthKitManager.createObserver()
-                            DispatchQueue.main.async {
-                                self.didRequestAppleHealthPermissions = true
-                                if !self.healthKitManager.areAllowAllPermissions {
-                                    self.needShowInformationTextForSetPermissions = true
-                                }
-                            }
+                    self.healthKitManager.requestPermission { status, error in
+                        guard error == nil else {
+                            return
                         }
-                    } else {
-                        if !self.healthKitManager.areAllowAllPermissions {
-                            self.needShowInformationTextForSetPermissions = true
-                        }
-                        self.settingsManager.settings.useAppleHealth = true
+                        self.settingsManager.settings.useAppleHealth = status
                         self.healthKitManager.enableBackgroundDelivery()
                         self.healthKitManager.createObserver()
+                        DispatchQueue.main.async {
+                            if !self.healthKitManager.areAllowAllPermissions {
+                                self.needShowInformationTextForSetPermissions = true
+                            }
+                        }
                     }
                 }
                 .store(in: &lifetime)
