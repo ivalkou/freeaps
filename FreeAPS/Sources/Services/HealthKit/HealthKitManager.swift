@@ -3,8 +3,6 @@ import HealthKit
 import Swinject
 
 protocol HealthKitManager {
-    /// Storage of HealthKit
-    var store: HKHealthStore { get }
     /// Check availability HealthKit on current device and user's permissions
     var isAvailableOnCurrentDevice: Bool { get }
     /// Check all needed permissions
@@ -25,6 +23,7 @@ protocol HealthKitManager {
 final class BaseHealthKitManager: HealthKitManager, Injectable {
     @Injected() private var fileStorage: FileStorage!
     @Injected() private var glucoseStorage: GlucoseStorage!
+    @Injected() private var healthKitStore: HKHealthStore!
 
     private enum Config {
         // unwraped HKObjects
@@ -36,17 +35,11 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             return result
         }
 
-        static let optionalPermissions = Set([Config.HealthBGObject])
+        static let optionalPermissions = Set([Config.healthBGObject])
         // link to object in HealthKit
-        static let HealthBGObject = HKObjectType.quantityType(forIdentifier: .bloodGlucose)
+        static let healthBGObject = HKObjectType.quantityType(forIdentifier: .bloodGlucose)
 
         static let frequencyBackgroundDeliveryBloodGlucoseFromHealth = HKUpdateFrequency(rawValue: 10)!
-    }
-
-    // App must have only one HealthKit Store
-    private static var _store = HKHealthStore()
-    var store: HKHealthStore {
-        Self._store
     }
 
     var isAvailableOnCurrentDevice: Bool {
@@ -57,7 +50,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         var result = true
         Config.permissions.forEach { permission in
             if [HKAuthorizationStatus.sharingDenied, HKAuthorizationStatus.notDetermined]
-                .contains(store.authorizationStatus(for: permission))
+                .contains(healthKitStore.authorizationStatus(for: permission))
             {
                 result = false
             }
@@ -67,7 +60,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
 
     init(resolver: Resolver) {
         injectServices(resolver)
-        guard isAvailableOnCurrentDevice, let bjObject = Config.HealthBGObject else {
+        guard isAvailableOnCurrentDevice, let bjObject = Config.healthBGObject else {
             return
         }
         if isAvailableFor(object: bjObject) {
@@ -78,9 +71,9 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
     }
 
     func isAvailableFor(object: HKObjectType) -> Bool {
-        let status = store.authorizationStatus(for: object)
+        let status = healthKitStore.authorizationStatus(for: object)
         switch status {
-        case HKAuthorizationStatus.sharingAuthorized:
+        case .sharingAuthorized:
             return true
         default:
             return false
@@ -99,7 +92,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             }
         }
 
-        store.requestAuthorization(toShare: Config.permissions, read: Config.permissions) { status, error in
+        healthKitStore.requestAuthorization(toShare: Config.permissions, read: Config.permissions) { status, error in
             completion?(status, error)
         }
     }
@@ -111,8 +104,8 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 doubleValue: Double(bgItem.glucose!)
             )
 
-            let bjObjectSample = HKQuantitySample(
-                type: Config.HealthBGObject!,
+            let bgObjectSample = HKQuantitySample(
+                type: Config.healthBGObject!,
                 quantity: bgQuantity,
                 start: bgItem.dateString,
                 end: bgItem.dateString,
@@ -124,7 +117,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 ]
             )
 
-            store.save(bjObjectSample) { status, error in
+            healthKitStore.save(bgObjectSample) { status, error in
                 guard error == nil else {
                     completion?(Result.failure(error!))
                     return
@@ -135,8 +128,14 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
     }
 
     func createObserver() {
-        guard let bgType = Config.HealthBGObject else {
-            fatalError("Unable to get the Blood Glucose type")
+        guard let bgType = Config.healthBGObject else {
+            warning(
+                .service,
+                "Can not create HealthKit Observer, because unable to get the Blood Glucose type",
+                description: nil,
+                error: nil
+            )
+            return
         }
 
         let query = HKObserverQuery(sampleType: bgType, predicate: nil) { [unowned self] _, _, observerError in
@@ -152,23 +151,30 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 options: .strictStartDate
             )
 
-            store.execute(getQueryForDeletedBloodGlucose(sampleType: bgType, predicate: predicate))
-            store.execute(getQueryForAddedBloodGlucose(sampleType: bgType, predicate: predicate))
+            healthKitStore.execute(getQueryForDeletedBloodGlucose(sampleType: bgType, predicate: predicate))
+            healthKitStore.execute(getQueryForAddedBloodGlucose(sampleType: bgType, predicate: predicate))
         }
-        store.execute(query)
+        healthKitStore.execute(query)
     }
 
     func enableBackgroundDelivery() {
-        guard let bgType = Config.HealthBGObject else {
-            fatalError("Unable to get the Blood Glucose type")
+        guard let bgType = Config.healthBGObject else {
+            warning(
+                .service,
+                "Can not create HealthKit Background Delivery, because unable to get the Blood Glucose type",
+                description: nil,
+                error: nil
+            )
+            return
         }
 
-        store.enableBackgroundDelivery(
+        healthKitStore.enableBackgroundDelivery(
             for: bgType,
             frequency: Config.frequencyBackgroundDeliveryBloodGlucoseFromHealth
         ) { status, e in
             guard e == nil else {
-                error(Logger.Category.service, "Can not enable background delivery for Apple Health", description: nil, error: e!)
+                warning(.service, "Can not enable background delivery for Apple Health", description: nil, error: e)
+                return
             }
             debug(.service, "HealthKit background delivery status is \(status)")
         }
@@ -232,7 +238,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             newSamples.forEach({ sample in
                 let glucose = BloodGlucose(
                     _id: sample.healthKitId,
-                    sgv: nil,
+                    sgv: sample.glucose,
                     direction: nil,
                     date: Decimal(Int(sample.date.timeIntervalSince1970) * 1000),
                     dateString: sample.date,
@@ -240,7 +246,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                     filtered: nil,
                     noise: nil,
                     glucose: sample.glucose,
-                    type: nil
+                    type: "sgv"
                 )
                 glucoseStorage.storeGlucose([glucose])
             })
