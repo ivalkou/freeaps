@@ -16,6 +16,7 @@ struct FreeAPSSettings: JSON, Equatable {
     var useCalendar: Bool = false
     // Apple Health Integration
     var useAppleHealth: Bool = false
+    var didRequestAppleHealthPermissions: Bool = false
     var needShowInformationTextForSetPermissions: Bool = false
     // ---
     var glucoseBadge: Bool = false
@@ -87,6 +88,10 @@ extension FreeAPSSettings: Decodable {
 
         if let useAppleHealth = try? container.decode(Bool.self, forKey: .useAppleHealth) {
             settings.useAppleHealth = useAppleHealth
+        }
+
+        if let didRequestAppleHealthPermissions = try? container.decode(Bool.self, forKey: .didRequestAppleHealthPermissions) {
+            settings.didRequestAppleHealthPermissions = didRequestAppleHealthPermissions
         }
 
         if let needShowInformationTextForSetPermissions = try? container.decode(
