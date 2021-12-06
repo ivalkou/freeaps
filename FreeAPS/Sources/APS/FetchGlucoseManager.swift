@@ -12,6 +12,7 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
     @Injected() var apsManager: APSManager!
     @Injected() var settingsManager: SettingsManager!
     @Injected() var libreTransmitter: LibreTransmitterSource!
+    @Injected() var healthKitManager: HealthKitManager!
 
     private var lifetime = Lifetime()
     private let timer = DispatchTimer(timeInterval: 1.minutes.timeInterval)
@@ -60,7 +61,8 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
                 return Publishers.CombineLatest3(
                     Just(date),
                     Just(self.glucoseStorage.syncDate()),
-                    self.glucoseSource.fetch()
+                    self.glucoseSource.fetch().merge(with: self.healthKitManager.fetch())
+                        .eraseToAnyPublisher()
                 )
                 .eraseToAnyPublisher()
             }
@@ -73,6 +75,7 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
                     self.glucoseStorage.storeGlucose(filtered)
                     self.apsManager.heartbeat(date: date, force: false)
                     self.nightscoutManager.uploadGlucose()
+                    self.healthKitManager.save(bloodGlucoses: filtered, completion: nil)
                 }
             }
             .store(in: &lifetime)
