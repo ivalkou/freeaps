@@ -54,6 +54,9 @@ enum CGMType: String, JSON, CaseIterable, Identifiable {
         case .xdrip:
             return URL(string: "https://github.com/JohanDegraeve/xdripswift")!
         default: return nil
+        case .glucoseDirect:
+            return URL(string: "https://github.com/creepymonster/GlucoseDirectApp")!
+        default: return nil
         }
     }
 
@@ -71,8 +74,12 @@ enum CGMType: String, JSON, CaseIterable, Identifiable {
             return NSLocalizedString("Simple simulator", comment: "Simple simulator")
         case .libreTransmitter:
             return NSLocalizedString(
-                "Direct connection with Libre 1 transmiters or Libre 2",
-                comment: "Direct connection with Libre 1 transmiters or Libre 2"
+                "Direct connection with Libre 1 transmitters or Libre 2",
+                comment: "Direct connection with Libre 1 transmitters or Libre 2"
+        case .glucoseDirect:
+            return NSLocalizedString(
+                "Direct connection with European Libre 2 sensors or Libre 1 transmitters",
+                comment: "Direct connection with European Libre 2 sensors or Libre 1 transmitters"
             )
         }
     }
