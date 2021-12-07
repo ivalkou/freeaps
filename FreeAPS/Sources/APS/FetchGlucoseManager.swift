@@ -42,6 +42,8 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
             glucoseSource = simulatorSource
         case .libreTransmitter:
             glucoseSource = libreTransmitter
+        case .glucoseDirect:
+            glucoseSource = appGroupSource
         }
 
         if settingsManager.settings.cgm != .libreTransmitter {
@@ -59,7 +61,8 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
                 return Publishers.CombineLatest3(
                     Just(date),
                     Just(self.glucoseStorage.syncDate()),
-                    self.glucoseSource.fetch()
+                    self.glucoseSource.fetch().merge(with: self.healthKitManager.fetch())
+                        .eraseToAnyPublisher()
                 )
                 .eraseToAnyPublisher()
             }
