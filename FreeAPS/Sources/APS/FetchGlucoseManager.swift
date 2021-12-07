@@ -15,8 +15,7 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
     @Injected() var healthKitManager: HealthKitManager!
 
     private var lifetime = Lifetime()
-    // private let timer = DispatchTimer(timeInterval: 1.minutes.timeInterval)
-    private let timer = DispatchTimer(timeInterval: 10.seconds.timeInterval)
+    private let timer = DispatchTimer(timeInterval: 1.minutes.timeInterval)
 
     private lazy var appGroupSource = AppGroupSource()
     private lazy var dexcomSource = DexcomSource()
