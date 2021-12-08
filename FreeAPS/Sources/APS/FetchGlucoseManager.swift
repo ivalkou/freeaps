@@ -68,17 +68,17 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
             }
             .sink { date, syncDate, glucose, glucoseFromHealth in
                 // Because of Spike dosn't respect a date query
-                let filteredByDate = glucose.filter { $0.dateString > syncDate }
-                let filteredFromCGM = self.glucoseStorage.filterTooFrequentGlucose(filteredByDate, at: syncDate)
-                let filteredFromHealth = glucoseFromHealth.filter { $0.dateString <= Date() }
-                let filtered = filteredFromCGM + filteredFromHealth
-                if !filtered.isEmpty {
+                let filteredByDate = (glucose + glucoseFromHealth).filter { $0.dateString > syncDate }
+                let filtered = self.glucoseStorage.filterTooFrequentGlucose(filteredByDate, at: syncDate)
+                if filtered.isNotEmpty {
                     debug(.nightscout, "New glucose found")
                     self.glucoseStorage.storeGlucose(filtered)
                     self.apsManager.heartbeat(date: date, force: false)
                     self.nightscoutManager.uploadGlucose()
-                    let savingToHealth = filtered.filter { !filteredFromHealth.contains($0) }
-                    self.healthKitManager.save(bloodGlucoses: savingToHealth, completion: nil)
+                    let glucoseForHealth = filteredByDate.filter { !glucoseFromHealth.contains($0) }
+                    if glucoseForHealth.isNotEmpty {
+                        self.healthKitManager.save(bloodGlucoses: glucoseForHealth, completion: nil)
+                    }
                 }
             }
             .store(in: &lifetime)
