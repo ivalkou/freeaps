@@ -214,6 +214,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                     $0.metadata?["HKMetadataKeySyncIdentifier"] as? String ?? $0.uuid.uuidString
                 }
                 glucoseStorage.removeGlucose(ids: removingBGID)
+                newGlucose = newGlucose.filter { !removingBGID.contains($0.id) }
             }
         }
         return query
