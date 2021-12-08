@@ -159,6 +159,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 end: nil,
                 options: .strictStartDate
             )
+            // loading only not FreeAPS bg
             let predicateByMeta = HKQuery.predicateForObjects(
                 withMetadataKey: "fromFreeAPSX",
                 operatorType: .notEqualTo,
