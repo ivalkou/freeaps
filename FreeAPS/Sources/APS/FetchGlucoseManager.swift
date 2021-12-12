@@ -77,7 +77,7 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
                     self.nightscoutManager.uploadGlucose()
                     let glucoseForHealth = filteredByDate.filter { !glucoseFromHealth.contains($0) }
                     if glucoseForHealth.isNotEmpty {
-                        self.healthKitManager.save(bloodGlucoses: glucoseForHealth, completion: nil)
+                        self.healthKitManager.saveIfCan(bloodGlucoses: glucoseForHealth, completion: nil)
                     }
                 }
             }

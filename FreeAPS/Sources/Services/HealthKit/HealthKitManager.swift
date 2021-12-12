@@ -14,7 +14,7 @@ protocol HealthKitManager: GlucoseSource {
     /// Requests user to give permissions on using HealthKit
     func requestPermission(completion: ((Bool, Error?) -> Void)?)
     /// Save blood glucose data to HealthKit store
-    func save(bloodGlucoses: [BloodGlucose], completion: ((Result<Bool, Error>) -> Void)?)
+    func saveIfCan(bloodGlucoses: [BloodGlucose], completion: ((Result<Bool, Error>) -> Void)?)
     /// Create observer for data passing beetwen Health Store and FreeAPS
     func createObserver()
     /// Enable background delivering objects from Apple Health to FreeAPS
@@ -101,7 +101,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         }
     }
 
-    func save(bloodGlucoses: [BloodGlucose], completion: ((Result<Bool, Error>) -> Void)? = nil) {
+    func saveIfCan(bloodGlucoses: [BloodGlucose], completion: ((Result<Bool, Error>) -> Void)? = nil) {
         guard settingsManager.settings.useAppleHealth,
               bloodGlucoses.isNotEmpty else { return }
 
@@ -117,19 +117,29 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 start: bgItem.dateString,
                 end: bgItem.dateString,
                 metadata: [
-                    "HKMetadataKeyExternalUUID": bgItem.id,
-                    "HKMetadataKeySyncIdentifier": bgItem.id,
-                    "HKMetadataKeySyncVersion": 1,
+                    HKMetadataKeyExternalUUID: bgItem.id,
+                    HKMetadataKeySyncIdentifier: bgItem.id,
+                    HKMetadataKeySyncVersion: 1,
                     "fromFreeAPSX": true
                 ]
             )
 
-            healthKitStore.save(bgObjectSample) { status, error in
-                guard error == nil else {
-                    completion?(Result.failure(error!))
+            loadBGFromHealth(withID: bgItem.id) { [unowned self] result in
+                switch result {
+                case .failure:
+                    return
+                case let .success(samples):
+                    if samples.isEmpty {
+                        healthKitStore.save(bgObjectSample) { status, error in
+                            guard error == nil else {
+                                completion?(Result.failure(error!))
+                                return
+                            }
+                            completion?(Result.success(status))
+                        }
+                    }
                     return
                 }
-                completion?(Result.success(status))
             }
         }
     }
@@ -196,6 +206,34 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             }
             debug(.service, "HealthKit background delivery status is \(status)")
         }
+    }
+
+    private func loadBGFromHealth(withID id: String, andDo completion: ((Result<[HKSample], Never>) -> Void)?) {
+        let predicate = HKQuery.predicateForObjects(
+            withMetadataKey: "HKMetadataKeySyncIdentifier",
+            operatorType: .equalTo,
+            value: id
+        )
+
+        guard let sampleType = Config.healthBGObject else {
+            return
+        }
+
+        let query = HKSampleQuery(
+            sampleType: sampleType,
+            predicate: predicate,
+            limit: Int(HKObjectQueryNoLimit),
+            sortDescriptors: nil
+        ) { _, results, _ in
+
+            guard let samples = results as? [HKQuantitySample] else {
+                completion?(Result.success([]))
+                return
+            }
+
+            completion?(Result.success(samples))
+        }
+        healthKitStore.execute(query)
     }
 
     private func getQueryForDeletedBloodGlucose(sampleType: HKQuantityType, predicate: NSPredicate) -> HKQuery {
