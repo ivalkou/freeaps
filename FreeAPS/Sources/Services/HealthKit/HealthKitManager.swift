@@ -209,15 +209,15 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
     }
 
     private func loadBGFromHealth(withID id: String, andDo completion: ((Result<[HKSample], Never>) -> Void)?) {
+        guard let sampleType = Config.healthBGObject else {
+            return
+        }
+        
         let predicate = HKQuery.predicateForObjects(
             withMetadataKey: "HKMetadataKeySyncIdentifier",
             operatorType: .equalTo,
             value: id
         )
-
-        guard let sampleType = Config.healthBGObject else {
-            return
-        }
 
         let query = HKSampleQuery(
             sampleType: sampleType,
