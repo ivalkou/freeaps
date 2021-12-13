@@ -214,7 +214,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         let query = HKSampleQuery(
             sampleType: sampleType,
             predicate: predicate,
-            limit: Int(HKObjectQueryNoLimit),
+            limit: 1,
             sortDescriptors: nil
         ) { _, results, _ in
 
