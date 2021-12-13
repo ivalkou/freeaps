@@ -9,12 +9,12 @@ protocol HealthKitManager: GlucoseSource {
     /// Check all needed permissions
     /// Return false if one or more permissions are deny or not choosen
     var areAllowAllPermissions: Bool { get }
-    /// Check availability HealthKit on current device and user's permission of object
-    func isAvailableFor(object: HKObjectType) -> Bool
+    /// Check availability to save data of concrete type to Health store
+    func checkAvailabilitySave(objectTypeToHealthStore: HKObjectType) -> Bool
     /// Requests user to give permissions on using HealthKit
     func requestPermission(completion: ((Bool, Error?) -> Void)?)
-    /// Save blood glucose data to HealthKit store
-    func saveIfCan(bloodGlucoses: [BloodGlucose], completion: ((Result<Bool, Error>) -> Void)?)
+    /// Save blood glucose to Health store (dublicate of bg will ignore)
+    func saveIfNeeded(bloodGlucoses: [BloodGlucose])
     /// Create observer for data passing beetwen Health Store and FreeAPS
     func createObserver()
     /// Enable background delivering objects from Apple Health to FreeAPS
@@ -42,6 +42,8 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         static let healthBGObject = HKObjectType.quantityType(forIdentifier: .bloodGlucose)
 
         static let frequencyBackgroundDeliveryBloodGlucoseFromHealth = HKUpdateFrequency(rawValue: 10)!
+        // Meta-data key of FreeASPX data in HealthStore
+        static let freeAPSMetaKey = "fromFreeAPSX"
     }
 
     private var newGlucose: [BloodGlucose] = []
@@ -64,18 +66,15 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
 
     init(resolver: Resolver) {
         injectServices(resolver)
-        guard isAvailableOnCurrentDevice, let bjObject = Config.healthBGObject else {
-            return
-        }
-        if isAvailableFor(object: bjObject) {
-            debug(.service, "Create HealthKit Observer for Blood Glucose")
-            createObserver()
-        }
+        guard isAvailableOnCurrentDevice,
+              Config.healthBGObject != nil else { return }
+        createObserver()
         enableBackgroundDelivery()
+        debug(.service, "HealthKitManager did create")
     }
 
-    func isAvailableFor(object: HKObjectType) -> Bool {
-        let status = healthKitStore.authorizationStatus(for: object)
+    func checkAvailabilitySave(objectTypeToHealthStore: HKObjectType) -> Bool {
+        let status = healthKitStore.authorizationStatus(for: objectTypeToHealthStore)
         switch status {
         case .sharingAuthorized:
             return true
@@ -101,9 +100,12 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         }
     }
 
-    func saveIfCan(bloodGlucoses: [BloodGlucose], completion: ((Result<Bool, Error>) -> Void)? = nil) {
+    func saveIfNeeded(bloodGlucoses: [BloodGlucose]) {
         guard settingsManager.settings.useAppleHealth,
-              bloodGlucoses.isNotEmpty else { return }
+              let sampleType = Config.healthBGObject,
+              checkAvailabilitySave(objectTypeToHealthStore: sampleType),
+              bloodGlucoses.isNotEmpty
+        else { return }
 
         for bgItem in bloodGlucoses {
             let bgQuantity = HKQuantity(
@@ -112,7 +114,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             )
 
             let bgObjectSample = HKQuantitySample(
-                type: Config.healthBGObject!,
+                type: sampleType,
                 quantity: bgQuantity,
                 start: bgItem.dateString,
                 end: bgItem.dateString,
@@ -120,25 +122,12 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                     HKMetadataKeyExternalUUID: bgItem.id,
                     HKMetadataKeySyncIdentifier: bgItem.id,
                     HKMetadataKeySyncVersion: 1,
-                    "fromFreeAPSX": true
+                    Config.freeAPSMetaKey: true
                 ]
             )
-
-            loadBGFromHealth(withID: bgItem.id) { [unowned self] result in
-                switch result {
-                case .failure:
-                    return
-                case let .success(samples):
-                    if samples.isEmpty {
-                        healthKitStore.save(bgObjectSample) { status, error in
-                            guard error == nil else {
-                                completion?(Result.failure(error!))
-                                return
-                            }
-                            completion?(Result.success(status))
-                        }
-                    }
-                    return
+            load(sampleFromHealth: sampleType, withID: bgItem.id) { [weak self] samples in
+                if samples.isEmpty {
+                    self?.healthKitStore.save(bgObjectSample) { _, _ in }
                 }
             }
         }
@@ -171,7 +160,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             )
             // loading only not FreeAPS bg
             let predicateByMeta = HKQuery.predicateForObjects(
-                withMetadataKey: "fromFreeAPSX",
+                withMetadataKey: Config.freeAPSMetaKey,
                 operatorType: .notEqualTo,
                 value: 1
             )
@@ -181,6 +170,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             healthKitStore.execute(getQueryForAddedBloodGlucose(sampleType: bgType, predicate: compoundPredicate))
         }
         healthKitStore.execute(query)
+        debug(.service, "Create HealthKit Observer for Blood Glucose")
     }
 
     func enableBackgroundDelivery() {
@@ -208,13 +198,14 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         }
     }
 
-    private func loadBGFromHealth(withID id: String, andDo completion: ((Result<[HKSample], Never>) -> Void)?) {
-        guard let sampleType = Config.healthBGObject else {
-            return
-        }
-        
+    /// Try to load samples from Health store with id and do some work
+    private func load(
+        sampleFromHealth sampleType: HKQuantityType,
+        withID id: String,
+        andDo completion: (([HKSample]) -> Void)?
+    ) {
         let predicate = HKQuery.predicateForObjects(
-            withMetadataKey: "HKMetadataKeySyncIdentifier",
+            withMetadataKey: HKMetadataKeySyncIdentifier,
             operatorType: .equalTo,
             value: id
         )
@@ -227,11 +218,11 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         ) { _, results, _ in
 
             guard let samples = results as? [HKQuantitySample] else {
-                completion?(Result.success([]))
+                completion?([])
                 return
             }
 
-            completion?(Result.success(samples))
+            completion?(samples)
         }
         healthKitStore.execute(query)
     }
@@ -249,7 +240,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
 
             DispatchQueue.global(qos: .utility).async {
                 let removingBGID = samples.map {
-                    $0.metadata?["HKMetadataKeySyncIdentifier"] as? String ?? $0.uuid.uuidString
+                    $0.metadata?[HKMetadataKeySyncIdentifier] as? String ?? $0.uuid.uuidString
                 }
                 glucoseStorage.removeGlucose(ids: removingBGID)
                 newGlucose = newGlucose.filter { !removingBGID.contains($0.id) }
@@ -262,7 +253,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         let query = HKSampleQuery(
             sampleType: sampleType,
             predicate: predicate,
-            limit: Int(HKObjectQueryNoLimit),
+            limit: HKObjectQueryNoLimit,
             sortDescriptors: nil
         ) { [unowned self] _, results, _ in
 
@@ -275,7 +266,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
 
             let newSamples = samples
                 .compactMap { sample -> HealthKitSample? in
-                    let fromFAX = sample.metadata?["fromFreeAPSX"] as? Bool ?? false
+                    let fromFAX = sample.metadata?[Config.freeAPSMetaKey] as? Bool ?? false
                     guard !fromFAX else { return nil }
                     return HealthKitSample(
                         healthKitId: sample.uuid.uuidString,
