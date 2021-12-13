@@ -158,6 +158,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 end: nil,
                 options: .strictStartDate
             )
+
             // loading only not FreeAPS bg
             let predicateByMeta = HKQuery.predicateForObjects(
                 withMetadataKey: Config.freeAPSMetaKey,
@@ -166,7 +167,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             )
             let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateByDate, predicateByMeta])
 
-            healthKitStore.execute(getQueryForDeletedBloodGlucose(sampleType: bgType, predicate: predicateByDate))
+            healthKitStore.execute(getQueryForDeletedBloodGlucose(sampleType: bgType, predicate: compoundPredicate))
             healthKitStore.execute(getQueryForAddedBloodGlucose(sampleType: bgType, predicate: compoundPredicate))
         }
         healthKitStore.execute(query)
@@ -227,16 +228,19 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         healthKitStore.execute(query)
     }
 
+    private var lastAnchorForLoadDeletedData: HKQueryAnchor!
+
     private func getQueryForDeletedBloodGlucose(sampleType: HKQuantityType, predicate: NSPredicate) -> HKQuery {
         let query = HKAnchoredObjectQuery(
             type: sampleType,
             predicate: predicate,
-            anchor: nil,
-            limit: 1000
-        ) { [unowned self] _, _, deletedObjects, _, _ in
-            guard let samples = deletedObjects else {
+            anchor: lastAnchorForLoadDeletedData,
+            limit: HKObjectQueryNoLimit
+        ) { [unowned self] _, _, deletedObjects, anchor, _ in
+            guard let samples = deletedObjects, samples.isNotEmpty else {
                 return
             }
+            lastAnchorForLoadDeletedData = anchor
 
             DispatchQueue.global(qos: .utility).async {
                 let removingBGID = samples.map {
@@ -246,6 +250,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 newGlucose = newGlucose.filter { !removingBGID.contains($0.id) }
             }
         }
+
         return query
     }
 
@@ -256,7 +261,6 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             limit: HKObjectQueryNoLimit,
             sortDescriptors: nil
         ) { [unowned self] _, results, _ in
-
             guard let samples = results as? [HKQuantitySample], samples.isNotEmpty else {
                 return
             }
