@@ -41,12 +41,28 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         // link to object in HealthKit
         static let healthBGObject = HKObjectType.quantityType(forIdentifier: .bloodGlucose)
 
-        static let frequencyBackgroundDeliveryBloodGlucoseFromHealth = HKUpdateFrequency(rawValue: 10)!
+        static let frequencyBackgroundDeliveryBloodGlucoseFromHealth = HKUpdateFrequency(rawValue: 1)!
         // Meta-data key of FreeASPX data in HealthStore
         static let freeAPSMetaKey = "fromFreeAPSX"
     }
 
-    private var newGlucose: [BloodGlucose] = []
+    // BG that will be return Publisher
+    @Persisted(key: "HealthKitManagerNewGlucose") private var newGlucose: [BloodGlucose] = []
+
+    // last anchor for HKAnchoredQuery
+    private var lastBloodGlucoseQueryAnchor: HKQueryAnchor! {
+        set {
+            anchor = try! NSKeyedArchiver.archivedData(withRootObject: newValue as Any, requiringSecureCoding: false)
+        }
+        get {
+            guard let result = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(anchor) as? HKQueryAnchor else {
+                return HKQueryAnchor(fromValue: 0)
+            }
+            return result
+        }
+    }
+
+    @Persisted(key: "HealthKitManagerAnchor") private var anchor = Data()
 
     var isAvailableOnCurrentDevice: Bool {
         HKHealthStore.isHealthDataAvailable()
@@ -63,6 +79,26 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         }
         return result
     }
+
+    // NSPredicate, which use during load increment BG from Health store
+    private lazy var loadBGPredicate: NSPredicate = {
+        // loading only daily bg
+        let predicateByStartDate = HKQuery.predicateForSamples(
+            withStart: Date().addingTimeInterval(-1.days.timeInterval),
+            end: nil,
+            options: .strictStartDate
+        )
+
+        // loading only not FreeAPS bg
+        // this predicate dont influence on Deleted Objects, only on added
+        let predicateByMeta = HKQuery.predicateForObjects(
+            withMetadataKey: Config.freeAPSMetaKey,
+            operatorType: .notEqualTo,
+            value: 1
+        )
+
+        return NSCompoundPredicate(andPredicateWithSubpredicates: [predicateByStartDate, predicateByMeta])
+    }()
 
     init(resolver: Resolver) {
         injectServices(resolver)
@@ -147,28 +183,16 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         }
 
         let query = HKObserverQuery(sampleType: bgType, predicate: nil) { [unowned self] _, _, observerError in
-
-            if let _ = observerError {
+            debug(.service, "Execute HelathKit observer query for loading increment samples")
+            guard observerError == nil else {
+                warning(.service, "Error during execution of HelathKit Observer's query", error: observerError!)
                 return
             }
 
-            // loading only daily bg
-            let predicateByDate = HKQuery.predicateForSamples(
-                withStart: Date().addingTimeInterval(-1.days.timeInterval),
-                end: nil,
-                options: .strictStartDate
-            )
-
-            // loading only not FreeAPS bg
-            let predicateByMeta = HKQuery.predicateForObjects(
-                withMetadataKey: Config.freeAPSMetaKey,
-                operatorType: .notEqualTo,
-                value: 1
-            )
-            let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateByDate, predicateByMeta])
-
-            healthKitStore.execute(getQueryForDeletedBloodGlucose(sampleType: bgType, predicate: compoundPredicate))
-            healthKitStore.execute(getQueryForAddedBloodGlucose(sampleType: bgType, predicate: compoundPredicate))
+            if let incrementQuery = getBloodGlucoseHKQuery(predicate: loadBGPredicate) {
+                debug(.service, "Create HealthKit increment query")
+                healthKitStore.execute(incrementQuery)
+            }
         }
         healthKitStore.execute(query)
         debug(.service, "Create HealthKit Observer for Blood Glucose")
@@ -228,61 +252,48 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         healthKitStore.execute(query)
     }
 
-    private var lastAnchorForLoadDeletedData: HKQueryAnchor!
+    private func getBloodGlucoseHKQuery(predicate: NSPredicate) -> HKQuery? {
+        guard let sampleType = Config.healthBGObject else { return nil }
 
-    private func getQueryForDeletedBloodGlucose(sampleType: HKQuantityType, predicate: NSPredicate) -> HKQuery {
         let query = HKAnchoredObjectQuery(
             type: sampleType,
             predicate: predicate,
-            anchor: lastAnchorForLoadDeletedData,
+            anchor: lastBloodGlucoseQueryAnchor,
             limit: HKObjectQueryNoLimit
-        ) { [unowned self] _, _, deletedObjects, anchor, _ in
-            guard let samples = deletedObjects, samples.isNotEmpty else {
-                return
-            }
-            lastAnchorForLoadDeletedData = anchor
+        ) { [unowned self] _, addedObjects, deletedObjects, anchor, _ in
+            debug(.service, "Execute HealthKit increment AnchoredQuery")
 
-            DispatchQueue.global(qos: .utility).async {
-                let removingBGID = samples.map {
-                    $0.metadata?[HKMetadataKeySyncIdentifier] as? String ?? $0.uuid.uuidString
-                }
-                glucoseStorage.removeGlucose(ids: removingBGID)
-                newGlucose = newGlucose.filter { !removingBGID.contains($0.id) }
+            lastBloodGlucoseQueryAnchor = anchor
+
+            if let deletedSamples = deletedObjects, deletedSamples.isNotEmpty {
+                delete(samplesFromLocalStorage: deletedSamples)
+            }
+
+            if let addedSamples = addedObjects,
+               addedSamples.isNotEmpty,
+               let bgSamples = addedSamples as? [HKQuantitySample]
+            {
+                prepare(bloodGlucoseSamplesToPublisherFetch: bgSamples)
             }
         }
 
         return query
     }
 
-    private func getQueryForAddedBloodGlucose(sampleType: HKQuantityType, predicate: NSPredicate) -> HKQuery {
-        let query = HKSampleQuery(
-            sampleType: sampleType,
-            predicate: predicate,
-            limit: HKObjectQueryNoLimit,
-            sortDescriptors: nil
-        ) { [unowned self] _, results, _ in
-            guard let samples = results as? [HKQuantitySample], samples.isNotEmpty else {
-                return
+    private func prepare(bloodGlucoseSamplesToPublisherFetch samples: [HKQuantitySample]) {
+        debug(.service, "Prepare HealthKit object for Publisher: \(String(describing: samples))")
+
+        newGlucose += samples
+            .compactMap { sample -> HealthKitSample? in
+                let fromFAX = sample.metadata?[Config.freeAPSMetaKey] as? Bool ?? false
+                guard !fromFAX else { return nil }
+                return HealthKitSample(
+                    healthKitId: sample.uuid.uuidString,
+                    date: sample.startDate,
+                    glucose: Int(round(sample.quantity.doubleValue(for: .milligramsPerDeciliter)))
+                )
             }
-
-            let oldSamples: [HealthKitSample] = fileStorage
-                .retrieve(OpenAPS.HealthKit.downloadedGlucose, as: [HealthKitSample].self) ?? []
-
-            let newSamples = samples
-                .compactMap { sample -> HealthKitSample? in
-                    let fromFAX = sample.metadata?[Config.freeAPSMetaKey] as? Bool ?? false
-                    guard !fromFAX else { return nil }
-                    return HealthKitSample(
-                        healthKitId: sample.uuid.uuidString,
-                        date: sample.startDate,
-                        glucose: Int(round(sample.quantity.doubleValue(for: .milligramsPerDeciliter)))
-                    )
-                }
-                .filter { !oldSamples.contains($0) }
-
-            guard newSamples.isNotEmpty else { return }
-
-            let newGlucose = newSamples.map { sample in
+            .map { sample in
                 BloodGlucose(
                     _id: sample.healthKitId,
                     sgv: sample.glucose,
@@ -296,22 +307,39 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                     type: "sgv"
                 )
             }
+            .filter { $0.dateString >= Date().addingTimeInterval(-1.days.timeInterval) }
 
-            self.newGlucose = newGlucose
+        newGlucose = newGlucose.removeDublicates()
 
-            let savingSamples = (newSamples + oldSamples)
-                .removeDublicates()
-                .filter { $0.date >= Date().addingTimeInterval(-1.days.timeInterval) }
+        debug(
+            .service,
+            "These objects will be added to local storage during publisher prepare data: \(String(describing: newGlucose))"
+        )
+    }
 
-            self.fileStorage.save(savingSamples, as: OpenAPS.HealthKit.downloadedGlucose)
+    private func delete(samplesFromLocalStorage deletedSamples: [HKDeletedObject]) {
+        debug(.service, "Delete HealthKit objects: \(String(describing: deletedSamples))")
+        DispatchQueue.global(qos: .utility).async {
+            let removingBGID = deletedSamples.map {
+                $0.metadata?[HKMetadataKeySyncIdentifier] as? String ?? $0.uuid.uuidString
+            }
+            self.glucoseStorage.removeGlucose(ids: removingBGID)
+            self.newGlucose = self.newGlucose.filter { !removingBGID.contains($0.id) }
         }
-        return query
     }
 
     func fetch() -> AnyPublisher<[BloodGlucose], Never> {
-        guard settingsManager.settings.useAppleHealth else { return Just([]).eraseToAnyPublisher() }
+        // return Just([]).eraseToAnyPublisher()
+        debug(.service, "Start fetching HealthKitManager")
+        guard settingsManager.settings.useAppleHealth else {
+            debug(.service, "HealthKitManager cant return any data, because useAppleHealth option is disable")
+            return Just([]).eraseToAnyPublisher()
+        }
+
         let actualGlucose = newGlucose.filter { $0.dateString <= Date() }
         newGlucose = newGlucose.filter { !actualGlucose.contains($0) }
+        debug(.service, "Actual glucose is \(actualGlucose)")
+        debug(.service, "Current state of newGlucose is \(newGlucose)")
         return Just(actualGlucose).eraseToAnyPublisher()
     }
 }

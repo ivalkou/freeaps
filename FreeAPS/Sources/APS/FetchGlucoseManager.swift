@@ -70,6 +70,7 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
                 .eraseToAnyPublisher()
             }
             .sink { date, syncDate, glucose, glucoseFromHealth in
+                debug(.nightscout, "SyncDate is \(syncDate)")
                 // Because of Spike dosn't respect a date query
                 let filteredByDate = (glucose + glucoseFromHealth).filter { $0.dateString > syncDate }
                 let filtered = self.glucoseStorage.filterTooFrequentGlucose(filteredByDate, at: syncDate)
