@@ -102,7 +102,7 @@ struct MainView: View {
                     Text(iobFormatter.string(from: (state.cob ?? 0) as NSNumber)! + " g")
                         .font(.caption2)
                         .scaledToFill()
-                        .foregroundColor(.loopGreen)
+                        .foregroundColor(.loopYellow)
                         .minimumScaleFactor(0.5)
                 }
 
@@ -131,7 +131,7 @@ struct MainView: View {
                     .renderingMode(.template)
                     .resizable()
                     .frame(width: 24, height: 24)
-                    .foregroundColor(.loopGreen)
+                    .foregroundColor(.loopYellow)
             }
 
             NavigationLink(isActive: $state.isTempTargetViewActive) {
@@ -143,7 +143,7 @@ struct MainView: View {
                         .renderingMode(.template)
                         .resizable()
                         .frame(width: 24, height: 24)
-                        .foregroundColor(.loopYellow)
+                        .foregroundColor(.loopGreen)
                     if let until = state.tempTargets.compactMap(\.until).first, until > Date() {
                         Text(until, style: .timer)
                             .scaledToFill()
