@@ -11,6 +11,7 @@ protocol HealthKitManager: GlucoseSource {
     var areAllowAllPermissions: Bool { get }
     /// Check availability to save data of concrete type to Health store
     func checkAvailabilitySave(objectTypeToHealthStore: HKObjectType) -> Bool
+    func checkAvailabilitySaveBG() -> Bool
     /// Requests user to give permissions on using HealthKit
     func requestPermission(completion: ((Bool, Error?) -> Void)?)
     /// Save blood glucose to Health store (dublicate of bg will ignore)
@@ -26,6 +27,9 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
     @Injected() private var glucoseStorage: GlucoseStorage!
     @Injected() private var healthKitStore: HKHealthStore!
     @Injected() private var settingsManager: SettingsManager!
+
+    private let queue = DispatchQueue(label: "debugInfoQueue")
+    private var lock = NSLock(label: "helathKitExecureQueryLock")
 
     private enum Config {
         // unwraped HKObjects
@@ -52,17 +56,22 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
     // last anchor for HKAnchoredQuery
     private var lastBloodGlucoseQueryAnchor: HKQueryAnchor! {
         set {
-            anchor = try! NSKeyedArchiver.archivedData(withRootObject: newValue as Any, requiringSecureCoding: false)
+            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: newValue as Any, requiringSecureCoding: false)
+            else {
+                persistedAnchor = Data()
+                return
+            }
+            persistedAnchor = data
         }
         get {
-            guard let result = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(anchor) as? HKQueryAnchor else {
+            guard let result = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(persistedAnchor) as? HKQueryAnchor else {
                 return HKQueryAnchor(fromValue: 0)
             }
             return result
         }
     }
 
-    @Persisted(key: "HealthKitManagerAnchor") private var anchor = Data()
+    @Persisted(key: "HealthKitManagerAnchor") private var persistedAnchor = Data()
 
     var isAvailableOnCurrentDevice: Bool {
         HKHealthStore.isHealthDataAvailable()
@@ -117,6 +126,13 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         default:
             return false
         }
+    }
+
+    func checkAvailabilitySaveBG() -> Bool {
+        guard let sampleType = Config.healthBGObject else {
+            return false
+        }
+        return checkAvailabilitySave(objectTypeToHealthStore: sampleType)
     }
 
     func requestPermission(completion: ((Bool, Error?) -> Void)? = nil) {
@@ -190,21 +206,23 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             }
 
             if let incrementQuery = getBloodGlucoseHKQuery(predicate: loadBGPredicate) {
-                debug(.service, "Create HealthKit increment query")
+                debug(.service, "Create increment query")
                 healthKitStore.execute(incrementQuery)
             }
         }
         healthKitStore.execute(query)
-        debug(.service, "Create HealthKit Observer for Blood Glucose")
+        debug(.service, "Create Observer for Blood Glucose")
     }
 
     func enableBackgroundDelivery() {
-        guard settingsManager.settings.useAppleHealth else { return }
+        guard settingsManager.settings.useAppleHealth else {
+            healthKitStore.disableAllBackgroundDelivery { _, _ in }
+            return }
 
         guard let bgType = Config.healthBGObject else {
             warning(
                 .service,
-                "Can not create HealthKit Background Delivery, because unable to get the Blood Glucose type",
+                "Can not create background delivery, because unable to get the Blood Glucose type",
                 description: nil,
                 error: nil
             )
@@ -216,10 +234,10 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             frequency: Config.frequencyBackgroundDeliveryBloodGlucoseFromHealth
         ) { status, e in
             guard e == nil else {
-                warning(.service, "Can not enable background delivery for Apple Health", description: nil, error: e)
+                warning(.service, "Can not enable background delivery", description: nil, error: e)
                 return
             }
-            debug(.service, "HealthKit background delivery status is \(status)")
+            debug(.service, "Background delivery status is \(status)")
         }
     }
 
@@ -261,27 +279,33 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             anchor: lastBloodGlucoseQueryAnchor,
             limit: HKObjectQueryNoLimit
         ) { [unowned self] _, addedObjects, deletedObjects, anchor, _ in
-            debug(.service, "Execute HealthKit increment AnchoredQuery")
+            queue.sync {
+                debug(.service, "AnchoredQuery did execute")
+            }
 
             lastBloodGlucoseQueryAnchor = anchor
 
-            if let deletedSamples = deletedObjects, deletedSamples.isNotEmpty {
-                delete(samplesFromLocalStorage: deletedSamples)
-            }
-
-            if let addedSamples = addedObjects,
-               addedSamples.isNotEmpty,
-               let bgSamples = addedSamples as? [HKQuantitySample]
+            // Added objects
+            if let bgSamples = addedObjects as? [HKQuantitySample],
+               bgSamples.isNotEmpty
             {
                 prepare(bloodGlucoseSamplesToPublisherFetch: bgSamples)
             }
-        }
 
+            // Deleted objects
+            if let deletedSamples = deletedObjects,
+               deletedSamples.isNotEmpty
+            {
+                delete(samplesFromLocalStorage: deletedSamples)
+            }
+        }
         return query
     }
 
     private func prepare(bloodGlucoseSamplesToPublisherFetch samples: [HKQuantitySample]) {
-        debug(.service, "Prepare HealthKit object for Publisher: \(String(describing: samples))")
+        queue.sync {
+            debug(.service, "Start preparing samples: \(String(describing: samples))")
+        }
 
         newGlucose += samples
             .compactMap { sample -> HealthKitSample? in
@@ -311,14 +335,18 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
 
         newGlucose = newGlucose.removeDublicates()
 
-        debug(
-            .service,
-            "These objects will be added to local storage during publisher prepare data: \(String(describing: newGlucose))"
-        )
+        queue.sync {
+            debug(
+                .service,
+                "Current BloodGlucose.Type objects will be send from Publisher during fetch: \(String(describing: newGlucose))"
+            )
+        }
     }
 
     private func delete(samplesFromLocalStorage deletedSamples: [HKDeletedObject]) {
-        debug(.service, "Delete HealthKit objects: \(String(describing: deletedSamples))")
+        queue.sync {
+            debug(.service, "Delete HealthKit objects: \(String(describing: deletedSamples))")
+        }
         DispatchQueue.global(qos: .utility).async {
             let removingBGID = deletedSamples.map {
                 $0.metadata?[HKMetadataKeySyncIdentifier] as? String ?? $0.uuid.uuidString
@@ -329,17 +357,31 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
     }
 
     func fetch() -> AnyPublisher<[BloodGlucose], Never> {
-        // return Just([]).eraseToAnyPublisher()
-        debug(.service, "Start fetching HealthKitManager")
+        queue.sync {
+            debug(.service, "Start fetching HealthKitManager")
+        }
         guard settingsManager.settings.useAppleHealth else {
-            debug(.service, "HealthKitManager cant return any data, because useAppleHealth option is disable")
+            queue.sync {
+                debug(.service, "HealthKitManager cant return any data, because useAppleHealth option is disable")
+            }
             return Just([]).eraseToAnyPublisher()
         }
 
-        let actualGlucose = newGlucose.filter { $0.dateString <= Date() }
-        newGlucose = newGlucose.filter { !actualGlucose.contains($0) }
-        debug(.service, "Actual glucose is \(actualGlucose)")
-        debug(.service, "Current state of newGlucose is \(newGlucose)")
+        // Remove old BGs
+        newGlucose = newGlucose
+            .filter { $0.dateString >= Date().addingTimeInterval(-1.days.timeInterval) }
+        // Get actual BGs (beetwen Date() - 1 day and Date())
+        let actualGlucose = newGlucose
+            .filter { $0.dateString <= Date() }
+        // Update newGlucose
+        newGlucose = newGlucose
+            .filter { !actualGlucose.contains($0) }
+        queue.sync {
+            debug(.service, "Actual glucose is \(actualGlucose)")
+        }
+        queue.sync {
+            debug(.service, "Current state of newGlucose is \(newGlucose)")
+        }
         return Just(actualGlucose).eraseToAnyPublisher()
     }
 }
