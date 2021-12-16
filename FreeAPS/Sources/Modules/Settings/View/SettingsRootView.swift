@@ -34,8 +34,9 @@ extension Settings {
                     Text("Autotune").navigationLink(to: .autotuneConfig, from: self)
                 }
 
-                if state.debugOptions {
-                    Section(header: Text("Config files")) {
+                Section(header: Text("Developer")) {
+                    Toggle("Debug options", isOn: $state.debugOptions)
+                    if state.debugOptions {
                         Group {
                             Text("Preferences")
                                 .navigationLink(to: .configEditor(file: OpenAPS.Settings.preferences), from: self)
@@ -89,8 +90,12 @@ extension Settings {
                                 .navigationLink(to: .configEditor(file: OpenAPS.FreeAPS.tempTargetsPresets), from: self)
                             Text("Calibrations")
                                 .navigationLink(to: .configEditor(file: OpenAPS.FreeAPS.calibrations), from: self)
+                            Text("Current Temp")
+                                .navigationLink(to: .configEditor(file: OpenAPS.Monitor.tempBasal), from: self)
                             Text("Middleware")
                                 .navigationLink(to: .configEditor(file: OpenAPS.Middleware.determineBasal), from: self)
+                            Text("Edit settings json")
+                                .navigationLink(to: .configEditor(file: OpenAPS.FreeAPS.settings), from: self)
                         }
                     }
                 }
