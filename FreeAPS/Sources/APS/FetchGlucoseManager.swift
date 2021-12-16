@@ -86,7 +86,7 @@ final class BaseFetchGlucoseManager: FetchGlucoseManager, Injectable {
                 let glucoseForHealth = filteredByDate.filter { !glucoseFromHealth.contains($0) }
 
                 guard glucoseForHealth.isNotEmpty else { return }
-                self.healthKitManager.save(bloodGlucoses: glucoseForHealth, completion: nil)
+                self.healthKitManager.saveIfNeeded(bloodGlucoses: glucoseForHealth)
             }
             .store(in: &lifetime)
         timer.fire()
