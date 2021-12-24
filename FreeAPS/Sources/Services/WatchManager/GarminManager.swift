@@ -38,7 +38,7 @@ final class BaseGarminManager: NSObject, GarminManager, Injectable {
             devices.forEach { device in
                 connectIQ?.register(forDeviceEvents: device, delegate: self)
                 let watchfaceApp = IQApp(
-                    uuid: Config.watchfaceUUID,
+                    uuid: UUID(uuidString: "EC3420F6-027D-49B3-B45F-D81D6D3ED90A"),
                     store: UUID(),
                     device: device
                 )
@@ -56,39 +56,16 @@ final class BaseGarminManager: NSObject, GarminManager, Injectable {
         connectIQ?.initialize(withUrlScheme: "freeaps-x", uiOverrideDelegate: self)
         injectServices(resolver)
         restoreDevices()
-        subscribeToOpenFromGarminConnect()
+        subsctibeToOpenFromGarminConnect()
         setupApplications()
-        subscribeState()
     }
 
-    private func subscribeToOpenFromGarminConnect() {
+    private func subsctibeToOpenFromGarminConnect() {
         notificationCenter
             .publisher(for: .openFromGarminConnect)
             .sink { notification in
                 guard let url = notification.object as? URL else { return }
                 self.parseDevicesFor(url: url)
-            }
-            .store(in: &lifetime)
-    }
-
-    private func subscribeState() {
-        func sendToWatchface(state: NSDictionary) {
-            watchfaces.forEach { app in
-                connectIQ?.getAppStatus(app) { status in
-                    guard status?.isInstalled ?? false else {
-                        debug(.service, "Garmin: watchface app not installed")
-                        return
-                    }
-                    debug(.service, "Garmin: sending message to watchface")
-                    self.sendMessage(state, to: app)
-                }
-            }
-        }
-
-        stateSubject
-            .throttle(for: .seconds(10), scheduler: DispatchQueue.main, latest: true)
-            .sink { state in
-                sendToWatchface(state: state)
             }
             .store(in: &lifetime)
     }
@@ -122,19 +99,24 @@ final class BaseGarminManager: NSObject, GarminManager, Injectable {
         guard let object = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary else {
             return
         }
-        stateSubject.send(object)
-    }
-
-    private func sendMessage(_ msg: NSDictionary, to app: IQApp) {
-        connectIQ?.sendMessage(msg, to: app, progress: { sent, all in
-            debug(.service, "Garmin: sending progress: \(Int(Double(sent) / Double(all) * 100)) %")
-        }, completion: { result in
-            if result == .success {
-                debug(.service, "Garmin: message sent")
-            } else {
-                debug(.service, "Garmin: message failed")
+        watchfaces.forEach { app in
+            print("ASDF: sending message")
+            connectIQ?.getAppStatus(app) { status in
+                guard status?.isInstalled ?? false else {
+                    print("ASDF: app not installed")
+                    return
+                }
+                self.connectIQ?.sendMessage(object, to: app, progress: { sent, all in
+                    print("ASDF: sending progress: \(sent / all * 100) %")
+                }, completion: { result in
+                    if result == .success {
+                        print("ASDF: message sent OK")
+                    } else {
+                        print("ASDF: message Failed")
+                    }
+                })
             }
-        })
+        }
     }
 }
 
@@ -144,19 +126,20 @@ extension BaseGarminManager: IQUIOverrideDelegate {
 
 extension BaseGarminManager: IQDeviceEventDelegate {
     func deviceStatusChanged(_ device: IQDevice, status: IQDeviceStatus) {
+        print("ASDF: \(device.uuid!)")
         switch status {
         case .invalidDevice:
-            debug(.service, "Garmin: invalidDevice, Device: \(device.uuid!)")
+            print("ASDF: invalidDevice")
         case .bluetoothNotReady:
-            debug(.service, "Garmin: bluetoothNotReady, Device: \(device.uuid!)")
+            print("ASDF: bluetoothNotReady")
         case .notFound:
-            debug(.service, "Garmin: notFound, Device: \(device.uuid!)")
+            print("ASDF: notFound")
         case .notConnected:
-            debug(.service, "Garmin: notConnected, Device: \(device.uuid!)")
+            print("ASDF: notConnected")
         case .connected:
-            debug(.service, "Garmin: connected, Device: \(device.uuid!)")
+            print("ASDF: connected")
         @unknown default:
-            debug(.service, "Garmin: unknown state, Device: \(device.uuid!)")
+            print("ASDF: unknown")
         }
     }
 }
