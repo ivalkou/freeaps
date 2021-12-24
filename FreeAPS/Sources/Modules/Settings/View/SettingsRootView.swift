@@ -16,6 +16,7 @@ extension Settings {
 
                 Section(header: Text("Devices")) {
                     Text("Pump").navigationLink(to: .pumpConfig, from: self)
+                    Text("Garmin watch").navigationLink(to: .garmin, from: self)
                 }
 
                 Section(header: Text("Services")) {
