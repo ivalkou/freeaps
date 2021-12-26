@@ -15,6 +15,10 @@ extension Notification.Name {
 }
 
 final class BaseGarminManager: NSObject, GarminManager, Injectable {
+    private enum Config {
+        static let watchfaceUUID = UUID(uuidString: "EC3420F6-027D-49B3-B45F-D81D6D3ED90A")
+    }
+
     private let connectIQ = ConnectIQ.sharedInstance()
 
     @Injected() private var notificationCenter: NotificationCenter!
@@ -25,6 +29,8 @@ final class BaseGarminManager: NSObject, GarminManager, Injectable {
 
     var stateRequet: (() -> (Data))?
 
+    private let stateSubject = PassthroughSubject<NSDictionary, Never>()
+
     private(set) var devices: [IQDevice] = [] {
         didSet {
             persistedDevices = devices.map(CodableDevice.init)
@@ -32,7 +38,7 @@ final class BaseGarminManager: NSObject, GarminManager, Injectable {
             devices.forEach { device in
                 connectIQ?.register(forDeviceEvents: device, delegate: self)
                 let watchfaceApp = IQApp(
-                    uuid: UUID(uuidString: "EC3420F6-027D-49B3-B45F-D81D6D3ED90A"),
+                    uuid: Config.watchfaceUUID,
                     store: UUID(),
                     device: device
                 )
@@ -50,16 +56,39 @@ final class BaseGarminManager: NSObject, GarminManager, Injectable {
         connectIQ?.initialize(withUrlScheme: "freeaps-x", uiOverrideDelegate: self)
         injectServices(resolver)
         restoreDevices()
-        subsctibeToOpenFromGarminConnect()
+        subscribeToOpenFromGarminConnect()
         setupApplications()
+        subscribeState()
     }
 
-    private func subsctibeToOpenFromGarminConnect() {
+    private func subscribeToOpenFromGarminConnect() {
         notificationCenter
             .publisher(for: .openFromGarminConnect)
             .sink { notification in
                 guard let url = notification.object as? URL else { return }
                 self.parseDevicesFor(url: url)
+            }
+            .store(in: &lifetime)
+    }
+
+    private func subscribeState() {
+        func sendToWatchface(state: NSDictionary) {
+            watchfaces.forEach { app in
+                connectIQ?.getAppStatus(app) { status in
+                    guard status?.isInstalled ?? false else {
+                        debug(.service, "Garmin: watchface app not installed")
+                        return
+                    }
+                    debug(.service, "Garmin: sending message to watchface")
+                    self.sendMessage(state, to: app)
+                }
+            }
+        }
+
+        stateSubject
+            .throttle(for: .seconds(10), scheduler: DispatchQueue.main, latest: true)
+            .sink { state in
+                sendToWatchface(state: state)
             }
             .store(in: &lifetime)
     }
@@ -93,24 +122,19 @@ final class BaseGarminManager: NSObject, GarminManager, Injectable {
         guard let object = try? JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary else {
             return
         }
-        watchfaces.forEach { app in
-            print("ASDF: sending message")
-            connectIQ?.getAppStatus(app) { status in
-                guard status?.isInstalled ?? false else {
-                    print("ASDF: app not installed")
-                    return
-                }
-                self.connectIQ?.sendMessage(object, to: app, progress: { sent, all in
-                    print("ASDF: sending progress: \(sent / all * 100) %")
-                }, completion: { result in
-                    if result == .success {
-                        print("ASDF: message sent OK")
-                    } else {
-                        print("ASDF: message Failed")
-                    }
-                })
+        stateSubject.send(object)
+    }
+
+    private func sendMessage(_ msg: NSDictionary, to app: IQApp) {
+        connectIQ?.sendMessage(msg, to: app, progress: { sent, all in
+            debug(.service, "Garmin: sending progress: \(Int(Double(sent) / Double(all) * 100)) %")
+        }, completion: { result in
+            if result == .success {
+                debug(.service, "Garmin: message sent")
+            } else {
+                debug(.service, "Garmin: message failed")
             }
-        }
+        })
     }
 }
 
@@ -120,20 +144,19 @@ extension BaseGarminManager: IQUIOverrideDelegate {
 
 extension BaseGarminManager: IQDeviceEventDelegate {
     func deviceStatusChanged(_ device: IQDevice, status: IQDeviceStatus) {
-        print("ASDF: \(device.uuid!)")
         switch status {
         case .invalidDevice:
-            print("ASDF: invalidDevice")
+            debug(.service, "Garmin: invalidDevice, Device: \(device.uuid!)")
         case .bluetoothNotReady:
-            print("ASDF: bluetoothNotReady")
+            debug(.service, "Garmin: bluetoothNotReady, Device: \(device.uuid!)")
         case .notFound:
-            print("ASDF: notFound")
+            debug(.service, "Garmin: notFound, Device: \(device.uuid!)")
         case .notConnected:
-            print("ASDF: notConnected")
+            debug(.service, "Garmin: notConnected, Device: \(device.uuid!)")
         case .connected:
-            print("ASDF: connected")
+            debug(.service, "Garmin: connected, Device: \(device.uuid!)")
         @unknown default:
-            print("ASDF: unknown")
+            debug(.service, "Garmin: unknown state, Device: \(device.uuid!)")
         }
     }
 }
