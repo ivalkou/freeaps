@@ -160,10 +160,10 @@ final class BaseAPSManager: APSManager, Injectable {
                 guard let self = self else { return }
 
                 if ok {
-                    self.nightscout.uploadStatus()
                     if self.settings.closedLoop {
                         self.enactSuggested()
                     } else {
+                        self.nightscout.uploadStatus()
                         self.isLooping.send(false)
                         self.lastLoopDate = Date()
                     }
