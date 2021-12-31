@@ -23,16 +23,18 @@ final class BaseFetchTreatmentsManager: FetchTreatmentsManager, Injectable {
     private func subscribe() {
         timer.publisher
             .receive(on: processQueue)
-            .flatMap { _ -> AnyPublisher<([CarbsEntry], [TempTarget]), Never> in
+            .flatMap { _ -> AnyPublisher<([CarbsEntry], [TempTarget], [CarbsEntry]), Never> in
                 debug(.nightscout, "FetchTreatmentsManager heartbeat")
                 debug(.nightscout, "Start fetching carbs and temptargets")
-                return Publishers.CombineLatest(
+                return Publishers.CombineLatest3(
                     self.nightscoutManager.fetchCarbs(),
-                    self.nightscoutManager.fetchTempTargets()
+                    self.nightscoutManager.fetchTempTargets(),
+                    self.healthKitManager.fetch()
                 ).eraseToAnyPublisher()
             }
-            .sink { carbs, targets in
-                let filteredCarbs = carbs.filter { !($0.enteredBy?.contains(CarbsEntry.manual) ?? false) }
+            .sink { carbs, targets, carbsFromHealth in
+                let allCarbs = carbs + carbsFromHealth
+                let filteredCarbs = allCarbs.filter { !($0.enteredBy?.contains(CarbsEntry.manual) ?? false) }
                 if filteredCarbs.isNotEmpty {
                     self.carbsStorage.storeCarbs(filteredCarbs)
                     self.healthKitManager.saveIfNeeded(carbs: filteredCarbs)

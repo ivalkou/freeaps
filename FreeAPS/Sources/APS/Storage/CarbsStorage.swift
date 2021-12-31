@@ -36,45 +36,48 @@ final class BaseCarbsStorage: CarbsStorage, Injectable {
                     .sorted { $0.createdAt > $1.createdAt } ?? []
                 storage.save(Array(uniqEvents), as: file)
             }
-            broadcaster.notify(CarbsObserver.self, on: processQueue) {
-                $0.carbsDidUpdate(uniqEvents)
+
+            DispatchQueue.main.async {
+                self.broadcaster.notify(CarbsObserver.self, on: .main) {
+                    $0.carbsDidUpdate(uniqEvents)
+                }
             }
         }
     }
-    
+
     func removeCarbs(byDateCollection dates: [Date]) {
-         processQueue.sync {
-             let file = OpenAPS.Monitor.carbHistory
-             self.storage.transaction { storage in
-                 let CarbInStorage = storage.retrieve(file, as: [CarbsEntry].self)
-                 let filteredCarb = CarbInStorage?.filter { !ids.contains($0.id) } ?? []
-                 storage.save(filteredCarb, as: file)
+        processQueue.sync {
+            let file = OpenAPS.Monitor.carbHistory
+            self.storage.transaction { storage in
+                let CarbInStorage = storage.retrieve(file, as: [CarbsEntry].self)
+                let filteredCarb = CarbInStorage?.filter { !dates.contains($0.createdAt) } ?? []
+                storage.save(filteredCarb, as: file)
 
-                 DispatchQueue.main.async {
-                     self.broadcaster.notify(CarbsObserver.self, on: .main) {
-                         $0.carbsDidUpdate(filteredCarb.reversed())
-                     }
-                 }
-             }
-         }
-     }
+                DispatchQueue.main.async {
+                    self.broadcaster.notify(CarbsObserver.self, on: .main) {
+                        $0.carbsDidUpdate(filteredCarb.reversed())
+                    }
+                }
+            }
+        }
+    }
 
-     func removeCarbs(byDate date: Date) {
-         processQueue.sync {
-             let file = OpenAPS.Monitor.carbHistory
-             self.storage.transaction { storage in
-                 let CarbInStorage = storage.retrieve(file, as: [CarbsEntry].self)
-                 let filteredCarb = CarbInStorage?.filter { $0.id != id } ?? []
-                 storage.save(filteredCarb, as: file)
+    func removeCarbs(byDate date: Date) {
+        processQueue.sync {
+            let file = OpenAPS.Monitor.carbHistory
+            self.storage.transaction { storage in
+                let CarbInStorage = storage.retrieve(file, as: [CarbsEntry].self)
+                let filteredCarb = CarbInStorage?.filter { $0.createdAt != date } ?? []
+                storage.save(filteredCarb, as: file)
 
-                 DispatchQueue.main.async {
-                     self.broadcaster.notify(CarbsObserver.self, on: .main) {
-                         $0.carbsDidUpdate((filteredCarb.reversed())
-                     }
-                 }
-             }
-         }
-     }
+                DispatchQueue.main.async {
+                    self.broadcaster.notify(CarbsObserver.self, on: .main) {
+                        $0.carbsDidUpdate(filteredCarb.reversed())
+                    }
+                }
+            }
+        }
+    }
 
     func syncDate() -> Date {
         Date().addingTimeInterval(-1.days.timeInterval)

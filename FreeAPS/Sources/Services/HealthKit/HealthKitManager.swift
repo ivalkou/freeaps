@@ -3,7 +3,7 @@ import Foundation
 import HealthKit
 import Swinject
 
-protocol HealthKitManager: GlucoseSource, CarbsEntry {
+protocol HealthKitManager: GlucoseSource, CarbSource {
     /// Check all needed permissions
     /// Return false if one or more permissions are deny or not choosen
     var areAllowAllPermissions: Bool { get }
@@ -13,6 +13,7 @@ protocol HealthKitManager: GlucoseSource, CarbsEntry {
     func requestPermission(completion: ((Bool, Error?) -> Void)?)
     /// Save blood glucose to Health store (dublicate of bg will ignore)
     func saveIfNeeded(bloodGlucose: [BloodGlucose])
+    /// Save carb to Health store (duplicates will be ignored)
     func saveIfNeeded(carbs: [CarbsEntry])
     /// Create observer for data passing beetwen Health Store and FreeAPS
     func createObserver()
@@ -20,18 +21,20 @@ protocol HealthKitManager: GlucoseSource, CarbsEntry {
     func enableBackgroundDelivery()
     /// Delete glucose with syncID
     func deleteGlucose(syncID: String)
+    /// Delete carb at specified date
     func deleteCarb(at: Date)
 }
 
 final class BaseHealthKitManager: HealthKitManager, Injectable {
     private enum Config {
         // unwraped HKObjects
-        static var permissions: Set<HKSampleType> { Set([healthBGObject].compactMap [healthCarbObject].compactMap { $0 }) }
+        static var permissions: Set<HKSampleType> { Set(healthObject.compactMap { $0 }) }
 
-        // link to object in HealthKit
-        static let healthBGObject = HKObjectType.quantityType(forIdentifier: .bloodGlucose)
-        
-        static let healthCarbObject = HKObjectType.quantityType(forIdentifier: .dietaryCarbohydrates)
+        // link to objects in HealthKit
+        static let healthObject = [
+            HKObjectType.quantityType(forIdentifier: .bloodGlucose),
+            HKObjectType.quantityType(forIdentifier: .dietaryCarbohydrates)
+        ]
 
         // Meta-data key of FreeASPX data in HealthStore
         static let freeAPSMetaKey = "fromFreeAPSX"
@@ -47,7 +50,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
 
     // BG that will be return Publisher
     @SyncAccess @Persisted(key: "BaseHealthKitManager.newGlucose") private var newGlucose: [BloodGlucose] = []
-    
+
     @SyncAccess @Persisted(key: "BaseHealthKitManager.newCarb") private var newCarb: [CarbsEntry] = []
 
     // last anchor for HKAnchoredQuery
@@ -93,11 +96,10 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         return NSCompoundPredicate(andPredicateWithSubpredicates: [predicateByStartDate, predicateByMeta])
     }
 
-
     init(resolver: Resolver) {
         injectServices(resolver)
         guard isAvailableOnCurrentDevice,
-              Config.healthBGObject != nil else { return }
+              !Config.healthObject.isEmpty else { return }
         createObserver()
         enableBackgroundDelivery()
         debug(.service, "HealthKitManager did create")
@@ -108,7 +110,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
     }
 
     func checkAvailabilitySaveBG() -> Bool {
-        Config.healthBGObject.map { checkAvailabilitySave(objectTypeToHealthStore: $0) } ?? false
+        Config.healthObject[0].map { checkAvailabilitySave(objectTypeToHealthStore: $0) } ?? false
     }
 
     func requestPermission(completion: ((Bool, Error?) -> Void)? = nil) {
@@ -128,7 +130,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
 
     func saveIfNeeded(bloodGlucose: [BloodGlucose]) {
         guard settingsManager.settings.useAppleHealth,
-              let sampleType = Config.healthBGObject,
+              let sampleType = Config.healthObject[0],
               checkAvailabilitySave(objectTypeToHealthStore: sampleType),
               bloodGlucose.isNotEmpty
         else { return }
@@ -161,15 +163,50 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             .store(in: &lifetime)
     }
 
+    func saveIfNeeded(carbs: [CarbsEntry]) {
+        guard settingsManager.settings.useAppleHealth,
+              let sampleType = Config.healthObject[1],
+              checkAvailabilitySave(objectTypeToHealthStore: sampleType),
+              carbs.isNotEmpty
+        else { return }
+
+        func save(samples: [HKSample]) {
+            let sampleIDs = samples.compactMap(\.syncIdentifier)
+            let samplesToSave = carbs
+                .filter { !sampleIDs.contains($0.id) }
+                .map {
+                    HKQuantitySample(
+                        type: sampleType,
+                        quantity: HKQuantity(unit: .gram(), doubleValue: Double($0.carbs)),
+                        start: $0.createdAt,
+                        end: $0.createdAt,
+                        metadata: [
+                            HKMetadataKeyExternalUUID: $0.id,
+                            HKMetadataKeySyncIdentifier: $0.id,
+                            HKMetadataKeySyncVersion: 1,
+                            Config.freeAPSMetaKey: true
+                        ]
+                    )
+                }
+
+            healthKitStore.save(samplesToSave) { _, _ in }
+        }
+
+        loadSamplesFromHealth(sampleType: sampleType, withIDs: carbs.map(\.id))
+            .receive(on: processQueue)
+            .sink(receiveValue: save)
+            .store(in: &lifetime)
+    }
+
     func createObserver() {
         guard settingsManager.settings.useAppleHealth else { return }
 
-        guard let bgType = Config.healthBGObject else {
+        guard let bgType = Config.healthObject[0] else {
             warning(.service, "Can not create HealthKit Observer, because unable to get the Blood Glucose type")
             return
         }
-        
-        guard let carbType = Config.healthCarbObject else {
+
+        guard let carbType = Config.healthObject[1] else {
             warning(.service, "Can not create HealthKit Observer, because unable to get the Carb type")
             return
         }
@@ -187,7 +224,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 self.healthKitStore.execute(incrementQuery)
             }
         }
-        
+
         let carbQuery = HKObserverQuery(sampleType: carbType, predicate: nil) { [weak self] _, _, observerError in
             guard let self = self else { return }
             debug(.service, "Execute HelathKit observer query for loading increment samples")
@@ -201,7 +238,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 self.healthKitStore.execute(incrementQuery)
             }
         }
-        
+
         healthKitStore.execute(glucoseQuery)
         healthKitStore.execute(carbQuery)
         debug(.service, "Create Observer for Blood Glucose")
@@ -212,7 +249,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             healthKitStore.disableAllBackgroundDelivery { _, _ in }
             return }
 
-        guard let bgType = Config.healthBGObject else {
+        guard let bgType = Config.healthObject[0] else {
             warning(
                 .service,
                 "Can not create background delivery, because unable to get the Blood Glucose type"
@@ -253,7 +290,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
     }
 
     private func getBloodGlucoseHKQuery(predicate: NSPredicate) -> HKQuery? {
-        guard let sampleType = Config.healthBGObject else { return nil }
+        guard let sampleType = Config.healthObject[0] else { return nil }
 
         let query = HKAnchoredObjectQuery(
             type: sampleType,
@@ -277,9 +314,9 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         }
         return query
     }
-    
+
     private func getCarbHKQuery(predicate: NSPredicate) -> HKQuery? {
-        guard let sampleType = Config.healthCarbObject else { return nil }
+        guard let sampleType = Config.healthObject[1] else { return nil }
 
         let query = HKAnchoredObjectQuery(
             type: sampleType,
@@ -315,7 +352,8 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 return HealthKitSample(
                     healthKitId: sample.uuid.uuidString,
                     date: sample.startDate,
-                    glucose: Int(round(sample.quantity.doubleValue(for: .milligramsPerDeciliter)))
+                    glucose: Int(round(sample.quantity.doubleValue(for: .milligramsPerDeciliter))),
+                    carb: nil
                 )
             }
             .map { sample in
@@ -341,30 +379,33 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             "Current BloodGlucose.Type objects will be send from Publisher during fetch: \(String(describing: newGlucose))"
         )
     }
-    
+
     private func prepareCarbSamplesToPublisherFetch(_ samples: [HKQuantitySample]) {
         dispatchPrecondition(condition: .onQueue(processQueue))
         debug(.service, "Start preparing samples: \(String(describing: samples))")
 
         newCarb += samples
             .compactMap { sample -> HealthKitSample? in
-                //let fromFAX = sample.metadata?[Config.freeAPSMetaKey] as? Bool ?? false
-                //guard !fromFAX else { return nil }
-                return HealthKitSample(
+                // let fromFAX = sample.metadata?[Config.freeAPSMetaKey] as? Bool ?? false
+                // let isCarb = sample.
+                // guard !fromFAX else { return nil }
+                HealthKitSample(
                     healthKitId: sample.uuid.uuidString,
                     date: sample.startDate,
-                    carb: sample.quantity.doubleValue(for: .gram())
+                    glucose: nil,
+                    carb: sample.quantity.doubleValue(for: .gram()).decimal
                 )
             }
             .map { sample in
-                CarbsEntry(
+                let cb = sample.carb as? Decimal ?? 0.0
+                return CarbsEntry(
                     _id: sample.healthKitId,
-                    createdAt: Decimal(Int(sample.date.timeIntervalSince1970) * 1000),
-                    carbs: sample.carb,
+                    createdAt: sample.date,
+                    carbs: cb,
                     enteredBy: nil
                 )
             }
-            .filter { $0.dateString >= Date().addingTimeInterval(-1.days.timeInterval) }
+            .filter { $0.createdAt >= Date().addingTimeInterval(-1.days.timeInterval) }
 
         newCarb = newCarb.removeDublicates()
 
@@ -408,7 +449,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         }
         .eraseToAnyPublisher()
     }
-    
+
     func fetch() -> AnyPublisher<[CarbsEntry], Never> {
         Future { [weak self] promise in
             guard let self = self else {
@@ -426,10 +467,10 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
 
                 // Remove old BGs
                 self.newCarb = self.newCarb
-                    .filter { $0.dateString >= Date().addingTimeInterval(-1.days.timeInterval) }
-                // Get actual BGs (beetwen Date() - 1 day and Date())
+                    .filter { $0.createdAt >= Date().addingTimeInterval(-1.days.timeInterval) }
+                // Get actual carbs (beetwen Date() - 1 day and Date())
                 let actualCarb = self.newCarb
-                    .filter { $0.dateString <= Date() }
+                    .filter { $0.createdAt <= Date() }
                 // Update newCarb
                 self.newCarb = self.newCarb
                     .filter { !actualCarb.contains($0) }
@@ -446,7 +487,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
 
     func deleteGlucose(syncID: String) {
         guard settingsManager.settings.useAppleHealth,
-              let sampleType = Config.healthBGObject,
+              let sampleType = Config.healthObject[0],
               checkAvailabilitySave(objectTypeToHealthStore: sampleType)
         else { return }
 
@@ -463,10 +504,10 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             }
         }
     }
-    
+
     func deleteCarb(at: Date) {
         guard settingsManager.settings.useAppleHealth,
-              let sampleType = Config.healthCarbObject,
+              let sampleType = Config.healthObject[1],
               checkAvailabilitySave(objectTypeToHealthStore: sampleType)
         else { return }
 
@@ -479,7 +520,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
 
             self.healthKitStore.deleteObjects(of: sampleType, predicate: predicate) { _, _, error in
                 guard let error = error else { return }
-                warning(.service, "Cannot delete sample with syncID: \(syncID)", error: error)
+                warning(.service, "Cannot delete sample with date: \(at)", error: error)
             }
         }
     }

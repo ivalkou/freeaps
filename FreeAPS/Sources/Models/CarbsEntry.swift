@@ -1,15 +1,15 @@
 import Foundation
 
 struct CarbsEntry: JSON, Equatable, Hashable {
-    let createdAt: Date
-    let carbs: Decimal
-    let enteredBy: String?
-    
     var _id = UUID().uuidString
     var id: String {
         _id
     }
-    
+
+    let createdAt: Date
+    let carbs: Decimal
+    let enteredBy: String?
+
     static let manual = "freeaps-x"
 
     static func == (lhs: CarbsEntry, rhs: CarbsEntry) -> Bool {

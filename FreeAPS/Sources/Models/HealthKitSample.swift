@@ -3,8 +3,8 @@ import Foundation
 struct HealthKitSample: JSON, Hashable, Equatable {
     var healthKitId: String
     var date: Date
-    var glucose: Int
-    var carb: Int
+    var glucose: Int?
+    var carb: Decimal?
 
     static func == (lhs: HealthKitSample, rhs: HealthKitSample) -> Bool {
         lhs.healthKitId == rhs.healthKitId
