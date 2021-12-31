@@ -4,6 +4,7 @@ struct HealthKitSample: JSON, Hashable, Equatable {
     var healthKitId: String
     var date: Date
     var glucose: Int
+    var carb: Int
 
     static func == (lhs: HealthKitSample, rhs: HealthKitSample) -> Bool {
         lhs.healthKitId == rhs.healthKitId
@@ -15,5 +16,6 @@ extension HealthKitSample {
         case healthKitId = "healthkit_id"
         case date
         case glucose
+        case carb
     }
 }

@@ -11,6 +11,8 @@ protocol CarbsStorage {
     func syncDate() -> Date
     func recent() -> [CarbsEntry]
     func nightscoutTretmentsNotUploaded() -> [NigtscoutTreatment]
+    func removeCarbs(byDate date: Date)
+    func removeCarbs(byDateCollection dates: [Date])
     func deleteCarbs(at date: Date)
 }
 
@@ -39,6 +41,40 @@ final class BaseCarbsStorage: CarbsStorage, Injectable {
             }
         }
     }
+    
+    func removeCarbs(byDateCollection dates: [Date]) {
+         processQueue.sync {
+             let file = OpenAPS.Monitor.carbHistory
+             self.storage.transaction { storage in
+                 let CarbInStorage = storage.retrieve(file, as: [CarbsEntry].self)
+                 let filteredCarb = CarbInStorage?.filter { !ids.contains($0.id) } ?? []
+                 storage.save(filteredCarb, as: file)
+
+                 DispatchQueue.main.async {
+                     self.broadcaster.notify(CarbsObserver.self, on: .main) {
+                         $0.carbsDidUpdate(filteredCarb.reversed())
+                     }
+                 }
+             }
+         }
+     }
+
+     func removeCarbs(byDate date: Date) {
+         processQueue.sync {
+             let file = OpenAPS.Monitor.carbHistory
+             self.storage.transaction { storage in
+                 let CarbInStorage = storage.retrieve(file, as: [CarbsEntry].self)
+                 let filteredCarb = CarbInStorage?.filter { $0.id != id } ?? []
+                 storage.save(filteredCarb, as: file)
+
+                 DispatchQueue.main.async {
+                     self.broadcaster.notify(CarbsObserver.self, on: .main) {
+                         $0.carbsDidUpdate((filteredCarb.reversed())
+                     }
+                 }
+             }
+         }
+     }
 
     func syncDate() -> Date {
         Date().addingTimeInterval(-1.days.timeInterval)

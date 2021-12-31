@@ -10,6 +10,7 @@ final class BaseFetchTreatmentsManager: FetchTreatmentsManager, Injectable {
     @Injected() var nightscoutManager: NightscoutManager!
     @Injected() var tempTargetsStorage: TempTargetsStorage!
     @Injected() var carbsStorage: CarbsStorage!
+    @Injected() var healthKitManager: HealthKitManager!
 
     private var lifetime = Lifetime()
     private let timer = DispatchTimer(timeInterval: 1.minutes.timeInterval)
@@ -34,6 +35,7 @@ final class BaseFetchTreatmentsManager: FetchTreatmentsManager, Injectable {
                 let filteredCarbs = carbs.filter { !($0.enteredBy?.contains(CarbsEntry.manual) ?? false) }
                 if filteredCarbs.isNotEmpty {
                     self.carbsStorage.storeCarbs(filteredCarbs)
+                    self.healthKitManager.saveIfNeeded(carbs: filteredCarbs)
                 }
                 let filteredTargets = targets.filter { !($0.enteredBy?.contains(TempTarget.manual) ?? false) }
                 if filteredTargets.isNotEmpty {
