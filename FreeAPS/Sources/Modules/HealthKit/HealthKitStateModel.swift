@@ -25,7 +25,10 @@ extension AppleHealthKit {
 
                 self.healthKitManager.requestPermission { ok, error in
                     DispatchQueue.main.async {
-                        self.needShowInformationTextForSetPermissions = !self.healthKitManager.checkAvailabilitySaveBG()
+                        self.needShowInformationTextForSetPermissions = !(
+                            self.healthKitManager.checkAvailabilitySaveBG() && self
+                                .healthKitManager.checkAvailabilitySaveCarb()
+                        )
                     }
 
                     guard ok, error == nil else {
@@ -33,7 +36,7 @@ extension AppleHealthKit {
                         return
                     }
 
-                    debug(.service, "Permission  granted HealthKitManager")
+                    debug(.service, "Permission granted HealthKitManager")
 
                     self.healthKitManager.createObserver()
                     self.healthKitManager.enableBackgroundDelivery()

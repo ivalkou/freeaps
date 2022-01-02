@@ -9,6 +9,8 @@ protocol HealthKitManager: GlucoseSource, CarbSource {
     var areAllowAllPermissions: Bool { get }
     /// Check availability to save data of BG type to Health store
     func checkAvailabilitySaveBG() -> Bool
+    /// Check availability to save data of Carb type to Health store
+    func checkAvailabilitySaveCarb() -> Bool
     /// Requests user to give permissions on using HealthKit
     func requestPermission(completion: ((Bool, Error?) -> Void)?)
     /// Save blood glucose to Health store (dublicate of bg will ignore)
@@ -45,7 +47,8 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
     @Injected() private var healthKitStore: HKHealthStore!
     @Injected() private var settingsManager: SettingsManager!
 
-    private let processQueue = DispatchQueue(label: "BaseHealthKitManager.processQueue")
+    private let glucoseProcessQueue = DispatchQueue(label: "BaseHealthKitManager.glucoseProcessQueue")
+    private let carbProcessQueue = DispatchQueue(label: "BaseHealthKitManager.carbProcessQueue")
     private var lifetime = Lifetime()
 
     // BG that will be return Publisher
@@ -113,6 +116,10 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         Config.healthObject[0].map { checkAvailabilitySave(objectTypeToHealthStore: $0) } ?? false
     }
 
+    func checkAvailabilitySaveCarb() -> Bool {
+        Config.healthObject[1].map { checkAvailabilitySave(objectTypeToHealthStore: $0) } ?? false
+    }
+
     func requestPermission(completion: ((Bool, Error?) -> Void)? = nil) {
         guard isAvailableOnCurrentDevice else {
             completion?(false, HKError.notAvailableOnCurrentDevice)
@@ -158,7 +165,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         }
 
         loadSamplesFromHealth(sampleType: sampleType, withIDs: bloodGlucose.map(\.id))
-            .receive(on: processQueue)
+            .receive(on: glucoseProcessQueue)
             .sink(receiveValue: save)
             .store(in: &lifetime)
     }
@@ -193,7 +200,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         }
 
         loadSamplesFromHealth(sampleType: sampleType, withIDs: carbs.map(\.id))
-            .receive(on: processQueue)
+            .receive(on: carbProcessQueue)
             .sink(receiveValue: save)
             .store(in: &lifetime)
     }
@@ -234,7 +241,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             }
 
             if let incrementQuery = self.getCarbHKQuery(predicate: self.loadValuePredicate) {
-                debug(.service, "Create increment query")
+                debug(.service, "Create carb increment query")
                 self.healthKitStore.execute(incrementQuery)
             }
         }
@@ -257,12 +264,28 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             return
         }
 
+        guard let carbType = Config.healthObject[1] else {
+            warning(
+                .service,
+                "Can not create background delivery, because unable to get the Carb type"
+            )
+            return
+        }
+
         healthKitStore.enableBackgroundDelivery(for: bgType, frequency: .immediate) { status, error in
             guard error == nil else {
-                warning(.service, "Can not enable background delivery", error: error)
+                warning(.service, "Can not enable bg background delivery", error: error)
                 return
             }
-            debug(.service, "Background delivery status is \(status)")
+            debug(.service, "Background delivery bg status is \(status)")
+        }
+
+        healthKitStore.enableBackgroundDelivery(for: carbType, frequency: .immediate) { status, error in
+            guard error == nil else {
+                warning(.service, "Can not enable carb background delivery", error: error)
+                return
+            }
+            debug(.service, "Background delivery carb status is \(status)")
         }
     }
 
@@ -299,16 +322,16 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             limit: HKObjectQueryNoLimit
         ) { [weak self] _, addedObjects, _, anchor, _ in
             guard let self = self else { return }
-            self.processQueue.async {
-                debug(.service, "AnchoredQuery did execute")
+            self.glucoseProcessQueue.async {
+                debug(.service, "AnchoredQuery for glucose did execute")
 
                 self.lastQueryAnchor = anchor
 
                 // Added objects
-                if let carbSamples = addedObjects as? [HKQuantitySample],
-                   carbSamples.isNotEmpty
+                if let bgSamples = addedObjects as? [HKQuantitySample],
+                   bgSamples.isNotEmpty
                 {
-                    self.prepareBGSamplesToPublisherFetch(carbSamples)
+                    self.prepareBGSamplesToPublisherFetch(bgSamples)
                 }
             }
         }
@@ -325,16 +348,17 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             limit: HKObjectQueryNoLimit
         ) { [weak self] _, addedObjects, _, anchor, _ in
             guard let self = self else { return }
-            self.processQueue.async {
-                debug(.service, "AnchoredQuery did execute")
+            self.carbProcessQueue.async {
+                debug(.service, "AnchoredQuery for carbs did execute")
 
                 self.lastQueryAnchor = anchor
 
                 // Added objects
-                if let bgSamples = addedObjects as? [HKQuantitySample],
-                   bgSamples.isNotEmpty
+                debug(.service, "getCarbHKQuery: \(String(describing: addedObjects))")
+                if let carbSamples = addedObjects as? [HKQuantitySample],
+                   carbSamples.isNotEmpty
                 {
-                    self.prepareCarbSamplesToPublisherFetch(bgSamples)
+                    self.prepareCarbSamplesToPublisherFetch(carbSamples)
                 }
             }
         }
@@ -342,7 +366,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
     }
 
     private func prepareBGSamplesToPublisherFetch(_ samples: [HKQuantitySample]) {
-        dispatchPrecondition(condition: .onQueue(processQueue))
+        dispatchPrecondition(condition: .onQueue(glucoseProcessQueue))
         debug(.service, "Start preparing samples: \(String(describing: samples))")
 
         newGlucose += samples
@@ -381,7 +405,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
     }
 
     private func prepareCarbSamplesToPublisherFetch(_ samples: [HKQuantitySample]) {
-        dispatchPrecondition(condition: .onQueue(processQueue))
+        dispatchPrecondition(condition: .onQueue(carbProcessQueue))
         debug(.service, "Start preparing samples: \(String(describing: samples))")
 
         newCarb += samples
@@ -422,10 +446,10 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 return
             }
 
-            self.processQueue.async {
-                debug(.service, "Start fetching HealthKitManager")
+            self.glucoseProcessQueue.async {
+                debug(.service, "Start fetching HealthKitManager Glucose")
                 guard self.settingsManager.settings.useAppleHealth else {
-                    debug(.service, "HealthKitManager cant return any data, because useAppleHealth option is disable")
+                    debug(.service, "HealthKitManager cant return any glucose data, because useAppleHealth option is disable")
                     promise(.success([]))
                     return
                 }
@@ -457,15 +481,17 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 return
             }
 
-            self.processQueue.async {
-                debug(.service, "Start fetching HealthKitManager")
+            self.carbProcessQueue.async {
+                debug(.service, "Start fetching HealthKitManager Carbs")
                 guard self.settingsManager.settings.useAppleHealth else {
-                    debug(.service, "HealthKitManager cant return any data, because useAppleHealth option is disable")
+                    debug(.service, "HealthKitManager cant return any carb data, because useAppleHealth option is disable")
                     promise(.success([]))
                     return
                 }
 
-                // Remove old BGs
+                debug(.service, "Old state of newCarb is \(self.newCarb)")
+
+                // Remove old carbs
                 self.newCarb = self.newCarb
                     .filter { $0.createdAt >= Date().addingTimeInterval(-1.days.timeInterval) }
                 // Get actual carbs (beetwen Date() - 1 day and Date())
@@ -491,7 +517,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
               checkAvailabilitySave(objectTypeToHealthStore: sampleType)
         else { return }
 
-        processQueue.async {
+        glucoseProcessQueue.async {
             let predicate = HKQuery.predicateForObjects(
                 withMetadataKey: HKMetadataKeySyncIdentifier,
                 operatorType: .equalTo,
@@ -511,7 +537,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
               checkAvailabilitySave(objectTypeToHealthStore: sampleType)
         else { return }
 
-        processQueue.async {
+        carbProcessQueue.async {
             let predicate = HKQuery.predicateForObjects(
                 withMetadataKey: HKMetadataKeySyncIdentifier,
                 operatorType: .equalTo,
