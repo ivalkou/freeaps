@@ -38,7 +38,8 @@ extension AppleHealthKit {
 
                     debug(.service, "Permission granted HealthKitManager")
 
-                    self.healthKitManager.createObserver()
+                    self.healthKitManager.createGlucoseObserver()
+                    self.healthKitManager.createCarbObserver()
                     self.healthKitManager.enableBackgroundDelivery()
                 }
             }

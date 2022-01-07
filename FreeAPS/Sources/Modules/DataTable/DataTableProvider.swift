@@ -18,7 +18,7 @@ extension DataTable {
         }
 
         func carbs() -> [CarbsEntry] {
-            carbsStorage.recent()
+            carbsStorage.recent().sorted { $0.createdAt > $1.createdAt }
         }
 
         func deleteCarbs(at date: Date) {

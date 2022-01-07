@@ -17,8 +17,10 @@ protocol HealthKitManager: GlucoseSource, CarbSource {
     func saveIfNeeded(bloodGlucose: [BloodGlucose])
     /// Save carb to Health store (duplicates will be ignored)
     func saveIfNeeded(carbs: [CarbsEntry])
-    /// Create observer for data passing beetwen Health Store and FreeAPS
-    func createObserver()
+    /// Create observer for glucose data passing beetwen Health Store and FreeAPS
+    func createGlucoseObserver()
+    /// Create observer for carb data passing beetwen Health Store and FreeAPS
+    func createCarbObserver()
     /// Enable background delivering objects from Apple Health to FreeAPS
     func enableBackgroundDelivery()
     /// Delete glucose with syncID
@@ -103,7 +105,8 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         injectServices(resolver)
         guard isAvailableOnCurrentDevice,
               !Config.healthObject.isEmpty else { return }
-        createObserver()
+        createGlucoseObserver()
+        createCarbObserver()
         enableBackgroundDelivery()
         debug(.service, "HealthKitManager did create")
     }
@@ -205,16 +208,11 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             .store(in: &lifetime)
     }
 
-    func createObserver() {
+    func createGlucoseObserver() {
         guard settingsManager.settings.useAppleHealth else { return }
 
         guard let bgType = Config.healthObject[0] else {
             warning(.service, "Can not create HealthKit Observer, because unable to get the Blood Glucose type")
-            return
-        }
-
-        guard let carbType = Config.healthObject[1] else {
-            warning(.service, "Can not create HealthKit Observer, because unable to get the Carb type")
             return
         }
 
@@ -232,6 +230,18 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             }
         }
 
+        healthKitStore.execute(glucoseQuery)
+        debug(.service, "Create Observer for Blood Glucose")
+    }
+
+    func createCarbObserver() {
+        guard settingsManager.settings.useAppleHealth else { return }
+
+        guard let carbType = Config.healthObject[1] else {
+            warning(.service, "Can not create HealthKit Observer, because unable to get the Carb type")
+            return
+        }
+
         let carbQuery = HKObserverQuery(sampleType: carbType, predicate: nil) { [weak self] _, _, observerError in
             guard let self = self else { return }
             debug(.service, "Execute HelathKit observer query for loading increment samples")
@@ -246,9 +256,8 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             }
         }
 
-        healthKitStore.execute(glucoseQuery)
         healthKitStore.execute(carbQuery)
-        debug(.service, "Create Observer for Blood Glucose")
+        debug(.service, "Create Observer for Carbohydrate")
     }
 
     func enableBackgroundDelivery() {
@@ -410,10 +419,9 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
 
         newCarb += samples
             .compactMap { sample -> HealthKitSample? in
-                // let fromFAX = sample.metadata?[Config.freeAPSMetaKey] as? Bool ?? false
-                // let isCarb = sample.
-                // guard !fromFAX else { return nil }
-                HealthKitSample(
+                let fromFAX = sample.metadata?[Config.freeAPSMetaKey] as? Bool ?? false
+                guard !fromFAX else { return nil }
+                return HealthKitSample(
                     healthKitId: sample.uuid.uuidString,
                     date: sample.startDate,
                     glucose: nil,
@@ -421,11 +429,10 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                 )
             }
             .map { sample in
-                let cb = sample.carb as? Decimal ?? 0.0
-                return CarbsEntry(
+                CarbsEntry(
                     _id: sample.healthKitId,
                     createdAt: sample.date,
-                    carbs: cb,
+                    carbs: sample.carb as? Decimal ?? 0.0,
                     enteredBy: nil
                 )
             }
