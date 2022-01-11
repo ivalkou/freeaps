@@ -1,11 +1,7 @@
 import Foundation
 
 struct CarbsEntry: JSON, Equatable, Hashable {
-    var _id = UUID().uuidString
-    var id: String {
-        _id
-    }
-
+    let id: String
     let createdAt: Date
     let carbs: Decimal
     let enteredBy: String?
@@ -23,6 +19,7 @@ struct CarbsEntry: JSON, Equatable, Hashable {
 
 extension CarbsEntry {
     private enum CodingKeys: String, CodingKey {
+        case id
         case createdAt = "created_at"
         case carbs
         case enteredBy

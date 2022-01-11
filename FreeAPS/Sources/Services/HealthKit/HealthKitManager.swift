@@ -26,7 +26,7 @@ protocol HealthKitManager: GlucoseSource, CarbSource {
     /// Delete glucose with syncID
     func deleteGlucose(syncID: String)
     /// Delete carb at specified date
-    func deleteCarb(at: Date)
+    func deleteCarb(syncID: String)
 }
 
 final class BaseHealthKitManager: HealthKitManager, Injectable {
@@ -430,10 +430,10 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             }
             .map { sample in
                 CarbsEntry(
-                    _id: sample.healthKitId,
+                    id: sample.healthKitId,
                     createdAt: sample.date,
                     carbs: sample.carb as? Decimal ?? 0.0,
-                    enteredBy: nil
+                    enteredBy: CarbsEntry.manual
                 )
             }
             .filter { $0.createdAt >= Date().addingTimeInterval(-1.days.timeInterval) }
@@ -538,7 +538,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
         }
     }
 
-    func deleteCarb(at: Date) {
+    func deleteCarb(syncID: String) {
         guard settingsManager.settings.useAppleHealth,
               let sampleType = Config.healthObject[1],
               checkAvailabilitySave(objectTypeToHealthStore: sampleType)
@@ -548,12 +548,12 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
             let predicate = HKQuery.predicateForObjects(
                 withMetadataKey: HKMetadataKeySyncIdentifier,
                 operatorType: .equalTo,
-                value: at
+                value: syncID
             )
 
             self.healthKitStore.deleteObjects(of: sampleType, predicate: predicate) { _, _, error in
                 guard let error = error else { return }
-                warning(.service, "Cannot delete sample with date: \(at)", error: error)
+                warning(.service, "Cannot delete sample with syncID: \(syncID)", error: error)
             }
         }
     }
