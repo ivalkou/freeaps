@@ -23,6 +23,8 @@ extension Home {
         @Published var autotunedBasalProfile: [BasalProfileEntry] = []
         @Published var basalProfile: [BasalProfileEntry] = []
         @Published var tempTargets: [TempTarget] = []
+        @Published var displayedTempTargets: [TempTarget] = []
+
         @Published var carbs: [CarbsEntry] = []
         @Published var timerDate = Date()
         @Published var closedLoop = false
@@ -149,14 +151,21 @@ extension Home {
                 }
                 .store(in: &lifetime)
 
+            $tempTargets
+                .sink { [weak self] _ in
+                    self?.calculateDisplayedTempTargets()
+                }
+                .store(in: &lifetime)
+
             $setupPump
+                .removeDuplicates()
                 .sink { [weak self] show in
                     guard let self = self else { return }
                     if show, let pumpManager = self.provider.apsManager.pumpManager {
                         let view = PumpConfig.PumpSettingsView(pumpManager: pumpManager, completionDelegate: self).asAny()
-                        self.router.mainSecondaryModalView.send(view)
+                        self.router.mainSecondaryModalView.value = view
                     } else {
-                        self.router.mainSecondaryModalView.send(nil)
+                        self.router.mainSecondaryModalView.value = nil
                     }
                 }
                 .store(in: &lifetime)
@@ -304,6 +313,104 @@ extension Home {
 
         private func setupCurrentTempTarget() {
             tempTarget = provider.tempTarget()
+        }
+
+        private func calculateDisplayedTempTargets() {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+
+                // get cancel items from all temptargets
+                let cancelDates: [Date] = self.tempTargets
+                    .filter {
+                        $0.duration == 0
+                    }.sorted {
+                        $0.createdAt > $1.createdAt
+                    }.map(\.createdAt)
+
+                var resultTempTargets: [TempTarget] = []
+
+                // slice temp targets by cancel items and others temp targets
+                self.tempTargets
+                    .filter {
+                        $0.duration > 0
+                    }.sorted {
+                        $0.createdAt > $1.createdAt
+                    }.map { tempTarget -> TempTarget in
+                        let sourceFinishDate = self.getFinishDateOf(tempTarget)
+                        let calculateFinishDate = cancelDates.first(where: { cancelItem in
+                            tempTarget.createdAt < cancelItem && sourceFinishDate > cancelItem
+                        }) ?? sourceFinishDate
+                        let duration = self.getDurationOf(tempTarget, withFinishDate: calculateFinishDate)
+                        return self.getCopyOf(tempTarget, newDuration: duration)
+                    }.forEach { item in
+                        var mutableItem: TempTarget? = item
+
+                        resultTempTargets.forEach { addedTempTarget in
+                            guard mutableItem != nil else { return }
+
+                            // insert tail of new temptarget
+                            if self.getFinishDateOf(mutableItem!) > self.getFinishDateOf(addedTempTarget) {
+                                let tail = self.getCopyOf(
+                                    mutableItem!,
+                                    newCreatedDate: self.getFinishDateOf(addedTempTarget),
+                                    newDuration: self.getDurationBetween(
+                                        self.getFinishDateOf(addedTempTarget),
+                                        and: self.getFinishDateOf(mutableItem!)
+                                    )
+                                )
+                                if tail.duration >= 1 {
+                                    resultTempTargets.insert(tail, at: 0)
+                                }
+                            }
+
+                            guard self.getFinishDateOf(mutableItem!) >= addedTempTarget.createdAt else { return }
+
+                            mutableItem = self.getCopyOf(
+                                item,
+                                newCreatedDate: mutableItem!.createdAt,
+                                newDuration: self.getDurationBetween(
+                                    mutableItem!.createdAt,
+                                    and: addedTempTarget.createdAt
+                                )
+                            )
+                        }
+
+                        if mutableItem != nil, mutableItem!.duration >= 1 {
+                            resultTempTargets.insert(mutableItem!, at: 0)
+                        }
+                        resultTempTargets.sort { $0.createdAt > $1.createdAt }
+                    }
+
+                self.displayedTempTargets = resultTempTargets.reversed()
+            }
+        }
+
+        private func getFinishDateOf(_ tempTarget: TempTarget, withDuration duration: Decimal? = nil) -> Date {
+            tempTarget.createdAt.addingTimeInterval(Int(duration ?? tempTarget.duration).minutes.timeInterval)
+        }
+
+        private func getDurationOf(_ tempTarget: TempTarget, withFinishDate finishDate: Date) -> Decimal {
+            Decimal(finishDate.timeIntervalSinceReferenceDate / 60 - tempTarget.createdAt.timeIntervalSinceReferenceDate / 60)
+        }
+
+        private func getDurationBetween(_ date1: Date, and date2: Date) -> Decimal {
+            Decimal(date2.timeIntervalSinceReferenceDate / 60 - date1.timeIntervalSinceReferenceDate / 60)
+        }
+
+        private func getCopyOf(
+            _ tempTarget: TempTarget,
+            newCreatedDate createdAt: Date? = nil,
+            newDuration duration: Decimal? = nil
+        ) -> TempTarget {
+            TempTarget(
+                name: tempTarget.name,
+                createdAt: createdAt ?? tempTarget.createdAt,
+                targetTop: tempTarget.targetTop,
+                targetBottom: tempTarget.targetBottom,
+                duration: duration ?? tempTarget.duration,
+                enteredBy: tempTarget.enteredBy,
+                reason: tempTarget.reason
+            )
         }
 
         func openCGM() {

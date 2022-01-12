@@ -43,6 +43,7 @@ struct MainChartView: View {
     @Binding var autotunedBasalProfile: [BasalProfileEntry]
     @Binding var basalProfile: [BasalProfileEntry]
     @Binding var tempTargets: [TempTarget]
+    @Binding var displayedTempTargets: [TempTarget]
     @Binding var carbs: [CarbsEntry]
     @Binding var timerDate: Date
     @Binding var units: GlucoseUnits
@@ -613,7 +614,7 @@ extension MainChartView {
 
     private func calculateTempTargetsRects(fullSize: CGSize) {
         calculationQueue.async {
-            var rects = tempTargets.map { tempTarget -> CGRect in
+            var rects = displayedTempTargets.map { tempTarget -> CGRect in
                 let x0 = timeToXCoordinate(tempTarget.createdAt.timeIntervalSince1970, fullSize: fullSize)
                 let y0 = glucoseToYCoordinate(Int(tempTarget.targetTop ?? 0), fullSize: fullSize)
                 let x1 = timeToXCoordinate(
