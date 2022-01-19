@@ -16,6 +16,7 @@ final class BaseWatchManager: NSObject, WatchManager, Injectable {
     @Injected() private var storage: FileStorage!
     @Injected() private var carbsStorage: CarbsStorage!
     @Injected() private var tempTargetsStorage: TempTargetsStorage!
+    @Injected() var healthKitManager: HealthKitManager!
 
     private var lifetime = Lifetime()
 
@@ -216,9 +217,11 @@ extension BaseWatchManager: WCSessionDelegate {
         debug(.service, "WCSession got message with reply handler: \(message)")
 
         if let carbs = message["carbs"] as? Double, carbs > 0 {
-            carbsStorage.storeCarbs([
+            let carbArray = [
                 CarbsEntry(id: UUID().uuidString, createdAt: Date(), carbs: Decimal(carbs), enteredBy: CarbsEntry.manual)
-            ])
+            ]
+            carbsStorage.storeCarbs(carbArray)
+            healthKitManager.saveIfNeeded(carbs: carbArray)
 
             if settingsManager.settings.skipBolusScreenAfterCarbs {
                 apsManager.determineBasalSync()
