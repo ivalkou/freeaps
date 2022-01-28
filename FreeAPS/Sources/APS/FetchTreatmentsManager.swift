@@ -23,22 +23,25 @@ final class BaseFetchTreatmentsManager: FetchTreatmentsManager, Injectable {
     private func subscribe() {
         timer.publisher
             .receive(on: processQueue)
-            .flatMap { _ -> AnyPublisher<(Date, [CarbsEntry], [TempTarget], [CarbsEntry]), Never> in
+            .flatMap { _ -> AnyPublisher<([CarbsEntry], [TempTarget], [CarbsEntry]), Never> in
                 debug(.nightscout, "FetchTreatmentsManager heartbeat")
                 debug(.nightscout, "Start fetching carbs and temptargets")
-                return Publishers.CombineLatest4(
-                    Just(self.carbsStorage.syncDate()),
+                return Publishers.CombineLatest3(
                     self.nightscoutManager.fetchCarbs(),
                     self.nightscoutManager.fetchTempTargets(),
-                    self.healthKitManager.fetch()
+                    self.healthKitManager.fetchCarbs()
                 ).eraseToAnyPublisher()
             }
-            .sink { syncDate, carbs, targets, carbsFromHealth in
+            .sink { carbs, targets, carbsFromHealth in
                 let allCarbs = carbs + carbsFromHealth
-                let filteredCarbs = allCarbs.filter { $0.createdAt > syncDate }
+                let since = self.carbsStorage.syncDate()
+                let filteredCarbs = allCarbs.filter { $0.createdAt > since }
+                let carbsForHealth = allCarbs.filter { !carbsFromHealth.contains($0) }
+
                 if filteredCarbs.isNotEmpty {
-                    debug(.nightscout, "Filtered carbs: \(filteredCarbs)")
                     self.carbsStorage.storeCarbs(filteredCarbs)
+                }
+                if carbsForHealth.isNotEmpty {
                     self.healthKitManager.saveIfNeeded(carbs: filteredCarbs)
                 }
                 let filteredTargets = targets.filter { !($0.enteredBy?.contains(TempTarget.manual) ?? false) }

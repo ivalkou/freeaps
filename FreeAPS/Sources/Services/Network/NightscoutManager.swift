@@ -3,7 +3,7 @@ import Foundation
 import Swinject
 import UIKit
 
-protocol NightscoutManager: GlucoseSource {
+protocol NightscoutManager: GlucoseSource, CarbSource {
     func fetchGlucose(since date: Date) -> AnyPublisher<[BloodGlucose], Never>
     func fetchCarbs() -> AnyPublisher<[CarbsEntry], Never>
     func fetchTempTargets() -> AnyPublisher<[TempTarget], Never>
