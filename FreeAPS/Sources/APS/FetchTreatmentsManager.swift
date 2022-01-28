@@ -33,8 +33,10 @@ final class BaseFetchTreatmentsManager: FetchTreatmentsManager, Injectable {
                 ).eraseToAnyPublisher()
             }
             .sink { carbs, targets, carbsFromHealth in
-                let allCarbs = carbs + carbsFromHealth
                 let since = self.carbsStorage.syncDate()
+                let nsCarbs = carbs.filter { !($0.enteredBy?.contains(CarbsEntry.manual) ?? false) }
+
+                let allCarbs = nsCarbs + carbsFromHealth
                 let filteredCarbs = allCarbs.filter { $0.createdAt > since }
                 let carbsForHealth = allCarbs.filter { !carbsFromHealth.contains($0) }
 
