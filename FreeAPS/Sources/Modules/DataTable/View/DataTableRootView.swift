@@ -90,7 +90,9 @@ extension DataTable {
                                 message: Text(item.amountText),
                                 primaryButton: .destructive(
                                     Text("Delete"),
-                                    action: { state.deleteCarbs(at: item.date) }
+                                    action: {
+                                        state.deleteCarbs(item)
+                                    }
                                 ),
                                 secondaryButton: .cancel()
                             )

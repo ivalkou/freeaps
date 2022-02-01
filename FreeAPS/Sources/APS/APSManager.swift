@@ -61,6 +61,7 @@ final class BaseAPSManager: APSManager, Injectable {
     @Injected() private var deviceDataManager: DeviceDataManager!
     @Injected() private var nightscout: NightscoutManager!
     @Injected() private var settingsManager: SettingsManager!
+    @Injected() private var healthKitManager: HealthKitManager!
     @Injected() private var broadcaster: Broadcaster!
     @Persisted(key: "lastAutotuneDate") private var lastAutotuneDate = Date()
     @Persisted(key: "lastLoopDate") var lastLoopDate: Date = .distantPast {
@@ -178,6 +179,9 @@ final class BaseAPSManager: APSManager, Injectable {
                 } else {
                     self.loopCompleted()
                 }
+                // upload insulin to healthKit (from pump history)
+                let events = self.pumpHistoryStorage.recent()
+                self.healthKitManager.saveIfNeeded(pumpEvents: events)
             } receiveValue: {}
             .store(in: &lifetime)
     }

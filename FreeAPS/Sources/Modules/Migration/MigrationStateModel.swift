@@ -14,6 +14,7 @@ extension Migration {
             Publishers
                 .getMigrationPublisher(fromMigrationManager: manager)
 //                .migrate(startAtVersion: "0.2.6", MigrationWorkExample())
+//                .migrate(startAtVersion: "0.2.6", MigrationCarbs())
                 .sink { _ in
                     debug(.businessLogic, "Migration did finish")
                     // fake pause

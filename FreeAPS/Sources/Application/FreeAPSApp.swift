@@ -49,8 +49,11 @@ import Swinject
 
     var body: some Scene {
         WindowGroup {
-            Main.RootView(resolver: resolver)
-                .onOpenURL(perform: handleURL)
+            ZStack {
+                rootView
+            }
+            .animation(.easeIn(duration: 0.75), value: self.loadingIsEnded)
+
         }
         .onChange(of: scenePhase) { newScenePhase in
             debug(.default, "APPLICATION PHASE: \(newScenePhase)")
@@ -68,6 +71,7 @@ import Swinject
     }
 
     // Migration is temporary disabled
+
     @ViewBuilder private var rootView: some View {
         if !loadingIsEnded {
             Screen.migration.view(resolver: resolver)
