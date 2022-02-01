@@ -307,11 +307,18 @@
 		E974172296125A5AE99E634C /* PumpConfigRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD22C985B79A2F0D2EA3D9D /* PumpConfigRootView.swift */; };
 		F5CA3DB1F9DC8B05792BBFAA /* CGMDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B5C0607505A38F256BF99A /* CGMDataFlow.swift */; };
 		F5F7E6C1B7F098F59EB67EC5 /* TargetsEditorDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA49538D56989D8DA6FCF538 /* TargetsEditorDataFlow.swift */; };
+		F904D3CD27A85B6800C5466F /* MigrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F904D3CC27A85B6800C5466F /* MigrationManager.swift */; };
 		F90692AA274B7AAE0037068D /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90692A9274B7AAE0037068D /* HealthKitManager.swift */; };
 		F90692CF274B999A0037068D /* HealthKitDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90692CE274B999A0037068D /* HealthKitDataFlow.swift */; };
 		F90692D1274B99B60037068D /* HealthKitProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90692D0274B99B60037068D /* HealthKitProvider.swift */; };
 		F90692D3274B9A130037068D /* AppleHealthKitRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90692D2274B9A130037068D /* AppleHealthKitRootView.swift */; };
 		F90692D6274B9A450037068D /* HealthKitStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90692D5274B9A450037068D /* HealthKitStateModel.swift */; };
+		F97F722127A957AF007B6620 /* MigrationPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F722027A957AF007B6620 /* MigrationPublisher.swift */; };
+		F97F722427A973DF007B6620 /* MigrationDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F722327A973DF007B6620 /* MigrationDataFlow.swift */; };
+		F97F722627A973FF007B6620 /* MigrationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F722527A973FF007B6620 /* MigrationProvider.swift */; };
+		F97F722827A9741C007B6620 /* MigrationStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F722727A9741C007B6620 /* MigrationStateModel.swift */; };
+		F97F722B27A9743A007B6620 /* MigrationRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F722A27A9743A007B6620 /* MigrationRootView.swift */; };
+		F97F722D27A986F1007B6620 /* TargetInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F722C27A986F1007B6620 /* TargetInformation.swift */; };
 		FA630397F76B582C8D8681A7 /* BasalProfileEditorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42369F66CF91F30624C0B3A6 /* BasalProfileEditorProvider.swift */; };
 /* End PBXBuildFile section */
 
@@ -713,11 +720,18 @@
 		E625985B47742D498CB1681A /* NotificationsConfigProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationsConfigProvider.swift; sourceTree = "<group>"; };
 		E68CDC1E5C438D1BEAD4CF24 /* LibreConfigStateModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LibreConfigStateModel.swift; sourceTree = "<group>"; };
 		E9AAB83FB6C3B41EFD1846A0 /* AddTempTargetRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AddTempTargetRootView.swift; sourceTree = "<group>"; };
+		F904D3CC27A85B6800C5466F /* MigrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationManager.swift; sourceTree = "<group>"; };
 		F90692A9274B7AAE0037068D /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		F90692CE274B999A0037068D /* HealthKitDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitDataFlow.swift; sourceTree = "<group>"; };
 		F90692D0274B99B60037068D /* HealthKitProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitProvider.swift; sourceTree = "<group>"; };
 		F90692D2274B9A130037068D /* AppleHealthKitRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleHealthKitRootView.swift; sourceTree = "<group>"; };
 		F90692D5274B9A450037068D /* HealthKitStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitStateModel.swift; sourceTree = "<group>"; };
+		F97F722027A957AF007B6620 /* MigrationPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationPublisher.swift; sourceTree = "<group>"; };
+		F97F722327A973DF007B6620 /* MigrationDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationDataFlow.swift; sourceTree = "<group>"; };
+		F97F722527A973FF007B6620 /* MigrationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationProvider.swift; sourceTree = "<group>"; };
+		F97F722727A9741C007B6620 /* MigrationStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationStateModel.swift; sourceTree = "<group>"; };
+		F97F722A27A9743A007B6620 /* MigrationRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationRootView.swift; sourceTree = "<group>"; };
+		F97F722C27A986F1007B6620 /* TargetInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetInformation.swift; sourceTree = "<group>"; };
 		FBB3BAE7494CB771ABAC7B8B /* ISFEditorRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ISFEditorRootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -850,6 +864,7 @@
 		3811DE0325C9D31700A708ED /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F97F722227A9739F007B6620 /* Migration */,
 				F90692CD274B99850037068D /* HealthKit */,
 				6DC5D590658EF8B8DF94F9F5 /* AddCarbs */,
 				A9A4C88374496B3C89058A89 /* AddTempTarget */,
@@ -980,6 +995,7 @@
 		3811DE9125C9D88200A708ED /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F904D3CB27A85B5000C5466F /* Migration */,
 				F90692A8274B7A980037068D /* HealthKit */,
 				38E8754D275556E100975559 /* WatchManager */,
 				38E87406274F9AA500975559 /* UserNotifiactions */,
@@ -1267,6 +1283,7 @@
 				38E989DC25F5021400C0CED0 /* PumpStatus.swift */,
 				38BF021C25E7E3AF00579895 /* Reservoir.swift */,
 				3871F38625ED661C0013ECB5 /* Suggestion.swift */,
+				F97F722C27A986F1007B6620 /* TargetInformation.swift */,
 				38A0364125ED069400FCBB52 /* TempBasal.swift */,
 				3871F39B25ED892B0013ECB5 /* TempTarget.swift */,
 				3811DE8E25C9D80400A708ED /* User.swift */,
@@ -1814,6 +1831,15 @@
 			path = CGM;
 			sourceTree = "<group>";
 		};
+		F904D3CB27A85B5000C5466F /* Migration */ = {
+			isa = PBXGroup;
+			children = (
+				F904D3CC27A85B6800C5466F /* MigrationManager.swift */,
+				F97F722027A957AF007B6620 /* MigrationPublisher.swift */,
+			);
+			path = Migration;
+			sourceTree = "<group>";
+		};
 		F90692A8274B7A980037068D /* HealthKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1837,6 +1863,25 @@
 			isa = PBXGroup;
 			children = (
 				F90692D2274B9A130037068D /* AppleHealthKitRootView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F97F722227A9739F007B6620 /* Migration */ = {
+			isa = PBXGroup;
+			children = (
+				F97F722927A97425007B6620 /* View */,
+				F97F722327A973DF007B6620 /* MigrationDataFlow.swift */,
+				F97F722527A973FF007B6620 /* MigrationProvider.swift */,
+				F97F722727A9741C007B6620 /* MigrationStateModel.swift */,
+			);
+			path = Migration;
+			sourceTree = "<group>";
+		};
+		F97F722927A97425007B6620 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F97F722A27A9743A007B6620 /* MigrationRootView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2080,6 +2125,7 @@
 				38D0B3B625EBE24900CB6E88 /* Battery.swift in Sources */,
 				38C4D33725E9A1A300D30B77 /* DispatchQueue+Extensions.swift in Sources */,
 				F90692CF274B999A0037068D /* HealthKitDataFlow.swift in Sources */,
+				F904D3CD27A85B6800C5466F /* MigrationManager.swift in Sources */,
 				3862CC2E2743F9F700BF832C /* CalendarManager.swift in Sources */,
 				38B4F3C325E2A20B00E76A18 /* PumpSetupView.swift in Sources */,
 				38E4453C274E411700EC9A94 /* Disk+Codable.swift in Sources */,
@@ -2197,6 +2243,7 @@
 				9825E5E923F0B8FA80C8C7C7 /* NightscoutConfigStateModel.swift in Sources */,
 				38A43598262E0E4900E80935 /* FetchAnnouncementsManager.swift in Sources */,
 				642F76A05A4FF530463A9FD0 /* NightscoutConfigRootView.swift in Sources */,
+				F97F722627A973FF007B6620 /* MigrationProvider.swift in Sources */,
 				AD3D2CD42CD01B9EB8F26522 /* PumpConfigDataFlow.swift in Sources */,
 				53F2382465BF74DB1A967C8B /* PumpConfigProvider.swift in Sources */,
 				5D16287A969E64D18CE40E44 /* PumpConfigStateModel.swift in Sources */,
@@ -2220,6 +2267,7 @@
 				38FEF3FA2737E42000574A46 /* BaseStateModel.swift in Sources */,
 				385CEA8225F23DFD002D6D5B /* NightscoutStatus.swift in Sources */,
 				F90692AA274B7AAE0037068D /* HealthKitManager.swift in Sources */,
+				F97F722D27A986F1007B6620 /* TargetInformation.swift in Sources */,
 				38887CCE25F5725200944304 /* IOBEntry.swift in Sources */,
 				38E98A2425F52C9300C0CED0 /* Logger.swift in Sources */,
 				CA370FC152BC98B3D1832968 /* BasalProfileEditorRootView.swift in Sources */,
@@ -2234,11 +2282,13 @@
 				A33352ED40476125EBAC6EE0 /* CREditorDataFlow.swift in Sources */,
 				17A9D0899046B45E87834820 /* CREditorProvider.swift in Sources */,
 				69B9A368029F7EB39F525422 /* CREditorStateModel.swift in Sources */,
+				F97F722827A9741C007B6620 /* MigrationStateModel.swift in Sources */,
 				38E44538274E411700EC9A94 /* Disk+[Data].swift in Sources */,
 				98641AF4F92123DA668AB931 /* CREditorRootView.swift in Sources */,
 				38E4453D274E411700EC9A94 /* Disk+Errors.swift in Sources */,
 				38E98A2325F52C9300C0CED0 /* Signpost.swift in Sources */,
 				F5F7E6C1B7F098F59EB67EC5 /* TargetsEditorDataFlow.swift in Sources */,
+				F97F722B27A9743A007B6620 /* MigrationRootView.swift in Sources */,
 				5075C1608E6249A51495C422 /* TargetsEditorProvider.swift in Sources */,
 				E13B7DAB2A435F57066AF02E /* TargetsEditorStateModel.swift in Sources */,
 				9702FF92A09C53942F20D7EA /* TargetsEditorRootView.swift in Sources */,
@@ -2273,8 +2323,10 @@
 				711C0CB42CAABE788916BC9D /* ManualTempBasalDataFlow.swift in Sources */,
 				BF1667ADE69E4B5B111CECAE /* ManualTempBasalProvider.swift in Sources */,
 				F90692D6274B9A450037068D /* HealthKitStateModel.swift in Sources */,
+				F97F722427A973DF007B6620 /* MigrationDataFlow.swift in Sources */,
 				C967DACD3B1E638F8B43BE06 /* ManualTempBasalStateModel.swift in Sources */,
 				38E4453B274E411700EC9A94 /* Disk+VolumeInformation.swift in Sources */,
+				F97F722127A957AF007B6620 /* MigrationPublisher.swift in Sources */,
 				7BCFACB97C821041BA43A114 /* ManualTempBasalRootView.swift in Sources */,
 				38E44534274E411700EC9A94 /* Disk+InternalHelpers.swift in Sources */,
 				38A00B2325FC2B55006BC0B0 /* LRUCache.swift in Sources */,

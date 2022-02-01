@@ -1,9 +1,15 @@
+import Combine
 import SwiftUI
 import Swinject
 
 @main struct FreeAPSApp: App {
     @Environment(\.scenePhase) var scenePhase
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @State private var isMigrating: Bool = true
+
+    // Migration
+    private var migrationManager = MigrationManager()
+    @State private var lifetime: Lifetime = []
 
     // Dependencies Assembler
     // contain all dependencies Assemblies
@@ -43,14 +49,34 @@ import Swinject
 
     init() {
         loadServices()
+        _isMigrating = State(initialValue: migrationManager.isNeedMigrate)
     }
 
     var body: some Scene {
         WindowGroup {
-            Main.RootView(resolver: resolver)
+            ZStack {
+                if isMigrating {
+                    Migration.RootView(resolver: resolver)
+                        .onAppear { runMigration() }
+                } else {
+                    Main.RootView(resolver: resolver)
+                }
+            }
+            .animation(.easeIn(duration: 0.75), value: self.isMigrating)
         }
         .onChange(of: scenePhase) { newScenePhase in
             debug(.default, "APPLICATION PHASE: \(newScenePhase)")
         }
+    }
+
+    private func runMigration() {
+        migrationManager
+            .publisher
+            .sink { [self] _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    isMigrating = false
+                }
+            }
+            .store(in: &lifetime)
     }
 }
