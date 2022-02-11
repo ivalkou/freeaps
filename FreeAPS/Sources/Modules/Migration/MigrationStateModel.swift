@@ -10,9 +10,6 @@ extension Migration {
         @Published var loadingIsEnded: Bool = false
 
         func runMigration() {
-//            try? Disk.remove(OpenAPS.FreeAPS.settings, from: .documents)
-//            UserDefaults.standard.removeObject(forKey: "AppInfo.lastMigrationAppVersion")
-//            return
             debug(.businessLogic, "Migration did start on current version \(manager.appInfo.currentVersion)")
             debug(.businessLogic, "Last migration did on version \(manager.lastMigrationAppVersion ?? "null")")
             Publishers
@@ -24,7 +21,7 @@ extension Migration {
                 .updateLastAppMigrationVersionToCurrent()
                 .sink { _ in
                     debug(.businessLogic, "Migration did finish")
-                    // fake pause to exclude UI-lags
+                    // fake pause
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         self.loadingIsEnded = true
                     }
