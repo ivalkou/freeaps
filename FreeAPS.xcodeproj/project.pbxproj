@@ -313,12 +313,14 @@
 		F90692D1274B99B60037068D /* HealthKitProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90692D0274B99B60037068D /* HealthKitProvider.swift */; };
 		F90692D3274B9A130037068D /* AppleHealthKitRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90692D2274B9A130037068D /* AppleHealthKitRootView.swift */; };
 		F90692D6274B9A450037068D /* HealthKitStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90692D5274B9A450037068D /* HealthKitStateModel.swift */; };
+		F97C8B2927B6A90200CB4A46 /* MigrationWorkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97C8B2827B6A90100CB4A46 /* MigrationWorkItem.swift */; };
+		F97C8B2C27B6CA0C00CB4A46 /* PreferenceKeyAppLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97C8B2B27B6CA0C00CB4A46 /* PreferenceKeyAppLoading.swift */; };
 		F97F722127A957AF007B6620 /* MigrationPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F722027A957AF007B6620 /* MigrationPublisher.swift */; };
 		F97F722427A973DF007B6620 /* MigrationDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F722327A973DF007B6620 /* MigrationDataFlow.swift */; };
 		F97F722627A973FF007B6620 /* MigrationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F722527A973FF007B6620 /* MigrationProvider.swift */; };
 		F97F722827A9741C007B6620 /* MigrationStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F722727A9741C007B6620 /* MigrationStateModel.swift */; };
 		F97F722B27A9743A007B6620 /* MigrationRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F722A27A9743A007B6620 /* MigrationRootView.swift */; };
-		F97F722D27A986F1007B6620 /* TargetInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F722C27A986F1007B6620 /* TargetInformation.swift */; };
+		F97F722D27A986F1007B6620 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97F722C27A986F1007B6620 /* AppInfo.swift */; };
 		FA630397F76B582C8D8681A7 /* BasalProfileEditorProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42369F66CF91F30624C0B3A6 /* BasalProfileEditorProvider.swift */; };
 /* End PBXBuildFile section */
 
@@ -726,12 +728,14 @@
 		F90692D0274B99B60037068D /* HealthKitProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitProvider.swift; sourceTree = "<group>"; };
 		F90692D2274B9A130037068D /* AppleHealthKitRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleHealthKitRootView.swift; sourceTree = "<group>"; };
 		F90692D5274B9A450037068D /* HealthKitStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitStateModel.swift; sourceTree = "<group>"; };
+		F97C8B2827B6A90100CB4A46 /* MigrationWorkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationWorkItem.swift; sourceTree = "<group>"; };
+		F97C8B2B27B6CA0C00CB4A46 /* PreferenceKeyAppLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKeyAppLoading.swift; sourceTree = "<group>"; };
 		F97F722027A957AF007B6620 /* MigrationPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationPublisher.swift; sourceTree = "<group>"; };
 		F97F722327A973DF007B6620 /* MigrationDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationDataFlow.swift; sourceTree = "<group>"; };
 		F97F722527A973FF007B6620 /* MigrationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationProvider.swift; sourceTree = "<group>"; };
 		F97F722727A9741C007B6620 /* MigrationStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationStateModel.swift; sourceTree = "<group>"; };
 		F97F722A27A9743A007B6620 /* MigrationRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationRootView.swift; sourceTree = "<group>"; };
-		F97F722C27A986F1007B6620 /* TargetInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetInformation.swift; sourceTree = "<group>"; };
+		F97F722C27A986F1007B6620 /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		FBB3BAE7494CB771ABAC7B8B /* ISFEditorRootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ISFEditorRootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1283,7 +1287,7 @@
 				38E989DC25F5021400C0CED0 /* PumpStatus.swift */,
 				38BF021C25E7E3AF00579895 /* Reservoir.swift */,
 				3871F38625ED661C0013ECB5 /* Suggestion.swift */,
-				F97F722C27A986F1007B6620 /* TargetInformation.swift */,
+				F97F722C27A986F1007B6620 /* AppInfo.swift */,
 				38A0364125ED069400FCBB52 /* TempBasal.swift */,
 				3871F39B25ED892B0013ECB5 /* TempTarget.swift */,
 				3811DE8E25C9D80400A708ED /* User.swift */,
@@ -1295,6 +1299,7 @@
 		388E5A5A25B6F05F0019842D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F97C8B2A27B6C9FA00CB4A46 /* PreferenceKeys */,
 				38F37827261260DC009DB701 /* Color+Extensions.swift */,
 				389ECE042601144100D86C4F /* ConcurrentMap.swift */,
 				38192E0C261BAF980094D973 /* ConvenienceExtensions.swift */,
@@ -1836,6 +1841,7 @@
 			children = (
 				F904D3CC27A85B6800C5466F /* MigrationManager.swift */,
 				F97F722027A957AF007B6620 /* MigrationPublisher.swift */,
+				F97C8B2827B6A90100CB4A46 /* MigrationWorkItem.swift */,
 			);
 			path = Migration;
 			sourceTree = "<group>";
@@ -1865,6 +1871,14 @@
 				F90692D2274B9A130037068D /* AppleHealthKitRootView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		F97C8B2A27B6C9FA00CB4A46 /* PreferenceKeys */ = {
+			isa = PBXGroup;
+			children = (
+				F97C8B2B27B6CA0C00CB4A46 /* PreferenceKeyAppLoading.swift */,
+			);
+			path = PreferenceKeys;
 			sourceTree = "<group>";
 		};
 		F97F722227A9739F007B6620 /* Migration */ = {
@@ -2213,6 +2227,7 @@
 				3811DE5F25C9D4D500A708ED /* ProgressBar.swift in Sources */,
 				38E87408274F9AD000975559 /* UserNotificationsManager.swift in Sources */,
 				38BF021D25E7E3AF00579895 /* Reservoir.swift in Sources */,
+				F97C8B2927B6A90200CB4A46 /* MigrationWorkItem.swift in Sources */,
 				38BF021B25E7D06400579895 /* PumpSettingsView.swift in Sources */,
 				3862CC05273D152B00BF832C /* CalibrationService.swift in Sources */,
 				3811DEEA25CA063400A708ED /* SyncAccess.swift in Sources */,
@@ -2245,6 +2260,7 @@
 				642F76A05A4FF530463A9FD0 /* NightscoutConfigRootView.swift in Sources */,
 				F97F722627A973FF007B6620 /* MigrationProvider.swift in Sources */,
 				AD3D2CD42CD01B9EB8F26522 /* PumpConfigDataFlow.swift in Sources */,
+				F97C8B2C27B6CA0C00CB4A46 /* PreferenceKeyAppLoading.swift in Sources */,
 				53F2382465BF74DB1A967C8B /* PumpConfigProvider.swift in Sources */,
 				5D16287A969E64D18CE40E44 /* PumpConfigStateModel.swift in Sources */,
 				E974172296125A5AE99E634C /* PumpConfigRootView.swift in Sources */,
@@ -2267,7 +2283,7 @@
 				38FEF3FA2737E42000574A46 /* BaseStateModel.swift in Sources */,
 				385CEA8225F23DFD002D6D5B /* NightscoutStatus.swift in Sources */,
 				F90692AA274B7AAE0037068D /* HealthKitManager.swift in Sources */,
-				F97F722D27A986F1007B6620 /* TargetInformation.swift in Sources */,
+				F97F722D27A986F1007B6620 /* AppInfo.swift in Sources */,
 				38887CCE25F5725200944304 /* IOBEntry.swift in Sources */,
 				38E98A2425F52C9300C0CED0 /* Logger.swift in Sources */,
 				CA370FC152BC98B3D1832968 /* BasalProfileEditorRootView.swift in Sources */,

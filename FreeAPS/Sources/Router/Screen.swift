@@ -26,6 +26,7 @@ enum Screen: Identifiable, Hashable {
     case calibrations
     case notificationsConfig
     case snooze
+    case migration
 
     var id: Int { String(reflecting: self).hashValue }
 }
@@ -81,6 +82,8 @@ extension Screen {
             NotificationsConfig.RootView(resolver: resolver)
         case .snooze:
             Snooze.RootView(resolver: resolver)
+        case .migration:
+            Migration.RootView(resolver: resolver)
         }
     }
 

@@ -2,34 +2,17 @@ import Combine
 import Foundation
 import SwiftUI
 
-/**
-
- Example of using DataMigrationTool
-
- Publishers
-     .dataMigrationTool(AppTargetInfo())
-     .migrate { info in
-        // ...
-     }
-     .sink {
-        // ...
-     }
-
- info is AppTargetInfo instance, which contains target information (version and etc).
-
- */
-
 extension Publishers {
-    static func getMigrationPublisher(_ appInfo: TargetInformation) -> MigrationPublisher {
-        MigrationPublisher(appInfo)
+    static func getMigrationPublisher(fromMigrationManager manager: MigrationManager) -> MigrationPublisher {
+        MigrationPublisher(manager)
     }
 
-    class MigrationSubscription<S: Subscriber>: Subscription where S.Input == TargetInformation, S.Failure == Never {
-        private var targetInformation: TargetInformation
+    class MigrationSubscription<S: Subscriber>: Subscription where S.Input == AppInfo, S.Failure == Never {
+        private var manager: MigrationManager
         private var subscriber: S?
 
-        init(_ appInfo: TargetInformation, subscriber: S) {
-            targetInformation = appInfo
+        init(_ manager: MigrationManager, subscriber: S) {
+            self.manager = manager
             self.subscriber = subscriber
         }
 
@@ -38,34 +21,52 @@ extension Publishers {
         }
 
         func request(_: Subscribers.Demand) {
-            _ = subscriber?.receive(targetInformation)
+            _ = subscriber?.receive(manager.appInfo)
             subscriber?.receive(completion: .finished)
             return
         }
     }
 
     struct MigrationPublisher: Publisher {
-        typealias Output = TargetInformation
+        typealias Output = AppInfo
         typealias Failure = Never
 
-        @State private var targetInformation: TargetInformation
+        private var manager: MigrationManager
 
-        init(_ AppTargetInfo: TargetInformation) {
-            targetInformation = AppTargetInfo
+        init(_ manager: MigrationManager) {
+            self.manager = manager
         }
 
-        func receive<S>(subscriber: S) where S: Subscriber, Never == S.Failure, TargetInformation == S.Input {
-            let subscription = MigrationSubscription(targetInformation, subscriber: subscriber)
+        func receive<S>(subscriber: S) where S: Subscriber, Never == S.Failure, AppInfo == S.Input {
+            let subscription = MigrationSubscription(manager, subscriber: subscriber)
             subscriber.receive(subscription: subscription)
         }
 
-        func migrate(_ handler: (TargetInformation) -> Void) -> Self {
-            handler(targetInformation)
+        func tryAsyncMigrate(onVersion version: String, _ handler: @escaping (AppInfo) async throws -> Void) throws -> Self {
+            Task {
+                if manager.checkMigrationNeeded(onVersion: version) {
+                    try await handler(manager.appInfo)
+                }
+            }
             return self
         }
 
-        func actualLastMigrationVersion() -> Self {
-            targetInformation.actualLastMigrationVersion()
+        func migrate(onVersion version: String, _ handler: (AppInfo) -> Void) -> Self {
+            debug(.businessLogic, "Try to execute migration on version \(version)")
+            if manager.checkMigrationNeeded(onVersion: version) {
+                debug(.businessLogic, "Migration will start")
+                handler(manager.appInfo)
+            } else {
+                debug(.businessLogic, "Migration skipped")
+            }
+            return self
+        }
+
+        // TODO: Add tryMigrate
+        // TODO: Add asyncMigrate
+
+        func updateLastAppMigrationVersionToCurrent() -> Self {
+            manager.setActualLastMigrationAppVersion()
             return self
         }
     }

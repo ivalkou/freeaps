@@ -1,3 +1,4 @@
+import Combine
 import SwiftUI
 import Swinject
 
@@ -24,8 +25,11 @@ extension Migration {
                     .padding(.top, 10)
             }
             .onAppear {
+                configureView()
                 state.animated.toggle()
+                state.runMigration()
             }
+            .preference(key: PreferenceKeyAppLoading.self, value: state.loadingIsEnded)
         }
     }
 }

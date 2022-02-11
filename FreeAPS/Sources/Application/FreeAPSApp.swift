@@ -5,11 +5,7 @@ import Swinject
 @main struct FreeAPSApp: App {
     @Environment(\.scenePhase) var scenePhase
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    @State private var isMigrating: Bool = true
-
-    // Migration
-    private var migrationManager = MigrationManager()
-    @State private var lifetime: Lifetime = []
+    @State var loadingIsEnded: Bool = false
 
     // Dependencies Assembler
     // contain all dependencies Assemblies
@@ -49,34 +45,28 @@ import Swinject
 
     init() {
         loadServices()
-        _isMigrating = State(initialValue: migrationManager.isNeedMigrate)
     }
 
     var body: some Scene {
         WindowGroup {
             ZStack {
-                if isMigrating {
-                    Migration.RootView(resolver: resolver)
-                        .onAppear { runMigration() }
-                } else {
-                    Main.RootView(resolver: resolver)
-                }
+                rootView
             }
-            .animation(.easeIn(duration: 0.75), value: self.isMigrating)
+            .animation(.easeIn(duration: 0.75), value: self.loadingIsEnded)
         }
         .onChange(of: scenePhase) { newScenePhase in
             debug(.default, "APPLICATION PHASE: \(newScenePhase)")
         }
     }
 
-    private func runMigration() {
-        migrationManager
-            .publisher
-            .sink { [self] _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    isMigrating = false
+    @ViewBuilder private var rootView: some View {
+        if !loadingIsEnded {
+            Screen.migration.view(resolver: resolver)
+                .onPreferenceChange(PreferenceKeyAppLoading.self) {
+                    loadingIsEnded = $0
                 }
-            }
-            .store(in: &lifetime)
+        } else {
+            Main.RootView(resolver: resolver)
+        }
     }
 }

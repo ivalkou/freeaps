@@ -1,59 +1,59 @@
 import Combine
 import Foundation
 import SwiftUI
+import Swinject
 
-class MigrationManager {
-    private var needWorkAfterUpdateIntoVersion: [String] = []
-    private var appInformation: TargetInformation
-    var isNeedMigrate: Bool {
-        return true
-        guard !appInformation.isFirstExecute else {
-            return false
-        }
-        guard let lastMigrationVersion = appInformation.lastMigrationVersion else {
-            // if version < 0.2.6
-            // in 0.2.6 was added MigrationManager
-            return true
-        }
-        if !needWorkAfterUpdateIntoVersion.filter({ $0 > lastMigrationVersion }).isEmpty {
-            // need execute handlers beetwen CurrentVersion...lastExecutedVersion, exclude lastExecutedVersion
-            return true
-        }
-        return false
-    }
+protocol MigrationManager {
+    var appInfo: AppInfo { get }
+    // 'true' when app run first time
+    var isFirstExecute: Bool { get }
+    // last version of app/target, which did execute
+    var lastMigrationAppVersion: String? { get }
+    // update 'lastExecutedVersion' to 'currentVersion'
+    func setActualLastMigrationAppVersion()
 
-    var publisher: AnyPublisher<TargetInformation, Never> {
-        Publishers
-            .getMigrationPublisher(appInformation)
-            // example of migrating
-            // .migrate(migrateExample)
-            .actualLastMigrationVersion()
-            .eraseToAnyPublisher()
-    }
+    func checkMigrationNeeded(onVersion version: String) -> Bool
 
-    init(appInformation: TargetInformation = TargetInformation()) {
-        self.appInformation = appInformation
-        // need execute one or more migration's handler after update into version 0.2.6
-        // if need migrating on version 0.2.6, add
-        // needWorkAfterUpdateIntoVersion.append("0.2.6")
-    }
-
-    private func checkNeedToRun(_ version: String) -> Bool {
-        guard appInformation.currentVersion >= version,
-              !appInformation.isFirstExecute
-        else { return false }
-
-        guard let lastMigrationVersion = appInformation.lastMigrationVersion,
-              lastMigrationVersion == appInformation.currentVersion
-        else { return true }
-        return false
-    }
+    init(resolver: Resolver)
 }
 
-// Migrating Example
-extension MigrationManager {
-    func migrateExample(_: TargetInformation) {
-        guard checkNeedToRun("0.2.6") else { return }
-        print("Sample migration handler")
+class BaseMigrationManager: MigrationManager {
+    @Persisted(key: "AppInfo.lastMigrationAppVersion") private var _lastMigrationAppVersion: String = ""
+    var lastMigrationAppVersion: String? {
+        if _lastMigrationAppVersion == "" {
+            // nil means that
+            // 1) app execute first time after install on version >= 0.2.6
+            // or
+            // 2) previous execution was on version <= 0.2.6
+            return nil
+        }
+        return _lastMigrationAppVersion
+    }
+
+    var isFirstExecute: Bool {
+        // check first app execution by preferences.json file
+        // if file doesn't exist - the first execution
+        !Disk.exists(OpenAPS.FreeAPS.settings, in: .documents)
+    }
+
+    var appInfo: AppInfo
+
+    private var resolver: Resolver
+
+    required init(resolver: Resolver) {
+        self.resolver = resolver
+        appInfo = resolver.resolve(AppInfo.self)!
+    }
+
+    func checkMigrationNeeded(onVersion version: String) -> Bool {
+        guard appInfo.currentVersion >= version else { return false }
+        guard !isFirstExecute else { return false }
+        guard let last = lastMigrationAppVersion else { return true }
+        guard last < version else { return false }
+        return true
+    }
+
+    func setActualLastMigrationAppVersion() {
+        _lastMigrationAppVersion = appInfo.currentVersion
     }
 }
