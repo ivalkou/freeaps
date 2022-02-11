@@ -18,11 +18,16 @@ extension Migration {
                     .frame(width: 80, height: 80)
                     .rotationEffect(.degrees(state.animated ? 360 : 0))
                     .animation(.linear(duration: 0.7).repeatForever(autoreverses: false))
-                Text("Preparing data \n Please wait")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 10)
+                VStack(spacing: 0) {
+                    Text("Preparing data")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(.top, 10)
+                    Text("Please wait")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(.top, 10)
+                }
             }
             .onAppear {
                 configureView()
@@ -31,5 +36,11 @@ extension Migration {
             }
             .preference(key: PreferenceKeyAppLoading.self, value: state.loadingIsEnded)
         }
+    }
+}
+
+struct MyPreviewProvider_Previews: PreviewProvider {
+    static var previews: some View {
+        Migration.RootView(resolver: FreeAPSApp.resolver)
     }
 }
