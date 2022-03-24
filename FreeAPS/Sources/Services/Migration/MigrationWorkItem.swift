@@ -1,20 +1,17 @@
 import Foundation
 
-protocol MigrationWorkItem {}
+protocol MigrationWorkItem {
+    // If true then migration will run each time while app is loading
+    var repeatEachTime: Bool { get }
+    var uniqueIdentifier: String { get }
+    func migrationHandler(_: AppInfo)
+}
 
 class MigrationWorkExample: MigrationWorkItem {
-    static func run1(appInfo _: AppInfo) {
-        // add here any migration logic
-        print("did some migration work on 0.2.5")
-    }
-
-    static func run2(appInfo _: AppInfo) {
-        // add here any migration logic
-        print("did some migration work on 0.2.6")
-    }
-
-    static func run3(appInfo _: AppInfo) {
-        // add here any migration logic
-        print("did some migration work on 0.2.7")
+    private(set) var repeatEachTime: Bool = false
+    private(set) var uniqueIdentifier: String = "Migration.MigrationWorkExample"
+    func migrationHandler(_: AppInfo) {
+        debug(.businessLogic, "Migration MigrationWorkExample will start")
     }
 }
+

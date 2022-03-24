@@ -11,14 +11,9 @@ extension Migration {
 
         func runMigration() {
             debug(.businessLogic, "Migration did start on current version \(manager.appInfo.currentVersion)")
-            debug(.businessLogic, "Last migration did on version \(manager.lastMigrationAppVersion ?? "null")")
             Publishers
                 .getMigrationPublisher(fromMigrationManager: manager)
-//                 migration example
-//                .migrate(onVersion: "0.2.5", MigrationWorkExample.run1)
-//                .migrate(onVersion: "0.2.6", MigrationWorkExample.run2)
-//                .migrate(onVersion: "0.2.7", MigrationWorkExample.run3)
-                .updateLastAppMigrationVersionToCurrent()
+//                .migrate(startAtVersion: "0.2.6", MigrationWorkExample())
                 .sink { _ in
                     debug(.businessLogic, "Migration did finish")
                     // fake pause

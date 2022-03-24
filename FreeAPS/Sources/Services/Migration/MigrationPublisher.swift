@@ -42,31 +42,15 @@ extension Publishers {
             subscriber.receive(subscription: subscription)
         }
 
-        func tryAsyncMigrate(onVersion version: String, _ handler: @escaping (AppInfo) async throws -> Void) throws -> Self {
-            Task {
-                if manager.checkMigrationNeeded(onVersion: version) {
-                    try await handler(manager.appInfo)
-                }
-            }
-            return self
-        }
-
-        func migrate(onVersion version: String, _ handler: (AppInfo) -> Void) -> Self {
+        func migrate(startAtVersion version: String, _ workItem: MigrationWorkItem) -> Self {
             debug(.businessLogic, "Try to execute migration on version \(version)")
-            if manager.checkMigrationNeeded(onVersion: version) {
-                debug(.businessLogic, "Migration will start")
-                handler(manager.appInfo)
+            if manager.checkMigrationNeededRun(workItem, startAtVersion: version) {
+                debug(.businessLogic, "Start migration \(workItem.uniqueIdentifier)")
+                workItem.migrationHandler(manager.appInfo)
+                UserDefaults.standard.set(true, forKey: workItem.uniqueIdentifier)
             } else {
-                debug(.businessLogic, "Migration skipped")
+                debug(.businessLogic, "Skip migration \(workItem.uniqueIdentifier)")
             }
-            return self
-        }
-
-        // TODO: Add tryMigrate
-        // TODO: Add asyncMigrate
-
-        func updateLastAppMigrationVersionToCurrent() -> Self {
-            manager.setActualLastMigrationAppVersion()
             return self
         }
     }

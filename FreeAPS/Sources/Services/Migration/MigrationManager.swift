@@ -7,29 +7,13 @@ protocol MigrationManager {
     var appInfo: AppInfo { get }
     // 'true' when app run first time
     var isFirstExecute: Bool { get }
-    // last version of app/target, which did execute
-    var lastMigrationAppVersion: String? { get }
-    // update 'lastExecutedVersion' to 'currentVersion'
-    func setActualLastMigrationAppVersion()
 
-    func checkMigrationNeeded(onVersion version: String) -> Bool
+    func checkMigrationNeededRun(_: MigrationWorkItem, startAtVersion version: String) -> Bool
 
     init(resolver: Resolver)
 }
 
 class BaseMigrationManager: MigrationManager {
-    @Persisted(key: "AppInfo.lastMigrationAppVersion") private var _lastMigrationAppVersion: String = ""
-    var lastMigrationAppVersion: String? {
-        if _lastMigrationAppVersion == "" {
-            // nil means that
-            // 1) app execute first time after install on version >= 0.2.6
-            // or
-            // 2) previous execution was on version <= 0.2.6
-            return nil
-        }
-        return _lastMigrationAppVersion
-    }
-
     var isFirstExecute: Bool {
         // check first app execution by preferences.json file
         // if file doesn't exist - the first execution
@@ -45,15 +29,15 @@ class BaseMigrationManager: MigrationManager {
         appInfo = resolver.resolve(AppInfo.self)!
     }
 
-    func checkMigrationNeeded(onVersion version: String) -> Bool {
+    func checkMigrationNeededRun(_ migrationWorkItem: MigrationWorkItem, startAtVersion version: String) -> Bool {
+        // if current app version >= version of migration needed
         guard appInfo.currentVersion >= version else { return false }
+        // if migration need to run each app execution
+        if migrationWorkItem.repeatEachTime { return true }
+        // if it first run of app
         guard !isFirstExecute else { return false }
-        guard let last = lastMigrationAppVersion else { return true }
-        guard last < version else { return false }
+        // if migration did run in past
+        guard UserDefaults.standard.optionalBool(forKey: migrationWorkItem.uniqueIdentifier) == nil else { return false }
         return true
-    }
-
-    func setActualLastMigrationAppVersion() {
-        _lastMigrationAppVersion = appInfo.currentVersion
     }
 }
