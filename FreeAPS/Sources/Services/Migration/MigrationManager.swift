@@ -1,3 +1,7 @@
+//
+// Main Migration tool of App
+//
+
 import Combine
 import Foundation
 import SwiftUI
@@ -9,6 +13,7 @@ protocol MigrationManager {
     var isFirstExecute: Bool { get }
 
     func checkMigrationNeededRun(_: MigrationWorkItem, startAtVersion version: String) -> Bool
+    func migrate(startAtVersion version: String, _ workItem: MigrationWorkItem)
 
     init(resolver: Resolver)
 }
@@ -39,5 +44,16 @@ class BaseMigrationManager: MigrationManager {
         // if migration did run in past
         guard UserDefaults.standard.optionalBool(forKey: migrationWorkItem.uniqueIdentifier) == nil else { return false }
         return true
+    }
+
+    func migrate(startAtVersion version: String, _ workItem: MigrationWorkItem) {
+        debug(.businessLogic, "Try to execute migration on version \(version)")
+        if checkMigrationNeededRun(workItem, startAtVersion: version) {
+            debug(.businessLogic, "Start migration \(workItem.uniqueIdentifier)")
+            workItem.migrationHandler(appInfo)
+            UserDefaults.standard.set(true, forKey: workItem.uniqueIdentifier)
+        } else {
+            debug(.businessLogic, "Skip migration \(workItem.uniqueIdentifier)")
+        }
     }
 }

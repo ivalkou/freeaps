@@ -1,3 +1,8 @@
+//
+// This file store code for working Migration manager with Combine
+// This is only combine's wrapper for Migration manager
+//
+
 import Combine
 import Foundation
 import SwiftUI
@@ -43,14 +48,7 @@ extension Publishers {
         }
 
         func migrate(startAtVersion version: String, _ workItem: MigrationWorkItem) -> Self {
-            debug(.businessLogic, "Try to execute migration on version \(version)")
-            if manager.checkMigrationNeededRun(workItem, startAtVersion: version) {
-                debug(.businessLogic, "Start migration \(workItem.uniqueIdentifier)")
-                workItem.migrationHandler(manager.appInfo)
-                UserDefaults.standard.set(true, forKey: workItem.uniqueIdentifier)
-            } else {
-                debug(.businessLogic, "Skip migration \(workItem.uniqueIdentifier)")
-            }
+            manager.migrate(startAtVersion: version, workItem)
             return self
         }
     }
