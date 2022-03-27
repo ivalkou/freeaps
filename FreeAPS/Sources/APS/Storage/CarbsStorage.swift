@@ -65,7 +65,7 @@ final class BaseCarbsStorage: CarbsStorage, Injectable {
     func nightscoutTretmentsNotUploaded() -> [NigtscoutTreatment] {
         let uploaded = storage.retrieve(OpenAPS.Nightscout.uploadedPumphistory, as: [NigtscoutTreatment].self) ?? []
 
-        let eventsManual = recent().filter { $0.enteredBy == CarbsEntry.manual }
+        let eventsManual = recent().filter { $0.enteredBy == CarbsEntry.manual || $0.enteredBy == CarbsEntry.applehealth }
         let treatments = eventsManual.map {
             NigtscoutTreatment(
                 duration: nil,

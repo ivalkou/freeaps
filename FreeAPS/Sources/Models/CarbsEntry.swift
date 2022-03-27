@@ -7,6 +7,7 @@ struct CarbsEntry: JSON, Equatable, Hashable {
     let enteredBy: String?
 
     static let manual = "freeaps-x"
+    static let applehealth = "applehealth"
 
     static func == (lhs: CarbsEntry, rhs: CarbsEntry) -> Bool {
         lhs.createdAt == rhs.createdAt

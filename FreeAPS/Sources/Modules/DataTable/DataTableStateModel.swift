@@ -24,7 +24,13 @@ extension DataTable {
                 let units = self.settingsManager.settings.units
 
                 let carbs = self.provider.carbs().map {
-                    Treatment(units: units, type: .carbs, date: $0.createdAt, amount: $0.carbs)
+                    Treatment(
+                        id: UUID(uuidString: $0.id) ?? UUID(),
+                        units: units,
+                        type: .carbs,
+                        date: $0.createdAt,
+                        amount: $0.carbs
+                    )
                 }
 
                 let boluses = self.provider.pumpHistory()
@@ -88,8 +94,8 @@ extension DataTable {
             }
         }
 
-        func deleteCarbs(at date: Date) {
-            provider.deleteCarbs(at: date)
+        func deleteCarbs(_ treatment: Treatment) {
+            provider.deleteCarbs(treatment)
         }
 
         func deleteGlucose(at index: Int) {

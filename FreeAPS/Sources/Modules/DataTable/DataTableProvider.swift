@@ -21,8 +21,9 @@ extension DataTable {
             carbsStorage.recent()
         }
 
-        func deleteCarbs(at date: Date) {
-            nightscoutManager.deleteCarbs(at: date)
+        func deleteCarbs(_ treatment: Treatment) {
+            nightscoutManager.deleteCarbs(at: treatment.date)
+            healthkitManager.deleteCarbs(syncID: treatment.id.uuidString)
         }
 
         func glucose() -> [BloodGlucose] {
@@ -31,7 +32,7 @@ extension DataTable {
 
         func deleteGlucose(id: String) {
             glucoseStorage.removeGlucose(ids: [id])
-            healthkitManager.deleteGlucise(syncID: id)
+            healthkitManager.deleteGlucose(syncID: id)
         }
     }
 }
