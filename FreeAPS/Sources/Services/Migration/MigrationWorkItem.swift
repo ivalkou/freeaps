@@ -1,10 +1,11 @@
-//
-// This file contains WorkItems with migration tasks
-// Each WorkItem have to execute one migration task
-// Each WorkItem can be run in Migration.StateModel.runMigration()
-//  ...
-//  .migrate(startAtVersion: "0.2.6", MigrationWorkExample())
-//  ...
+/**
+ This file contains WorkItems with migration tasks
+ Each WorkItem have to execute one migration task
+ Each WorkItem can be run in Migration.StateModel.runMigration()
+ ...
+ .migrate(startAtVersion: "0.2.6", MigrationWorkExample())
+ ...
+ */
 
 import Foundation
 
