@@ -43,7 +43,7 @@ extension AddCarbs {
                         label: { Text("Fast Add") }
                             .disabled(state.carbs <= 0)
                         Text(
-                            "Carbs will add and FreeAPX X will determine and inject bolus without your participation"
+                            "Carbs will add and FreeAPX X will update forecasts without bolus"
                         )
                         .font(.caption)
                         .foregroundColor(Color.secondary)
