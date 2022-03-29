@@ -1,9 +1,11 @@
+import Combine
 import SwiftUI
 import Swinject
 
 @main struct FreeAPSApp: App {
     @Environment(\.scenePhase) var scenePhase
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @State var loadingIsEnded: Bool = false
 
     // Dependencies Assembler
     // contain all dependencies Assemblies
@@ -47,10 +49,24 @@ import Swinject
 
     var body: some Scene {
         WindowGroup {
-            Main.RootView(resolver: resolver)
+            ZStack {
+                rootView
+            }
+            .animation(.easeIn(duration: 0.75), value: self.loadingIsEnded)
         }
         .onChange(of: scenePhase) { newScenePhase in
             debug(.default, "APPLICATION PHASE: \(newScenePhase)")
+        }
+    }
+
+    @ViewBuilder private var rootView: some View {
+        if !loadingIsEnded {
+            Screen.migration.view(resolver: resolver)
+                .onPreferenceChange(PreferenceKeyAppLoading.self) {
+                    loadingIsEnded = $0
+                }
+        } else {
+            Main.RootView(resolver: resolver)
         }
     }
 }
