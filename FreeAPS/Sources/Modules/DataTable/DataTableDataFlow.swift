@@ -52,7 +52,7 @@ enum DataTable {
     }
 
     class Treatment: Identifiable, Hashable, Equatable {
-        let id = UUID()
+        var id = UUID()
         let units: GlucoseUnits
         let type: DataType
         let date: Date
@@ -65,6 +65,24 @@ enum DataTable {
             formatter.numberStyle = .decimal
             formatter.maximumFractionDigits = 2
             return formatter
+        }
+
+        init(
+            id: UUID,
+            units: GlucoseUnits,
+            type: DataType,
+            date: Date,
+            amount: Decimal? = nil,
+            secondAmount: Decimal? = nil,
+            duration: Decimal? = nil
+        ) {
+            self.id = id
+            self.units = units
+            self.type = type
+            self.date = date
+            self.amount = amount
+            self.secondAmount = secondAmount
+            self.duration = duration
         }
 
         init(
@@ -172,6 +190,6 @@ protocol DataTableProvider: Provider {
     func tempTargets() -> [TempTarget]
     func carbs() -> [CarbsEntry]
     func glucose() -> [BloodGlucose]
-    func deleteCarbs(at date: Date)
+    func deleteCarbs(_ treatment: DataTable.Treatment)
     func deleteGlucose(id: String)
 }

@@ -13,7 +13,7 @@ extension AppleHealthKit {
                     HStack {
                         Image(systemName: "pencil.circle.fill")
                         Text(
-                            "After you create glucose records in the Health app, please open FreeAPS X to help us guaranteed transfer changed data"
+                            "After you create records in the Health app, please open FreeAPS X to help us guaranteed transfer changed data"
                         )
                         .font(.caption)
                     }
@@ -21,8 +21,10 @@ extension AppleHealthKit {
                     if state.needShowInformationTextForSetPermissions {
                         HStack {
                             Image(systemName: "exclamationmark.circle.fill")
-                            Text("For write data to Apple Health you must give permissions in Settings > Health > Data Access")
-                                .font(.caption)
+                            Text(
+                                "For read/write data from/to Apple Health you must give permissions in Settings > Health > Data Access"
+                            )
+                            .font(.caption)
                         }
                         .foregroundColor(Color.secondary)
                     }

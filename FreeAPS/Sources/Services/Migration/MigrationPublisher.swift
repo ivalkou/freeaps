@@ -1,7 +1,7 @@
-//
-// This file store code for working Migration manager with Combine
-// This is only combine's wrapper for Migration manager
-//
+/**
+ This file store code for working Migration manager with Combine
+ This is only combine's wrapper for Migration manager
+ */
 
 import Combine
 import Foundation

@@ -297,7 +297,8 @@
 		E013D872273AC6FE0014109C /* GlucoseSimulatorSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E013D871273AC6FE0014109C /* GlucoseSimulatorSource.swift */; };
 		E06B911A275B5EEA003C04B6 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06B9119275B5EEA003C04B6 /* Array+Extension.swift */; };
 		E0CC2C5C275B9F0F00A7BC71 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0CC2C5B275B9DAE00A7BC71 /* HealthKit.framework */; };
-		E0D4F80527513ECF00BDF1FE /* HealthKitSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4F80427513ECF00BDF1FE /* HealthKitSample.swift */; };
+		E0D4F80527513ECF00BDF1FE /* HealthKitSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4F80427513ECF00BDF1FE /* HealthKitSamples.swift */; };
+		E0E9DB9727F051E700614A3F /* CarbsSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E9DB9627F051E700614A3F /* CarbsSource.swift */; };
 		E13B7DAB2A435F57066AF02E /* TargetsEditorStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F58DDD71F0E795464FA3F0 /* TargetsEditorStateModel.swift */; };
 		E25073BC86C11C3D6A42F5AC /* CalibrationsStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DFCE895C930F784EF11843 /* CalibrationsStateModel.swift */; };
 		E39E418C56A5A46B61D960EE /* ConfigEditorStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B4F8B4194BB7E260EF251 /* ConfigEditorStateModel.swift */; };
@@ -716,7 +717,8 @@
 		E013D871273AC6FE0014109C /* GlucoseSimulatorSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseSimulatorSource.swift; sourceTree = "<group>"; };
 		E06B9119275B5EEA003C04B6 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		E0CC2C5B275B9DAE00A7BC71 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		E0D4F80427513ECF00BDF1FE /* HealthKitSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSample.swift; sourceTree = "<group>"; };
+		E0D4F80427513ECF00BDF1FE /* HealthKitSamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitSamples.swift; sourceTree = "<group>"; };
+		E0E9DB9627F051E700614A3F /* CarbsSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbsSource.swift; sourceTree = "<group>"; };
 		E26904AACA8D9C15D229D675 /* SnoozeStateModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnoozeStateModel.swift; sourceTree = "<group>"; };
 		E2EBA7C03C26FCC67E16D798 /* LibreConfigProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LibreConfigProvider.swift; sourceTree = "<group>"; };
 		E625985B47742D498CB1681A /* NotificationsConfigProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NotificationsConfigProvider.swift; sourceTree = "<group>"; };
@@ -1115,6 +1117,7 @@
 				38A43597262E0E4900E80935 /* FetchAnnouncementsManager.swift */,
 				38DAB289260D349500F74C1A /* FetchGlucoseManager.swift */,
 				38192E06261BA9960094D973 /* FetchTreatmentsManager.swift */,
+				E0E9DB9527F051C300614A3F /* Carbs */,
 				3856933F270B57A00002C50D /* CGM */,
 				38A504F625DDA0E200C5B9E8 /* Extensions */,
 				388E5A5825B6F0070019842D /* OpenAPS */,
@@ -1291,7 +1294,7 @@
 				38A0364125ED069400FCBB52 /* TempBasal.swift */,
 				3871F39B25ED892B0013ECB5 /* TempTarget.swift */,
 				3811DE8E25C9D80400A708ED /* User.swift */,
-				E0D4F80427513ECF00BDF1FE /* HealthKitSample.swift */,
+				E0D4F80427513ECF00BDF1FE /* HealthKitSamples.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1763,6 +1766,14 @@
 				E00EEC0227368630002FF094 /* NetworkAssembly.swift */,
 			);
 			path = Assemblies;
+			sourceTree = "<group>";
+		};
+		E0E9DB9527F051C300614A3F /* Carbs */ = {
+			isa = PBXGroup;
+			children = (
+				E0E9DB9627F051E700614A3F /* CarbsSource.swift */,
+			);
+			path = Carbs;
 			sourceTree = "<group>";
 		};
 		E42231DBF0DBE2B4B92D1B15 /* CREditor */ = {
@@ -2323,7 +2334,7 @@
 				D2165E9D78EFF692C1DED1C6 /* AddTempTargetDataFlow.swift in Sources */,
 				38E4451E274DB04600EC9A94 /* AppDelegate.swift in Sources */,
 				5BFA1C2208114643B77F8CEB /* AddTempTargetProvider.swift in Sources */,
-				E0D4F80527513ECF00BDF1FE /* HealthKitSample.swift in Sources */,
+				E0D4F80527513ECF00BDF1FE /* HealthKitSamples.swift in Sources */,
 				919DBD08F13BAFB180DF6F47 /* AddTempTargetStateModel.swift in Sources */,
 				8BC2F5A29AD1ED08AC0EE013 /* AddTempTargetRootView.swift in Sources */,
 				38A00B1F25FC00F7006BC0B0 /* Autotune.swift in Sources */,
@@ -2364,6 +2375,7 @@
 				B7C465E9472624D8A2BE2A6A /* CalibrationsDataFlow.swift in Sources */,
 				320D030F724170A637F06D50 /* CalibrationsProvider.swift in Sources */,
 				E25073BC86C11C3D6A42F5AC /* CalibrationsStateModel.swift in Sources */,
+				E0E9DB9727F051E700614A3F /* CarbsSource.swift in Sources */,
 				BA90041DC8991147E5C8C3AA /* CalibrationsRootView.swift in Sources */,
 				E3A08AAE59538BC8A8ABE477 /* NotificationsConfigDataFlow.swift in Sources */,
 				0F7A65FBD2CD8D6477ED4539 /* NotificationsConfigProvider.swift in Sources */,

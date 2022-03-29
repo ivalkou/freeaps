@@ -25,7 +25,8 @@ extension AppleHealthKit {
 
                 self.healthKitManager.requestPermission { ok, error in
                     DispatchQueue.main.async {
-                        self.needShowInformationTextForSetPermissions = !self.healthKitManager.checkAvailabilitySaveBG()
+                        self.needShowInformationTextForSetPermissions = !self.healthKitManager.checkAvailabilitySaveBG() || !self
+                            .healthKitManager.checkAvailabilitySaveCarbs()
                     }
 
                     guard ok, error == nil else {
