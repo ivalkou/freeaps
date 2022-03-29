@@ -35,9 +35,31 @@ extension AddCarbs {
                 }
 
                 Section {
-                    Button { state.add() }
+                    Button { state.fastAdd() }
                     label: { Text("Add") }
                         .disabled(state.carbs <= 0)
+                    VStack(alignment: .leading, spacing: 5) {
+                        Button { state.addWithoutbolus() }
+                        label: { Text("Fast Add") }
+                            .disabled(state.carbs <= 0)
+                        Text(
+                            "Carbs will add and FreeAPX X will determine and inject bolus without your participation"
+                        )
+                        .font(.caption)
+                        .foregroundColor(Color.secondary)
+                    }
+                    .padding(.top, 5)
+                    VStack(alignment: .leading, spacing: 5) {
+                        Button { state.addWithoutbolus() }
+                        label: { Text("Simple Add") }
+                            .disabled(state.carbs <= 0)
+                        Text(
+                            "Carbs will add without bolus"
+                        )
+                        .font(.caption)
+                        .foregroundColor(Color.secondary)
+                    }
+                    .padding(.top, 5)
                 }
             }
             .onAppear(perform: configureView)
