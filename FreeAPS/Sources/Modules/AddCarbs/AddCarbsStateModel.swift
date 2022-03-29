@@ -29,5 +29,32 @@ extension AddCarbs {
                 showModal(for: .bolus(waitForSuggestion: true))
             }
         }
+
+        func fastAdd() {
+            guard carbs > 0 else {
+                showModal(for: nil)
+                return
+            }
+
+            carbsStorage.storeCarbs([
+                CarbsEntry(createdAt: date, carbs: carbs, enteredBy: CarbsEntry.manual)
+            ])
+
+            apsManager.determineBasalSync()
+            showModal(for: nil)
+        }
+
+        func addWithoutbolus() {
+            guard carbs > 0 else {
+                showModal(for: nil)
+                return
+            }
+
+            carbsStorage.storeCarbs([
+                CarbsEntry(createdAt: date, carbs: carbs, enteredBy: CarbsEntry.manual)
+            ])
+
+            showModal(for: nil)
+        }
     }
 }

@@ -70,6 +70,18 @@
 /* Add carbs header and button in Watch app. You can skip the last " " space. It's just for differentiation */
 "Add Carbs " = "Ввод углеводов";
 
+/* Fast Add carbs button */
+"Fast Add" = "Добавить быстро";
+
+/* Fast Add carbs button description */
+"Carbs will add and FreeAPX X will determine and inject bolus without your participation" = "Углеводы будут добавлены, а FreeAPS X автоматически определит и введет необходимую дозу инсулина";
+
+/* Simple Add carbs button */
+"Simple Add" = "Просто добавить";
+
+/* Simple Add carbs button description*/
+"Carbs will add without bolus" = "Углеводы будут добавлены без ввода болюса";
+
 /*  */
 "Amount Carbs" = "Кол-во углеводов";
 
