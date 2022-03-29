@@ -39,7 +39,7 @@ extension AddCarbs {
                     label: { Text("Add") }
                         .disabled(state.carbs <= 0)
                     VStack(alignment: .leading, spacing: 5) {
-                        Button { state.fastAdd()() }
+                        Button { state.fastAdd() }
                         label: { Text("Fast Add") }
                             .disabled(state.carbs <= 0)
                         Text(
