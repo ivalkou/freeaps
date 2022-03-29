@@ -74,7 +74,7 @@
 "Fast Add" = "Добавить быстро";
 
 /* Fast Add carbs button description */
-"Carbs will add and FreeAPX X will determine and inject bolus without your participation" = "Углеводы будут добавлены, а FreeAPS X автоматически определит и введет необходимую дозу инсулина";
+"Carbs will add and FreeAPX X will update forecasts without bolus" = "Углеводы будут добавлены без ввода болюса, FreeAPS X автоматически обновит прогнозы";
 
 /* Simple Add carbs button */
 "Simple Add" = "Просто добавить";
