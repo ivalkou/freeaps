@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@available(iOSApplicationExtension 13.0, *)
 public struct GuidanceColors {
     public var acceptable: Color
     public var warning: Color
