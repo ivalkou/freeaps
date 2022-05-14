@@ -441,7 +441,9 @@ final class BaseAPSManager: APSManager, Injectable {
                 return
             }
             let roundedAmount = pump.roundToSupportedBolusVolume(units: Double(amount))
-            pump.enactBolus(units: roundedAmount, automatic: false) { result in
+            pump.enactBolus(units: roundedAmount, at: announcement.createdAt, automatic: false) { _ in
+                // No longer used...
+            } completion: { result in
                 switch result {
                 case .success:
                     debug(.apsManager, "Announcement Bolus succeeded")
@@ -636,7 +638,9 @@ private extension PumpManager {
 
     func enactBolus(units: Double, automatic: Bool) -> AnyPublisher<DoseEntry, Error> {
         Future { promise in
-            self.enactBolus(units: units, automatic: automatic) { result in
+            self.enactBolus(units: units, at: Date(), automatic: automatic) { _ in
+                // No longer used...
+            } completion: { result in
                 switch result {
                 case let .success(dose):
                     debug(.apsManager, "Bolus succeded: \(units)")
@@ -723,7 +727,7 @@ extension BaseAPSManager: DoseProgressObserver {
 extension PumpManagerStatus {
     var pumpStatus: PumpStatus {
         let bolusing = bolusState != .none
-        let suspended = basalDeliveryState.isSuspended ?? true
+        let suspended = basalDeliveryState.isSuspended
         let type = suspended ? StatusType.suspended : (bolusing ? .bolusing : .normal)
         return PumpStatus(status: type, bolusing: bolusing, suspended: suspended, timestamp: Date())
     }

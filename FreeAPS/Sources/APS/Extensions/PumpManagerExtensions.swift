@@ -12,19 +12,11 @@ extension PumpManager {
 
 extension PumpManagerUI {
     static func setupViewController() -> PumpManagerSetupViewController & UIViewController & CompletionNotifying {
-        setupViewController(
-            insulinTintColor: .accentColor,
-            guidanceColors: GuidanceColors(acceptable: .green, warning: .orange, critical: .red),
-            allowedInsulinTypes: [.apidra, .humalog, .novolog, .fiasp, .lyumjev]
-        )
+        setupViewController()
     }
 
     func settingsViewController() -> UIViewController & CompletionNotifying {
-        settingsViewController(
-            insulinTintColor: .accentColor,
-            guidanceColors: GuidanceColors(acceptable: .green, warning: .orange, critical: .red),
-            allowedInsulinTypes: [.apidra, .humalog, .novolog, .fiasp, .lyumjev]
-        )
+        settingsViewController()
     }
 }
 

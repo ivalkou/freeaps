@@ -16,6 +16,7 @@
 		29352D72283017DF00B5BFAE /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 29352D71283017DF00B5BFAE /* Models */; };
 		29352D7428301E3300B5BFAE /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29352D7328301E3300B5BFAE /* Alert.swift */; };
 		29CFF0272830258200424CC5 /* GuidanceColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CFF0262830258200424CC5 /* GuidanceColors.swift */; };
+		29CFF02928302F8C00424CC5 /* HKObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CFF02828302F8C00424CC5 /* HKObject.swift */; };
 		430059241CCDD08C00C861EA /* NSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D8FDF11C7290350073BE78 /* NSDateFormatter.swift */; };
 		430157FA1C7EC03B00B64B63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430157F91C7EC03B00B64B63 /* AppDelegate.swift */; };
 		430157FC1C7EC03B00B64B63 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430157FB1C7EC03B00B64B63 /* MasterViewController.swift */; };
@@ -753,6 +754,7 @@
 		29352D71283017DF00B5BFAE /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
 		29352D7328301E3300B5BFAE /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		29CFF0262830258200424CC5 /* GuidanceColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuidanceColors.swift; path = LoopKitUI/Models/GuidanceColors.swift; sourceTree = "<group>"; };
+		29CFF02828302F8C00424CC5 /* HKObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKObject.swift; sourceTree = "<group>"; };
 		2FD1A6AF1E4A76CC0042EF39 /* CarbEntryValidationNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarbEntryValidationNavigationDelegate.swift; sourceTree = "<group>"; };
 		430157F71C7EC03B00B64B63 /* LoopKit Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LoopKit Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		430157F91C7EC03B00B64B63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1484,6 +1486,7 @@
 				43AF1FB11C926CDD00EA2F3D /* HKQuantity.swift */,
 				432762731D60505F0083215A /* HKQuantitySample.swift */,
 				43CB51B0211EB16C00DB9B4A /* NSUserActivity+CarbKit.swift */,
+				29CFF02828302F8C00424CC5 /* HKObject.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2628,6 +2631,7 @@
 				43F5034B21051FCE009FA89A /* KeychainManager.swift in Sources */,
 				891A3FD5224B047200378B27 /* DailyQuantitySchedule+Override.swift in Sources */,
 				432CF87320D774220066B889 /* PumpManager.swift in Sources */,
+				29CFF02928302F8C00424CC5 /* HKObject.swift in Sources */,
 				43D8FE021C7290350073BE78 /* SampleValue.swift in Sources */,
 				43D9888B1C87E47800DA4467 /* GlucoseValue.swift in Sources */,
 				43D8FDF41C7290350073BE78 /* BasalRateSchedule.swift in Sources */,
