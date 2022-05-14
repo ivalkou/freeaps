@@ -141,9 +141,7 @@ final class BaseDeviceDataManager: DeviceDataManager, Injectable {
             pumpUpdatePromise = promise
             debug(.deviceManager, "Waiting for pump update and loop recommendation")
             processQueue.safeSync {
-                pumpManager.ensureCurrentPumpData {
-                    debug(.deviceManager, "Pump data updated.")
-                }
+                pumpManager.assertCurrentPumpData()
             }
         }
         .timeout(60, scheduler: processQueue)
@@ -360,9 +358,8 @@ extension BaseDeviceDataManager: PumpManagerDelegate {
         _: PumpManager,
         didReadReservoirValue units: Double,
         at date: Date,
-        completion: @escaping (Result<
-            (newValue: ReservoirValue, lastValue: ReservoirValue?, areStoredValuesContinuous: Bool),
-            Error
+        completion: @escaping (PumpManagerResult<
+            (newValue: ReservoirValue, lastValue: ReservoirValue?, areStoredValuesContinuous: Bool)
         >) -> Void
     ) {
         dispatchPrecondition(condition: .onQueue(processQueue))
@@ -442,15 +439,13 @@ extension BaseDeviceDataManager: CGMManagerDelegate {
         glucoseStorage.syncDate().addingTimeInterval(-10.minutes.timeInterval) // additional time to calculate directions
     }
 
-    func cgmManager(_: CGMManager, hasNew _: CGMReadingResult) {}
+    func cgmManager(_: CGMManager, didUpdateWith _: CGMResult) {}
 
     func cgmManagerWantsDeletion(_: CGMManager) {}
 
     func cgmManagerDidUpdateState(_: CGMManager) {}
 
     func credentialStoragePrefix(for _: CGMManager) -> String { "BaseDeviceDataManager" }
-
-    func cgmManager(_: CGMManager, didUpdate _: CGMManagerStatus) {}
 }
 
 // MARK: - AlertPresenter

@@ -386,7 +386,7 @@ final class BaseAPSManager: APSManager, Injectable {
         debug(.apsManager, "Enact temp basal \(rate) - \(duration)")
 
         let roundedAmout = pump.roundToSupportedBasalRate(unitsPerHour: rate)
-        pump.enactTempBasal(unitsPerHour: roundedAmout, for: duration) { result in
+        pump.enactTempBasal(unitsPerHour: roundedAmout, for: duration, automatic: true) { result in
             switch result {
             case .success:
                 debug(.apsManager, "Temp Basal succeeded")
@@ -494,7 +494,7 @@ final class BaseAPSManager: APSManager, Injectable {
                 return
             }
             let roundedRate = pump.roundToSupportedBasalRate(unitsPerHour: Double(rate))
-            pump.enactTempBasal(unitsPerHour: roundedRate, for: TimeInterval(duration) * 60) { result in
+            pump.enactTempBasal(unitsPerHour: roundedRate, for: TimeInterval(duration) * 60, automatic: true) { result in
                 switch result {
                 case .success:
                     debug(.apsManager, "Announcement TempBasal succeeded")
@@ -619,7 +619,7 @@ final class BaseAPSManager: APSManager, Injectable {
 private extension PumpManager {
     func enactTempBasal(unitsPerHour: Double, for duration: TimeInterval) -> AnyPublisher<DoseEntry, Error> {
         Future { promise in
-            self.enactTempBasal(unitsPerHour: unitsPerHour, for: duration) { result in
+            self.enactTempBasal(unitsPerHour: unitsPerHour, for: duration, automatic: true) { result in
                 switch result {
                 case let .success(dose):
                     debug(.apsManager, "Temp basal succeded: \(unitsPerHour) for: \(duration)")
@@ -722,8 +722,8 @@ extension BaseAPSManager: DoseProgressObserver {
 
 extension PumpManagerStatus {
     var pumpStatus: PumpStatus {
-        let bolusing = bolusState != .noBolus
-        let suspended = basalDeliveryState?.isSuspended ?? true
+        let bolusing = bolusState != .none
+        let suspended = basalDeliveryState.isSuspended ?? true
         let type = suspended ? StatusType.suspended : (bolusing ? .bolusing : .normal)
         return PumpStatus(status: type, bolusing: bolusing, suspended: suspended, timestamp: Date())
     }
