@@ -295,7 +295,7 @@ public final class Transmitter: BluetoothManagerDelegate {
             guard backfillMessage.bufferLength == backfillBuffer.count else {
                 log.error("GlucoseBackfillRxMessage expected buffer length %d, but was %d", backfillMessage.bufferLength, backfillBuffer.count)
                 self.delegateQueue.async {
-                    self.delegate?.transmitter(self, didError: TransmitterError.observationError("GlucoseBackfillRxMessage expected buffer length \(backfillMessage.bufferLength), but was \(backfillBuffer.count)"))
+                    self.delegate?.transmitter(self, didError: TransmitterError.observationError("GlucoseBackfillRxMessage expected buffer length \(backfillMessage.bufferLength), but was \(backfillBuffer.count): \(response.hexadecimalString) "))
                 }
                 break
             }
@@ -357,6 +357,8 @@ public final class Transmitter: BluetoothManagerDelegate {
 
             self.backfillBuffer = GlucoseBackfillFrameBuffer(identifier: response[1])
         }
+        
+        log.info("appending to backfillBuffer: %@", response.hexadecimalString)
 
         self.backfillBuffer?.append(response)
     }

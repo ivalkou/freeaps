@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import LoopKit
 
 
-extension Glucose: SensorDisplayable {
+extension Glucose {
     public var isStateValid: Bool {
         return state == .known(.ok) && status == .ok
     }
@@ -39,28 +38,28 @@ extension Glucose: SensorDisplayable {
         return messages.joined(separator: ". ")
     }
 
-    public var trendType: GlucoseTrend? {
-        guard trend < Int(Int8.max) else {
-            return nil
-        }
-
-        switch trend {
-        case let x where x <= -30:
-            return .downDownDown
-        case let x where x <= -20:
-            return .downDown
-        case let x where x <= -10:
-            return .down
-        case let x where x < 10:
-            return .flat
-        case let x where x < 20:
-            return .up
-        case let x where x < 30:
-            return .upUp
-        default:
-            return .upUpUp
-        }
-    }
+//    public var trendType: GlucoseTrend? {
+//        guard trend < Int(Int8.max) else {
+//            return nil
+//        }
+//
+//        switch trend {
+//        case let x where x <= -30:
+//            return .downDownDown
+//        case let x where x <= -20:
+//            return .downDown
+//        case let x where x <= -10:
+//            return .down
+//        case let x where x < 10:
+//            return .flat
+//        case let x where x < 20:
+//            return .up
+//        case let x where x < 30:
+//            return .upUp
+//        default:
+//            return .upUpUp
+//        }
+//    }
 
     public var isLocal: Bool {
         return true

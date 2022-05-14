@@ -5,19 +5,15 @@
 //  Copyright © 2017 LoopKit Authors. All rights reserved.
 //
 
-import HealthKit
-import LoopKit
-import ShareClient
 import os.log
+import HealthKit
 
-// Added for FAPSX
 public protocol TransmitterManagerDelegate: AnyObject {
     func transmitterManager(_ manager: TransmitterManager, didRead glucose: [Glucose])
     func transmitterManager(_ manager: TransmitterManager, didFailWith error: Error)
 }
 
-public struct TransmitterManagerState: RawRepresentable, Equatable {
-    public typealias RawValue = CGMManager.RawStateValue
+public struct TransmitterManagerState: Equatable {
 
     public static let version = 1
 
@@ -31,24 +27,6 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
         self.transmitterID = transmitterID
         self.shouldSyncToRemoteService = shouldSyncToRemoteService
     }
-
-    public init?(rawValue: RawValue) {
-        guard let transmitterID = rawValue["transmitterID"] as? String
-        else {
-            return nil
-        }
-        
-        let shouldSyncToRemoteService = rawValue["shouldSyncToRemoteService"] as? Bool ?? false
-
-        self.init(transmitterID: transmitterID, shouldSyncToRemoteService: shouldSyncToRemoteService)
-    }
-
-    public var rawValue: RawValue {
-        return [
-            "transmitterID": transmitterID,
-            "shouldSyncToRemoteService": shouldSyncToRemoteService,
-        ]
-    }
 }
 
 
@@ -56,67 +34,25 @@ public protocol TransmitterManagerObserver: AnyObject {
     func transmitterManagerDidUpdateLatestReading(_ manager: TransmitterManager)
 }
 
-
 public class TransmitterManager: TransmitterDelegate {
     public weak var delegate: TransmitterManagerDelegate?
-    
+
     private var state: TransmitterManagerState
 
     private let observers = WeakSynchronizedSet<TransmitterManagerObserver>()
 
-    
+
+    public var hasValidSensorSession: Bool {
+        // TODO: we should decode and persist transmitter session state
+        return !state.transmitterID.isEmpty
+    }
+
+
     public required init(state: TransmitterManagerState) {
         self.state = state
         self.transmitter = Transmitter(id: state.transmitterID, passiveModeEnabled: state.passiveModeEnabled)
-        self.shareManager = ShareClientManager()
 
         self.transmitter.delegate = self
-        
-        #if targetEnvironment(simulator)
-        setupSimulatedSampleGenerator()
-        #endif
-
-    }
-    
-    
-    #if targetEnvironment(simulator)
-    var simulatedSampleGeneratorTimer: DispatchSourceTimer?
-
-    private func setupSimulatedSampleGenerator() {
-
-        let timer = DispatchSource.makeTimerSource(queue: DispatchQueue(label: "com.loopkit.simulatedSampleGenerator"))
-        timer.schedule(deadline: .now() + .seconds(10), repeating: .minutes(5))
-        timer.setEventHandler(handler: { [weak self] in
-            self?.generateSimulatedSample()
-        })
-        self.simulatedSampleGeneratorTimer = timer
-        timer.resume()
-    }
-
-    private func generateSimulatedSample() {
-        let timestamp = Date()
-        let syncIdentifier =  "\(self.state.transmitterID) \(timestamp)"
-        let period = TimeInterval(hours: 3)
-        let glucoseValue = 100 + 20 * cos(Date().timeIntervalSinceReferenceDate.remainder(dividingBy: period) / period * Double.pi * 2)
-        let quantity = HKQuantity(unit: .milligramsPerDeciliter, doubleValue: glucoseValue)
-        let sample = NewGlucoseSample(date: timestamp, quantity: quantity, isDisplayOnly: false, syncIdentifier: syncIdentifier)
-        self.updateDelegate(with: .newData([sample]))
-    }
-    #endif
-
-    required convenience public init?(rawState: CGMManager.RawStateValue) {
-        guard let state = TransmitterManagerState(rawValue: rawState) else {
-            return nil
-        }
-
-        self.init(state: state)
-    }
-
-    public var rawState: CGMManager.RawStateValue {
-        return state.rawValue
-    }
-    
-    func logDeviceCommunication(_ message: String, type: DeviceLogEntryType = .send) {
     }
 
     public var shouldSyncToRemoteService: Bool {
@@ -129,23 +65,6 @@ public class TransmitterManager: TransmitterDelegate {
         }
     }
 
-    public var cgmManagerDelegate: CGMManagerDelegate? {
-        get {
-            return shareManager.cgmManagerDelegate
-        }
-        set {
-            shareManager.cgmManagerDelegate = newValue
-        }
-    }
-
-    public var delegateQueue: DispatchQueue! {
-        get {
-            return shareManager.delegateQueue
-        }
-        set {
-            shareManager.delegateQueue = newValue
-        }
-    }
 
     private(set) public var latestConnection: Date? {
         get {
@@ -157,32 +76,11 @@ public class TransmitterManager: TransmitterDelegate {
     }
     private let lockedLatestConnection: Locked<Date?> = Locked(nil)
 
-    public let shareManager: ShareClientManager
-
     public let transmitter: Transmitter
     let log = OSLog(category: "TransmitterManager")
 
     public var providesBLEHeartbeat: Bool {
         return dataIsFresh
-    }
-
-    public var sensorState: SensorDisplayable? {
-        let transmitterDate = latestReading?.readDate ?? .distantPast
-        let shareDate = shareManager.latestBackfill?.startDate ?? .distantPast
-
-        if transmitterDate >= shareDate {
-            return latestReading
-        } else {
-            return shareManager.sensorState
-        }
-    }
-
-    public var managedDataInterval: TimeInterval? {
-        if transmitter.passiveModeEnabled {
-            return .hours(3)
-        }
-
-        return shareManager.managedDataInterval
     }
 
     private(set) public var latestReading: Glucose? {
@@ -204,24 +102,18 @@ public class TransmitterManager: TransmitterDelegate {
         return true
     }
 
-    public func fetchNewDataIfNeeded(_ completion: @escaping (CGMResult) -> Void) {
-        // Ensure our transmitter connection is active
-        transmitter.resumeScanning()
-
-        // If our last glucose was less than 4.5 minutes ago, don't fetch.
-        guard !dataIsFresh else {
-            completion(.noData)
-            return
-        }
-
-        log.default("Fetching new glucose from Share because last reading is %{public}.1f minutes old", latestReading?.readDate.timeIntervalSinceNow.minutes ?? 0)
-
-        shareManager.fetchNewDataIfNeeded(completion)
-    }
-
-    public var device: HKDevice? {
-        return nil
-    }
+//    public func fetchNewDataIfNeeded(_ completion: @escaping (CGMReadingResult) -> Void) {
+//        // Ensure our transmitter connection is active
+//        transmitter.resumeScanning()
+//
+//        // If our last glucose was less than 4.5 minutes ago, don't fetch.
+//        guard !dataIsFresh else {
+//            completion(.noData)
+//            return
+//        }
+//
+//        log.default("Fetching new glucose from Share because last reading is %{public}.1f minutes old", latestReading?.readDate.timeIntervalSinceNow.minutes ?? 0)
+//    }
 
     public var debugDescription: String {
         return [
@@ -230,28 +122,27 @@ public class TransmitterManager: TransmitterDelegate {
             "latestConnection: \(String(describing: latestConnection))",
             "dataIsFresh: \(dataIsFresh)",
             "providesBLEHeartbeat: \(providesBLEHeartbeat)",
-            shareManager.debugDescription,
             "observers.count: \(observers.cleanupDeallocatedElements().count)",
             String(reflecting: transmitter),
         ].joined(separator: "\n")
     }
 
-    private func updateDelegate(with result: CGMResult) {
-        if let manager = self as? CGMManager {
-            shareManager.delegate.notify { (delegate) in
-                delegate?.cgmManager(manager, didUpdateWith: result)
-            }
-        }
-
-        notifyObserversOfLatestReading()
-    }
+//    private func updateDelegate(with result: CGMReadingResult) {
+//        if let manager = self as? CGMManager {
+//            shareManager.delegate.notify { (delegate) in
+//                delegate?.cgmManager(manager, hasNew: result)
+//            }
+//        }
+//
+//        notifyObserversOfLatestReading()
+//    }
     
     private func notifyDelegateOfStateChange() {
-        if let manager = self as? CGMManager {
-            shareManager.delegate.notify { (delegate) in
-                delegate?.cgmManagerDidUpdateState(manager)
-            }
-        }
+//        if let manager = self as? CGMManager {
+//            shareManager.delegate.notify { (delegate) in
+//                delegate?.cgmManagerDidUpdateState(manager)
+//            }
+//        }
     }
 
 
@@ -260,78 +151,79 @@ public class TransmitterManager: TransmitterDelegate {
     public func transmitterDidConnect(_ transmitter: Transmitter) {
         log.default("%{public}@", #function)
         latestConnection = Date()
-        logDeviceCommunication("Connected", type: .connection)
+//        logDeviceCommunication("Connected", type: .connection)
     }
 
     public func transmitter(_ transmitter: Transmitter, didError error: Error) {
         log.error("%{public}@: %{public}@", #function, String(describing: error))
-        updateDelegate(with: .error(error))
-        logDeviceCommunication("Error: \(error)", type: .error)
+//        updateDelegate(with: .error(error))
+//        logDeviceCommunication("Error: \(error)", type: .error)
     }
 
     public func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
         guard glucose != latestReading else {
-            updateDelegate(with: .noData)
+            delegate?.transmitterManager(self, didRead: [])
+//            updateDelegate(with: .noData)
             return
         }
 
         latestReading = glucose
 
-        logDeviceCommunication("New reading: \(glucose.readDate)", type: .receive)
+//        logDeviceCommunication("New reading: \(glucose.readDate)", type: .receive)
 
         guard glucose.state.hasReliableGlucose else {
             log.default("%{public}@: Unreliable glucose: %{public}@", #function, String(describing: glucose.state))
-            updateDelegate(with: .error(CalibrationError.unreliableState(glucose.state)))
+            delegate?.transmitterManager(self, didFailWith: CalibrationError.unreliableState(glucose.state))
+//            updateDelegate(with: .error(CalibrationError.unreliableState(glucose.state)))
             return
         }
         
-        guard let quantity = glucose.glucose else {
-            updateDelegate(with: .noData)
+        guard glucose.glucose != nil else {
+            delegate?.transmitterManager(self, didRead: [])
+//            updateDelegate(with: .noData)
             return
         }
 
         log.default("%{public}@: New glucose", #function)
 
-        updateDelegate(with: .newData([
-            NewGlucoseSample(
-                date: glucose.readDate,
-                quantity: quantity,
-                isDisplayOnly: glucose.isDisplayOnly,
-                syncIdentifier: glucose.syncIdentifier,
-                device: device
-            )
-        ]))
+        delegate?.transmitterManager(self, didRead: [glucose])
+
+//        updateDelegate(with: .newData([
+//            NewGlucoseSample(
+//                date: glucose.readDate,
+//                quantity: quantity,
+//                trend: glucose.trendType,
+//                isDisplayOnly: glucose.isDisplayOnly,
+//                wasUserEntered: glucose.isDisplayOnly,
+//                syncIdentifier: glucose.syncIdentifier,
+//                device: device
+//            )
+//        ]))
     }
 
     public func transmitter(_ transmitter: Transmitter, didReadBackfill glucose: [Glucose]) {
-        let samples = glucose.compactMap { (glucose) -> NewGlucoseSample? in
-            guard glucose != latestReading, glucose.state.hasReliableGlucose, let quantity = glucose.glucose else {
-                return nil
+        let samples = glucose.filter { glucose -> Bool in
+            guard glucose != latestReading, glucose.state.hasReliableGlucose, glucose.glucose != nil else {
+                return false
             }
-
-            return NewGlucoseSample(
-                date: glucose.readDate,
-                quantity: quantity,
-                isDisplayOnly: glucose.isDisplayOnly,
-                syncIdentifier: glucose.syncIdentifier,
-                device: device
-            )
+            return true
         }
+        delegate?.transmitterManager(self, didRead: samples)
+//
+//        guard samples.count > 0 else {
+//            return
+//        }
 
-        guard samples.count > 0 else {
-            return
-        }
+//        updateDelegate(with: .newData(samples))
 
-        updateDelegate(with: .newData(samples))
-
-        logDeviceCommunication("New backfill: \(String(describing: samples.first?.date))", type: .receive)
+//        logDeviceCommunication("New backfill: \(String(describing: samples.first?.date))", type: .receive)
     }
 
     public func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {
         log.error("Unknown sensor data: %{public}@", data.hexadecimalString)
         // This can be used for protocol discovery, but isn't necessary for normal operation
 
-        logDeviceCommunication("Unknown sensor data: \(data.hexadecimalString)", type: .error)
+//        logDeviceCommunication("Unknown sensor data: \(data.hexadecimalString)", type: .error)
     }
 }
 
@@ -354,16 +246,18 @@ extension TransmitterManager {
 }
 
 
-public class G5CGMManager: TransmitterManager, CGMManager {
-    public static let managerIdentifier: String = "DexG5Transmitter"
+public class G5CGMManager: TransmitterManager {
+    public let managerIdentifier: String = "DexG5Transmitter"
 
-    public static let localizedTitle = LocalizedString("Dexcom G5", comment: "CGM display title")
+    public let localizedTitle = LocalizedString("Dexcom G5", comment: "CGM display title")
+
+    public let isOnboarded = true   // No distinction between created and onboarded
 
     public var appURL: URL? {
         return URL(string: "dexcomcgm://")
     }
 
-    public override var device: HKDevice? {
+    public var device: HKDevice? {
         return HKDevice(
             name: "CGMBLEKit",
             manufacturer: "Dexcom",
@@ -376,23 +270,25 @@ public class G5CGMManager: TransmitterManager, CGMManager {
         )
     }
     
-    override func logDeviceCommunication(_ message: String, type: DeviceLogEntryType = .send) {
-        self.cgmManagerDelegate?.deviceManager(self, logEventForDeviceIdentifier: transmitter.ID, type: type, message: message, completion: nil)
-    }
-
+//    func logDeviceCommunication(_ message: String, type: DeviceLogEntryType = .send) {
+//        self.cgmManagerDelegate?.deviceManager(self, logEventForDeviceIdentifier: transmitter.ID, type: type, message: message, completion: nil)
+//    }
+    
 }
 
 
-public class G6CGMManager: TransmitterManager, CGMManager {
-    public static let managerIdentifier: String = "DexG6Transmitter"
+public class G6CGMManager: TransmitterManager {
+    public let managerIdentifier: String = "DexG6Transmitter"
 
-    public static let localizedTitle = LocalizedString("Dexcom G6", comment: "CGM display title")
+    public let localizedTitle = LocalizedString("Dexcom G6", comment: "CGM display title")
+
+    public let isOnboarded = true   // No distinction between created and onboarded
 
     public var appURL: URL? {
-        return URL(string: "dexcomg6://")
+        return nil
     }
 
-    public override var device: HKDevice? {
+    public var device: HKDevice? {
         return HKDevice(
             name: "CGMBLEKit",
             manufacturer: "Dexcom",
@@ -405,9 +301,9 @@ public class G6CGMManager: TransmitterManager, CGMManager {
         )
     }
     
-    override func logDeviceCommunication(_ message: String, type: DeviceLogEntryType = .send) {
-        self.cgmManagerDelegate?.deviceManager(self, logEventForDeviceIdentifier: transmitter.ID, type: type, message: message, completion: nil)
-    }
+//    func logDeviceCommunication(_ message: String, type: DeviceLogEntryType = .send) {
+//        self.cgmManagerDelegate?.deviceManager(self, logEventForDeviceIdentifier: transmitter.ID, type: type, message: message, completion: nil)
+//    }
 }
 
 
@@ -450,3 +346,4 @@ extension CalibrationState {
         }
     }
 }
+

@@ -1,5 +1,0 @@
-files:
-  - source: /ShareClientUI/Base.lproj/Localizable.strings
-    translation: /ShareClientUI/%osx_locale%.lproj/Localizable.strings
-  - source: /ShareClient/Base.lproj/Localizable.strings
-    translation: /ShareClient/%osx_locale%.lproj/Localizable.strings

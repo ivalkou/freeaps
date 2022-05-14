@@ -26,17 +26,21 @@ extension BasalProfileEditor {
                 RepeatingScheduleValue(startTime: TimeInterval($0.minutes * 60), value: Double($0.rate))
             }
 
-            return Future { promise in
-                pump.syncBasalRateSchedule(items: syncValues) { result in
-                    switch result {
-                    case .success:
-                        self.storage.save(profile, as: OpenAPS.Settings.basalProfile)
-                        promise(.success(()))
-                    case let .failure(error):
-                        promise(.failure(error))
-                    }
-                }
-            }.eraseToAnyPublisher()
+            return Future { promise in promise(.success(())) }.eraseToAnyPublisher()
+
+            /*
+             return Future { promise in
+                 pump.syncBasalRateSchedule(items: syncValues) { result in
+                     switch result {
+                     case .success:
+                         self.storage.save(profile, as: OpenAPS.Settings.basalProfile)
+                         promise(.success(()))
+                     case let .failure(error):
+                         promise(.failure(error))
+                     }
+                 }
+             }.eraseToAnyPublisher()
+              */
         }
     }
 }
