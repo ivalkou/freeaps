@@ -13,6 +13,7 @@
 		1F5DAB212118C95700048054 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5DAB1C2118C95700048054 /* LocalizedString.swift */; };
 		1F5DAB2D2118CE9300048054 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F5DAB2B2118CE9300048054 /* Localizable.strings */; };
 		1FE58796211D12CE004F24ED /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D68A9E31FE0A3D300522C49 /* Localizable.strings */; };
+		29352D72283017DF00B5BFAE /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 29352D71283017DF00B5BFAE /* Models */; };
 		430059241CCDD08C00C861EA /* NSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D8FDF11C7290350073BE78 /* NSDateFormatter.swift */; };
 		430157FA1C7EC03B00B64B63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430157F91C7EC03B00B64B63 /* AppDelegate.swift */; };
 		430157FC1C7EC03B00B64B63 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430157FB1C7EC03B00B64B63 /* MasterViewController.swift */; };
@@ -747,6 +748,7 @@
 		1F5DAB7F2118F3FC00048054 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1FE58790211CFBB7004F24ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1FE58794211D0967004F24ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		29352D71283017DF00B5BFAE /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
 		2FD1A6AF1E4A76CC0042EF39 /* CarbEntryValidationNavigationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarbEntryValidationNavigationDelegate.swift; sourceTree = "<group>"; };
 		430157F71C7EC03B00B64B63 /* LoopKit Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LoopKit Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		430157F91C7EC03B00B64B63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1493,6 +1495,7 @@
 		43BA7155201E484D0058961E /* LoopKitUI */ = {
 			isa = PBXGroup;
 			children = (
+				29352D71283017DF00B5BFAE /* Models */,
 				43177D091D3732C70006E908 /* Assets.xcassets */,
 				43BA7160201E48910058961E /* CarbKit */,
 				43BA719920203EF30058961E /* CarbKit.storyboard */,
@@ -2308,6 +2311,7 @@
 				895FE07F22011F0C00FCF18A /* DoubleRangeTableViewCell.xib in Resources */,
 				1FE58796211D12CE004F24ED /* Localizable.strings in Resources */,
 				892A5DB72231E1A0008961AB /* ReservoirVolumeHUDView.xib in Resources */,
+				29352D72283017DF00B5BFAE /* Models in Resources */,
 				898E6E68224179310019E459 /* BatteryLevelHUDView.xib in Resources */,
 				895FE06F22011E9A00FCF18A /* OverrideSelectionViewController.storyboard in Resources */,
 				43BA7193202039A30058961E /* TextFieldTableViewCell.xib in Resources */,

@@ -10,6 +10,11 @@ import LoopKit
 import ShareClient
 import os.log
 
+// Added for FAPSX
+public protocol TransmitterManagerDelegate: AnyObject {
+    func transmitterManager(_ manager: TransmitterManager, didRead glucose: [Glucose])
+    func transmitterManager(_ manager: TransmitterManager, didFailWith error: Error)
+}
 
 public struct TransmitterManagerState: RawRepresentable, Equatable {
     public typealias RawValue = CGMManager.RawStateValue
@@ -53,6 +58,8 @@ public protocol TransmitterManagerObserver: AnyObject {
 
 
 public class TransmitterManager: TransmitterDelegate {
+    public weak var delegate: TransmitterManagerDelegate?
+    
     private var state: TransmitterManagerState
 
     private let observers = WeakSynchronizedSet<TransmitterManagerObserver>()
