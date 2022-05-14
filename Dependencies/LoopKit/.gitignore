@@ -65,5 +65,3 @@ fastlane/screenshots
 RemoteSettings.plist
 
 .DS_Store
-
-Carthage/

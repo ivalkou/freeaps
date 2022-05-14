@@ -12,8 +12,6 @@ public enum MinimedPumpManagerError: Error {
     case bolusInProgress
     case noDate  // TODO: This is less of an error and more of a precondition/assertion state
     case tuneFailed(LocalizedError)
-    case commsError(LocalizedError)
-    case storageFailure
 }
 
 
@@ -21,26 +19,26 @@ extension MinimedPumpManagerError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .noRileyLink:
-            return LocalizedString("No RileyLink Connected", comment: "Error description when no rileylink connected")
+            return nil
         case .bolusInProgress:
-            return LocalizedString("Bolus in Progress", comment: "Error description when failure due to bolus in progress")
+            return nil
         case .noDate:
             return nil
         case .tuneFailed(let error):
-            return [LocalizedString("RileyLink radio tune failed", comment: "Error description for tune failure"), error.errorDescription].compactMap({ $0 }).joined(separator: ": ")
-        case .commsError(let error):
-            return error.errorDescription
-        case .storageFailure:
-            return LocalizedString("Unable to store pump data", comment: "Error description when storage fails")
+            return [LocalizedString("RileyLink radio tune failed", comment: "Error description"), error.errorDescription].compactMap({ $0 }).joined(separator: ": ")
         }
     }
 
     public var failureReason: String? {
         switch self {
+        case .noRileyLink:
+            return nil
+        case .bolusInProgress:
+            return nil
+        case .noDate:
+            return nil
         case .tuneFailed(let error):
             return error.failureReason
-        default:
-            return nil
         }
     }
 
@@ -48,10 +46,12 @@ extension MinimedPumpManagerError: LocalizedError {
         switch self {
         case .noRileyLink:
             return LocalizedString("Make sure your RileyLink is nearby and powered on", comment: "Recovery suggestion")
+        case .bolusInProgress:
+            return nil
+        case .noDate:
+            return nil
         case .tuneFailed(let error):
             return error.recoverySuggestion
-        default:
-            return nil
         }
     }
 }

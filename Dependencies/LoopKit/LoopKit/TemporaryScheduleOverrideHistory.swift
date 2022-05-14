@@ -8,57 +8,32 @@
 
 import Foundation
 
-public enum End: Equatable, Hashable, Codable {
-    case natural
-    case early(Date)
-    case deleted // Ended before started
-    
-    private enum EndType: String, Decodable {
-        case natural, early, deleted
-    }
-    
-    private enum CodingKeys: String, CodingKey {
-        case type
-        case date
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let endType = try container.decode(EndType.self, forKey: .type)
-        
-        switch endType {
-        case .natural:
-            self = .natural
-        case .early:
-            let date = try container.decode(Date.self, forKey: .date)
-            self = .early(date)
-        case .deleted:
-            self = .deleted
-        }
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        switch self {
-        case .natural:
-            try container.encode(EndType.natural.rawValue, forKey: .type)
-        case .early(let date):
-            try container.encode(EndType.early.rawValue, forKey: .type)
-            try container.encode(date, forKey: .date)
-        case .deleted:
-            try container.encode(EndType.deleted.rawValue, forKey: .type)
-        }
-    }
-}
 
 private struct OverrideEvent: Equatable {
+    enum End: Equatable {
+        case natural
+        case early(Date)
+        case deleted // Ended before started
+    }
 
     var override: TemporaryScheduleOverride
+    var end: End = .natural
     var modificationCounter: Int
 
     init(override: TemporaryScheduleOverride, modificationCounter: Int) {
         self.override = override
         self.modificationCounter = modificationCounter
+    }
+
+    var actualEndDate: Date {
+        switch end {
+        case .natural:
+            return override.endDate
+        case .early(let endDate):
+            return endDate
+        case .deleted:
+            return override.endDate
+        }
     }
 }
 
@@ -93,8 +68,6 @@ public final class TemporaryScheduleOverrideHistory {
     }
     
     private var modificationCounter: Int
-    
-    public var relevantTimeWindow: TimeInterval = TimeInterval.hours(10)
 
     public weak var delegate: TemporaryScheduleOverrideHistoryDelegate?
 
@@ -115,13 +88,13 @@ public final class TemporaryScheduleOverrideHistory {
     }
     
     private var lastUndeletedEvent: OverrideEvent? {
-        return recentEvents.reversed().first { $0.override.actualEnd != .deleted }
+        return recentEvents.reversed().first { $0.end != .deleted }
     }
     
     private func deleteEventsStartingOnOrAfter(_ date: Date) {
         recentEvents.mutateEach { (event) in
             if event.override.startDate >= date {
-                event.override.actualEnd = .deleted
+                event.end = .deleted
                 event.modificationCounter = modificationCounter
             }
         }
@@ -156,12 +129,12 @@ public final class TemporaryScheduleOverrideHistory {
         while index != recentEvents.startIndex {
             recentEvents.formIndex(before: &index)
             
-            if recentEvents[index].override.actualEnd != .deleted {
-                if recentEvents[index].override.actualEndDate > date {
+            if recentEvents[index].end != .deleted {
+                if recentEvents[index].actualEndDate > date {
                     if recentEvents[index].override.startDate > date {
-                        recentEvents[index].override.actualEnd = .deleted
+                        recentEvents[index].end = .deleted
                     } else {
-                        recentEvents[index].override.actualEnd = .early(date)
+                        recentEvents[index].end = .early(date)
                     }
                     recentEvents[index].modificationCounter = modificationCounter
                 }
@@ -190,16 +163,12 @@ public final class TemporaryScheduleOverrideHistory {
             base.applyingCarbRatioMultiplier(from: override, relativeTo: referenceDate)
         }
     }
-    
-    public func getEvents(relativeTo referenceDate: Date = Date()) -> [TemporaryScheduleOverride] {
-        filterRecentEvents(relativeTo: referenceDate)
-        return recentEvents.map { $0.override }
-    }
 
     private func relevantPeriod(relativeTo referenceDate: Date) -> DateInterval {
+        let window = CarbStore.defaultMaximumAbsorptionTimeInterval
         return DateInterval(
-            start: referenceDate.addingTimeInterval(-relevantTimeWindow),
-            end: referenceDate.addingTimeInterval(relevantTimeWindow)
+            start: referenceDate.addingTimeInterval(-window),
+            end: referenceDate.addingTimeInterval(window)
         )
     }
 
@@ -207,7 +176,7 @@ public final class TemporaryScheduleOverrideHistory {
         let period = relevantPeriod(relativeTo: referenceDate)
         var recentEvents = self.recentEvents
         recentEvents.removeAll(where: { event in
-            event.override.actualEndDate < period.start || event.override.startDate > period.end
+            event.actualEndDate < period.start || event.override.startDate > period.end
         })
 
         if recentEvents != self.recentEvents {
@@ -216,19 +185,19 @@ public final class TemporaryScheduleOverrideHistory {
     }
 
     private func overridesReflectingEnabledDuration(relativeTo referenceDate: Date) -> [TemporaryScheduleOverride] {
-        var overrides = recentEvents.filter({$0.override.actualEnd != .deleted}).map { event -> TemporaryScheduleOverride in
+        var overrides = recentEvents.filter({$0.end != .deleted}).map { event -> TemporaryScheduleOverride in
             var override = event.override
-            if case .early(let endDate) = event.override.actualEnd {
-                override.scheduledEndDate = endDate
+            if case .early(let endDate) = event.end {
+                override.endDate = endDate
             }
             return override
         }
         let period = relevantPeriod(relativeTo: referenceDate)
         overrides.mutateEach { override in
             // Save the actual (computed) end date prior to modifying the start date, which shifts the whole interval
-            let end = override.scheduledEndDate
+            let end = override.endDate
             override.startDate = max(override.startDate, period.start)
-            override.scheduledEndDate = min(end, period.end)
+            override.endDate = min(end, period.end)
         }
         validateOverridesReflectingEnabledDuration(overrides)
         return overrides
@@ -271,10 +240,10 @@ public final class TemporaryScheduleOverrideHistory {
         for event in recentEvents {
             if anchor == nil || event.modificationCounter >= anchor! {
                 var override = event.override
-                if case .early(let endDate) = event.override.actualEnd {
-                    override.scheduledEndDate = endDate
+                if case .early(let endDate) = event.end {
+                    override.endDate = endDate
                 }
-                if event.override.actualEnd == .deleted {
+                if event.end == .deleted {
                     deletedOverrides.append(override)
                 } else {
                     resultOverrides.append(override)
@@ -299,12 +268,16 @@ extension OverrideEvent: RawRepresentable {
 
         self.override = override
         
-        self.modificationCounter = rawValue["modificationCounter"] as? Int ?? 0
+        if let modificationCounter = rawValue["modificationCounter"] as? Int {
+            self.modificationCounter = modificationCounter
+        } else {
+            self.modificationCounter = 0
+        }
         
         if let isDeleted = rawValue["isDeleted"] as? Bool, isDeleted {
-            self.override.actualEnd = .deleted
+            self.end = .deleted
         } else if let endDate = rawValue["endDate"] as? Date {
-            self.override.actualEnd = .early(endDate)
+            self.end = .early(endDate)
         }
     }
 
@@ -312,10 +285,10 @@ extension OverrideEvent: RawRepresentable {
         var raw: RawValue = [
             "override": override.rawValue,
             "modificationCounter": modificationCounter,
-            "isDeleted": override.actualEnd == .deleted,
+            "isDeleted": self.end == .deleted,
         ]
 
-        if case .early(let endDate) = override.actualEnd {
+        if case .early(let endDate) = end {
             raw["endDate"] = endDate
         }
 

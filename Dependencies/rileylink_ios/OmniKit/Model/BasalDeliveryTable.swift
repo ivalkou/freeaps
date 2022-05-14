@@ -8,6 +8,15 @@
 
 import Foundation
 
+// Max time between pulses for scheduled basal and temp basal extra timing command
+let maxTimeBetweenPulses = TimeInterval(hours: 5)
+
+// Near zero basal rate used for non-Eros pods for zero scheduled basal rates and temp basals
+let nearZeroBasalRate = 0.01
+
+// Special flag used for non-Eros pods for near zero basal rates pulse timing for $13 & $16 extra commands
+let nearZeroBasalRateFlag: UInt32 = 0x80000000
+
 public struct BasalTableEntry {
     let segments: Int
     let pulses: Int
@@ -158,6 +167,26 @@ extension BasalDeliveryTable: CustomDebugStringConvertible {
     }
 }
 
+// Round basal rate by rounding down to pulse size boundary,
+// but basal rates within a small delta will be rounded up.
+// Rounds down to 0 for both non-Eros and Eros (temp basals).
+func roundToSupportedBasalRate(rate: Double) -> Double
+{
+    let delta = 0.01
+    let supportedBasalRates: [Double] = (0...600).map { Double($0) / Double(Pod.pulsesPerUnit) }
+    return supportedBasalRates.last(where: { $0 <= rate + delta }) ?? 0
+}
+
+// Return rounded basal rate for pulse timing purposes.
+// For non-Eros, returns nearZeroBasalRate (0.01) for a zero basal rate.
+func roundToSupportedBasalTimingRate(rate: Double) -> Double {
+    var rrate = roundToSupportedBasalRate(rate: rate)
+    if rrate == 0.0 {
+        rrate = Pod.zeroBasalRate // will be an adjusted value for non-Eros cases
+    }
+    return rrate
+}
+
 public struct RateEntry {
     let totalPulses: Double
     let delayBetweenPulses: TimeInterval
@@ -169,58 +198,69 @@ public struct RateEntry {
     
     public var rate: Double {
         if totalPulses == 0 {
+            // Eros zero TB is the only case not using pulses
             return 0
         } else {
-            return round(TimeInterval(hours: 1) / delayBetweenPulses) / Pod.pulsesPerUnit
+            // Use delayBetweenPulses to compute rate, works for non-Eros near zero rates
+            return (.hours(1) / delayBetweenPulses) / Pod.pulsesPerUnit
         }
     }
     
     public var duration: TimeInterval {
         if totalPulses == 0 {
-            return delayBetweenPulses
+            // Eros zero TB case uses fixed 30 minute rate entries
+            return TimeInterval(minutes: 30)
         } else {
-            return round(delayBetweenPulses * Double(totalPulses))
+            // Use delayBetweenPulses to compute duration, works for non-Eros near zero rates
+            return delayBetweenPulses * totalPulses
         }
     }
     
     public var data: Data {
+        var delayBetweenPulsesInHundredthsOfMillisecondsWithFlag = UInt32(delayBetweenPulses.hundredthsOfMilliseconds)
+
+        // non-Eros near zero basal rates use the nearZeroBasalRateFlag
+        if delayBetweenPulses == maxTimeBetweenPulses && totalPulses != 0 {
+            delayBetweenPulsesInHundredthsOfMillisecondsWithFlag |= nearZeroBasalRateFlag
+        }
+
         var data = Data()
         data.appendBigEndian(UInt16(round(totalPulses * 10)))
-        if totalPulses == 0 {
-            data.appendBigEndian(UInt32(delayBetweenPulses.hundredthsOfMilliseconds) * 10)
-        } else {
-            data.appendBigEndian(UInt32(delayBetweenPulses.hundredthsOfMilliseconds))
-        }
+        data.appendBigEndian(delayBetweenPulsesInHundredthsOfMillisecondsWithFlag)
         return data
     }
     
     public static func makeEntries(rate: Double, duration: TimeInterval) -> [RateEntry] {
-        let maxPulsesPerEntry: Double = 6400
+        let maxPulsesPerEntry: Double = 6400 // PDM's cutoff on # of 1/10th pulses encoded in 2-byte value
         var entries = [RateEntry]()
+        let rrate = roundToSupportedBasalTimingRate(rate: rate)
         
         var remainingSegments = Int(round(duration.minutes / 30))
         
-        let pulsesPerSegment = round(rate / Pod.pulseSize) / 2
+        let pulsesPerSegment = round(rrate / Pod.pulseSize) / 2
         let maxSegmentsPerEntry = pulsesPerSegment > 0 ? Int(maxPulsesPerEntry / pulsesPerSegment) : 1
         
-        var remainingPulses = rate * duration.hours / Pod.pulseSize
-        let delayBetweenPulses = TimeInterval(hours: 1) / rate * Pod.pulseSize
-        
+        var remainingPulses = rrate * duration.hours / Pod.pulseSize
+
         while (remainingSegments > 0) {
-            if rate == 0 {
-                entries.append(RateEntry(totalPulses: 0, delayBetweenPulses: .minutes(30)))
-                remainingSegments -= 1
+            let entry: RateEntry
+            if rrate == 0 {
+                // Eros zero TBR only, one rate entry per segment with no pulses
+                entry = RateEntry(totalPulses: 0, delayBetweenPulses: maxTimeBetweenPulses)
+                remainingSegments -= 1 // one rate entry per half hour
+            } else if rrate == nearZeroBasalRate {
+                // Non-Eros near zero value temp or scheduled basal, one entry with 1/10 pulse per 1/2 hour of duration
+                entry = RateEntry(totalPulses: Double(remainingSegments) / 10, delayBetweenPulses: maxTimeBetweenPulses)
+                remainingSegments = 0 // just a single entry
             } else {
                 let numSegments = min(maxSegmentsPerEntry, Int(round(remainingPulses / pulsesPerSegment)))
-                if numSegments == 0 {
-                    break // prevent infinite loop and subsequent malloc crash with certain bad rate values
-                }
                 remainingSegments -= numSegments
                 let pulseCount = pulsesPerSegment * Double(numSegments)
-                let entry = RateEntry(totalPulses: pulseCount, delayBetweenPulses: delayBetweenPulses)
-                entries.append(entry)
+                let delayBetweenPulses = .hours(1) / rrate * Pod.pulseSize
+                entry = RateEntry(totalPulses: pulseCount, delayBetweenPulses: delayBetweenPulses)
                 remainingPulses -= pulseCount
             }
+            entries.append(entry)
         }
         return entries
     }
@@ -231,9 +271,3 @@ extension RateEntry: CustomDebugStringConvertible {
         return "RateEntry(rate:\(rate) duration:\(duration.stringValue))"
     }
 }
-
-
-
-
-
-

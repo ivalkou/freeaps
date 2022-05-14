@@ -8,27 +8,19 @@
 import HealthKit
 
 
-/// Describes the result of CGM manager operations to fetch and report sensor readings.
+/// Describes the result of a CGM manager operation
 ///
 /// - noData: No new data was available or retrieved
 /// - newData: New glucose data was received and stored
 /// - error: An error occurred while receiving or store data
-public enum CGMReadingResult {
+public enum CGMResult {
     case noData
     case newData([NewGlucoseSample])
     case error(Error)
 }
 
-public struct CGMManagerStatus {
-    // Return false if no sensor active, or in a state where no future data is expected without user intervention
-    public var hasValidSensorSession: Bool
-    
-    public init(hasValidSensorSession: Bool) {
-        self.hasValidSensorSession = hasValidSensorSession
-    }
-}
 
-public protocol CGMManagerDelegate: DeviceManagerDelegate {
+public protocol CGMManagerDelegate: AnyObject, DeviceManagerDelegate {
     /// Asks the delegate for a date with which to filter incoming glucose data
     ///
     /// - Parameter manager: The manager instance
@@ -40,7 +32,7 @@ public protocol CGMManagerDelegate: DeviceManagerDelegate {
     /// - Parameters:
     ///   - manager: The manager instance
     ///   - result: The result of the update
-    func cgmManager(_ manager: CGMManager, hasNew readingResult: CGMReadingResult) -> Void
+    func cgmManager(_ manager: CGMManager, didUpdateWith result: CGMResult) -> Void
 
     /// Informs the delegate that the manager is deactivating and should be deleted
     ///
@@ -51,19 +43,6 @@ public protocol CGMManagerDelegate: DeviceManagerDelegate {
     ///
     /// - Parameter manager: The manager instance
     func cgmManagerDidUpdateState(_ manager: CGMManager)
-    
-    /// Asks the delegate for credential store prefix to avoid namespace conflicts
-    ///
-    /// - Parameter manager: The manager instance
-    /// - Returns: The unique prefix for the credential store
-    func credentialStoragePrefix(for manager: CGMManager) -> String
-    
-    /// Notifies the delegate of a change in status
-    ///
-    /// - Parameter manager: The manager instance
-    /// - Parameter status: The new, updated status. Status includes properties associated with the manager, transmitter, or sensor,
-    ///                     that are not part of an individual sensor reading.
-    func cgmManager(_ manager: CGMManager, didUpdate status: CGMManagerStatus)
 }
 
 
@@ -80,19 +59,16 @@ public protocol CGMManager: DeviceManager {
 
     var shouldSyncToRemoteService: Bool { get }
 
-    var glucoseDisplay: GlucoseDisplayable? { get }
-    
+    var sensorState: SensorDisplayable? { get }
+
     /// The representation of the device for use in HealthKit
     var device: HKDevice? { get }
-
-    /// The current status of the cgm
-    var cgmStatus: CGMManagerStatus { get }
 
     /// Performs a manual fetch of glucose data from the device, if necessary
     ///
     /// - Parameters:
     ///   - completion: A closure called when operation has completed
-    func fetchNewDataIfNeeded(_ completion: @escaping (CGMReadingResult) -> Void) -> Void
+    func fetchNewDataIfNeeded(_ completion: @escaping (CGMResult) -> Void) -> Void
 }
 
 

@@ -12,87 +12,43 @@ import HealthKit
 
 
 class CachedGlucoseObject: NSManagedObject {
-    var syncVersion: Int? {
+    var startDate: Date! {
         get {
-            willAccessValue(forKey: "syncVersion")
-            defer { didAccessValue(forKey: "syncVersion") }
-            return primitiveSyncVersion?.intValue
+            willAccessValue(forKey: "startDate")
+            defer { didAccessValue(forKey: "startDate") }
+            return primitiveStartDate! as Date
         }
         set {
-            willChangeValue(forKey: "syncVersion")
-            defer { didChangeValue(forKey: "syncVersion") }
-            primitiveSyncVersion = newValue != nil ? NSNumber(value: newValue!) : nil
+            willChangeValue(forKey: "startDate")
+            defer { didChangeValue(forKey: "startDate") }
+            primitiveStartDate = newValue as NSDate
         }
     }
 
-    var hasUpdatedModificationCounter: Bool { changedValues().keys.contains("modificationCounter") }
-
-    func updateModificationCounter() { setPrimitiveValue(managedObjectContext!.modificationCounter!, forKey: "modificationCounter") }
-
-    override func awakeFromInsert() {
-        super.awakeFromInsert()
-        updateModificationCounter()
-    }
-
-    override func willSave() {
-        if isUpdated && !hasUpdatedModificationCounter {
-            updateModificationCounter()
+    var uploadState: UploadState {
+        get {
+            willAccessValue(forKey: "uploadState")
+            defer { didAccessValue(forKey: "uploadState") }
+            return UploadState(rawValue: primitiveUploadState!.intValue)!
         }
-        super.willSave()
+        set {
+            willChangeValue(forKey: "uploadState")
+            defer { didChangeValue(forKey: "uploadState") }
+            primitiveUploadState = NSNumber(value: newValue.rawValue)
+        }
     }
 }
 
-// MARK: - Helpers
-
-extension CachedGlucoseObject {
-    var quantity: HKQuantity { HKQuantity(unit: HKUnit(from: unitString), doubleValue: value) }
-}
-
-// MARK: - Operations
-
-extension CachedGlucoseObject {
-
-    // Loop
-    func create(from sample: NewGlucoseSample, provenanceIdentifier: String) {
-        self.uuid = nil
-        self.provenanceIdentifier = provenanceIdentifier
-        self.syncIdentifier = sample.syncIdentifier
-        self.syncVersion = sample.syncVersion
-        self.value = sample.quantity.doubleValue(for: .milligramsPerDeciliter)
-        self.unitString = HKUnit.milligramsPerDeciliter.unitString
-        self.startDate = sample.date
-        self.isDisplayOnly = sample.isDisplayOnly
-        self.wasUserEntered = sample.wasUserEntered
-    }
-
-    // HealthKit
-    func create(from sample: HKQuantitySample) {
-        precondition(!sample.createdByCurrentApp)
-
-        self.uuid = sample.uuid
-        self.provenanceIdentifier = sample.provenanceIdentifier
-        self.syncIdentifier = sample.syncIdentifier
-        self.syncVersion = sample.syncVersion
-        self.value = sample.quantity.doubleValue(for: .milligramsPerDeciliter)
-        self.unitString = HKUnit.milligramsPerDeciliter.unitString
-        self.startDate = sample.startDate
-        self.isDisplayOnly = sample.isDisplayOnly
-        self.wasUserEntered = sample.wasUserEntered
-    }
-}
-
-// MARK: - Watch Synchronization
 
 extension CachedGlucoseObject {
     func update(from sample: StoredGlucoseSample) {
-        self.uuid = sample.uuid
-        self.provenanceIdentifier = sample.provenanceIdentifier
-        self.syncIdentifier = sample.syncIdentifier
-        self.syncVersion = sample.syncVersion
-        self.value = sample.quantity.doubleValue(for: .milligramsPerDeciliter)
-        self.unitString = HKUnit.milligramsPerDeciliter.unitString
-        self.startDate = sample.startDate
-        self.isDisplayOnly = sample.isDisplayOnly
-        self.wasUserEntered = sample.wasUserEntered
+        uuid = sample.sampleUUID
+        syncIdentifier = sample.syncIdentifier
+        syncVersion = Int32(sample.syncVersion)
+        value = sample.quantity.doubleValue(for: .milligramsPerDeciliter)
+        unitString = HKUnit.milligramsPerDeciliter.unitString
+        startDate = sample.startDate
+        provenanceIdentifier = sample.provenanceIdentifier
+        isDisplayOnly = sample.isDisplayOnly
     }
 }

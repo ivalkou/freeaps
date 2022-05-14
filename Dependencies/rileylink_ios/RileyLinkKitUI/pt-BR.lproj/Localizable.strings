@@ -38,67 +38,67 @@
 "Signal Strength" = "Potência do Sinal";
 
 /* The header of the cells showing connection monitoring */
-"Connection Monitoring" = "Connection Monitoring";
+"Connection Monitoring" = "Monitoramento de Conexão";
 
 /* The title of the cell showing uptime */
 "Uptime" = "Tempo de Atividade";
 
 /* The title of the cell showing battery level */
-"Battery level" = "Battery level";
+"Battery level" = "Nível da bateria";
 
 /* The title of the cell showing Voltage */
-"Voltage" = "Voltage";
+"Voltage" = "Tensão";
 
 /* "The title of the section for alerts" */
-"Alert" = "Alert";
+"Alert" = "Alerta";
 
 /* The title of the cell showing Low Battery Alert */
-"Low Battery Alert" = "Low Battery Alert";
+"Low Battery Alert" = "Alerta de Bateria Baixa";
 
 /* Header of list showing battery level alert options */
-"Battery level Alert" = "Battery level Alert";
+"Battery level Alert" = "Alerta nível da bateria";
 
 /* Battery level alert OFF in list of options */
-"OFF" = "OFF";
+"OFF" = "DESLIGADO";
 
 /* The title of the command to update diagnostic LEDs */
-"Diagnostic LEDs" = "Diagnostic LEDs";
+"Diagnostic LEDs" = "LEDs de diagnóstico";
 
 /* The title of the command to fetch RileyLink statistics */
-"Get RileyLink Statistics" = "Get RileyLink Statistics";
+"Get RileyLink Statistics" = "Obter Estatísticas do RileyLink";
 
 /* The title of the command to invert BLE connection LED logic */
-"Invert LED Logic" = "Invert LED Logic";
+"Invert LED Logic" = "Lógica de LED Invertida";
 
 /* The header of the cells showing test commands */
-"Test Commands" = "Test Commands";
+"Test Commands" = "Comandos de Teste";
 
 /* The title of the cell showing Lighten Yellow LED */
-"Lighten Yellow LED" = "Lighten Yellow LED";
+"Lighten Yellow LED" = "Acender LED Amarelo";
 
 /* The title of the cell showing Lighten Yellow LED */
-"Lighten Red LED" = "Lighten Red LED";
+"Lighten Red LED" = "Acender LED Vermelho";
 
 /* The title of the cell showing Test Vibration */
-"Test Vibration" = "Test Vibration";
+"Test Vibration" = "Testar Vibração";
 
 /* The title of the cell for sounding device finding piezo */
-"Find Device" = "Find Device";
+"Find Device" = "Encontrar dispositivo";
 
 /* The title of the cell for connection LED */
-"Connection LED" = "Connection LED";
+"Connection LED" = "LED de conexão";
 
 /* The title of the cell for connection vibration */
-"Connection Vibration" = "Connection Vibration";
+"Connection Vibration" = "Vibração de Conexão";
 
 /* Detail text when battery alert disabled. */
-"Off" = "Off";
+"Off" = "Desligado";
 
 /* Text indicating LED Mode is on */
-"On" = "On";
+"On" = "Ligado";
 
 /* Text indicating LED Mode is off */
-"Off" = "Off";
+"Off" = "Desligado";
 
 /* Text indicating LED Mode is auto */
-"Auto" = "Auto";
+"Auto" = "Automático";

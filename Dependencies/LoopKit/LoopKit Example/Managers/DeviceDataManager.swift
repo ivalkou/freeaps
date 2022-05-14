@@ -20,31 +20,23 @@ class DeviceDataManager {
         carbStore = CarbStore(
             healthStore: healthStore,
             cacheStore: cacheStore,
-            cacheLength: .hours(24),
-            defaultAbsorptionTimes: (fast: .minutes(30), medium: .hours(3), slow: .hours(5)),
-            observationInterval: .hours(24),
             carbRatioSchedule: carbRatioSchedule,
-            insulinSensitivitySchedule: insulinSensitivitySchedule,
-            provenanceIdentifier: HKSource.default().bundleIdentifier
+            insulinSensitivitySchedule: insulinSensitivitySchedule
         )
-        let insulinModelSetting: InsulinModelSettings?
+        let insulinModel: WalshInsulinModel?
         if let actionDuration = insulinActionDuration {
-            let insulinModel = WalshInsulinModel(actionDuration: actionDuration)
-            insulinModelSetting = InsulinModelSettings(model: insulinModel)
+            insulinModel = WalshInsulinModel(actionDuration: actionDuration)
         } else {
-            insulinModelSetting = nil
+            insulinModel = nil
         }
         doseStore = DoseStore(
             healthStore: healthStore,
             cacheStore: cacheStore,
-            pumpInsulinModelSetting: insulinModelSetting,
+            insulinModel: insulinModel,
             basalProfile: basalRateSchedule,
-            insulinSensitivitySchedule: insulinSensitivitySchedule,
-            provenanceIdentifier: HKSource.default().bundleIdentifier
+            insulinSensitivitySchedule: insulinSensitivitySchedule
         )
-        glucoseStore = GlucoseStore(healthStore: healthStore,
-                                    cacheStore: cacheStore,
-                                    provenanceIdentifier: HKSource.default().bundleIdentifier)
+        glucoseStore = GlucoseStore(healthStore: healthStore, cacheStore: cacheStore)
     }
 
     // Data stores
@@ -78,8 +70,7 @@ class DeviceDataManager {
             UserDefaults.standard.insulinActionDuration = insulinActionDuration
 
             if let duration = insulinActionDuration {
-                let model = WalshInsulinModel(actionDuration: duration)
-                doseStore.insulinModelSettings = InsulinModelSettings(model: model)
+                doseStore.insulinModel = WalshInsulinModel(actionDuration: duration)
             }
         }
     }
@@ -119,13 +110,5 @@ class DeviceDataManager {
                 doseStore.resetPumpData()
             }
         }
-    }
-
-    // MARK: CarbStoreDelegate
-
-    func carbStoreHasUpdatedCarbData(_ carbStore: CarbStore) {}
-
-    func carbStore(_ carbStore: CarbStore, didError error: CarbStore.CarbStoreError) {
-        print("carbstore error: \(error)")
     }
 }

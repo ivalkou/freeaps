@@ -5,7 +5,7 @@
 "Below 50 units" = "Менее 50 единиц";
 
 /* Error message shown when operation could not be completed due to existing bolus in progress */
-"Bolus in progress" = "Подача болюса";
+"Bolus in progress" = "Подается болюс";
 
 /* The format string describing a bolus. (1: The amount delivered)(2: Start time of the dose)(3: duration)(4: scheduled certainty) */
 "Bolus: %1$@U %2$@ %3$@ %4$@" = "Болюс: %1$@ед %2$@ %3$@ %4$@";
@@ -105,7 +105,7 @@
 "Pod Fault: %1$@" = "Отказ Omnipod %1$@";
 
 /* Error message when cannula insertion fails because the pod is in an unexpected state */
-"Pod is not in a state ready for cannula insertion." = "Omnipod не готов к установке катетера";
+"Pod is not in a state ready for cannula insertion" = "Omnipod не готов к установке катетера";
 
 /* Error message when prime fails because the pod is in an unexpected state */
 "Pod is not in a state ready for priming." = "Omnipod не готов к первичному заполнению";
@@ -176,3 +176,42 @@
 
 /* Description waiting for pairing reminder */
 "Waiting for pairing reminder" = "Напоминание об ожидании сопряжения";
+
+/* Error message shown when pod sends ack instead of response */
+"Pod sent ack instead of response" = "Под отправил ack вместо ответа";
+
+/* Format string for invalid message error code (1: error code number) */
+"Command error %1$u" = "Ошибка команды %1$u";
+
+/* "Format string for unexpected pod change" */
+"Unexpected pod change" = "Неожиданная смена пода";
+
+/* Format string for activation time exceeded */
+"Activation time exceeded" = "Время активации закончилось";
+
+/* Format string for poor pod signal strength */
+"Poor signal strength" = "Плохой уровень сигнала";
+
+/* Format string for pod signal strength too high */
+"Signal strength too high" = "Уровень сигнала слишком высокий";
+
+/* Recovery suggestion when no response is received from pod */
+"Please try repositioning the RileyLink and try again" = "Пожалуйста, попробуйте переместить RileyLink относительно помпы и повторите попытку";
+
+/* Recovery suggestion when ack received instead of response */
+"Try again" = "Попробуйте еще раз";
+
+/* Recovery suggestion when unexpected address received */
+"Crosstalk possible. Please move to a new location and try again" = "Возможна коммуникация с чужой помпой. Пожалуйста, переместитесь в новое место и попробуйте снова";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Пожалуйста, держите только исходный pod в зоне действия, либо деактивируйте исходный pod";
+
+/* Recovery suggestion when pairing signal strength is too low */
+"Please reposition the RileyLink relative to the pod" = "Пожалуйста, переместите RileyLink относительно пода";
+
+/* Recovery suggestion when pairing signal strength is too high */
+"Please reposition the RileyLink further from the pod" = "Пожалуйста, переместите RileyLink дальше от рода";
+
+/* Description for an inactive alert modifier */
+" (inactive)" = "(Неактивн.)";

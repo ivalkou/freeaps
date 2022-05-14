@@ -16,7 +16,7 @@ protocol InsulinSensitivityScalingTableViewCellDelegate: AnyObject {
 
 final class InsulinSensitivityScalingTableViewCell: UITableViewCell {
 
-    private let allScaleFactorPercentages = Array(stride(from: 10, through: 200, by: 10))
+    private let allScaleFactorPercentages = Array(stride(from: 35, through: 200, by: 5))
 
     @IBOutlet private weak var titleLabel: UILabel!
     
@@ -29,8 +29,6 @@ final class InsulinSensitivityScalingTableViewCell: UITableViewCell {
             } else {
                 gaugeBar.backgroundColor = .white
             }
-
-            gaugeBar.delegate = self
         }
     }
 
@@ -67,23 +65,12 @@ final class InsulinSensitivityScalingTableViewCell: UITableViewCell {
             scaleFactorPickerHeightConstraint.constant = newValue ? 0 : pickerExpandedHeight
 
             if !newValue {
-                updatePickerRow(animated: false)
+                guard let selectedRow = allScaleFactorPercentages.firstIndex(of: selectedPercentage) else {
+                    fatalError("selectedPercentage should always be validated against all possible scale factors")
+                }
+                scaleFactorPicker.selectRow(selectedRow, inComponent: 0, animated: false)
             }
         }
-    }
-
-    private func updatePickerRow(animated: Bool) {
-        var selectedRow = allScaleFactorPercentages.firstIndex(of: selectedPercentage)
-        if selectedRow == nil {
-            let truncatedPercentage = allScaleFactorPercentages
-                .adjacentPairs()
-                .first(where: { lower, upper in
-                    (lower..<upper).contains(selectedPercentage)
-                })?.0 ?? 100
-            selectedRow = allScaleFactorPercentages.firstIndex(of: truncatedPercentage)
-        }
-
-        scaleFactorPicker.selectRow(selectedRow!, inComponent: 0, animated: animated)
     }
 
     private var selectedPercentage = 100 {
@@ -100,8 +87,19 @@ final class InsulinSensitivityScalingTableViewCell: UITableViewCell {
             return Double(selectedPercentage) / 100
         }
         set {
-            let domain = allScaleFactorPercentages.first!...allScaleFactorPercentages.last!
-            selectedPercentage = Int(round(newValue * 100)).clamped(to: domain)
+            let percentage = Int(round(newValue * 100))
+                .clamped(to: allScaleFactorPercentages.first!...allScaleFactorPercentages.last!)
+
+            if allScaleFactorPercentages.contains(percentage) {
+                selectedPercentage = percentage
+            } else {
+                // Truncate to nearest valid percentage
+                selectedPercentage = allScaleFactorPercentages
+                    .adjacentPairs()
+                    .first(where: { lower, upper in
+                        (lower..<upper).contains(percentage)
+                    })?.0 ?? 100
+            }
         }
     }
 
@@ -180,13 +178,6 @@ extension InsulinSensitivityScalingTableViewCell: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedPercentage = allScaleFactorPercentages[row]
-    }
-}
-
-extension InsulinSensitivityScalingTableViewCell: SegmentedGaugeBarViewDelegate {
-    func segmentedGaugeBarView(_ view: SegmentedGaugeBarView, didUpdateProgressFrom oldValue: Double, to newValue: Double) {
-        scaleFactor = newValue
-        updatePickerRow(animated: true)
     }
 }
 

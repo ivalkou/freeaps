@@ -47,7 +47,7 @@ struct ReadRegisterResponse: Response {
     let value: UInt8
     
     init?(data: Data) {
-        guard data.count > 0, let code = ResponseCode(rawValue: data[data.startIndex]) else {
+        guard data.count > 1, let code = ResponseCode(rawValue: data[data.startIndex]) else {
             return nil
         }
         

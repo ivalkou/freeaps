@@ -32,16 +32,16 @@
 "Name" = "Názov";
 
 /* RileyLink setup description */
-"RileyLink allows for communication with the pump over Bluetooth Low Energy." = "RileyLink allows for communication with the pump over Bluetooth Low Energy.";
+"RileyLink allows for communication with the pump over Bluetooth Low Energy." = "RileyLink povoľuje pre komunikáciu s pumpou cez Bluetooth Nízku Energiu.";
 
 /* The title of the cell showing BLE signal strength (RSSI) */
 "Signal Strength" = "Sila Signálu";
 
 /* The header of the cells showing connection monitoring */
-"Connection Monitoring" = "Connection Monitoring";
+"Connection Monitoring" = "Spojenie Monitoring";
 
 /* The title of the cell showing uptime */
-"Uptime" = "Uptime";
+"Uptime" = "Doba prevádzky";
 
 /* The title of the cell showing battery level */
 "Battery level" = "Stav batérie";
@@ -62,22 +62,22 @@
 "OFF" = "VYP";
 
 /* The title of the command to update diagnostic LEDs */
-"Diagnostic LEDs" = "Diagnostic LEDs";
+"Diagnostic LEDs" = "Diagnostické LEDky";
 
 /* The title of the command to fetch RileyLink statistics */
-"Get RileyLink Statistics" = "Get RileyLink Statistics";
+"Get RileyLink Statistics" = "RileyLink Štatistiky";
 
 /* The title of the command to invert BLE connection LED logic */
-"Invert LED Logic" = "Invert LED Logic";
+"Invert LED Logic" = "Invertovať LED logiku";
 
 /* The header of the cells showing test commands */
 "Test Commands" = "Testovať Ovládanie";
 
 /* The title of the cell showing Lighten Yellow LED */
-"Lighten Yellow LED" = "Lighten Yellow LED";
+"Lighten Yellow LED" = "Rozsvietiť Žlté LED";
 
 /* The title of the cell showing Lighten Yellow LED */
-"Lighten Red LED" = "Lighten Red LED";
+"Lighten Red LED" = "Rozsvietiť červené LED";
 
 /* The title of the cell showing Test Vibration */
 "Test Vibration" = "Testovať Vibrovanie";
@@ -86,10 +86,10 @@
 "Find Device" = "Nájsť Zariadenie";
 
 /* The title of the cell for connection LED */
-"Connection LED" = "Connection LED";
+"Connection LED" = "Pripojenie LED";
 
 /* The title of the cell for connection vibration */
-"Connection Vibration" = "Connection Vibration";
+"Connection Vibration" = "Pripojenie Vibrácia";
 
 /* Detail text when battery alert disabled. */
 "Off" = "Vypnuté";
@@ -98,7 +98,7 @@
 "On" = "Zapnuté";
 
 /* Text indicating LED Mode is off */
-"Off" = "Off";
+"Off" = "Vypnuté";
 
 /* Text indicating LED Mode is auto */
 "Auto" = "Auto";

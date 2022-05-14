@@ -37,8 +37,6 @@ public class MinimedPumpManagerSetupViewController: RileyLinkManagerSetupViewCon
     }
 
     private(set) var pumpManager: MinimedPumpManager?
-    
-    internal var insulinType: InsulinType?
 
     /*
      1. RileyLink
@@ -88,13 +86,12 @@ public class MinimedPumpManagerSetupViewController: RileyLinkManagerSetupViewCon
         switch viewController {
         case let vc as MinimedPumpIDSetupViewController:
             vc.rileyLinkPumpManager = rileyLinkPumpManager
-            vc.maxBolusUnits = maxBolusUnits
-            vc.maxBasalRateUnitsPerHour = maxBasalRateUnitsPerHour
-            vc.basalSchedule = basalSchedule
         case let vc as MinimedPumpSentrySetupViewController:
             vc.pumpManager = pumpManager
         case is MinimedPumpClockSetupViewController:
             break
+        case let vc as MinimedPumpSettingsSetupViewController:
+            vc.pumpManager = pumpManager
         case let vc as MinimedPumpSetupCompleteViewController:
             vc.pumpImage = pumpManager?.state.largePumpImage
         default:

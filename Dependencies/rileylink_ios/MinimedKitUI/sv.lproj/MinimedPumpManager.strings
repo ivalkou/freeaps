@@ -8,7 +8,7 @@
 "A6i-Cb-baR.text" = "Annan enhet";
 
 /* Class = "UILabel"; text = "Do not change the time using your pumpʼs menu."; ObjectID = "Bdb-j4-WcR"; */
-"Bdb-j4-WcR.text" = "Ädra inte tiden i din pumps menyer.";
+"Bdb-j4-WcR.text" = "Ändra inte tiden i din pumps menyer.";
 
 /* Class = "UILabel"; text = "Utilities"; ObjectID = "c7t-pZ-WqY"; */
 "c7t-pZ-WqY.text" = "Tillbehör";

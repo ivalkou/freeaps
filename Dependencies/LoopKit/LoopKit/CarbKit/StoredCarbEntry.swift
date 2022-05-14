@@ -9,15 +9,17 @@
 import HealthKit
 import CoreData
 
-public struct StoredCarbEntry: CarbEntry, Equatable {
+private let unit = HKUnit.gram()
 
-    public let uuid: UUID?
+
+public struct StoredCarbEntry: CarbEntry {
+
+    public let sampleUUID: UUID
 
     // MARK: - HealthKit Sync Support
 
-    public let provenanceIdentifier: String?
     public let syncIdentifier: String?
-    public let syncVersion: Int?
+    public let syncVersion: Int
 
     // MARK: - SampleValue
 
@@ -30,112 +32,80 @@ public struct StoredCarbEntry: CarbEntry, Equatable {
     public let absorptionTime: TimeInterval?
     public let createdByCurrentApp: Bool
 
-    // MARK: - User dates
+    // MARK: - Sync state
 
-    public let userCreatedDate: Date?
-    public let userUpdatedDate: Date?
+    public var externalID: String?
+    public var isUploaded: Bool
+
+    init(sample: HKQuantitySample, createdByCurrentApp: Bool? = nil) {
+        self.init(
+            sampleUUID: sample.uuid,
+            syncIdentifier: sample.metadata?[HKMetadataKeySyncIdentifier] as? String,
+            syncVersion: sample.metadata?[HKMetadataKeySyncVersion] as? Int ?? 1,
+            startDate: sample.startDate,
+            unitString: unit.unitString,
+            value: sample.quantity.doubleValue(for: unit),
+            foodType: sample.foodType,
+            absorptionTime: sample.absorptionTime,
+            createdByCurrentApp: createdByCurrentApp ?? sample.createdByCurrentApp,
+            externalID: sample.externalID,
+            isUploaded: sample.externalID != nil
+        )
+    }
 
     public init(
-        uuid: UUID?,
-        provenanceIdentifier: String?,
+        sampleUUID: UUID,
         syncIdentifier: String?,
-        syncVersion: Int?,
+        syncVersion: Int,
         startDate: Date,
-        quantity: HKQuantity,
+        unitString: String,
+        value: Double,
         foodType: String?,
         absorptionTime: TimeInterval?,
         createdByCurrentApp: Bool,
-        userCreatedDate: Date?,
-        userUpdatedDate: Date?
+        externalID: String?,
+        isUploaded: Bool
     ) {
-        self.uuid = uuid
-        self.provenanceIdentifier = provenanceIdentifier
+        self.sampleUUID = sampleUUID
         self.syncIdentifier = syncIdentifier
         self.syncVersion = syncVersion
         self.startDate = startDate
-        self.quantity = quantity
+        self.quantity = HKQuantity(unit: HKUnit(from: unitString), doubleValue: value)
         self.foodType = foodType
         self.absorptionTime = absorptionTime
         self.createdByCurrentApp = createdByCurrentApp
-        self.userCreatedDate = userCreatedDate
-        self.userUpdatedDate = userUpdatedDate
+        self.externalID = externalID
+        self.isUploaded = isUploaded
     }
 }
 
-extension StoredCarbEntry {
-    init(managedObject: CachedCarbObject) {
-        self.init(
-            uuid: managedObject.uuid,
-            provenanceIdentifier: managedObject.provenanceIdentifier,
-            syncIdentifier: managedObject.syncIdentifier,
-            syncVersion: managedObject.syncVersion,
-            startDate: managedObject.startDate,
-            quantity: managedObject.quantity,
-            foodType: managedObject.foodType,
-            absorptionTime: managedObject.absorptionTime,
-            createdByCurrentApp: managedObject.createdByCurrentApp,
-            userCreatedDate: managedObject.userCreatedDate,
-            userUpdatedDate: managedObject.userUpdatedDate
-        )
+
+extension StoredCarbEntry: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(sampleUUID)
     }
 }
 
-extension StoredCarbEntry: Codable {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.init(uuid: try container.decodeIfPresent(UUID.self, forKey: .uuid),
-                  provenanceIdentifier: try container.decodeIfPresent(String.self, forKey: .provenanceIdentifier),
-                  syncIdentifier: try container.decodeIfPresent(String.self, forKey: .syncIdentifier),
-                  syncVersion: try container.decodeIfPresent(Int.self, forKey: .syncVersion),
-                  startDate: try container.decode(Date.self, forKey: .startDate),
-                  quantity: HKQuantity(unit: .gram(), doubleValue: try container.decode(Double.self, forKey: .quantity)),
-                  foodType: try container.decodeIfPresent(String.self, forKey: .foodType),
-                  absorptionTime: try container.decodeIfPresent(TimeInterval.self, forKey: .absorptionTime),
-                  createdByCurrentApp: try container.decode(Bool.self, forKey: .createdByCurrentApp),
-                  userCreatedDate: try container.decodeIfPresent(Date.self, forKey: .userCreatedDate),
-                  userUpdatedDate: try container.decodeIfPresent(Date.self, forKey: .userUpdatedDate)
-        )
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(uuid, forKey: .uuid)
-        try container.encodeIfPresent(provenanceIdentifier, forKey: .provenanceIdentifier)
-        try container.encodeIfPresent(syncIdentifier, forKey: .syncIdentifier)
-        try container.encodeIfPresent(syncVersion, forKey: .syncVersion)
-        try container.encode(startDate, forKey: .startDate)
-        try container.encode(quantity.doubleValue(for: .gram()), forKey: .quantity)
-        try container.encodeIfPresent(foodType, forKey: .foodType)
-        try container.encodeIfPresent(absorptionTime, forKey: .absorptionTime)
-        try container.encode(createdByCurrentApp, forKey: .createdByCurrentApp)
-        try container.encodeIfPresent(userCreatedDate, forKey: .userCreatedDate)
-        try container.encodeIfPresent(userUpdatedDate, forKey: .userUpdatedDate)
-    }
-    
-    private enum CodingKeys: String, CodingKey {
-        case uuid
-        case provenanceIdentifier
-        case syncIdentifier
-        case syncVersion
-        case startDate
-        case quantity
-        case foodType
-        case absorptionTime
-        case createdByCurrentApp
-        case userCreatedDate
-        case userUpdatedDate
+extension StoredCarbEntry: Equatable {
+    public static func ==(lhs: StoredCarbEntry, rhs: StoredCarbEntry) -> Bool {
+        return lhs.sampleUUID == rhs.sampleUUID
     }
 }
 
-// MARK: - DEPRECATED - Used only for migration
+extension StoredCarbEntry: Comparable {
+    public static func <(lhs: StoredCarbEntry, rhs: StoredCarbEntry) -> Bool {
+        return lhs.startDate < rhs.startDate
+    }
+}
 
+// Deprecated, used for migration only
 extension StoredCarbEntry {
     typealias RawValue = [String: Any]
 
     init?(rawValue: RawValue) {
         guard let
             sampleUUIDString = rawValue["sampleUUID"] as? String,
-            let uuid = UUID(uuidString: sampleUUIDString),
+            let sampleUUID = UUID(uuidString: sampleUUIDString),
             let startDate = rawValue["startDate"] as? Date,
             let unitString = rawValue["unitString"] as? String,
             let value = rawValue["value"] as? Double,
@@ -144,31 +114,39 @@ extension StoredCarbEntry {
             return nil
         }
 
-        var provenanceIdentifier: String?
-        var syncIdentifier: String?
-        var syncVersion: Int?
-
-        if createdByCurrentApp {
-            provenanceIdentifier = HKSource.default().bundleIdentifier
-        }
-
-        if let externalID = rawValue["externalId"] as? String {
-            syncIdentifier = externalID
-            syncVersion = 1
-        }
+        let externalID = rawValue["externalId"] as? String
 
         self.init(
-            uuid: uuid,
-            provenanceIdentifier: provenanceIdentifier,
-            syncIdentifier: syncIdentifier,
-            syncVersion: syncVersion,
+            sampleUUID: sampleUUID,
+            syncIdentifier: nil,
+            syncVersion: 1,
             startDate: startDate,
-            quantity: HKQuantity(unit: HKUnit(from: unitString), doubleValue: value),
+            unitString: unitString,
+            value: value,
             foodType: rawValue["foodType"] as? String,
             absorptionTime: rawValue["absorptionTime"] as? TimeInterval,
             createdByCurrentApp: createdByCurrentApp,
-            userCreatedDate: nil,
-            userUpdatedDate: nil
+            externalID: externalID,
+            isUploaded: externalID != nil
+        )
+    }
+}
+
+
+extension StoredCarbEntry {
+    init(managedObject: CachedCarbObject) {
+        self.init(
+            sampleUUID: managedObject.uuid!,
+            syncIdentifier: managedObject.syncIdentifier,
+            syncVersion: Int(managedObject.syncVersion),
+            startDate: managedObject.startDate,
+            unitString: unit.unitString,
+            value: managedObject.grams,
+            foodType: managedObject.foodType,
+            absorptionTime: managedObject.absorptionTime,
+            createdByCurrentApp: managedObject.createdByCurrentApp,
+            externalID: managedObject.externalID,
+            isUploaded: (managedObject.uploadState == .uploaded)
         )
     }
 }

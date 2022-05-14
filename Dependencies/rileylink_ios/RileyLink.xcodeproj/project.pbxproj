@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1957BC4227486BE400FAD366 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1957BC4427486BE400FAD366 /* Localizable.strings */; };
 		2B19B9881DF3EF68006AB65F /* NewTimePumpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B19B9871DF3EF68006AB65F /* NewTimePumpEvent.swift */; };
 		2F962EC11E6872170070EFBD /* TimestampedHistoryEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F962EC01E6872170070EFBD /* TimestampedHistoryEventTests.swift */; };
 		2F962EC81E7074E60070EFBD /* BolusNormalPumpEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F962EC71E7074E60070EFBD /* BolusNormalPumpEventTests.swift */; };
@@ -97,6 +98,7 @@
 		43709AD520DF1CF800F941B3 /* MinimedPumpManagerSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43709ACF20DF1CF700F941B3 /* MinimedPumpManagerSetupViewController.swift */; };
 		43709AD620DF1CF800F941B3 /* MinimedPumpSentrySetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43709AD020DF1CF700F941B3 /* MinimedPumpSentrySetupViewController.swift */; };
 		43709AD720DF1CF800F941B3 /* MinimedPumpSetupCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43709AD120DF1CF700F941B3 /* MinimedPumpSetupCompleteViewController.swift */; };
+		43709AD820DF1CF800F941B3 /* MinimedPumpSettingsSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43709AD220DF1CF800F941B3 /* MinimedPumpSettingsSetupViewController.swift */; };
 		43709ADE20DF1D5400F941B3 /* MinimedPumpManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43709AE020DF1D5400F941B3 /* MinimedPumpManager.storyboard */; };
 		43709AE120DF1F0D00F941B3 /* IdentifiableClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431185AE1CF25A590059ED98 /* IdentifiableClass.swift */; };
 		43709AE220DF1FDD00F941B3 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B4A9581D1E6357003B8985 /* UITableViewCell.swift */; };
@@ -249,11 +251,13 @@
 		7D9BF00123369910005DCFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D9BF00323369910005DCFD6 /* Localizable.strings */; };
 		7D9BF03D2336AE0B005DCFD6 /* OmnipodPumpManager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D9BF03F2336AE0B005DCFD6 /* OmnipodPumpManager.storyboard */; };
 		7DEFE05322ED1C2400FCD378 /* OverrideStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEFE05222ED1C2300FCD378 /* OverrideStatus.swift */; };
-		B62DBD572725B9EB0050C038 /* CommandResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62DBD562725B9EB0050C038 /* CommandResponseViewController.swift */; };
+		8021F3B32433D849007C5A6D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8021F3B12433D849007C5A6D /* Localizable.strings */; };
 		C104A9C1217E603E006E3C3E /* OmnipodReservoirView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C104A9BF217E603E006E3C3E /* OmnipodReservoirView.swift */; };
 		C104A9C2217E603E006E3C3E /* OmnipodReservoirView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C104A9C0217E603E006E3C3E /* OmnipodReservoirView.xib */; };
 		C104A9C3217E611F006E3C3E /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FFC5A1D3D74F90049CF85 /* NibLoadable.swift */; };
 		C104A9C5217E645C006E3C3E /* HUDAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C104A9C4217E645C006E3C3E /* HUDAssets.xcassets */; };
+		C104A9C7217E9F35006E3C3E /* PodLifeHUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C104A9C6217E9F34006E3C3E /* PodLifeHUDView.xib */; };
+		C104A9C9217E9F6C006E3C3E /* PodLifeHUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C104A9C8217E9F6C006E3C3E /* PodLifeHUDView.swift */; };
 		C10AB08D1C855613000F102E /* FindDeviceMessageBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10AB08C1C855613000F102E /* FindDeviceMessageBody.swift */; };
 		C10AB08F1C855F34000F102E /* DeviceLinkMessageBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10AB08E1C855F34000F102E /* DeviceLinkMessageBody.swift */; };
 		C10D9BC41C8269D500378342 /* MinimedKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C10D9BC31C8269D500378342 /* MinimedKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -262,9 +266,6 @@
 		C10D9BD71C8269D500378342 /* MinimedKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C10D9BC11C8269D500378342 /* MinimedKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C110A0E6221BBAEF0016560B /* GetPumpFirmwareVersionMessageBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FB4272216E5DFD00FAB378 /* GetPumpFirmwareVersionMessageBody.swift */; };
 		C11166AE2180D834000EEAAB /* AlertSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11166AD2180D834000EEAAB /* AlertSlot.swift */; };
-		C11AA527258728CF00BDE12F /* ReservoirHUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11AA525258728CF00BDE12F /* ReservoirHUDView.swift */; };
-		C11AA528258728CF00BDE12F /* ReservoirHUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C11AA526258728CF00BDE12F /* ReservoirHUDView.xib */; };
-		C11AA5392587294E00BDE12F /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14FFC5A1D3D74F90049CF85 /* NibLoadable.swift */; };
 		C11F6B7E21C9646300752BBC /* FaultConfigCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11F6B7D21C9646300752BBC /* FaultConfigCommand.swift */; };
 		C121985F1C8DE77D00BC374C /* FindDeviceMessageBodyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C121985E1C8DE77D00BC374C /* FindDeviceMessageBodyTests.swift */; };
 		C12198611C8DEB7B00BC374C /* DeviceLinkMessageBodyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12198601C8DEB7B00BC374C /* DeviceLinkMessageBodyTests.swift */; };
@@ -288,6 +289,7 @@
 		C1274F791D823A550002912B /* ChangeMeterIDPumpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1274F781D823A550002912B /* ChangeMeterIDPumpEvent.swift */; };
 		C1274F801D82411C0002912B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1274F7C1D82411C0002912B /* MainViewController.swift */; };
 		C1274F861D8242BE0002912B /* PumpRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1274F851D8242BE0002912B /* PumpRegion.swift */; };
+		C127D924215C002B0031799D /* PodSettingsSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C127D923215C002A0031799D /* PodSettingsSetupViewController.swift */; };
 		C127D925215C00320031799D /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431CE7941F9B0DAE00255374 /* OSLog.swift */; };
 		C127D927215C00420031799D /* PodCommsSession+LoopKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C127D926215C00420031799D /* PodCommsSession+LoopKit.swift */; };
 		C12EA23B198B436800309FA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C12EA23A198B436800309FA4 /* Foundation.framework */; };
@@ -308,11 +310,13 @@
 		C136AA62231187B0008A320D /* MinimedKitPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = C136AA60231187B0008A320D /* MinimedKitPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C136AA6723118817008A320D /* MinimedKitPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C136AA6623118817008A320D /* MinimedKitPlugin.swift */; };
 		C136AA732311899D008A320D /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431CE7941F9B0DAE00255374 /* OSLog.swift */; };
+		C136AA752311CFC3008A320D /* MKRingProgressView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C13F0436230B1DE6001413FF /* MKRingProgressView.framework */; };
 		C136AA76231234E1008A320D /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FB610B20DDF55F002B996B /* LoopKit.framework */; };
 		C13B5EAE2331CD7900AA5599 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EAD6BA1C826B92006DBA60 /* Data.swift */; };
 		C13BD63E21402A88006D7F19 /* PodInsulinMeasurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BD63D21402A88006D7F19 /* PodInsulinMeasurements.swift */; };
 		C13BD643214033E5006D7F19 /* UnfinalizedDose.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13BD642214033E5006D7F19 /* UnfinalizedDose.swift */; };
 		C13D155A1DAACE8400ADC044 /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13D15591DAACE8400ADC044 /* Either.swift */; };
+		C13F0437230B1DE6001413FF /* MKRingProgressView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C13F0436230B1DE6001413FF /* MKRingProgressView.framework */; };
 		C13FD2F4215E7338005FC495 /* FaultEventCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13FD2F3215E7338005FC495 /* FaultEventCode.swift */; };
 		C13FD2F6215E743C005FC495 /* PodProgressStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13FD2F5215E743C005FC495 /* PodProgressStatus.swift */; };
 		C14303161C97C98000A40450 /* PumpAckMessageBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14303151C97C98000A40450 /* PumpAckMessageBody.swift */; };
@@ -415,10 +419,9 @@
 		C184875E20BCDB0000ABE9E7 /* ForecastError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C184875D20BCDB0000ABE9E7 /* ForecastError.swift */; };
 		C18C8C531D64123400E043FB /* EnableBolusWizardPumpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C8C521D64123400E043FB /* EnableBolusWizardPumpEvent.swift */; };
 		C18EB742207EE20100EA002B /* NightscoutProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18EB741207EE20100EA002B /* NightscoutProfile.swift */; };
-		C191D28F25B3844D00C26C0B /* AutomaticDoseRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C191D28E25B3844D00C26C0B /* AutomaticDoseRecommendation.swift */; };
 		C1A492631D4A5A19008964FF /* IOBStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A492621D4A5A19008964FF /* IOBStatus.swift */; };
 		C1A492651D4A5DEB008964FF /* BatteryStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A492641D4A5DEB008964FF /* BatteryStatus.swift */; };
-		C1A492671D4A65D9008964FF /* TempBasalAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A492661D4A65D9008964FF /* TempBasalAdjustment.swift */; };
+		C1A492671D4A65D9008964FF /* RecommendedTempBasal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A492661D4A65D9008964FF /* RecommendedTempBasal.swift */; };
 		C1A492691D4A66C0008964FF /* LoopEnacted.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A492681D4A66C0008964FF /* LoopEnacted.swift */; };
 		C1A721621EC3E0500080FAD7 /* PumpErrorMessageBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A721611EC3E0500080FAD7 /* PumpErrorMessageBody.swift */; };
 		C1A721661EC4BCE30080FAD7 /* PartialDecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A721651EC4BCE30080FAD7 /* PartialDecode.swift */; };
@@ -430,7 +433,7 @@
 		C1AF21F01D4901220088C41D /* BolusNightscoutTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF21EB1D4901220088C41D /* BolusNightscoutTreatment.swift */; };
 		C1AF21F11D4901220088C41D /* NightscoutTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF21EC1D4901220088C41D /* NightscoutTreatment.swift */; };
 		C1AF21F21D4901220088C41D /* BGCheckNightscoutTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF21ED1D4901220088C41D /* BGCheckNightscoutTreatment.swift */; };
-		C1AF21F31D4901220088C41D /* CarbCorrectionNightscoutTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF21EE1D4901220088C41D /* CarbCorrectionNightscoutTreatment.swift */; };
+		C1AF21F31D4901220088C41D /* MealBolusNightscoutTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF21EE1D4901220088C41D /* MealBolusNightscoutTreatment.swift */; };
 		C1AF21F41D4901220088C41D /* TempBasalNightscoutTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AF21EF1D4901220088C41D /* TempBasalNightscoutTreatment.swift */; };
 		C1B3830E1CD0665D00CE7782 /* NightscoutUploadKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C1B3830D1CD0665D00CE7782 /* NightscoutUploadKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C1B383151CD0665D00CE7782 /* NightscoutUploadKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1B3830B1CD0665D00CE7782 /* NightscoutUploadKit.framework */; };
@@ -440,7 +443,6 @@
 		C1B383361CD1BA8100CE7782 /* DeviceDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B383351CD1BA8100CE7782 /* DeviceDataManager.swift */; };
 		C1B44CA7224BDFDF00DE47E5 /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FB610B20DDF55F002B996B /* LoopKit.framework */; };
 		C1B73D65245F824400881A4F /* MinimedPumpManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B73D64245F824400881A4F /* MinimedPumpManagerTests.swift */; };
-		C1B9E0E0256AF052008E8B84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C1B9E0DE256AF052008E8B84 /* Localizable.strings */; };
 		C1BAD1181E63984C009BA1C6 /* RadioAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BAD1171E63984C009BA1C6 /* RadioAdapter.swift */; };
 		C1BB128821CB5603009A29B5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB128721CB5603009A29B5 /* main.swift */; };
 		C1BB129421CB564D009A29B5 /* CRC8.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFAFA0213323E800C50C1D /* CRC8.swift */; };
@@ -487,10 +489,9 @@
 		C1C73F1D1DE6306A0022FC89 /* BatteryChemistryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C73F1C1DE6306A0022FC89 /* BatteryChemistryType.swift */; };
 		C1CB13A521383F1E00F9EEDA /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2366EF212527DA0028B67D /* LocalizedString.swift */; };
 		C1CB13A72138453B00F9EEDA /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43323EA61FA81A0F003FB0FA /* NumberFormatter.swift */; };
+		C1CE65CC26C99AC100C870FF /* CommandResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CE65CB26C99AC100C870FF /* CommandResponseViewController.swift */; };
 		C1D00E9D1E8986A400B733B7 /* PumpSuspendTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D00E9C1E8986A400B733B7 /* PumpSuspendTreatment.swift */; };
 		C1D00EA11E8986F900B733B7 /* PumpResumeTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D00EA01E8986F900B733B7 /* PumpResumeTreatment.swift */; };
-		C1DD5167259FE54400DE27AE /* InsulinTypeConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DD5166259FE54400DE27AE /* InsulinTypeConfirmation.swift */; };
-		C1DD51D525A0BC6000DE27AE /* InsulinTypeConfirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DD51D425A0BC6000DE27AE /* InsulinTypeConfirmation.swift */; };
 		C1E163D52135EC0100EB89AE /* RileyLinkKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D5E78E1FAF7BFB004ACDB7 /* RileyLinkKitUI.framework */; };
 		C1E163D62135ED0300EB89AE /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2366EF212527DA0028B67D /* LocalizedString.swift */; };
 		C1E163D72135FF9A00EB89AE /* TimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4345D1CD1DA16AF300BAAD22 /* TimeZone.swift */; };
@@ -880,25 +881,93 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		19C1666A2756F09E00ED12E3 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19C1666B2756F09E00ED12E3 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19C1666C2756F09E00ED12E3 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/MinimedPumpManager.strings; sourceTree = "<group>"; };
-		19C1666D2756F09E00ED12E3 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19C1666E2756F09E00ED12E3 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19C1666F2756F09E00ED12E3 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/OmnipodPumpManager.strings; sourceTree = "<group>"; };
-		19C166702756F09E00ED12E3 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19C166712756F09E00ED12E3 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19C166722756F09E00ED12E3 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19C166732756F09E00ED12E3 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19E85E1F273EA8F2000CCFAE /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/OmnipodPumpManager.strings; sourceTree = "<group>"; };
-		19E85E20273EA8F4000CCFAE /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19E85E21273EA8F6000CCFAE /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/MinimedPumpManager.strings; sourceTree = "<group>"; };
-		19E85E22273EA8F6000CCFAE /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19E85E23273EA8F6000CCFAE /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19E85E24273EA8F6000CCFAE /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19E85E25273EA8F6000CCFAE /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19E85E26273EA8F7000CCFAE /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		19E85E27273EA94B000CCFAE /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC4527486C1900FAD366 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC4627486C1A00FAD366 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1957BC4727486C1B00FAD366 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC4827486C1D00FAD366 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC4927486C1E00FAD366 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC4A27486C2000FAD366 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC4B27486C2100FAD366 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC4C27486C2200FAD366 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC4D27486C2400FAD366 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC4E27486C2600FAD366 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC4F27486C2800FAD366 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC5027486C2900FAD366 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC5127486C3B00FAD366 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC5227486C3D00FAD366 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1957BC5327486C3F00FAD366 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1957BC5427486C4100FAD366 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC5527486C4300FAD366 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC5627486C4500FAD366 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC5727486C4700FAD366 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC5827486C4A00FAD366 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC5927486C4C00FAD366 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1957BC5A27486C4E00FAD366 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFCA273C4E1C00AC5351 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFCB273C4E1E00AC5351 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/MinimedPumpManager.strings; sourceTree = "<group>"; };
+		1980CFCC273C4E1E00AC5351 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFCD273C4E1E00AC5351 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFCE273C4E1E00AC5351 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFCF273C4E1E00AC5351 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFD1273C4F1400AC5351 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/OmnipodPumpManager.strings; sourceTree = "<group>"; };
+		1980CFD2273C512800AC5351 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFD3273C51A300AC5351 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFD4273C526E00AC5351 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/OmnipodPumpManager.strings; sourceTree = "<group>"; };
+		1980CFD5273C527000AC5351 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFD6273C527600AC5351 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/MinimedPumpManager.strings; sourceTree = "<group>"; };
+		1980CFD7273C527600AC5351 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFD8273C527600AC5351 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFD9273C527600AC5351 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFDA273C527600AC5351 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFDB273C527E00AC5351 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/OmnipodPumpManager.strings; sourceTree = "<group>"; };
+		1980CFDC273C52AE00AC5351 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFDD273C52B000AC5351 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/MinimedPumpManager.strings; sourceTree = "<group>"; };
+		1980CFDE273C52B000AC5351 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFDF273C52B000AC5351 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFE0273C52B000AC5351 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFE1273C52B000AC5351 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFE2273C52E800AC5351 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFE3273C52EA00AC5351 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFE4273C52FE00AC5351 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFE5273C530100AC5351 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFE6273C537100AC5351 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/OmnipodPumpManager.strings; sourceTree = "<group>"; };
+		1980CFE7273C53A000AC5351 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFE8273C53A200AC5351 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/MinimedPumpManager.strings; sourceTree = "<group>"; };
+		1980CFE9273C53A200AC5351 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFEA273C53A200AC5351 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFEB273C53A200AC5351 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFEC273C53A300AC5351 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFED273C542B00AC5351 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFEE273C543500AC5351 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFEF273C54F900AC5351 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/MinimedPumpManager.strings"; sourceTree = "<group>"; };
+		1980CFF0273C54F900AC5351 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/OmnipodPumpManager.strings"; sourceTree = "<group>"; };
+		1980CFF1273C54F900AC5351 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1980CFF2273C54F900AC5351 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1980CFF3273C54F900AC5351 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1980CFF4273C54F900AC5351 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1980CFF5273C54FA00AC5351 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1980CFF6273C54FA00AC5351 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1980CFF7273C54FA00AC5351 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		1980CFF8273C564700AC5351 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/OmnipodPumpManager.strings; sourceTree = "<group>"; };
+		1980CFF9273C567700AC5351 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFFA273C567900AC5351 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/MinimedPumpManager.strings; sourceTree = "<group>"; };
+		1980CFFB273C567900AC5351 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFFC273C567900AC5351 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFFD273C567900AC5351 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFFE273C567900AC5351 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980CFFF273C56A700AC5351 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1980D001273C58A000AC5351 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD7876274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/MinimedPumpManager.strings; sourceTree = "<group>"; };
+		19BD7877274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/OmnipodPumpManager.strings; sourceTree = "<group>"; };
+		19BD7878274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD7879274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD787A274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD787B274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD787C274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD787D274D8D00005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD787E274D8D01005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19BD787F274D8D01005CFB6F /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19C76BA4274872DC0067EB7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2B19B9871DF3EF68006AB65F /* NewTimePumpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTimePumpEvent.swift; sourceTree = "<group>"; };
 		2F962EBE1E678BAA0070EFBD /* PumpOpsSynchronousTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PumpOpsSynchronousTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		2F962EC01E6872170070EFBD /* TimestampedHistoryEventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimestampedHistoryEventTests.swift; sourceTree = "<group>"; };
@@ -963,6 +1032,7 @@
 		43709ACF20DF1CF700F941B3 /* MinimedPumpManagerSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimedPumpManagerSetupViewController.swift; sourceTree = "<group>"; };
 		43709AD020DF1CF700F941B3 /* MinimedPumpSentrySetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimedPumpSentrySetupViewController.swift; sourceTree = "<group>"; };
 		43709AD120DF1CF700F941B3 /* MinimedPumpSetupCompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimedPumpSetupCompleteViewController.swift; sourceTree = "<group>"; };
+		43709AD220DF1CF800F941B3 /* MinimedPumpSettingsSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimedPumpSettingsSetupViewController.swift; sourceTree = "<group>"; };
 		43709ADF20DF1D5400F941B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MinimedPumpManager.storyboard; sourceTree = "<group>"; };
 		43709AEB20E0056F00F941B3 /* RileyLinkKitUI.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = RileyLinkKitUI.xcassets; sourceTree = "<group>"; };
 		43709AED20E008F300F941B3 /* SetupImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -1227,10 +1297,12 @@
 		7D9BF15423371408005DCFD6 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7D9BF15523371408005DCFD6 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7DEFE05222ED1C2300FCD378 /* OverrideStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverrideStatus.swift; sourceTree = "<group>"; };
-		B62DBD562725B9EB0050C038 /* CommandResponseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandResponseViewController.swift; sourceTree = "<group>"; };
+		8021F3B22433D849007C5A6D /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C104A9BF217E603E006E3C3E /* OmnipodReservoirView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OmnipodReservoirView.swift; sourceTree = "<group>"; };
 		C104A9C0217E603E006E3C3E /* OmnipodReservoirView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OmnipodReservoirView.xib; sourceTree = "<group>"; };
 		C104A9C4217E645C006E3C3E /* HUDAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HUDAssets.xcassets; sourceTree = "<group>"; };
+		C104A9C6217E9F34006E3C3E /* PodLifeHUDView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodLifeHUDView.xib; sourceTree = "<group>"; };
+		C104A9C8217E9F6C006E3C3E /* PodLifeHUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodLifeHUDView.swift; sourceTree = "<group>"; };
 		C10AB08C1C855613000F102E /* FindDeviceMessageBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindDeviceMessageBody.swift; sourceTree = "<group>"; };
 		C10AB08E1C855F34000F102E /* DeviceLinkMessageBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceLinkMessageBody.swift; sourceTree = "<group>"; };
 		C10D9BC11C8269D500378342 /* MinimedKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MinimedKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1239,8 +1311,6 @@
 		C10D9BCA1C8269D500378342 /* MinimedKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MinimedKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C10D9BD31C8269D500378342 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C11166AD2180D834000EEAAB /* AlertSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSlot.swift; sourceTree = "<group>"; };
-		C11AA525258728CF00BDE12F /* ReservoirHUDView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservoirHUDView.swift; sourceTree = "<group>"; };
-		C11AA526258728CF00BDE12F /* ReservoirHUDView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReservoirHUDView.xib; sourceTree = "<group>"; };
 		C11F6B7D21C9646300752BBC /* FaultConfigCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaultConfigCommand.swift; sourceTree = "<group>"; };
 		C121985E1C8DE77D00BC374C /* FindDeviceMessageBodyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindDeviceMessageBodyTests.swift; sourceTree = "<group>"; };
 		C12198601C8DEB7B00BC374C /* DeviceLinkMessageBodyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceLinkMessageBodyTests.swift; sourceTree = "<group>"; };
@@ -1264,6 +1334,7 @@
 		C1274F781D823A550002912B /* ChangeMeterIDPumpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeMeterIDPumpEvent.swift; sourceTree = "<group>"; };
 		C1274F7C1D82411C0002912B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C1274F851D8242BE0002912B /* PumpRegion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PumpRegion.swift; sourceTree = "<group>"; };
+		C127D923215C002A0031799D /* PodSettingsSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodSettingsSetupViewController.swift; sourceTree = "<group>"; };
 		C127D926215C00420031799D /* PodCommsSession+LoopKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PodCommsSession+LoopKit.swift"; sourceTree = "<group>"; };
 		C12EA237198B436800309FA4 /* RileyLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RileyLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C12EA23A198B436800309FA4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1385,10 +1456,9 @@
 		C184875D20BCDB0000ABE9E7 /* ForecastError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastError.swift; sourceTree = "<group>"; };
 		C18C8C521D64123400E043FB /* EnableBolusWizardPumpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnableBolusWizardPumpEvent.swift; sourceTree = "<group>"; };
 		C18EB741207EE20100EA002B /* NightscoutProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NightscoutProfile.swift; sourceTree = "<group>"; };
-		C191D28E25B3844D00C26C0B /* AutomaticDoseRecommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticDoseRecommendation.swift; sourceTree = "<group>"; };
 		C1A492621D4A5A19008964FF /* IOBStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOBStatus.swift; sourceTree = "<group>"; };
 		C1A492641D4A5DEB008964FF /* BatteryStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatteryStatus.swift; sourceTree = "<group>"; };
-		C1A492661D4A65D9008964FF /* TempBasalAdjustment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempBasalAdjustment.swift; sourceTree = "<group>"; };
+		C1A492661D4A65D9008964FF /* RecommendedTempBasal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedTempBasal.swift; sourceTree = "<group>"; };
 		C1A492681D4A66C0008964FF /* LoopEnacted.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoopEnacted.swift; sourceTree = "<group>"; };
 		C1A7215F1EC29C0B0080FAD7 /* PumpOpsError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PumpOpsError.swift; sourceTree = "<group>"; };
 		C1A721611EC3E0500080FAD7 /* PumpErrorMessageBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PumpErrorMessageBody.swift; sourceTree = "<group>"; };
@@ -1401,7 +1471,7 @@
 		C1AF21EB1D4901220088C41D /* BolusNightscoutTreatment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BolusNightscoutTreatment.swift; sourceTree = "<group>"; };
 		C1AF21EC1D4901220088C41D /* NightscoutTreatment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NightscoutTreatment.swift; sourceTree = "<group>"; };
 		C1AF21ED1D4901220088C41D /* BGCheckNightscoutTreatment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BGCheckNightscoutTreatment.swift; sourceTree = "<group>"; };
-		C1AF21EE1D4901220088C41D /* CarbCorrectionNightscoutTreatment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarbCorrectionNightscoutTreatment.swift; sourceTree = "<group>"; };
+		C1AF21EE1D4901220088C41D /* MealBolusNightscoutTreatment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealBolusNightscoutTreatment.swift; sourceTree = "<group>"; };
 		C1AF21EF1D4901220088C41D /* TempBasalNightscoutTreatment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempBasalNightscoutTreatment.swift; sourceTree = "<group>"; };
 		C1B3830B1CD0665D00CE7782 /* NightscoutUploadKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NightscoutUploadKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1B3830D1CD0665D00CE7782 /* NightscoutUploadKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NightscoutUploadKit.h; sourceTree = "<group>"; };
@@ -1411,23 +1481,6 @@
 		C1B383351CD1BA8100CE7782 /* DeviceDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDataManager.swift; sourceTree = "<group>"; };
 		C1B4A9581D1E6357003B8985 /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		C1B73D64245F824400881A4F /* MinimedPumpManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimedPumpManagerTests.swift; sourceTree = "<group>"; };
-		C1B9E0DF256AF052008E8B84 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E0F1256AF058008E8B84 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		C1B9E0F2256AF05B008E8B84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E0F3256AF05D008E8B84 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E0F4256AF05F008E8B84 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E0F5256AF062008E8B84 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E0F6256AF064008E8B84 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E0F7256AF066008E8B84 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E0F8256AF068008E8B84 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E0F9256AF06A008E8B84 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E0FA256AF06D008E8B84 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E0FB256AF06F008E8B84 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		C1B9E0FC256AF071008E8B84 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E0FD256AF074008E8B84 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E0FE256AF076008E8B84 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E0FF256AF078008E8B84 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C1B9E100256AF07B008E8B84 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C1BAD1171E63984C009BA1C6 /* RadioAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadioAdapter.swift; sourceTree = "<group>"; };
 		C1BB128521CB5603009A29B5 /* OmniKitPacketParser */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OmniKitPacketParser; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1BB128721CB5603009A29B5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -1437,10 +1490,9 @@
 		C1C357901C92733A009BDD4F /* MeterMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeterMessageTests.swift; path = Messages/MeterMessageTests.swift; sourceTree = "<group>"; };
 		C1C659181E16BA9D0025CC58 /* CaseCountable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaseCountable.swift; sourceTree = "<group>"; };
 		C1C73F1C1DE6306A0022FC89 /* BatteryChemistryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatteryChemistryType.swift; sourceTree = "<group>"; };
+		C1CE65CB26C99AC100C870FF /* CommandResponseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandResponseViewController.swift; sourceTree = "<group>"; };
 		C1D00E9C1E8986A400B733B7 /* PumpSuspendTreatment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PumpSuspendTreatment.swift; sourceTree = "<group>"; };
 		C1D00EA01E8986F900B733B7 /* PumpResumeTreatment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PumpResumeTreatment.swift; sourceTree = "<group>"; };
-		C1DD5166259FE54400DE27AE /* InsulinTypeConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinTypeConfirmation.swift; sourceTree = "<group>"; };
-		C1DD51D425A0BC6000DE27AE /* InsulinTypeConfirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsulinTypeConfirmation.swift; sourceTree = "<group>"; };
 		C1E535E81991E36700C2AC49 /* NSData+Conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Conversion.h"; sourceTree = "<group>"; };
 		C1E535E91991E36700C2AC49 /* NSData+Conversion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Conversion.m"; sourceTree = "<group>"; };
 		C1E5BEAC1D5E26F200BD4390 /* RileyLinkStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RileyLinkStatus.swift; sourceTree = "<group>"; };
@@ -1644,6 +1696,7 @@
 				43C246A91D8A31540031F8D1 /* Crypto.framework in Frameworks */,
 				C1B383201CD0665D00CE7782 /* NightscoutUploadKit.framework in Frameworks */,
 				C12EA23D198B436800309FA4 /* CoreGraphics.framework in Frameworks */,
+				C13F0437230B1DE6001413FF /* MKRingProgressView.framework in Frameworks */,
 				43D5E7951FAF7BFB004ACDB7 /* RileyLinkKitUI.framework in Frameworks */,
 				C12EA23F198B436800309FA4 /* UIKit.framework in Frameworks */,
 				43722FC31CB9F7640038B7F2 /* RileyLinkKit.framework in Frameworks */,
@@ -1728,6 +1781,7 @@
 				C1FFB02421343EC200C50C1D /* OmniKit.framework in Frameworks */,
 				C1FFB02521343F0300C50C1D /* LoopKit.framework in Frameworks */,
 				C1FFB02621343F0600C50C1D /* LoopKitUI.framework in Frameworks */,
+				C136AA752311CFC3008A320D /* MKRingProgressView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1822,7 +1876,6 @@
 		4352A72620DEC9B700CAC200 /* MinimedKitUI */ = {
 			isa = PBXGroup;
 			children = (
-				C11AA524258728BD00BDE12F /* Views */,
 				C1FFAF4B212944F600C50C1D /* Localizable.strings */,
 				4352A72720DEC9B700CAC200 /* MinimedKitUI.h */,
 				4352A72820DEC9B700CAC200 /* Info.plist */,
@@ -1847,6 +1900,7 @@
 				43709ACE20DF1CF700F941B3 /* MinimedPumpIDSetupViewController.swift */,
 				43709AD020DF1CF700F941B3 /* MinimedPumpSentrySetupViewController.swift */,
 				43709ACD20DF1CF700F941B3 /* MinimedPumpClockSetupViewController.swift */,
+				43709AD220DF1CF800F941B3 /* MinimedPumpSettingsSetupViewController.swift */,
 				43709AD120DF1CF700F941B3 /* MinimedPumpSetupCompleteViewController.swift */,
 			);
 			path = Setup;
@@ -1898,9 +1952,9 @@
 				7D23679521252EBC0028B67D /* Localizable.strings */,
 				43709AEB20E0056F00F941B3 /* RileyLinkKitUI.xcassets */,
 				C170C98D1CECD6F300F3D8E5 /* CBPeripheralState.swift */,
+				C1CE65CB26C99AC100C870FF /* CommandResponseViewController.swift */,
 				439731261CF21C3C00F474E5 /* RileyLinkDeviceTableViewCell.swift */,
 				C170C9981CECD80000F3D8E5 /* RileyLinkDeviceTableViewController.swift */,
-				B62DBD562725B9EB0050C038 /* CommandResponseViewController.swift */,
 				435D26B320DA0AAE00891C17 /* RileyLinkDevicesHeaderView.swift */,
 				435D26B520DA0BCC00891C17 /* RileyLinkDevicesTableViewDataSource.swift */,
 				43709ABB20DF1C6400F941B3 /* RileyLinkManagerSetupViewController.swift */,
@@ -2026,9 +2080,10 @@
 				C104A9C4217E645C006E3C3E /* HUDAssets.xcassets */,
 				C104A9BF217E603E006E3C3E /* OmnipodReservoirView.swift */,
 				C104A9C0217E603E006E3C3E /* OmnipodReservoirView.xib */,
+				C104A9C8217E9F6C006E3C3E /* PodLifeHUDView.swift */,
+				C104A9C6217E9F34006E3C3E /* PodLifeHUDView.xib */,
 				C1814B87225F0A3D008D2D8E /* ExpirationReminderDateTableViewCell.swift */,
 				C1814B89225FADFA008D2D8E /* ExpirationReminderDateTableViewCell.xib */,
-				C1DD5166259FE54400DE27AE /* InsulinTypeConfirmation.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2078,16 +2133,6 @@
 			path = MinimedKitTests;
 			sourceTree = "<group>";
 		};
-		C11AA524258728BD00BDE12F /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				C11AA525258728CF00BDE12F /* ReservoirHUDView.swift */,
-				C11AA526258728CF00BDE12F /* ReservoirHUDView.xib */,
-				C1DD51D425A0BC6000DE27AE /* InsulinTypeConfirmation.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		C121985D1C8DE72500BC374C /* Messages */ = {
 			isa = PBXGroup;
 			children = (
@@ -2132,6 +2177,7 @@
 		C12EA22E198B436800309FA4 = {
 			isa = PBXGroup;
 			children = (
+				8021F3B12433D849007C5A6D /* Localizable.strings */,
 				C12EA240198B436800309FA4 /* RileyLink */,
 				C12EA259198B436900309FA4 /* RileyLinkTests */,
 				C10D9BC21C8269D500378342 /* MinimedKit */,
@@ -2414,14 +2460,13 @@
 				C178845E1D5166BE00405663 /* COBStatus.swift */,
 				C1A492641D4A5DEB008964FF /* BatteryStatus.swift */,
 				C1AF21E31D4865320088C41D /* LoopStatus.swift */,
-				C1A492661D4A65D9008964FF /* TempBasalAdjustment.swift */,
+				C1A492661D4A65D9008964FF /* RecommendedTempBasal.swift */,
 				C1A492681D4A66C0008964FF /* LoopEnacted.swift */,
 				C133CF921D5943780034B82D /* PredictedBG.swift */,
 				C1E5BEAC1D5E26F200BD4390 /* RileyLinkStatus.swift */,
 				C1BAD1171E63984C009BA1C6 /* RadioAdapter.swift */,
 				C184875B20BC232F00ABE9E7 /* CorrectionRange.swift */,
 				C184875D20BCDB0000ABE9E7 /* ForecastError.swift */,
-				C191D28E25B3844D00C26C0B /* AutomaticDoseRecommendation.swift */,
 			);
 			path = DeviceStatus;
 			sourceTree = "<group>";
@@ -2431,7 +2476,7 @@
 			children = (
 				C1AF21ED1D4901220088C41D /* BGCheckNightscoutTreatment.swift */,
 				C1AF21EB1D4901220088C41D /* BolusNightscoutTreatment.swift */,
-				C1AF21EE1D4901220088C41D /* CarbCorrectionNightscoutTreatment.swift */,
+				C1AF21EE1D4901220088C41D /* MealBolusNightscoutTreatment.swift */,
 				C1AF21EC1D4901220088C41D /* NightscoutTreatment.swift */,
 				C1D00E9C1E8986A400B733B7 /* PumpSuspendTreatment.swift */,
 				C1AF21EF1D4901220088C41D /* TempBasalNightscoutTreatment.swift */,
@@ -2483,8 +2528,8 @@
 		C1BB128621CB5603009A29B5 /* OmniKitPacketParser */ = {
 			isa = PBXGroup;
 			children = (
-				C1B9E0DE256AF052008E8B84 /* Localizable.strings */,
 				C1BB128721CB5603009A29B5 /* main.swift */,
+				1957BC4427486BE400FAD366 /* Localizable.strings */,
 			);
 			path = OmniKitPacketParser;
 			sourceTree = "<group>";
@@ -2618,15 +2663,15 @@
 				C1FFAFAE213323E800C50C1D /* CancelDeliveryCommand.swift */,
 				C1FFAFB3213323E800C50C1D /* ConfigureAlertsCommand.swift */,
 				C1FFAFA7213323E800C50C1D /* DeactivatePodCommand.swift */,
+				E9EE336D214ED01200888876 /* DetailedStatus.swift */,
 				C1FFAFB1213323E800C50C1D /* ErrorResponse.swift */,
 				C11F6B7D21C9646300752BBC /* FaultConfigCommand.swift */,
 				C1FFAFAC213323E800C50C1D /* GetStatusCommand.swift */,
 				C1FFAFA8213323E800C50C1D /* MessageBlock.swift */,
 				C1FFAFA9213323E800C50C1D /* PlaceholderMessageBlock.swift */,
 				E9EE336B214ED01200888876 /* PodInfo.swift */,
-				E9C06B252150371700B602AD /* PodInfoConfiguredAlerts.swift */,
 				E9EDD474215AFFF300A103D1 /* PodInfoActivationTime.swift */,
-				E9EE336D214ED01200888876 /* DetailedStatus.swift */,
+				E9C06B252150371700B602AD /* PodInfoConfiguredAlerts.swift */,
 				E95D065F215D76E40072157B /* PodInfoPulseLog.swift */,
 				E9E54AB52156B2D500E319B8 /* PodInfoPulseLogPlus.swift */,
 				C1FFAFA5213323E800C50C1D /* PodInfoResponse.swift */,
@@ -2663,6 +2708,7 @@
 				C1FFB0082133242C00C50C1D /* OmnipodSettingsViewController.swift */,
 				C1F1A5E9215164FA00F0B820 /* PairPodSetupViewController.swift */,
 				C168C3FF21AEF8DE00ADE90E /* PodReplacementNavigationController.swift */,
+				C127D923215C002A0031799D /* PodSettingsSetupViewController.swift */,
 				C1F1A5ED2151FBA700F0B820 /* PodSetupCompleteViewController.swift */,
 				C168C40121AFACA600ADE90E /* ReplacePodViewController.swift */,
 			);
@@ -2767,9 +2813,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 431CE78A1F98564200255374 /* Build configuration list for PBXNativeTarget "RileyLinkBLEKit" */;
 			buildPhases = (
+				431CE76C1F98564100255374 /* Headers */,
 				431CE76A1F98564100255374 /* Sources */,
 				431CE76B1F98564100255374 /* Frameworks */,
-				431CE76C1F98564100255374 /* Headers */,
 				431CE76D1F98564100255374 /* Resources */,
 			);
 			buildRules = (
@@ -2804,9 +2850,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4352A72E20DEC9B700CAC200 /* Build configuration list for PBXNativeTarget "MinimedKitUI" */;
 			buildPhases = (
+				4352A72220DEC9B700CAC200 /* Headers */,
 				4352A72020DEC9B700CAC200 /* Sources */,
 				4352A72120DEC9B700CAC200 /* Frameworks */,
-				4352A72220DEC9B700CAC200 /* Headers */,
 				4352A72320DEC9B700CAC200 /* Resources */,
 			);
 			buildRules = (
@@ -2824,9 +2870,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43722FC91CB9F7640038B7F2 /* Build configuration list for PBXNativeTarget "RileyLinkKit" */;
 			buildPhases = (
+				43722FAB1CB9F7630038B7F2 /* Headers */,
 				43722FA91CB9F7630038B7F2 /* Sources */,
 				43722FAA1CB9F7630038B7F2 /* Frameworks */,
-				43722FAB1CB9F7630038B7F2 /* Headers */,
 				43722FAC1CB9F7630038B7F2 /* Resources */,
 			);
 			buildRules = (
@@ -2843,9 +2889,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43C2469E1D8918AE0031F8D1 /* Build configuration list for PBXNativeTarget "Crypto" */;
 			buildPhases = (
+				43C246901D8918AE0031F8D1 /* Headers */,
 				43C2468E1D8918AE0031F8D1 /* Sources */,
 				43C2468F1D8918AE0031F8D1 /* Frameworks */,
-				43C246901D8918AE0031F8D1 /* Headers */,
 				43C246911D8918AE0031F8D1 /* Resources */,
 			);
 			buildRules = (
@@ -2861,9 +2907,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43D5E7971FAF7BFB004ACDB7 /* Build configuration list for PBXNativeTarget "RileyLinkKitUI" */;
 			buildPhases = (
+				43D5E78B1FAF7BFB004ACDB7 /* Headers */,
 				43D5E7891FAF7BFB004ACDB7 /* Sources */,
 				43D5E78A1FAF7BFB004ACDB7 /* Frameworks */,
-				43D5E78B1FAF7BFB004ACDB7 /* Headers */,
 				43D5E78C1FAF7BFB004ACDB7 /* Resources */,
 			);
 			buildRules = (
@@ -2880,9 +2926,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C10D9BD81C8269D600378342 /* Build configuration list for PBXNativeTarget "MinimedKit" */;
 			buildPhases = (
+				C10D9BBE1C8269D500378342 /* Headers */,
 				C10D9BBC1C8269D500378342 /* Sources */,
 				C10D9BBD1C8269D500378342 /* Frameworks */,
-				C10D9BBE1C8269D500378342 /* Headers */,
 				C10D9BBF1C8269D500378342 /* Resources */,
 			);
 			buildRules = (
@@ -2995,9 +3041,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1B383221CD0665D00CE7782 /* Build configuration list for PBXNativeTarget "NightscoutUploadKit" */;
 			buildPhases = (
+				C1B383081CD0665D00CE7782 /* Headers */,
 				C1B383061CD0665D00CE7782 /* Sources */,
 				C1B383071CD0665D00CE7782 /* Frameworks */,
-				C1B383081CD0665D00CE7782 /* Headers */,
 				C1B383091CD0665D00CE7782 /* Resources */,
 			);
 			buildRules = (
@@ -3051,9 +3097,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1FFAF93213323CD00C50C1D /* Build configuration list for PBXNativeTarget "OmniKit" */;
 			buildPhases = (
+				C1FFAF75213323CC00C50C1D /* Headers */,
 				C1FFAF73213323CC00C50C1D /* Sources */,
 				C1FFAF74213323CC00C50C1D /* Frameworks */,
-				C1FFAF75213323CC00C50C1D /* Headers */,
 				C1FFAF76213323CC00C50C1D /* Resources */,
 			);
 			buildRules = (
@@ -3089,9 +3135,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1FFAFF0213323FA00C50C1D /* Build configuration list for PBXNativeTarget "OmniKitUI" */;
 			buildPhases = (
+				C1FFAFD6213323F900C50C1D /* Headers */,
 				C1FFAFD4213323F900C50C1D /* Sources */,
 				C1FFAFD5213323F900C50C1D /* Frameworks */,
-				C1FFAFD6213323F900C50C1D /* Headers */,
 				C1FFAFD7213323F900C50C1D /* Resources */,
 			);
 			buildRules = (
@@ -3112,7 +3158,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Pete Schwamb";
 				TargetAttributes = {
 					431CE76E1F98564100255374 = {
@@ -3220,7 +3266,12 @@
 				fi,
 				"pt-BR",
 				ro,
+				he,
+				ar,
+				ca,
 				tr,
+				"pt-PT",
+				uk,
 				sk,
 			);
 			mainGroup = C12EA22E198B436800309FA4;
@@ -3269,7 +3320,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C11AA528258728CF00BDE12F /* ReservoirHUDView.xib in Resources */,
 				43709ADE20DF1D5400F941B3 /* MinimedPumpManager.storyboard in Resources */,
 				C1FFAF4D212944F600C50C1D /* Localizable.strings in Resources */,
 				43709AC920DF1C9A00F941B3 /* MinimedKitUI.xcassets in Resources */,
@@ -3304,7 +3354,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1B9E0E0256AF052008E8B84 /* Localizable.strings in Resources */,
+				8021F3B32433D849007C5A6D /* Localizable.strings in Resources */,
+				1957BC4227486BE400FAD366 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3383,6 +3434,7 @@
 			files = (
 				C104A9C2217E603E006E3C3E /* OmnipodReservoirView.xib in Resources */,
 				7D9BF03D2336AE0B005DCFD6 /* OmnipodPumpManager.storyboard in Resources */,
+				C104A9C7217E9F35006E3C3E /* PodLifeHUDView.xib in Resources */,
 				7D9BF00123369910005DCFD6 /* Localizable.strings in Resources */,
 				C104A9C5217E645C006E3C3E /* HUDAssets.xcassets in Resources */,
 				C1814B8A225FADFA008D2D8E /* ExpirationReminderDateTableViewCell.xib in Resources */,
@@ -3584,13 +3636,12 @@
 				7D2366F7212527DA0028B67D /* LocalizedString.swift in Sources */,
 				C154EA7F2146F41900B24AF8 /* TimeInterval.swift in Sources */,
 				43709AD420DF1CF800F941B3 /* MinimedPumpIDSetupViewController.swift in Sources */,
-				C11AA527258728CF00BDE12F /* ReservoirHUDView.swift in Sources */,
 				C16E611F22065B8E0069F357 /* TimeZone.swift in Sources */,
 				C16E61262208EC580069F357 /* MinimedHUDProvider.swift in Sources */,
 				43709AD520DF1CF800F941B3 /* MinimedPumpManagerSetupViewController.swift in Sources */,
 				43709AD320DF1CF800F941B3 /* MinimedPumpClockSetupViewController.swift in Sources */,
 				43709AC420DF1C8B00F941B3 /* PumpModel.swift in Sources */,
-				C11AA5392587294E00BDE12F /* NibLoadable.swift in Sources */,
+				43709AD820DF1CF800F941B3 /* MinimedPumpSettingsSetupViewController.swift in Sources */,
 				43709AD720DF1CF800F941B3 /* MinimedPumpSetupCompleteViewController.swift in Sources */,
 				43709AD620DF1CF800F941B3 /* MinimedPumpSentrySetupViewController.swift in Sources */,
 				C145BF9F2219F37200A977CB /* Comparable.swift in Sources */,
@@ -3599,7 +3650,6 @@
 				43709AE120DF1F0D00F941B3 /* IdentifiableClass.swift in Sources */,
 				4352A74320DED3F200CAC200 /* NumberFormatter.swift in Sources */,
 				4352A73220DEC9D600CAC200 /* CommandResponseViewController.swift in Sources */,
-				C1DD51D525A0BC6000DE27AE /* InsulinTypeConfirmation.swift in Sources */,
 				43709AC520DF1C8B00F941B3 /* RadioSelectionTableViewController.swift in Sources */,
 				4352A73920DECBAA00CAC200 /* RileyLinkMinimedDeviceTableViewController.swift in Sources */,
 				4352A74220DED3D200CAC200 /* CaseCountable.swift in Sources */,
@@ -3656,7 +3706,7 @@
 				43709ABE20DF1C6400F941B3 /* RileyLinkManagerSetupViewController.swift in Sources */,
 				43D5E7A01FAF7CCA004ACDB7 /* NumberFormatter.swift in Sources */,
 				43709AE420DF20D500F941B3 /* OSLog.swift in Sources */,
-				B62DBD572725B9EB0050C038 /* CommandResponseViewController.swift in Sources */,
+				C1CE65CC26C99AC100C870FF /* CommandResponseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3966,7 +4016,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C18EB742207EE20100EA002B /* NightscoutProfile.swift in Sources */,
-				C191D28F25B3844D00C26C0B /* AutomaticDoseRecommendation.swift in Sources */,
 				7D2366F3212527DA0028B67D /* LocalizedString.swift in Sources */,
 				43B0ADCC1D126E3000AAD278 /* NSDateFormatter.swift in Sources */,
 				C184875C20BC232F00ABE9E7 /* CorrectionRange.swift in Sources */,
@@ -3977,7 +4026,7 @@
 				C1AF21E61D48667F0088C41D /* UploaderStatus.swift in Sources */,
 				C1BAD1181E63984C009BA1C6 /* RadioAdapter.swift in Sources */,
 				C1E5BEAD1D5E26F200BD4390 /* RileyLinkStatus.swift in Sources */,
-				C1AF21F31D4901220088C41D /* CarbCorrectionNightscoutTreatment.swift in Sources */,
+				C1AF21F31D4901220088C41D /* MealBolusNightscoutTreatment.swift in Sources */,
 				C1A492691D4A66C0008964FF /* LoopEnacted.swift in Sources */,
 				C13B5EAE2331CD7900AA5599 /* Data.swift in Sources */,
 				C1A492651D4A5DEB008964FF /* BatteryStatus.swift in Sources */,
@@ -3993,7 +4042,7 @@
 				C13D155A1DAACE8400ADC044 /* Either.swift in Sources */,
 				C1AF21F11D4901220088C41D /* NightscoutTreatment.swift in Sources */,
 				492526711E4521FB00ACBA5F /* NoteNightscoutTreatment.swift in Sources */,
-				C1A492671D4A65D9008964FF /* TempBasalAdjustment.swift in Sources */,
+				C1A492671D4A65D9008964FF /* RecommendedTempBasal.swift in Sources */,
 				C178845F1D5166BE00405663 /* COBStatus.swift in Sources */,
 				43B0ADC91D1268B300AAD278 /* TimeFormat.swift in Sources */,
 				C1AF21E21D4838C90088C41D /* DeviceStatus.swift in Sources */,
@@ -4146,6 +4195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1F1A5EE2151FBA700F0B820 /* PodSetupCompleteViewController.swift in Sources */,
+				C127D924215C002B0031799D /* PodSettingsSetupViewController.swift in Sources */,
 				C1FFB01B21332DD900C50C1D /* TimeZone.swift in Sources */,
 				C104A9C3217E611F006E3C3E /* NibLoadable.swift in Sources */,
 				C16C3D4421AC40AF00401105 /* OmnipodHUDProvider.swift in Sources */,
@@ -4158,7 +4208,7 @@
 				C1F1A5EC2151F73F00F0B820 /* InsertCannulaSetupViewController.swift in Sources */,
 				C168C40221AFACA600ADE90E /* ReplacePodViewController.swift in Sources */,
 				C1FFB01A21332AFE00C50C1D /* IdentifiableClass.swift in Sources */,
-				C1DD5167259FE54400DE27AE /* InsulinTypeConfirmation.swift in Sources */,
+				C104A9C9217E9F6C006E3C3E /* PodLifeHUDView.swift in Sources */,
 				C1FFB0102133242C00C50C1D /* OmnipodSettingsViewController.swift in Sources */,
 				C127D925215C00320031799D /* OSLog.swift in Sources */,
 				C1F1A5EA215164FA00F0B820 /* PairPodSetupViewController.swift in Sources */,
@@ -4342,6 +4392,37 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1957BC4427486BE400FAD366 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1957BC4527486C1900FAD366 /* ar */,
+				1957BC4627486C1A00FAD366 /* zh-Hans */,
+				1957BC4727486C1B00FAD366 /* ca */,
+				1957BC4827486C1D00FAD366 /* da */,
+				1957BC4927486C1E00FAD366 /* nl */,
+				1957BC4A27486C2000FAD366 /* fi */,
+				1957BC4B27486C2100FAD366 /* fr */,
+				1957BC4C27486C2200FAD366 /* de */,
+				1957BC4D27486C2400FAD366 /* he */,
+				1957BC4E27486C2600FAD366 /* it */,
+				1957BC4F27486C2800FAD366 /* ja */,
+				1957BC5027486C2900FAD366 /* nb */,
+				1957BC5127486C3B00FAD366 /* pl */,
+				1957BC5227486C3D00FAD366 /* pt-BR */,
+				1957BC5327486C3F00FAD366 /* pt-PT */,
+				1957BC5427486C4100FAD366 /* ro */,
+				1957BC5527486C4300FAD366 /* ru */,
+				1957BC5627486C4500FAD366 /* es */,
+				1957BC5727486C4700FAD366 /* sv */,
+				1957BC5827486C4A00FAD366 /* tr */,
+				1957BC5927486C4C00FAD366 /* uk */,
+				1957BC5A27486C4E00FAD366 /* vi */,
+				19C76BA4274872DC0067EB7A /* en */,
+				19BD787F274D8D01005CFB6F /* sk */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		43709AE020DF1D5400F941B3 /* MinimedPumpManager.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -4363,8 +4444,13 @@
 				7D9BF02D2336A2FB005DCFD6 /* fi */,
 				7D9BF0352336A304005DCFD6 /* pt-BR */,
 				7D9BF14D23371407005DCFD6 /* ro */,
-				19E85E21273EA8F6000CCFAE /* tr */,
-				19C1666C2756F09E00ED12E3 /* sk */,
+				1980CFCB273C4E1E00AC5351 /* he */,
+				1980CFD6273C527600AC5351 /* ar */,
+				1980CFDD273C52B000AC5351 /* ca */,
+				1980CFE8273C53A200AC5351 /* tr */,
+				1980CFEF273C54F900AC5351 /* pt-PT */,
+				1980CFFA273C567900AC5351 /* uk */,
+				19BD7876274D8D00005CFB6F /* sk */,
 			);
 			name = MinimedPumpManager.storyboard;
 			sourceTree = "<group>";
@@ -4389,8 +4475,13 @@
 				7D9BF0302336A2FB005DCFD6 /* fi */,
 				7D9BF0382336A304005DCFD6 /* pt-BR */,
 				7D9BF15123371408005DCFD6 /* ro */,
-				19E85E24273EA8F6000CCFAE /* tr */,
-				19C166722756F09E00ED12E3 /* sk */,
+				1980CFCE273C4E1E00AC5351 /* he */,
+				1980CFD9273C527600AC5351 /* ar */,
+				1980CFE0273C52B000AC5351 /* ca */,
+				1980CFEB273C53A200AC5351 /* tr */,
+				1980CFF3273C54F900AC5351 /* pt-PT */,
+				1980CFFD273C567900AC5351 /* uk */,
+				19BD787A274D8D00005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4415,7 +4506,13 @@
 				7D9BF0312336A2FB005DCFD6 /* fi */,
 				7D9BF0392336A304005DCFD6 /* pt-BR */,
 				7D9BF15223371408005DCFD6 /* ro */,
-				19C166732756F09E00ED12E3 /* sk */,
+				1980CFD3273C51A300AC5351 /* he */,
+				1980CFE2273C52E800AC5351 /* ar */,
+				1980CFE3273C52EA00AC5351 /* ca */,
+				1980CFED273C542B00AC5351 /* tr */,
+				1980CFF4273C54F900AC5351 /* pt-PT */,
+				1980CFFF273C56A700AC5351 /* uk */,
+				19BD787B274D8D00005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4440,8 +4537,13 @@
 				7D9BF02F2336A2FB005DCFD6 /* fi */,
 				7D9BF0372336A304005DCFD6 /* pt-BR */,
 				7D9BF15023371408005DCFD6 /* ro */,
-				19E85E23273EA8F6000CCFAE /* tr */,
-				19C1666A2756F09E00ED12E3 /* sk */,
+				1980CFCD273C4E1E00AC5351 /* he */,
+				1980CFD8273C527600AC5351 /* ar */,
+				1980CFDF273C52B000AC5351 /* ca */,
+				1980CFEA273C53A200AC5351 /* tr */,
+				1980CFF2273C54F900AC5351 /* pt-PT */,
+				1980CFFC273C567900AC5351 /* uk */,
+				19BD7879274D8D00005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4467,8 +4569,13 @@
 				7D9BF02E2336A2FB005DCFD6 /* fi */,
 				7D9BF0362336A304005DCFD6 /* pt-BR */,
 				7D9BF14F23371407005DCFD6 /* ro */,
-				19E85E22273EA8F6000CCFAE /* tr */,
-				19C166712756F09E00ED12E3 /* sk */,
+				1980CFCC273C4E1E00AC5351 /* he */,
+				1980CFD7273C527600AC5351 /* ar */,
+				1980CFDE273C52B000AC5351 /* ca */,
+				1980CFE9273C53A200AC5351 /* tr */,
+				1980CFF1273C54F900AC5351 /* pt-PT */,
+				1980CFFB273C567900AC5351 /* uk */,
+				19BD7878274D8D00005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4493,8 +4600,13 @@
 				7D9BF0332336A2FB005DCFD6 /* fi */,
 				7D9BF03B2336A305005DCFD6 /* pt-BR */,
 				7D9BF15423371408005DCFD6 /* ro */,
-				19E85E25273EA8F6000CCFAE /* tr */,
-				19C1666D2756F09E00ED12E3 /* sk */,
+				1980CFCF273C4E1E00AC5351 /* he */,
+				1980CFDA273C527600AC5351 /* ar */,
+				1980CFE1273C52B000AC5351 /* ca */,
+				1980CFEC273C53A300AC5351 /* tr */,
+				1980CFF6273C54FA00AC5351 /* pt-PT */,
+				1980CFFE273C567900AC5351 /* uk */,
+				19BD787D274D8D00005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4519,8 +4631,13 @@
 				7D9BF0342336A2FB005DCFD6 /* fi */,
 				7D9BF03C2336A305005DCFD6 /* pt-BR */,
 				7D9BF15523371408005DCFD6 /* ro */,
-				19E85E27273EA94B000CCFAE /* tr */,
-				19C166702756F09E00ED12E3 /* sk */,
+				1980CFD2273C512800AC5351 /* he */,
+				1980CFE4273C52FE00AC5351 /* ar */,
+				1980CFE5273C530100AC5351 /* ca */,
+				1980CFEE273C543500AC5351 /* tr */,
+				1980CFF7273C54FA00AC5351 /* pt-PT */,
+				1980D001273C58A000AC5351 /* uk */,
+				19BD787E274D8D01005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4546,34 +4663,21 @@
 				7D9BF05D2336AE58005DCFD6 /* sv */,
 				7D9BF05F2336AE5A005DCFD6 /* vi */,
 				7D9BF14E23371407005DCFD6 /* ro */,
-				19E85E1F273EA8F2000CCFAE /* tr */,
-				19C1666F2756F09E00ED12E3 /* sk */,
+				1980CFD1273C4F1400AC5351 /* he */,
+				1980CFD4273C526E00AC5351 /* ar */,
+				1980CFDB273C527E00AC5351 /* ca */,
+				1980CFE6273C537100AC5351 /* tr */,
+				1980CFF0273C54F900AC5351 /* pt-PT */,
+				1980CFF8273C564700AC5351 /* uk */,
+				19BD7877274D8D00005CFB6F /* sk */,
 			);
 			name = OmnipodPumpManager.storyboard;
 			sourceTree = "<group>";
 		};
-		C1B9E0DE256AF052008E8B84 /* Localizable.strings */ = {
+		8021F3B12433D849007C5A6D /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C1B9E0DF256AF052008E8B84 /* da */,
-				C1B9E0F1256AF058008E8B84 /* zh-Hans */,
-				C1B9E0F2256AF05B008E8B84 /* en */,
-				C1B9E0F3256AF05D008E8B84 /* nl */,
-				C1B9E0F4256AF05F008E8B84 /* fi */,
-				C1B9E0F5256AF062008E8B84 /* fr */,
-				C1B9E0F6256AF064008E8B84 /* de */,
-				C1B9E0F7256AF066008E8B84 /* it */,
-				C1B9E0F8256AF068008E8B84 /* ja */,
-				C1B9E0F9256AF06A008E8B84 /* nb */,
-				C1B9E0FA256AF06D008E8B84 /* pl */,
-				C1B9E0FB256AF06F008E8B84 /* pt-BR */,
-				C1B9E0FC256AF071008E8B84 /* ro */,
-				C1B9E0FD256AF074008E8B84 /* ru */,
-				C1B9E0FE256AF076008E8B84 /* es */,
-				C1B9E0FF256AF078008E8B84 /* sv */,
-				C1B9E100256AF07B008E8B84 /* vi */,
-				19E85E26273EA8F7000CCFAE /* tr */,
-				19C1666E2756F09E00ED12E3 /* sk */,
+				8021F3B22433D849007C5A6D /* fi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4598,8 +4702,13 @@
 				7D9BF0322336A2FB005DCFD6 /* fi */,
 				7D9BF03A2336A305005DCFD6 /* pt-BR */,
 				7D9BF15323371408005DCFD6 /* ro */,
-				19E85E20273EA8F4000CCFAE /* tr */,
-				19C1666B2756F09E00ED12E3 /* sk */,
+				1980CFCA273C4E1C00AC5351 /* he */,
+				1980CFD5273C527000AC5351 /* ar */,
+				1980CFDC273C52AE00AC5351 /* ca */,
+				1980CFE7273C53A000AC5351 /* tr */,
+				1980CFF5273C54FA00AC5351 /* pt-PT */,
+				1980CFF9273C567700AC5351 /* uk */,
+				19BD787C274D8D00005CFB6F /* sk */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -4626,7 +4735,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = RileyLinkBLEKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -4661,7 +4773,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = RileyLinkBLEKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -4687,7 +4802,6 @@
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = RileyLinkBLEKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -4716,7 +4830,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = RileyLinkBLEKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -4747,7 +4860,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MinimedKitUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -4783,7 +4899,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MinimedKitUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -4814,7 +4933,10 @@
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = RileyLinkKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -4846,7 +4968,10 @@
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = RileyLinkKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -4877,7 +5002,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Crypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -4908,7 +5032,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Crypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -4938,7 +5061,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = RileyLinkKitUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -4974,7 +5100,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = RileyLinkKitUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -5005,7 +5134,10 @@
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = MinimedKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -5036,7 +5168,10 @@
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = MinimedKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -5060,7 +5195,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = MinimedKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -5084,7 +5222,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = MinimedKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -5129,7 +5270,10 @@
 				CURRENT_PROJECT_VERSION = 46;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -5145,7 +5289,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LOCALIZED_STRING_MACRO_NAMES = (
 					NSLocalizedString,
 					CFLocalizedString,
@@ -5194,7 +5338,10 @@
 				CURRENT_PROJECT_VERSION = 46;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -5203,7 +5350,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LOCALIZED_STRING_MACRO_NAMES = (
 					NSLocalizedString,
 					CFLocalizedString,
@@ -5229,7 +5376,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "RileyLink/RileyLink-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rileylink.rlapp;
@@ -5252,7 +5402,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "RileyLink/RileyLink-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rileylink.rlapp;
@@ -5283,10 +5436,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OmniKitPlugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -5324,10 +5477,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OmniKitPlugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -5362,10 +5515,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MinimedKitPlugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -5400,10 +5553,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = MinimedKitPlugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -5433,7 +5586,6 @@
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = NightscoutUploadKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -5464,7 +5616,6 @@
 				DYLIB_CURRENT_VERSION = 46;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = NightscoutUploadKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -5488,7 +5639,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = NightscoutUploadKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -5514,7 +5668,10 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = NightscoutUploadKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -5541,7 +5698,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -5568,7 +5724,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -5597,7 +5752,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 44;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OmniKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -5634,7 +5792,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 44;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OmniKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -5663,9 +5824,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OmniKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rileylink.OmniKitTests;
@@ -5692,9 +5853,9 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OmniKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rileylink.OmniKitTests;
@@ -5723,7 +5884,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 44;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OmniKitUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -5760,7 +5924,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 44;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OmniKitUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

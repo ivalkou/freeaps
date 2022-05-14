@@ -11,13 +11,13 @@
 "Alkaline" = "Alkalisk";
 
 /* The format string description of a BasalProfileStartPumpEvent. (1: The index of the profile)(2: The basal rate) */
-"Basal Profile %1$@: %2$@ U/hour" = "Basalprofil  %1$@: %2$@ E/timen";
+"Basal Profile %1$@: %2$@ U/hour" = "Basalprofil %1$@: %2$@ E/time";
 
 /* Pump error code when bolus is in progress */
 "Bolus in progress" = "Bolus pågår";
 
 /* Suggestions for diagnosing a command refused pump error */
-"Check that the pump is not suspended or priming, or has a percent temp basal type" = "Sjekk at pumpa ikke har stoppet tilførsel av insulin, at priming ikke foregår, eller har en  midlertidig prosentbasaltype pågående.";
+"Check that the pump is not suspended or priming, or has a percent temp basal type" = "Sjekk at pumpa ikke har stoppet tilførsel av insulin, at priming ikke foregår, eller har en midlertidig prosentbasaltype pågående";
 
 /* Pump error code returned when command refused */
 "Command refused" = "Kommando avvist";
@@ -38,7 +38,7 @@
 "Invalid response during %1$@: %2$@" = "Ugyldig respons ved %1$@: %2$@";
 
 /* Describing the battery chemistry as Lithium */
-"Lithium" = "Lithium";
+"Lithium" = "Litium";
 
 /* Recovery suggestion */
 "Make sure your RileyLink is nearby and powered on" = "Kontroller at din RileyLink er i nærheten og er påslått";
@@ -77,13 +77,13 @@
 "RileyLink radio tune failed" = "RileyLink radiotuning feilet";
 
 /* The format string description of a TempBasalPumpEvent. (1: The rate of the temp basal in minutes) */
-"Temporary Basal: %1$.3f U/hour" = "Midlertidig basaldose: %1$.3f E/timen";
+"Temporary Basal: %1$.3f U/hour" = "Midlertidig basal: %1$.3f E/time";
 
 /* The format string description of a TempBasalDurationPumpEvent. (1: The duration of the temp basal in minutes) */
 "Temporary Basal: %1$d min" = "Midlertidig basaldose: %1$d min";
 
 /* The format string description of a TempBasalPumpEvent. (1: The rate of the temp basal in percent) */
-"Temporary Basal: %1$d%%" = "Midlertidig basaldose: %1$d%%";
+"Temporary Basal: %1$d%%" = "Midlertidig basal: %1$d%%";
 
 /* The format string description of an unknown pump error code. (1: The specific error code raw value) */
 "Unknown pump error code: %1$@" = "Ukjent feilkode fra pumpe: %1$@";
@@ -95,5 +95,10 @@
 "Unknown response during %1$@: %2$@" = "Ukjent respons ved %1$@: %2$@";
 
 /* Describing the worldwide pump region */
-"World-Wide" = "World-Wide";
+"World-Wide" = "Verden (World-Wide)";
 
+/* Describing the Canada pump region */
+"Canada" = "Canada";
+
+/* Pump error code when invalid history page is requested */
+"History page does not exist" = "Historikksiden finnes ikke";

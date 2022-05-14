@@ -1,5 +1,5 @@
 /* Accessibility format string for (1: localized volume)(2: time) */
-"%1$@ units remaining at %2$@" = "在%2$@还剩余%1$@";
+"%1$@ units remaining at %2$@" = "%1$@ 单位剩余在 %2$@";
 
 /* The format string for displaying an offset from a time zone: (1: GMT)(2: -)(3: 4:00) */
 "%1$@%2$@%3$@" = "%1$@%2$@%3$@";
@@ -9,13 +9,13 @@
 
 /* Format string for delivered insulin. (1: The localized amount)
    Format string for insulin remaining in reservoir. (1: The localized amount) */
-"%@ U" = "%@ U";
+"%@ U" = "%@ 单位";
 
 /* Format string for bolus progress when finished. (1: The localized amount) */
 "%@ U (Finished)" = "%@ U (已输注)";
 
 /* Format string for bolus progress. (1: The delivered amount) (2: The programmed amount) (3: the percent progress) */
-"%@ U of %@ U (%@)" = "%1$@ U%2$@ U (%3$@)";
+"%@ U of %@ U (%@)" = "%1$@ U of %2$@ U (%3$@)";
 
 /* Format string for temp basal rate. (1: The localized amount) */
 "%@ U/hour" = "%@ U/小时";
@@ -24,7 +24,7 @@
 "%@%%" = "%@%%";
 
 /* Format string for reservoir reading when above or equal to maximum reading. (1: The localized amount) */
-"%@+ U" = "%@ + U";
+"%@+ U" = "%@+ U";
 
 /* Appends a full-stop to a statement */
 "%@." = "%@.";
@@ -36,7 +36,7 @@
 "Active Time" = "Pod启动时间";
 
 /* The title of the cell showing the Pod Active Clock */
-"Pod Active Clock" = "Pod已启用时间";
+"Pod Active Clock" = "Pod Active Clock";
 
 /* The title of the cell showing alarm status */
 "Alarms" = "提醒";
@@ -72,7 +72,7 @@
 "Configuration" = "配置";
 
 /* The title of the Insulin Type */
-"Insulin Type" = "胰岛素类型";
+"Insulin Type" = "Insulin Type";
 
 /* The title of the continue action in an action sheet */
 "Continue" = "继续";
@@ -106,16 +106,16 @@
 "Error enabling bolus beeps" = "启用大剂量输注中提醒错误";
 
 /* The alert title for enable Confirmation Beeps */
-"Enable Confirmation Beeps" = "启动命令成功提醒";
+"Enable Confirmation Beeps" = "Enable Confirmation Beeps";
 
 /* The alert title for Disable Confirmation Beep */
-"Disable Confirmation Beeps" = "禁用命令成功提醒";
+"Disable Confirmation Beeps" = "Disable Confirmation Beeps";
 
 /* The alert title for enable Automatic Bolus Beeps */
-"Enable Automatic Bolus Beeps" = "启用自动大剂量成功提醒";
+"Enable Automatic Bolus Beeps" = "Enable Automatic Bolus Beeps";
 
 /* The alert title for Disable Automatic Bolus Beeps */
-"Disable Automatic Bolus Beeps" = "禁用自动大剂量成功提醒";
+"Disable Automatic Bolus Beeps" = "Disable Automatic Bolus Beeps";
 
 /* The alert title for a resume error */
 "Error Resuming" = "恢复输注错误";
@@ -136,10 +136,10 @@
 "Fault" = "错误";
 
 /* The title of the command to finish pod setup */
-"Finish pod setup" = "完成Pod设置";
+"Finish pod setup" = "完成设置";
 
 /* Accessibility format string for (1: localized volume)(2: time) */
-"Greater than %1$@ units remaining at %2$@" = "在%2$@ 还有%1$@ 单位剩余";
+"Greater than %1$@ units remaining at %2$@" = "Greater than %1$@ units remaining at %2$@";
 
 /* Instructions when deactivating pod that has been paired, but not attached. */
 "Incompletely set up pod must be deactivated before pairing with a new one. Please deactivate and discard pod." = "Pod设置失败，请解除该从身体移除Pod,然后配对新Pod";
@@ -178,7 +178,7 @@
 "Play Test Beeps" = "测试提示音";
 
 /* Progress message for play test beeps. */
-"Play Test Beeps…" = "提示音测试中";
+"Playing Test Beeps…" = "Playing Test Beeps…";
 
 /* The title of the cell showing the pod pm version */
 "PM Version" = "PM版本号";
@@ -249,13 +249,31 @@
 "Unknown" = "未知";
 
 /* The title of the diagnostics section in settings */
-"Diagnostics" = "诊断";
+"Diagnostics" = "Diagnostics";
 
 /* The diagnostic command Read Pod Status */
-"Read Pod Status" = "读取Pod状态";
+"Read Pod Status" = "Read Pod Status";
 
 /* The diagnostic command Read Pulse Log */
-"Read Pulse Log" = "读取Pulse日志";
+"Read Pulse Log" = "Read Pulse Log";
 
 /* The title of the pod details section in settings */
-"Pod Details" = "Pod详情";
+"Pod Details" = "Pod Details";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Please bring only original pod in range or deactivate original pod";
+
+/* The format string for Last Bolus Not Delivered: (1: bolus not delivered string)*/
+"Last Bolus Not Delivered: %1$@ U\n" = "Last Bolus Not Delivered: %1$@ U\n";
+
+/* The format string for Delivery Status: (1: delivery status string) */
+"Delivery Status: %1$@\n" = "Delivery Status: %1$@\n";
+
+/* The format string for minutes (1: number of minutes string) */
+"%1$@ minutes" = "%1$@ minutes";
+
+/* The format string for Alerts: (1: the alerts string) */
+"Alerts: %1$@\n" = "Alerts: %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "If the problem persists, move to a new area and try again";

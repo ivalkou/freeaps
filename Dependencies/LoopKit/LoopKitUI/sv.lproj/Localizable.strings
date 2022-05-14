@@ -214,6 +214,9 @@
 /* The empty-state text for a configuration value */
 "Tap to set" = "Klicka för att ange";
 
+/* Text directing the user to configure their first override preset */
+"Tap '+' to create a new override preset." = "Tryck på '+' för att spara ett nytt undantag.";
+
 /* The text for the override target range setting */
 "Target Range" = "Målvärden";
 
@@ -233,7 +236,7 @@
 "Times in %1$@%2$@%3$@" = "Tid i %1$@%2$@%3$@";
 
 /* The unit string for units per hour */
-"U/hour" = "E/timme";
+"U/hour" = "IE/timme";
 
 /* The unit string for units */
 "Units" = "Eheter";

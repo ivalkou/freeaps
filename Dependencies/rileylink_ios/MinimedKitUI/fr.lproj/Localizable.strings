@@ -166,7 +166,7 @@
 "Reading pump status…" = "Lecture de l’état de la pompe…";
 
 /* The title of the cell showing the pump region */
-"Region" = "Region";
+"Region" = "Région";
 
 /* Button title to retry sentry setup */
 "Retry" = "Nouvel essai";
@@ -206,4 +206,4 @@
 "Unknown" = "Inconnu";
 
 /* The title of the cell showing uptime */
-"Uptime" = "Uptime";
+"Uptime" = "Temps de fonctionnement";

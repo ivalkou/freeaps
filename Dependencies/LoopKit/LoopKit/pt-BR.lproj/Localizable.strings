@@ -14,7 +14,7 @@
 "com.loudnate.CarbKit.deleteCarbEntryUnownedErrorDescription" = "Autorização negada";
 
 /* The error recovery suggestion when attempting to delete a sample not shared by the current app */
-"com.loudnate.carbKit.sharingDeniedErrorRecoverySuggestion" = "Este exemplo pode ser excluído do app Saúde";
+"com.loudnate.carbKit.sharingDeniedErrorRecoverySuggestion" = "Esta amostra pode ser excluída do App de Saúde";
 
 /* Generic pump error description */
 "Communication Failure" = "Falha de Comunicação";
@@ -65,7 +65,7 @@
 "No values found" = "Nenhum valor encontrado";
 
 /* Sensor state description for the valid state */
-"OK" = "OK";
+"OK" = "Aceitar";
 
 /* The error recovery suggestion when Health sharing was denied */
 "Please re-enable sharing in Health" = "Reative o compartilhamento no app Saúde";

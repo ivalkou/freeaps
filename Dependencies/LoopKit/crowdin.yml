@@ -1,0 +1,13 @@
+files:
+  - source: /LoopKit/Base.lproj/Localizable.strings
+    translation: /LoopKit/%osx_locale%.lproj/Localizable.strings
+  - source: /LoopKit Example/en.lproj/Localizable.strings
+    translation: /LoopKit Example/%osx_locale%.lproj/Localizable.strings
+  - source: /LoopKitUI/en.lproj/CarbKit.strings
+    translation: /LoopKitUI/%osx_locale%.lproj/CarbKit.strings
+  - source: /LoopKitUI/en.lproj/InsulinKit.strings
+    translation: /LoopKitUI/%osx_locale%.lproj/InsulinKit.strings
+  - source: /LoopKitUI/Base.lproj/Localizable.strings
+    translation: /LoopKitUI/%osx_locale%.lproj/Localizable.strings
+  - source: /MockKit/en.lproj/Localizable.strings
+    translation: /MockKit/%osx_locale%.lproj/Localizable.strings

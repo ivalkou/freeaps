@@ -9,14 +9,10 @@
 import UIKit
 import HealthKit
 import LoopKit
-import SwiftUI
-import Intents
-import os.log
 
 
 public protocol OverrideSelectionViewControllerDelegate: AnyObject {
     func overrideSelectionViewController(_ vc: OverrideSelectionViewController, didUpdatePresets presets: [TemporaryScheduleOverridePreset])
-    func overrideSelectionViewController(_ vc: OverrideSelectionViewController, didConfirmPreset preset: TemporaryScheduleOverridePreset)
     func overrideSelectionViewController(_ vc: OverrideSelectionViewController, didConfirmOverride override: TemporaryScheduleOverride)
     func overrideSelectionViewController(_ vc: OverrideSelectionViewController, didCancelOverride override: TemporaryScheduleOverride)
 }
@@ -32,8 +28,6 @@ public final class OverrideSelectionViewController: UICollectionViewController, 
             delegate?.overrideSelectionViewController(self, didUpdatePresets: presets)
         }
     }
-    
-    public var overrideHistory: [TemporaryScheduleOverride] = []
 
     public weak var delegate: OverrideSelectionViewControllerDelegate?
 
@@ -45,8 +39,8 @@ public final class OverrideSelectionViewController: UICollectionViewController, 
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = LocalizedString("Custom Preset", comment: "The title for the custom preset selection screen")
-        collectionView?.backgroundColor = .systemGroupedBackground
+        title = LocalizedString("Temporary Override", comment: "The title for the override selection screen")
+        collectionView?.backgroundColor = .groupTableViewBackground
         navigationItem.rightBarButtonItems = [saveButton, editButton]
         navigationItem.leftBarButtonItem = cancelButton
     }
@@ -80,7 +74,6 @@ public final class OverrideSelectionViewController: UICollectionViewController, 
         case scheduledOverride(TemporaryScheduleOverride)
         case preset(TemporaryScheduleOverridePreset)
         case customOverride
-        case history
     }
 
     private func cellContent(for indexPath: IndexPath) -> CellContent {
@@ -93,17 +86,15 @@ public final class OverrideSelectionViewController: UICollectionViewController, 
         case .presets:
             if presets.indices.contains(indexPath.row) {
                 return .preset(presets[indexPath.row])
-            } else if indexPathOfCustomOverride().row == indexPath.row {
-                return .customOverride
             } else {
-                return .history
+                return .customOverride
             }
         }
     }
 
     private func indexPathOfCustomOverride() -> IndexPath {
         let section = sections.firstIndex(of: .presets)!
-        let row = self.collectionView(collectionView, numberOfItemsInSection: section) - 2
+        let row = self.collectionView(collectionView, numberOfItemsInSection: section) - 1
         return IndexPath(row: row, section: section)
     }
 
@@ -116,8 +107,8 @@ public final class OverrideSelectionViewController: UICollectionViewController, 
         case .scheduledOverride:
             return 1
         case .presets:
-            // +1 for custom override and +1 for history
-            return presets.count + 2
+            // +1 for custom override
+            return presets.count + 1 
         }
     }
 
@@ -127,27 +118,18 @@ public final class OverrideSelectionViewController: UICollectionViewController, 
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OverrideSelectionHeaderView.className, for: indexPath) as! OverrideSelectionHeaderView
             switch section(for: indexPath.section) {
             case .scheduledOverride:
-                header.titleLabel.text = LocalizedString("SCHEDULED PRESET", comment: "The section header text for a scheduled custom preset")
+                header.titleLabel.text = LocalizedString("SCHEDULED OVERRIDE", comment: "The section header text for a scheduled override")
             case .presets:
-                if scheduledOverride != nil {
-                    header.titleLabel.text = LocalizedString("PRESETS", comment: "The section header text for custom presets")
-                } else {
-                    header.titleLabel.text?.removeAll()
-                }
+                header.titleLabel.text = LocalizedString("PRESETS", comment: "The section header text override presets")
             }
             return header
         case UICollectionView.elementKindSectionFooter:
             let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: OverrideSelectionFooterView.className, for: indexPath) as! OverrideSelectionFooterView
-            footer.textLabel.text = LocalizedString("Tap '+' to create a new custom preset.", comment: "Text directing the user to configure their first custom preset")
+            footer.textLabel.text = LocalizedString("Tap '+' to create a new override preset.", comment: "Text directing the user to configure their first override preset")
             return footer
         default:
             fatalError("Unexpected supplementary element kind \(kind)")
         }
-    }
-
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let height: CGFloat = section == 0 && scheduledOverride == nil ? 8 : 50
-        return CGSize(width: collectionView.bounds.width, height: height)
     }
 
     private lazy var quantityFormatter: QuantityFormatter = {
@@ -167,8 +149,7 @@ public final class OverrideSelectionViewController: UICollectionViewController, 
 
     public override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let customSymbol = "⋯"
-        let customName = LocalizedString("Custom", comment: "The text for a custom preset")
-        let historyLabel = LocalizedString("History", comment: "The text for the override history")
+        let customName = LocalizedString("Custom", comment: "The text for a custom override")
 
         switch cellContent(for: indexPath) {
         case .scheduledOverride(let override):
@@ -204,15 +185,6 @@ public final class OverrideSelectionViewController: UICollectionViewController, 
         case .customOverride:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomOverrideCollectionViewCell.className, for: indexPath) as! CustomOverrideCollectionViewCell
             cell.titleLabel.text = customName
-            if isEditingPresets {
-                cell.applyOverlayToFade(animated: false)
-            }
-
-            return cell
-        case .history:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OverrideHistoryCollectionViewCell.className, for: indexPath) as! OverrideHistoryCollectionViewCell
-            cell.titleLabel.text = historyLabel
-            cell.titleLabel.accessibilityLabel = historyLabel
             if isEditingPresets {
                 cell.applyOverlayToFade(animated: false)
             }
@@ -256,7 +228,7 @@ public final class OverrideSelectionViewController: UICollectionViewController, 
     public override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isEditingPresets {
             switch cellContent(for: indexPath) {
-            case .scheduledOverride, .customOverride, .history:
+            case .scheduledOverride, .customOverride:
                 break
             case .preset(let preset):
                 let editVC = AddEditOverrideTableViewController(glucoseUnit: glucoseUnit)
@@ -273,22 +245,14 @@ public final class OverrideSelectionViewController: UICollectionViewController, 
                 editOverrideVC.delegate = self
                 show(editOverrideVC, sender: collectionView.cellForItem(at: indexPath))
             case .preset(let preset):
-                delegate?.overrideSelectionViewController(self, didConfirmPreset: preset)
+                let override = preset.createOverride(enactTrigger: .local)
+                delegate?.overrideSelectionViewController(self, didConfirmOverride: override)
                 dismiss(animated: true)
             case .customOverride:
                 let customOverrideVC = AddEditOverrideTableViewController(glucoseUnit: glucoseUnit)
                 customOverrideVC.inputMode = .customOverride
                 customOverrideVC.delegate = self
                 show(customOverrideVC, sender: collectionView.cellForItem(at: indexPath))
-            case .history:
-                let model = OverrideHistorystate(
-                    overrides: overrideHistory,
-                    glucoseUnit: glucoseUnit
-                )
-                let overrideHistoryView = OverrideSelectionHistory(model: model)
-                let hostedView = UIHostingController(rootView: overrideHistoryView)
-                hostedView.title = LocalizedString("Override History", comment: "Title for override history view") // Hack to fix animations
-                navigationController?.pushViewController(hostedView, animated: true)
             }
         }
     }
@@ -365,7 +329,7 @@ public final class OverrideSelectionViewController: UICollectionViewController, 
         }
 
         switch cellContent(for: indexPath) {
-        case .scheduledOverride, .customOverride, .history:
+        case .scheduledOverride, .customOverride:
             return false
         case .preset:
             return true
@@ -417,7 +381,7 @@ extension OverrideSelectionViewController: UICollectionViewDelegateFlowLayout {
         switch cellContent(for: indexPath) {
         case .scheduledOverride, .preset:
             height = 76
-        case .customOverride, .history:
+        case .customOverride:
             height = 52
         }
 
@@ -492,14 +456,6 @@ extension OverrideSelectionViewController: OverridePresetCollectionViewCellDeleg
         }
 
         presets.remove(at: indexPath.row)
-        if let name = cell.nameLabel.text {
-            INInteraction.delete(with: name) { (error) in
-                if let error = error {
-                    os_log(.error, "Failed to delete intent: %{public}@", String(describing: error))
-                }
-            }
-        }
-        
         collectionView.deleteItems(at: [indexPath])
     }
 }

@@ -1,0 +1,94 @@
+/* Description for auto-off alarm */
+"Auto-off alarm" = "Autom. pois -varoitus";
+
+/* Pod state when running below fifty units */
+"Below 50 units" = "Alle 50 yksikköä";
+
+/* Delivery status when bolusing */
+"Bolusing" = "Bolus käynnissä";
+
+/* Delivery status when bolusing and temp basal is running */
+"Bolusing with temp basal" = "Annostellaan bolus ja tilap. basaali";
+
+/* Pod state when inserting cannula */
+"Cannula inserting" = "Asetetaan kanyyli";
+
+/* Pod state when pod has been deactivated */
+"Deactivated" = "Deaktivoitu";
+
+/* Description for Empty reservoir pod fault */
+"Empty reservoir" = "Säiliö tyhjä";
+
+/* Pod state error event logged shutting down */
+"Error event logged, shutting down" = "Virhetapahtuma, sammutetaan";
+
+/* Description for expiration alert */
+"Expiration alert" = "Pumppu vanhenee -varoitus";
+
+/* Description for finish setup */
+"Finish setup " = "Lopeta asennus";
+
+/* Pod inititialized */
+"Initialized" = "Aloitettu";
+
+/* The format string for Internal pod fault (1: The fault code value) */
+"Internal pod fault %1$03d" = "Sisäinen pumpun vika %1$03d";
+
+/* Description for low reservoir alarm */
+"Low reservoir advisory alarm" = "Säiliö lähes tyhjä -tiedotehälytys";
+
+/* Pod alert state when no alerts are active */
+"No alerts" = "Ei hälytyksiä";
+
+/* Delivery status when basal is running
+   Pod state when running above fifty units */
+"Normal" = "Normaali";
+
+/* Description for Occlusion detected pod fault */
+"Occlusion detected" = "Tukos havaittu";
+
+/* Pod status after pairing */
+"Paired" = "Yhdistetty";
+
+/* Description for expiration advisory alarm */
+"Pod expiration advisory alarm" = "Pumppu vanhenemassa -tiedotehälytys";
+
+/* Description for Pod expired pod fault */
+"Pod expired" = "Pumppu vanhentunut";
+
+/* Pod state when prime or cannula insertion has not completed in the time allotted */
+"Pod setup window expired" = "Pumpun asennusaika umpeutui";
+
+/* Delivery status when pod is priming
+   Pod status when priming */
+"Priming" = "Alustetaan";
+
+/* Pod state when ready for basal programming */
+"Ready for basal programming" = "Valmis basaalin ohjelmointiin";
+
+/* Pod state when ready for cannula insertion */
+"Ready to insert cannula" = "Valmis kanyylin asetukseen";
+
+/* Delivery status when basal is running */
+"Scheduled Basal" = "Ohjelmoitu basaali";
+
+/* Description for shutdown imminent alarm */
+"Shutdown imminent alarm" = "Mykistä hälytys";
+
+/* Delivery status when insulin delivery is suspended */
+"Suspended" = "Pysäytetty";
+
+/* Pod tank fill completed */
+"Tank fill completed" = "Säiliön täyttö valmis";
+
+/* Pod power to motor activated */
+"Tank power activated" = "Säiliön virta aktivoitu";
+
+/* Delivery status when temp basal is running */
+"Temp basal running" = "Tilapäinen basaali käytössä";
+
+/* The format string for Unknown pod fault (1: The fault code value) */
+"Unknown pod fault %1$03d" = "Tuntematon pumpun virhe %1$03d";
+
+/* Description waiting for pairing reminder */
+"Waiting for pairing reminder" = "Odotetaan yhdistämismuistutusta";

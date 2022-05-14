@@ -1,0 +1,502 @@
+/* The text of the loading label when pairing */
+"Pairing…" = "Сопряжение...";
+
+/* The text of the loading label when priming */
+"Priming…" = "Заполнение…";
+
+/* The text of the loading label when pod is primed */
+"Primed" = "Заполнено";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "Если проблема не устранена, перейдите в другое место и попробуйте снова";
+
+/* Button title to pair with pod during setup*/
+"Pair" = "Сопряжение";
+
+/* Button title to deactivate pod because of fault during setup */
+"Deactivate" = "Деактивировать";
+
+/* Confirmation message for shutting down a pod */
+"Are you sure you want to shutdown this pod?" = "Вы действительно хотите выключить этот под?";
+
+/* Button title to deactivate pod */
+"Deactivate Pod" = "Деактивировать Pod";
+
+/* The title of the continue action in an action sheet */
+"Continue" = "Продолжить";
+
+/* Title text for button to disable confirmation beeps" */
+"Disable Confirmation Beeps" = "Запретить подтверждающие звуковые сигналы";
+
+/* Title text for button to enable confirmation beeps */
+"Enable Confirmation Beeps" = "Разрешить подтверждающие звуковые сигналы";
+
+/* Title text for button to disable automatic bolus beeps */
+"Disable Automatic Bolus Beeps" = "Выключить звуковые сигналы автоматического болюса";
+
+/* Title text for button to enable automatic bolus beeps */
+"Enable Automatic Bolus Beeps" = "Включить звуковые сигналы автоматического болюса";
+
+/* Title of the pod settings view controller" */
+"Pod Settings" = "Настройки Pod";
+
+/* The title of the configuration section in settings */
+"Configuration" = "Конфигурация";
+
+/* The title of the diagnostics section in settings */
+"Diagnostics" = "Диагностика";
+
+/* The title of the pod details section in settings */
+"Pod Details" = "Подробности пода";
+
+/* The title of the cell showing alarm status */
+"Alarms" = "Оповещения";
+
+/* The title of the cell showing the pod expiration */
+"Expires" = "Срок истекает";
+
+/* The title of the cell showing the pod expiration after expiry */
+"Expired" = "Срок истек";
+
+/* The title of the cell showing the pod active clock */
+"Pod Active Clock" = "Активные часы Pod-а";
+
+/* The title of the cell showing pod bolus status */
+"Bolus Delivery" = "Подача болюса";
+
+/* The title of the cell showing pod basal status */
+"Basal Delivery" = "Подача базала";
+
+/* The title of the cell showing reservoir status */
+"Reservoir" = "Резервуар";
+
+/* The title of the cell showing delivered insulin */
+"Insulin Delivered" = "Инсулин подан";
+
+/* The title of the cell showing the pod expiration reminder date */
+"Expiration Reminder" = "Напоминание об истечении срока";
+
+/* The title of the command to change pump time zone */
+"Change Time Zone" = "Изменить часовой пояс";
+
+/* The title of the command to pair new pod */
+"Pair New Pod" = "Установить сопряжение";
+
+/* The title of the command to replace pod when there is a pod fault */
+"Replace Pod Now" = "Немедленно замените Pod";
+
+/* The title of the command to finish pod setup */
+"Finish pod setup" = "Завершить настройку Omnipod";
+
+/* The title of the command to replace pod */
+"Replace Pod" = "Заменить Pod";
+
+/* The title of the command to read the pod status" */
+"Read Pod Status" = "Получить состояние Pod-а";
+
+/* The title of the command to play test beeps */
+"Play Test Beeps" = "Воспроизвести тестовый звуковой сигнал";
+
+/* The title of the command to read the pulse log */
+"Read Pulse Log" = "Читать журнал сигналов";
+
+/* The title of the command to run the test command */
+"Test Command" = "Провести тест";
+
+/* The title of the cell showing the pod lot number" */
+"Lot Number" = "Номер партии";
+
+/* The title of the cell showing the pod sequence number */
+"Sequence Number" = "Порядковый номер";
+
+/* The title of the cell showing the firmware version */
+"Firmware Version" = "Версия прошивки";
+
+/* The title of the cell showing the BLE firmware version" */
+"BLE Firmware Version" = "Версия прошивки";
+
+/* The title of the cell showing the BLE device name */
+"BLE Device Name" = "Имя BLE устройства";
+
+/* Title text for the button to delete Omnipod Dash PumpManager */
+"Switch from Omnipod Dash Pumps" = "Отключиться от помп Omnipod Dash";
+
+/* The alert title for a resume error */
+"Error Resuming" = "Ошибка возобновления";
+
+/* The alert title for a suspend error */
+"Error Suspending" = "Ошибка остановки";
+
+/* The alert title for enable confirmation beeps error */
+"Error enabling confirmation beeps" = "Ошибка при включении звуков подтверждения";
+
+/* The alert title for disable confirmation beeps error */
+"Error disabling confirmation beeps" = "Ошибка при отключении подтверждений";
+
+/* Confirmation message for removing Omnipod Dash PumpManager */
+"Are you sure you want to stop using Omnipod Dash?" = "Вы уверены, что хотите прекратить использование Omnipod Dash?";
+
+/* Button title to delete Omnipod Dash PumpManager */
+"Delete Omnipod Dash" = "Удалить OmniPod Dash";
+
+/* The title of the cancel action in an action sheet */
+"Cancel" = "Отмена";
+
+/* Alerts detail when no alerts unacknowledged */
+"None" = "Не подан";
+
+/* The detail text of the basal row when pod is suspended */
+"Suspended" = "Приостановлен";
+
+/* Format string for temp basal rate. (1: The localized amount) */
+"%@ U/hour" = "%@ Ед/ч";
+
+/* The detail text of the basal row when pod is running scheduled basal */
+"Schedule" = "Расписание";
+
+/* The detail text for bolus delivery when no bolus is being delivered */
+"None" = "Не подан";
+
+/* Format string for bolus progress when finished. (1: The localized amount) */
+"%@ U (Finished)" = "%@ ед (подано)";
+
+/* Format string for bolus progress. (1: The delivered amount) (2: The programmed amount) (3: the percent progress) */
+"%@ U of %@ U (%@)" = "%@ ед из %@ ед (%@)";
+
+/* The detail text for delivered insulin when no measurement is available */
+"Unknown" = "Неизвестно";
+
+/* Format string for delivered insulin. (1: The localized amount) */
+"%@ U" = "%@ Eд";
+
+/* Format string for reservoir reading when above or equal to maximum reading. (1: The localized amount) */
+"%@+ U" = "%@+ ед";
+
+/* Format string for insulin remaining in reservoir. (1: The localized amount) */
+"%@ U" = "%@ Eд";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.poweredOff) */
+"Bluetooth is powered off" = "Bluetooth отключен";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.resetting) */
+"Bluetooth is resetting" = "Bluetooth перезапускается";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.unauthorized) */
+"Bluetooth use is unauthorized" = "Использование Bluetooth не авторизовано";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.unsupported) */
+"Bluetooth use unsupported on this device" = "Использование Bluetooth на этом устройстве не поддерживается";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.unknown) */
+"Bluetooth is unavailable for an unknown reason." = "Bluetooth недоступен по неизвестной причине.";
+
+/* The format string for BluetoothManagerError.bluetoothNotAvailable for unknown state (1: the unknown state) */
+"Bluetooth is unavailable: %1$@" = "Bluetooth недоступен: %1$@";
+
+/* recoverySuggestion for BluetoothManagerError.bluetoothNotAvailable(.poweredOff) */
+"Turn bluetooth on" = "Включите Bluetooth";
+
+/* recoverySuggestion for BluetoothManagerError.bluetoothNotAvailable(.resetting) */
+"Try again" = "Попробуйте еще раз";
+
+/* recoverySuggestion for BluetoothManagerError.bluetoothNotAvailable(.unauthorized) */
+"Please enable bluetooth permissions for this app in system settings" = "Пожалуйста, включите разрешения Bluetooth для этого приложения в системных настройках";
+
+/* recoverySuggestion for BluetoothManagerError.bluetoothNotAvailable(.unsupported) */
+"Please use a different device with bluetooth capabilities" = "Пожалуйста, используйте другое устройство с функциями Bluetooth";
+
+/* Error message description for PeripheralManagerError.notReady */
+"Peripheral Not Ready" = "Периферия не готова";
+
+/* Error message description for PeripheralManagerError.incorrectResponse */
+"Incorrect Response" = "Некорректный ответ";
+
+/* Error message description for PeripheralManagerError.timeout */
+"Timeout" = "Время ожидания истекло";
+
+/* Error message description for PeripheralManagerError.emptyValue */
+"Empty Value" = "Отсутствует значение";
+
+/* Error message description for PeripheralManagerError.unknownCharacteristic */
+"Unknown Characteristic" = "Неизвестная характеристика";
+
+/* Error message description for PeripheralManagerError.nack */
+"Nack" = "Nack";
+
+/* The format string for PodProtocolError.invalidLTKKey (1: message associated with error) */
+"Invalid LTK Key: %1$@" = "Неверный ключ LTK: %1$@";
+
+/* The format string for PodProtocolError.pairingException (1: message associated with error)" */
+"Pairing Exception: %1$@" = "Исключение соединения: %1$@";
+
+/* The format string for PodProtocolError.messageIOException (1: message associated with error)" */
+"Message IO Exception: %1$@" = "Сообщение IO Исключение: %1$@";
+
+/* The format string for PodProtocolError.couldNotParseMessageException (1: message associated with error) */
+"Could not parse message: %1$@" = "Не удалось разобрать сообщение: %1$@";
+
+/* The format string for PodProtocolError.incorrectPacketException (1: payload)(2: location) */
+"Incorrect Packet Exception: %1$@ (location=%2$d)" = "Неправильное исключение пакета: %1$@ (расположение=%2$d)";
+
+/* The format string for description of PodProtocolError.invalidCrc (1:payload crc)(2:computed crc) */
+"Payload crc32 %1$@ does not match computed crc32 %2$@" = "Ошибка загрузки контрольной суммы %1$@ не совпадает с вычисленной %2$@";
+
+/* Description for auto-off alarm */
+"Auto-off alarm" = "Авто отключение сигнала";
+
+/* Pod state when running below fifty units */
+"Below 50 units" = "Менее 50 единиц";
+
+/* Error message shown when operation could not be completed due to existing bolus in progress */
+"Bolus in progress" = "Подается болюс";
+
+/* The format string describing a bolus. (1: The amount delivered)(2: Start time of the dose)(3: duration)(4: scheduled certainty) */
+"Bolus: %1$@U %2$@ %3$@ %4$@" = "Болюс: %1$@ед %2$@ %3$@ %4$@";
+
+/* Delivery status when bolusing */
+"Bolusing" = "Подается болюс";
+
+/* Delivery status when bolusing and temp basal is running */
+"Bolusing with temp basal" = "Подача болюса при временном базале";
+
+/* Pod state when inserting cannula */
+"Cannula inserting" = "Установка катетера";
+
+/* String describing a dose that was certainly scheduled */
+"Certain" = "Определенно";
+
+/* Pod state when pod has been deactivated */
+"Deactivated" = "Деактивирован";
+
+/* Description for Empty reservoir pod fault */
+"Empty reservoir" = "Резервуар пуст";
+
+/* Error message shown when empty response from pod was received */
+"Empty response from pod" = "Пустой ответ от пода";
+
+/* Pod state error event logged shutting down */
+"Error event logged, shutting down" = "Событие ошибки записано, выключение";
+
+/* Description for expiration alert */
+"Expiration alert" = "Оповещение об истечении срока";
+
+/* Description for finish setup */
+"Finish setup " = "Завершение настройки ";
+
+/* Pod inititialized */
+"Initialized" = "Активирован";
+
+/* The format string for Internal pod fault (1: The fault code value) */
+"Internal pod fault %1$03d" = "Внутренняя ошибка пода %1$03d";
+
+/* The format string describing a bolus that was interrupted. (1: The amount delivered)(2: The amount scheduled)(3: Start time of the dose)(4: duration)(5: scheduled certainty) */
+"InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@" = "Болюс прерван%1$@ ед (%2$@ ед запланировано) %3$@ %4$@ %5$@";
+
+/* Description for low reservoir alarm */
+"Low reservoir advisory alarm" = "Оповещение о малом запасе инсулина";
+
+/* Pod alert state when no alerts are active */
+"No alerts" = "Активных оповещений нет";
+
+/* Error message shown when no pod is paired */
+"No pod paired" = "Нет сопряженного пода";
+
+/* Error message shown when no response from pod was received */
+"No response from pod" = "Нет ответа от пода";
+
+/* Delivery status when basal is running
+   Pod state when running above fifty units */
+"Normal" = "Норма";
+
+/* Description for Occlusion detected pod fault */
+"Occlusion detected" = "Обнаружена закупорка";
+
+/* Generic title of the omnipod pump manager */
+"Omnipod" = "Omnipod";
+
+/* Pod status after pairing */
+"Paired" = "Сопряжен";
+
+/* Recover suggestion shown when no pod is paired */
+"Please pair a new pod" = "Начните сопряжение с новым подом";
+
+/* Error message shown when user cannot pair because pod is already paired */
+"Pod already paired" = "Под уже сопряжен";
+
+/* Error message shown when prime is attempted, but pod is already primed */
+"Pod already primed" = "Под уже заполнен";
+
+/* Description for expiration advisory alarm */
+"Pod expiration advisory alarm" = "Оповещение об окончании гарантийного срока пода";
+
+/* The title for pod expiration notification */
+"Pod Expiration Notice" = "Сообщение об окончании гарантийного срока пода ";
+
+/* Description for Pod expired pod fault */
+"Pod expired" = "Срок гарантии пода истек";
+
+/* Format string for pod fault code */
+"Pod Fault: %1$@" = "Ошибка пода %1$@";
+
+/* Error message when cannula insertion fails because the pod is in an unexpected state */
+"Pod is not in a state ready for cannula insertion." = "Под не готов к установке катетера.";
+
+/* Error message when prime fails because the pod is in an unexpected state */
+"Pod is not in a state ready for priming." = "Под не готов к первичному заполнению.";
+
+/* Error message action could not be performed because pod is suspended */
+"Pod is suspended" = "Под остановлен";
+
+/* Pod state when prime or cannula insertion has not completed in the time allotted */
+"Pod setup window expired" = "Время для настройки пода истекло";
+
+/* Delivery status when pod is priming
+   Pod status when priming */
+"Priming" = "Заполнение инфузионного набора пода";
+
+/* Pod state when ready for basal programming */
+"Ready for basal programming" = "Готов к программированию базала";
+
+/* Pod state when ready for cannula insertion */
+"Ready to insert cannula" = "Готов к установке катетера";
+
+/* The format string describing a resume. (1: Time)(2: Scheduled certainty */
+"Resume: %1$@ %2$@" = "Возобновление: %1$@ %2$@";
+
+/* Delivery status when basal is running */
+"Scheduled Basal" = "Основной базал";
+
+/* Description for shutdown imminent alarm */
+"Shutdown imminent alarm" = "Оповещение о неизбежном выключении";
+
+/* The format string describing a suspend. (1: Time)(2: Scheduled certainty */
+"Suspend: %1$@ %2$@" = "Приостановка: %1$@ %2$@";
+
+/* Delivery status when insulin delivery is suspended */
+"Suspended" = "Приостановлен";
+
+/* Pod tank fill completed */
+"Tank fill completed" = "Заполнение резервуара пода завершено";
+
+/* Pod power to motor activated */
+"Tank power activated" = "Питание двигателя резервуара активировано";
+
+/* Error message shown when temp basal could not be set due to existing temp basal in progress */
+"Temp basal in progress" = "Работает временный базал";
+
+/* Delivery status when temp basal is running */
+"Temp basal running" = "Подается временный базал";
+
+/* The format string describing a temp basal. (1: The rate)(2: Start time)(3: duration)(4: volume)(5: scheduled certainty */
+"TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "Врем базал: %1$@ ед/ч %2$@ %3$@ %4$@ ед %5$@";
+
+/* The format string for pod expiration notification body (1: time until expiration) */
+"Time to replace your pod! Your pod will expire in %1$@" = "Пора заменить под - Срок годности истекает через %1$@";
+
+/* String describing a dose that was possibly scheduled */
+"Uncertain" = "Не подтверждено";
+
+/* Error message shown when empty response from pod was received */
+"Unexpected response from pod" = "Пустой ответ от пода";
+
+/* The format string for Unknown pod fault (1: The fault code value) */
+"Unknown pod fault %1$03d" = "Неизвестная ошибка пода %1$03d";
+
+/* Recovery suggestion when operation could not be completed due to existing bolus in progress */
+"Wait for existing bolus to finish, or cancel bolus" = "Дождитесь окончания подачи болюса или отмените его";
+
+/* Recovery suggestion when operation could not be completed due to existing temp basal in progress */
+"Wait for existing temp basal to finish, or suspend to cancel" = "Дождитесь окончания текущего врем базала или отмените";
+
+/* Description waiting for pairing reminder */
+"Waiting for pairing reminder" = "Напоминание об ожидании сопряжения";
+
+/* Error message shown when pod sends ack instead of response */
+"Pod sent ack instead of response" = "Под отправил ack вместо ответа";
+
+/* Error message shown when empty response from pod was received" */
+"Unexpected response from pod" = "Получен пустой ответ от пода";
+
+/* Error message for when unexpected address is received (1: received address) (2: expected address) */
+"Invalid address 0x%x. Expected 0x%x" = "Неверный адрес 0x%x. Ожидалось 0x%x";
+
+/* Error message shown when the pod is not connected. */
+"Pod not connected" = "Под не подключен";
+
+/* Error message action could not be performed because pod is suspended */
+"Pod is suspended" = "Под остановлен";
+
+/* Format string for pod fault code */
+"Pod Fault: %1$@" = "Ошибка пода %1$@";
+
+/* Error message when command is rejected because an unacknowledged command is pending. */
+"Communication issue: Unacknowledged command pending." = "Проблема связи: Неизвестная команда в ожидании.";
+
+/* Format string for invalid message error code (1: error code number) */
+"Command error %1$u" = "Ошибка команды %1$u";
+
+/* Format string for unexpected pod change*/
+"Unexpected pod change" = "Неожиданная смена пода";
+
+/* Format string for activation time exceeded */
+"Activation time exceeded" = "Время активации закончилось";
+
+/* Format string for poor pod signal strength */
+"Poor signal strength" = "Плохой уровень сигнала";
+
+/* Format string for pod signal strength too high" */
+"Signal strength too high" = "Уровень сигнала слишком высокий";
+
+/* Error message for PodCommsError.noPodsFound */
+"No pods found" = "Поды не найдены";
+
+/* Error message for PodCommsError.tooManyPodsFound */
+"Too many pods found" = "Найдено слишком много подов";
+
+/* Recovery suggestion when no response is received from pod */
+"Make sure iPhone is nearby the active pod" = "Убедитесь, что iPhone находится поблизости от активного пода";
+
+/* Recovery suggestion when ack received instead of response */
+"Try again" = "Попробуйте еще раз";
+
+/* Recovery suggestion when unexpected address received */
+"Crosstalk possible. Please move to a new location" = "Возможна коммуникация с чужой помпой. Пожалуйста, переместитесь в новое место и попробуйте снова";
+
+/* Recovery suggestion when no pod is available */
+"Make sure your pod is nearby and try again." = "Убедитесь, что ваш под поблизости и повторите попытку.";
+
+/* Recovery suggestion when operation could not be completed due to existing bolus in progress */
+"Wait for existing bolus to finish, or cancel bolus" = "Дождитесь окончания подачи болюса или отмените его";
+
+/* Recovery suggestion when operation could not be completed due to existing temp basal in progress */
+"Wait for existing temp basal to finish, or suspend to cancel" = "Дождитесь окончания текущего временного базала или отмените его";
+
+/* Recovery suggestion when pod is suspended" */
+"Resume delivery" = "Возобновить подачу";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Пожалуйста, держите только исходный pod в зоне действия, либо деактивируйте его";
+
+/* Recovery suggestion when pairing signal strength is too low */
+"Please reposition iPhone relative to the pod" = "Пожалуйста, переместите IPhone относительно пода";
+
+/* Recovery suggestion when pairing signal strength is too high */
+"Please reposition iPhone further from the pod" = "Пожалуйста, переместите IPhone относительно пода";
+
+/* Recovery suggestion for PodCommsError.noPodsFound */
+"Make sure your pod is filled and nearby." = "Убедитесь, что ваш под заполнен и находится поблизости.";
+
+/* Recovery suggestion for PodCommsError.tooManyPodsFound */
+"Move to a new area away from any other pods and try again." = "Переместитесь в новое место подальше от любых других подов и повторите попытку.";
+
+/* Title text for delivery limits */
+"Delivery Limits" = "Предел подачи";
+
+/* The title text for the basal rate schedule */
+"Basal Rates" = "Настройки базала";
+
+/* The error message shown when Loop's basal schedule has more entries than the pod can support */
+"Too many entries" = "Слишком много данных";
+
+/* The error message shown when Loop's basal schedule has an unsupported rate */
+"Invalid entry" = "Неверная запись";

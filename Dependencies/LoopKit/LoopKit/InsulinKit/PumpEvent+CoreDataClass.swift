@@ -50,22 +50,6 @@ class PumpEvent: NSManagedObject {
             primitiveUnit = newValue?.rawValue
         }
     }
-    
-    var insulinType: InsulinType? {
-        get {
-            willAccessValue(forKey: "insulinType")
-            defer { didAccessValue(forKey: "insulinType") }
-            guard let type = primitiveInsulinType else {
-                return nil
-            }
-            return InsulinType(rawValue: type.intValue)
-        }
-        set {
-            willChangeValue(forKey: "insulinType")
-            defer { didChangeValue(forKey: "insulinType") }
-            primitiveInsulinType = newValue != nil ? NSNumber(value: newValue!.rawValue) : nil
-        }
-    }
 
     var type: PumpEventType? {
         get {
@@ -105,20 +89,6 @@ class PumpEvent: NSManagedObject {
             primitiveValue = newValue != nil ? NSNumber(value: newValue!) : nil
         }
     }
-    
-    var automatic: Bool? {
-        get {
-            willAccessValue(forKey: "automatic")
-            defer { didAccessValue(forKey: "automatic") }
-            return primitiveAutomatic?.boolValue
-        }
-        set {
-            willChangeValue(forKey: "automatic")
-            defer { didChangeValue(forKey: "automatic") }
-            primitiveAutomatic = newValue != nil ? NSNumber(booleanLiteral: newValue!) : nil
-        }
-    }
-
 
     var deliveredUnits: Double? {
         get {
@@ -133,23 +103,11 @@ class PumpEvent: NSManagedObject {
         }
     }
 
-    var hasUpdatedModificationCounter: Bool { changedValues().keys.contains("modificationCounter") }
-
-    func updateModificationCounter() { setPrimitiveValue(managedObjectContext!.modificationCounter!, forKey: "modificationCounter") }
-
-    public override func awakeFromInsert() {
+    override func awakeFromInsert() {
         super.awakeFromInsert()
-        updateModificationCounter()
+
         createdAt = Date()
     }
-
-    public override func willSave() {
-        if isUpdated && !hasUpdatedModificationCounter {
-            updateModificationCounter()
-        }
-        super.willSave()
-    }
-
 }
 
 
@@ -175,6 +133,7 @@ extension PumpEvent: TimelineValue {
 
 
 extension PumpEvent {
+
     var dose: DoseEntry? {
         get {
             // To handle migration, we're requiring any dose to also have a PumpEventType
@@ -189,9 +148,7 @@ extension PumpEvent {
                 value: value,
                 unit: unit,
                 deliveredUnits: deliveredUnits,
-                syncIdentifier: syncIdentifier,
-                insulinType: insulinType,
-                automatic: automatic
+                syncIdentifier: syncIdentifier
             )
         }
         set {
@@ -205,8 +162,6 @@ extension PumpEvent {
             value = entry.value
             unit = entry.unit
             deliveredUnits = entry.deliveredUnits
-            insulinType = entry.insulinType
-            automatic = entry.automatic
         }
     }
 
@@ -223,16 +178,4 @@ extension PumpEvent {
     }
 }
 
-extension PumpEvent {
-    func update(from event: PersistedPumpEvent) {
-        createdAt = event.persistedDate
-        date = event.date
-        type = event.type
-        uploaded = event.isUploaded
-        mutable = event.isMutable
-        raw = event.raw
-        title = event.title
-        dose = event.dose
-        automatic = event.automatic
-    }
-}
+

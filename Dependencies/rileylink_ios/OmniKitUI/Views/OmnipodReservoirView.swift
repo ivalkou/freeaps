@@ -66,9 +66,9 @@ public final class OmnipodReservoirView: LevelHUDView, NibLoadable {
     private func updateColor() {
         switch reservoirAlertState {
         case .lowReservoir, .empty:
-            alertLabel?.backgroundColor = stateColors?.warning
+            alertLabel.backgroundColor = stateColors?.warning
         case .ok:
-            alertLabel?.backgroundColor = stateColors?.normal
+            alertLabel.backgroundColor = stateColors?.normal
         }
     }
 
@@ -86,16 +86,16 @@ public final class OmnipodReservoirView: LevelHUDView, NibLoadable {
             case .ok:
                 alertLabelAlpha = 0
             case .lowReservoir, .empty:
-                alertLabel?.text = "!"
+                alertLabel.text = "!"
             }
             
             updateColor()
 
             if self.superview == nil {
-                self.alertLabel?.alpha = alertLabelAlpha
+                self.alertLabel.alpha = alertLabelAlpha
             } else {
                 UIView.animate(withDuration: 0.25, animations: {
-                    self.alertLabel?.alpha = alertLabelAlpha
+                    self.alertLabel.alpha = alertLabelAlpha
                 })
             }
         }

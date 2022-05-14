@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Efz-Zc-c6G">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Efz-Zc-c6G">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--RileyLink Setup-->
         <scene sceneID="M5u-AY-8uB">
             <objects>
-                <tableViewController storyboardIdentifier="RileyLinkSetup" title="RileyLink Setup" id="0MV-2k-Dty" customClass="RileyLinkSetupTableViewController" customModule="RileyLinkKitUI" sceneMemberID="viewController">
+                <tableViewController title="RileyLink Setup" id="0MV-2k-Dty" customClass="RileyLinkSetupTableViewController" customModule="RileyLinkKitUI" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" id="6HK-B5-gyn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections/>
                         <connections>
                             <outlet property="dataSource" destination="0MV-2k-Dty" id="Yiy-D4-SY4"/>
@@ -35,9 +34,9 @@
             <objects>
                 <tableViewController title="Pump Setup" id="OZk-Db-KCs" customClass="MinimedPumpIDSetupViewController" customModule="MinimedKitUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" id="UjF-rv-Jio">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
                             <tableViewSection id="BlT-6Y-paO">
                                 <cells>
@@ -62,7 +61,7 @@
                                                 <constraint firstItem="V2a-iw-kfU" firstAttribute="top" secondItem="dCr-2B-7iQ" secondAttribute="top" id="jkZ-ff-8VC"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -78,7 +77,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" verticalCompressionResistancePriority="751" text="Enter the pump region" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGa-FP-JqD">
                                                     <rect key="frame" x="16" y="15" width="253" height="15"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" systemColor="tertiaryLabelColor"/>
+                                                    <color key="textColor" systemColor="tertiaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="7xx Small Outline" translatesAutoresizingMaskIntoConstraints="NO" id="C04-nz-afu">
@@ -98,7 +97,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="C04-nz-afu" secondAttribute="bottom" id="zG3-lP-VnU"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <connections>
                                             <outlet property="pumpImageView" destination="C04-nz-afu" id="Piq-RY-ZBE"/>
                                             <outlet property="regionLabel" destination="tGa-FP-JqD" id="Pb7-Nx-b6V"/>
@@ -136,7 +135,7 @@
                                                 <constraint firstItem="HeG-VF-L5P" firstAttribute="leading" secondItem="lSp-c7-E9x" secondAttribute="leadingMargin" id="xgY-q7-sbA"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -159,7 +158,7 @@
                                                 <constraint firstItem="DC6-f5-WBd" firstAttribute="centerX" secondItem="MVH-U0-d6o" secondAttribute="centerX" id="Pa3-6v-2r2"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="Q3d-Fp-MRY" style="IBUITableViewCellStyleDefault" id="wAW-4w-dju">
                                         <rect key="frame" x="0.0" y="553.99999618530273" width="375" height="44"/>
@@ -177,7 +176,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -209,6 +208,9 @@
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="0MV-2k-Dty" kind="relationship" relationship="rootViewController" id="nW1-N7-U63"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bbV-4g-hva" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -219,9 +221,9 @@
             <objects>
                 <tableViewController title="Pump Broadcasts" id="oBL-lh-SHI" customClass="MinimedPumpSentrySetupViewController" customModule="MinimedKitUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="fgk-FG-Rvy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
                             <tableViewSection id="Geu-Kg-ZRC">
                                 <cells>
@@ -241,7 +243,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -353,7 +355,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="2E9-Lq-TJh" secondAttribute="bottom" id="lrG-E2-V6s"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="E30-Ia-bWz" style="IBUITableViewCellStyleDefault" id="fU7-9N-45c">
                                         <rect key="frame" x="0.0" y="459" width="375" height="44"/>
@@ -371,7 +373,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -389,16 +391,16 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jv9-mz-xiC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2406" y="112"/>
+            <point key="canvasLocation" x="2408.8000000000002" y="80.541871921182263"/>
         </scene>
         <!--Pump Clock-->
         <scene sceneID="msH-5j-B9a">
             <objects>
                 <tableViewController title="Pump Clock" id="Fps-h3-V4K" customClass="MinimedPumpClockSetupViewController" customModule="MinimedKitUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="wTe-Tm-may">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
                             <tableViewSection id="eZu-j9-lF1">
                                 <cells>
@@ -418,7 +420,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="HuY-fE-vM8" rowHeight="100" style="IBUITableViewCellStyleDefault" id="qmk-WZ-OkQ">
                                         <rect key="frame" x="0.0" y="98" width="375" height="100"/>
@@ -437,7 +439,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Bdb-j4-WcR" rowHeight="60" style="IBUITableViewCellStyleDefault" id="KJd-PX-eSP">
                                         <rect key="frame" x="0.0" y="198" width="375" height="60"/>
@@ -455,7 +457,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -466,21 +468,63 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="Nwf-TJ-KmJ" kind="show" identifier="Continue" id="Tws-Ok-5Lo"/>
+                        <segue destination="iQZ-kT-QUm" kind="show" identifier="Continue" id="CT5-HI-Tde"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7wX-su-3P5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3438" y="81"/>
         </scene>
+        <!--Pump Settings-->
+        <scene sceneID="Dd3-pi-wuO">
+            <objects>
+                <tableViewController title="Pump Settings" id="iQZ-kT-QUm" customClass="MinimedPumpSettingsSetupViewController" customModule="MinimedKitUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="gAw-iC-ieh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DescriptionCell" textLabel="HfQ-fG-8vO" rowHeight="79" style="IBUITableViewCellStyleDefault" id="Gwp-g3-ynj">
+                                <rect key="frame" x="0.0" y="55.333332061767578" width="375" height="79"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gwp-g3-ynj" id="2eE-Cw-XiD">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Review your pump settings below. You can change these settings at any time in Loopʼs Settings screen." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="HfQ-fG-8vO">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="iQZ-kT-QUm" id="yyw-qw-iXQ"/>
+                            <outlet property="delegate" destination="iQZ-kT-QUm" id="6y1-ej-jnY"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="Nwf-TJ-KmJ" kind="show" identifier="Continue" id="HED-OH-Am0"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="quR-P0-rkd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4471" y="81"/>
+        </scene>
         <!--Setup Complete-->
         <scene sceneID="6DU-aU-yea">
             <objects>
                 <tableViewController title="Setup Complete" id="Nwf-TJ-KmJ" customClass="MinimedPumpSetupCompleteViewController" customModule="MinimedKitUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="9iS-5C-fWH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
                             <tableViewSection id="o82-Z0-a4n">
                                 <cells>
@@ -503,7 +547,7 @@
                                                 <constraint firstItem="D6q-Nu-sMK" firstAttribute="top" secondItem="krI-zz-cvI" secondAttribute="top" id="tfx-tw-InH"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="g1m-3k-XI3" style="IBUITableViewCellStyleDefault" id="tho-PD-Vee">
                                         <rect key="frame" x="0.0" y="197" width="375" height="44"/>
@@ -521,7 +565,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -531,14 +575,13 @@
                             <outlet property="delegate" destination="Nwf-TJ-KmJ" id="omI-Rz-Y2q"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="fco-w2-lV9"/>
                     <connections>
                         <outlet property="pumpImageView" destination="D6q-Nu-sMK" id="Hdm-Qg-FlB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YpA-W7-g9Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4398" y="81"/>
+            <point key="canvasLocation" x="5506" y="81"/>
         </scene>
         <!--Minimed Pump Manager Setup View Controller-->
         <scene sceneID="axV-KT-VMd">
@@ -557,27 +600,13 @@
             <point key="canvasLocation" x="441" y="-932"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="2E9-Lq-TJh">
-            <size key="intrinsicContentSize" width="50" height="50"/>
-        </designable>
-        <designable name="DC6-f5-WBd">
-            <size key="intrinsicContentSize" width="50" height="50"/>
-        </designable>
-    </designables>
-    <inferredMetricsTieBreakers>
-        <segue reference="e53-KL-ULn"/>
-        <segue reference="4L6-8d-6pa"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="5xx Outline" width="204" height="126"/>
         <image name="7xx Small Outline" width="115" height="63"/>
         <image name="Pump ID Diagram" width="276" height="151"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="7vf-at-3Tu"/>
+        <segue reference="4L6-8d-6pa"/>
+    </inferredMetricsTieBreakers>
 </document>

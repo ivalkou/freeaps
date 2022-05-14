@@ -145,7 +145,7 @@
 "Tank fill completed" = "Pod har fyllts klart";
 
 /* Pod power to motor activated */
-"Tank power activated" = "Ström till motor för behållare aktiverad";
+"Tank power activated" = "Ström till reservoarmotor aktiverad";
 
 /* Error message shown when temp basal could not be set due to existing temp basal in progress */
 "Temp basal in progress" = "Temp basal pågår redan";
@@ -154,10 +154,10 @@
 "Temp basal running" = "Temp basal pågår";
 
 /* The format string describing a temp basal. (1: The rate)(2: Start time)(3: duration)(4: volume)(5: scheduled certainty */
-"TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "TempBasal: %1$@ E/timme %2$@ %3$@ %4$@ E %5$@";
+"TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@";
 
 /* The format string for pod expiration notification body (1: time until expiration) */
-"Time to replace your pod! Your pod will expire in %1$@" = "Byt din pod! Din pod går ut om %1$@";
+"Time to replace your pod! Your pod will expire in %1$@" = "Byt din podd! Din podd går ut om %1$@";
 
 /* String describing a dose that was possibly scheduled */
 "Uncertain" = "Osäker";

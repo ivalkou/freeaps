@@ -96,7 +96,7 @@
 "Pod expiration advisory alarm" = "Larm för utgångsdatum för pod";
 
 /* The title for pod expiration notification */
-"Pod Expiration Notice" = "Notis om utgångsdatum för pod";
+"Pod Expiration Notice" = "Poddbyte";
 
 /* Description for Pod expired pod fault */
 "Pod expired" = "Pod har utgått";
@@ -105,7 +105,7 @@
 "Pod Fault: %1$@" = "Podfel: %1$@";
 
 /* Error message when cannula insertion fails because the pod is in an unexpected state */
-"Pod is not in a state ready for cannula insertion." = "Pod är inte klar för att föra in kanyl";
+"Pod is not in a state ready for cannula insertion" = "Pod är inte klar för att föra in kanyl";
 
 /* Error message when prime fails because the pod is in an unexpected state */
 "Pod is not in a state ready for priming." = "Pod är inte klar för att fyllas";
@@ -154,7 +154,7 @@
 "Temp basal running" = "Temp basal pågår";
 
 /* The format string describing a temp basal. (1: The rate)(2: Start time)(3: duration)(4: volume)(5: scheduled certainty */
-"TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "TempBasal: %1$@ E/timme %2$@ %3$@ %4$@ E %5$@";
+"TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@";
 
 /* The format string for pod expiration notification body (1: time until expiration) */
 "Time to replace your pod! Your pod will expire in %1$@" = "Byt din pod! Din pod går ut om %1$@";
@@ -176,3 +176,42 @@
 
 /* Description waiting for pairing reminder */
 "Waiting for pairing reminder" = "Väntar på påminnelse för parkoppling";
+
+/* Error message shown when pod sends ack instead of response */
+"Pod sent ack instead of response" = "Podd skickade bekräftelse istället för svar";
+
+/* Format string for invalid message error code (1: error code number) */
+"Command error %1$u" = "Kommandofel %1$u";
+
+/* "Format string for unexpected pod change" */
+"Unexpected pod change" = "Oväntat poddbyte";
+
+/* Format string for activation time exceeded */
+"Activation time exceeded" = "Aktiveringstid överskriden";
+
+/* Format string for poor pod signal strength */
+"Poor signal strength" = "Dålig signalstyrka";
+
+/* Format string for pod signal strength too high */
+"Signal strength too high" = "Signalstyrka för hög";
+
+/* Recovery suggestion when no response is received from pod */
+"Please try repositioning the RileyLink and try again" = "Pröva att flytta på din RileyLink och försök igen";
+
+/* Recovery suggestion when ack received instead of response */
+"Try again" = "Försök igen";
+
+/* Recovery suggestion when unexpected address received */
+"Crosstalk possible. Please move to a new location and try again" = "Möjlig överhörning. Flytta till ny plats och försök igen";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Ha endast din ursprungliga podd inom räckvidd eller inaktivera ursprunglig podd";
+
+/* Recovery suggestion when pairing signal strength is too low */
+"Please reposition the RileyLink relative to the pod" = "Flytta din RileyLink i förhållande till podden";
+
+/* Recovery suggestion when pairing signal strength is too high */
+"Please reposition the RileyLink further from the pod" = "Flytta din RileyLink längre från podden";
+
+/* Description for an inactive alert modifier */
+" (inactive)" = " (inaktiv)";

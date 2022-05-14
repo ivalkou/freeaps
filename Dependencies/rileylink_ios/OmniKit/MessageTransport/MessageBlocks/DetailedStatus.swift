@@ -13,7 +13,7 @@ import Foundation
 public struct DetailedStatus : PodInfo, Equatable {
     // CMD 1  2  3  4  5 6  7  8 9 10 1112 1314 1516 17 18 19 20 21 2223
     // DATA   0  1  2  3 4  5  6 7  8  910 1112 1314 15 16 17 18 19 2021
-    // 02 16 02 0J 0K LLLL MM NNNN PP QQQQ RRRR SSSS TT UU VV WW 0X YYYY
+    // 02 16 02 0J 0K LLLL MM NNNN PP QQQQ RRRR SSSS TT UU VV WW XX YYYY
 
     public let podInfoType: PodInfoResponseSubType = .detailedStatus
     public let podProgressStatus: PodProgressStatus
@@ -31,7 +31,7 @@ public struct DetailedStatus : PodInfo, Equatable {
     public let receiverLowGain: UInt8
     public let radioRSSI: UInt8
     public let previousPodProgressStatus: PodProgressStatus?
-    // YYYY is uninitialized data for Eros
+    public let possibleFaultCallingAddress: UInt16?
     public let data: Data
     
     public init(encodedData: Data) throws {
@@ -76,18 +76,34 @@ public struct DetailedStatus : PodInfo, Equatable {
         self.faultAccessingTables = (encodedData[16] & 2) != 0
         
         if encodedData[17] == 0x00 {
-           self.errorEventInfo = nil // this byte is not valid (no fault has occurred)
+            // no fault has occurred, errorEventInfo and previousPodProgressStatus not valid
+            self.errorEventInfo = nil
+            self.previousPodProgressStatus = nil
         } else {
-            self.errorEventInfo = ErrorEventInfo(rawValue: encodedData[17])
+            // fault has occurred, VV byte contains valid fault info
+            let errorEventInfo = ErrorEventInfo(rawValue: encodedData[17])
+            self.errorEventInfo = errorEventInfo
+            // errorEventInfo.podProgressStatus is valid for both Eros and Dash on fault
+            self.previousPodProgressStatus = errorEventInfo.podProgressStatus
         }
         
+        // For Dash these values have always been zero
         self.receiverLowGain = UInt8(encodedData[18] >> 6)
         self.radioRSSI =  UInt8(encodedData[18] & 0x3F)
         
-        if encodedData[19] == 0xFF {
-            self.previousPodProgressStatus = nil // this byte is not valid (no fault has occurred)
+        // For Eros, encodedData[19] (XX) byte is the same previousPodProgressStatus nibble in the VV byte on fault.
+        // For Dash, encodedData[19] (XX) byte is uninitialized or unknown, so use VV byte for previousPodProgressStatus.
+
+        // Decode YYYY based on whether there was a pod fault
+        if encodedData[8] == 0 {
+            // For non-faults, YYYY contents not valid (either uninitialized data for Eros or some unknown content for Dash).
+            self.possibleFaultCallingAddress = nil
         } else {
-            self.previousPodProgressStatus = PodProgressStatus(rawValue: encodedData[19] & 0xF)!
+            // For Eros faults, YYYY is always uninitialized data from the previous command/response at the same buffer offset.
+            self.possibleFaultCallingAddress = nil
+            // For Dash faults, YYYY could be a calling address of the fault routine for the first return after a pod fault,
+            // subsequent returns will be byte swapped data from previous command/response at the same buffer offset.
+            //self.possibleFaultCallingAddress = encodedData[20...21].toBigEndian(UInt16.self) // only potentially valid for Dash
         }
         
         self.data = Data(encodedData)
@@ -137,7 +153,7 @@ public struct DetailedStatus : PodInfo, Equatable {
 extension DetailedStatus: CustomDebugStringConvertible {
     public typealias RawValue = Data
     public var debugDescription: String {
-        return [
+        var result = [
             "## DetailedStatus",
             "* rawHex: \(data.hexadecimalString)",
             "* podProgressStatus: \(podProgressStatus)",
@@ -146,17 +162,29 @@ extension DetailedStatus: CustomDebugStringConvertible {
             "* lastProgrammingMessageSeqNum: \(lastProgrammingMessageSeqNum)",
             "* totalInsulinDelivered: \(totalInsulinDelivered.twoDecimals) U",
             "* faultEventCode: \(faultEventCode.description)",
-            "* faultEventTimeSinceActivation: \(faultEventTimeSinceActivation?.stringValue ?? "none")",
             "* reservoirLevel: \(reservoirLevel?.twoDecimals ?? "50+") U",
             "* timeActive: \(timeActive.stringValue)",
             "* unacknowledgedAlerts: \(unacknowledgedAlerts)",
-            "* faultAccessingTables: \(faultAccessingTables)",
-            "* errorEventInfo: \(errorEventInfo?.description ?? "NA")",
-            "* receiverLowGain: \(receiverLowGain)",
-            "* radioRSSI: \(radioRSSI)",
-            "* previousPodProgressStatus: \(previousPodProgressStatus?.description ?? "NA")",
             "",
             ].joined(separator: "\n")
+        if radioRSSI != 0 {
+            result += [
+                "* receiverLowGain: \(receiverLowGain)",
+                "* radioRSSI: \(radioRSSI)",
+                "",
+                ].joined(separator: "\n")
+        }
+        if faultEventCode.faultType != .noFaults {
+            result += [
+                "* faultAccessingTables: \(faultAccessingTables)",
+                "* faultEventTimeSinceActivation: \(faultEventTimeSinceActivation?.stringValue ?? "NA")",
+                "* errorEventInfo: \(errorEventInfo?.description ?? "NA")",
+                "* previousPodProgressStatus: \(previousPodProgressStatus?.description ?? "NA")",
+                "* possibleFaultCallingAddress: \(possibleFaultCallingAddress != nil ? String(format: "0x%04x", possibleFaultCallingAddress!) : "NA")",
+                "",
+                ].joined(separator: "\n")
+        }
+        return result
     }
 }
 
@@ -195,8 +223,7 @@ extension TimeInterval {
 
 extension Double {
     var twoDecimals: String {
-        let reservoirLevel = self
-        return String(format: "%.2f", reservoirLevel)
+        return String(format: "%.2f", self)
     }
 }
 
@@ -234,17 +261,5 @@ public struct ErrorEventInfo: CustomStringConvertible, Equatable {
         self.occlusionType = Int((rawValue & 0x60) >> 5)
         self.immediateBolusInProgress = (rawValue & 0x10) != 0
         self.podProgressStatus = PodProgressStatus(rawValue: rawValue & 0xF)!
-    }
-}
-
-
-extension DetailedStatus {
-    var highlightText: String {
-        switch faultEventCode.faultType {
-        case .exceededMaximumPodLife80Hrs:
-            return LocalizedString("Pod Expired", comment: "Highlight string for pod expired (80hrs).")
-        default:
-            return LocalizedString("Pod Fault", comment: "Highlight string for pod faults.")
-        }
     }
 }

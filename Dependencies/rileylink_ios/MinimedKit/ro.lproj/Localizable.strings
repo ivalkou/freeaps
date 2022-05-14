@@ -96,3 +96,9 @@
 
 /* Describing the worldwide pump region */
 "World-Wide" = "Global";
+
+/* Describing the Canada pump region */
+"Canada" = "Canada";
+
+/* Pump error code when invalid history page is requested */
+"History page does not exist" = "History page does not exist";

@@ -37,7 +37,7 @@ class MasterViewController: UITableViewController {
                 if success {
                     // Call the individual authorization methods to trigger query creation
                     dataManager.carbStore.authorize({ _ in })
-                    dataManager.doseStore.insulinDeliveryStore.authorize(toShare: true, { _ in })
+                    dataManager.doseStore.insulinDeliveryStore.authorize({ _ in })
                     dataManager.glucoseStore.authorize({ _ in })
                 }
             }
@@ -210,7 +210,7 @@ class MasterViewController: UITableViewController {
             case .carbs:
                 performSegue(withIdentifier: CarbEntryTableViewController.className, sender: sender)
             case .reservoir:
-                performSegue(withIdentifier: LegacyInsulinDeliveryTableViewController.className, sender: sender)
+                performSegue(withIdentifier: InsulinDeliveryTableViewController.className, sender: sender)
             case .diagnostic:
                 let vc = CommandResponseViewController(command: { [weak self] (completionHandler) -> String in
                     let group = DispatchGroup()
@@ -281,7 +281,7 @@ class MasterViewController: UITableViewController {
                     }
 
                     group.enter()
-                    dataManager.glucoseStore.addGlucoseSamples([NewGlucoseSample(date: Date(), quantity: HKQuantity(unit: .milligramsPerDeciliter, doubleValue: 101), isDisplayOnly: false, wasUserEntered: false, syncIdentifier: UUID().uuidString)], completion: { (result) in
+                    dataManager.glucoseStore.addGlucose(NewGlucoseSample(date: Date(), quantity: HKQuantity(unit: .milligramsPerDeciliter, doubleValue: 101), isDisplayOnly: false, syncIdentifier: UUID().uuidString), completion: { (result) in
                         group.leave()
                     })
 
@@ -320,7 +320,7 @@ class MasterViewController: UITableViewController {
                 vc.defaultAbsorptionTimes = carbStore.defaultAbsorptionTimes
                 vc.preferredUnit = carbStore.preferredUnit
             }
-        case let vc as LegacyInsulinDeliveryTableViewController:
+        case let vc as InsulinDeliveryTableViewController:
             vc.doseStore = dataManager?.doseStore
         default:
             break

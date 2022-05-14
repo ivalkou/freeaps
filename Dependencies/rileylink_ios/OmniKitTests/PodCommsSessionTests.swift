@@ -60,7 +60,7 @@ class PodCommsSessionTests: XCTestCase, PodCommsSessionDelegate {
 
         // 2018-05-25T13:03:51.765792 pod Message(ffffffff seq:01 [OmniKitPacketParser.VersionResponse(blockType: OmniKitPacketParser.MessageBlockType.versionResponse, lot: 43620, tid: 560313, address: Optional(521580830), pmVersion: 2.7.0, piVersion: 2.7.0, data: 23 bytes)])
 
-        let podState = PodState(address: 521580830, piVersion: "2.7.0", pmVersion: "2.7.0", lot: 43620, tid: 560313, insulinType: .novolog)
+        let podState = PodState(address: 521580830, piVersion: "2.7.0", pmVersion: "2.7.0", lot: 43620, tid: 560313)
 
         let messageTransport = MockMessageTransport(address: podState.address, messageNumber: 5)
 
@@ -99,7 +99,7 @@ class PodCommsSessionTests: XCTestCase, PodCommsSessionDelegate {
         // Try sending another bolus command: nonce should be 676940027
         XCTAssertEqual(545302454, lastPodStateUpdate!.currentNonce)
 
-        let _ = session.bolus(units: 2, automatic: false)
+        let _ = session.bolus(units: 2)
         let bolusTry3 = messageTransport.sentMessages[2].messageBlocks[0] as! SetInsulinScheduleCommand
         XCTAssertEqual(545302454, bolusTry3.nonce)
 

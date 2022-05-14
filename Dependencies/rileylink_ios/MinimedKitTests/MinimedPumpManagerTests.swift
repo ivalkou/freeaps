@@ -20,7 +20,7 @@ class MinimedPumpManagerTests: XCTestCase {
 
         let cancelTime = bolusEventTime.addingTimeInterval(TimeInterval(minutes: 1))
 
-        let unfinalizedBolus = UnfinalizedDose(bolusAmount: 5.4, startTime: bolusTime, duration: TimeInterval(200), insulinType: .novolog, automatic: false, isReconciledWithHistory: false)
+        let unfinalizedBolus = UnfinalizedDose(bolusAmount: 5.4, startTime: bolusTime, duration: TimeInterval(200), isReconciledWithHistory: false)
         
         // 5.4 bolus interrupted at 1.0 units
         let eventDose = DoseEntry(type: .bolus, startDate: bolusEventTime, endDate: cancelTime, value: unfinalizedBolus.units, unit: .units, deliveredUnits: 1.0)
@@ -58,7 +58,7 @@ class MinimedPumpManagerTests: XCTestCase {
         
         let bolusDuration = PumpModel.model523.bolusDeliveryTime(units: bolusAmount)
 
-        let unfinalizedBolus = UnfinalizedDose(bolusAmount: bolusAmount, startTime: bolusTime, duration: bolusDuration, insulinType: .novolog, automatic: false, isReconciledWithHistory: false)
+        let unfinalizedBolus = UnfinalizedDose(bolusAmount: bolusAmount, startTime: bolusTime, duration: bolusDuration, isReconciledWithHistory: false)
         
         let eventDose = DoseEntry(type: .bolus, startDate: bolusEventTime, endDate: bolusEventTime.addingTimeInterval(bolusDuration), value: bolusAmount, unit: .units, deliveredUnits: bolusAmount)
         

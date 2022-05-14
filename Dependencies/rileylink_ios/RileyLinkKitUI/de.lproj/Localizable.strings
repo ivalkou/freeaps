@@ -59,7 +59,7 @@
 "Battery level Alert" = "Ladezustandswarnung";
 
 /* Battery level alert OFF in list of options */
-"OFF" = "Aus";
+"OFF" = "AUS";
 
 /* The title of the command to update diagnostic LEDs */
 "Diagnostic LEDs" = "Diagnose LEDs";
@@ -101,4 +101,4 @@
 "Off" = "Aus";
 
 /* Text indicating LED Mode is auto */
-"Auto" = "Auto";
+"Auto" = "Automatisch";

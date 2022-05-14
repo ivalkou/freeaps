@@ -455,8 +455,9 @@ extension PumpOpsSession {
     /// - Parameters:
     ///   - unitsPerHour: The new basal rate, in Units per hour
     ///   - duration: The duration of the rate
-    /// - Returns: A result containing the pump message body describing the new basal rate or an error
-    public func setTempBasal(_ unitsPerHour: Double, duration: TimeInterval) -> Result<ReadTempBasalCarelinkMessageBody,PumpCommandError> {
+    /// - Returns: The pump message body describing the new basal rate
+    /// - Throws: PumpCommandError
+    public func setTempBasal(_ unitsPerHour: Double, duration: TimeInterval) throws -> ReadTempBasalCarelinkMessageBody {
         var lastError: PumpCommandError?
         
         let message = PumpMessage(settings: settings, type: .changeTempBasal, body: ChangeTempBasalCarelinkMessageBody(unitsPerHour: unitsPerHour, duration: duration))
@@ -487,9 +488,9 @@ extension PumpOpsSession {
                 let response: ReadTempBasalCarelinkMessageBody = try session.getResponse(to: PumpMessage(settings: settings, type: .readTempBasal), responseType: .readTempBasal)
 
                 if response.timeRemaining == duration && response.rateType == .absolute {
-                    return .success(response)
+                    return response
                 } else {
-                    return .failure(PumpCommandError.arguments(PumpOpsError.rfCommsFailure("Could not verify TempBasal on attempt \(attempt). ")))
+                    throw PumpCommandError.arguments(PumpOpsError.rfCommsFailure("Could not verify TempBasal on attempt \(attempt). "))
                 }
             } catch let error as PumpCommandError {
                 lastError = error
@@ -499,8 +500,8 @@ extension PumpOpsSession {
                 lastError = .command(.noResponse(during: "Set temp basal"))
             }
         }
-        
-        return .failure(lastError!)
+
+        throw lastError!
     }
 
     public func readTempBasal() throws -> Double {
@@ -559,26 +560,53 @@ extension PumpOpsSession {
     public func setNormalBolus(units: Double, cancelExistingTemp: Bool = false) throws {
         let pumpModel: PumpModel
 
-        try wakeup()
-        pumpModel = try getPumpModel()
+        do {
+            try wakeup()
+            pumpModel = try getPumpModel()
 
-        let status = try getPumpStatus()
+            let status = try getPumpStatus()
 
-        if status.bolusing {
-            throw PumpOpsError.bolusInProgress
+            if status.bolusing {
+                throw PumpOpsError.bolusInProgress
+            }
+
+            if status.suspended {
+                throw PumpOpsError.pumpSuspended
+            }
+
+            if cancelExistingTemp {
+                _ = try setTempBasal(0, duration: 0)
+            }
+        } catch let error as PumpOpsError {
+            throw SetBolusError.certain(error)
+        } catch let error as PumpCommandError {
+            switch error {
+            case .command(let error):
+                throw SetBolusError.certain(error)
+            case .arguments(let error):
+                throw SetBolusError.certain(error)
+            }
+        } catch {
+            assertionFailure()
+            return
         }
 
-        if status.suspended {
-            throw PumpOpsError.pumpSuspended
+        do {
+            let message = PumpMessage(settings: settings, type: .bolus, body: BolusCarelinkMessageBody(units: units, insulinBitPackingScale: pumpModel.insulinBitPackingScale))
+
+            let _: PumpAckMessageBody = try runCommandWithArguments(message)
+        } catch let error as PumpOpsError {
+            throw SetBolusError.certain(error)
+        } catch let error as PumpCommandError {
+            switch error {
+            case .command(let error):
+                throw SetBolusError.certain(error)
+            case .arguments(let error):
+                throw SetBolusError.uncertain(error)
+            }
+        } catch {
+            assertionFailure()
         }
-
-        if cancelExistingTemp {
-            _ = setTempBasal(0, duration: 0)
-        }
-
-        let message = PumpMessage(settings: settings, type: .bolus, body: BolusCarelinkMessageBody(units: units, insulinBitPackingScale: pumpModel.insulinBitPackingScale))
-
-        let _: PumpAckMessageBody = try runCommandWithArguments(message)
         return
     }
 
@@ -645,54 +673,6 @@ extension PumpOpsSession {
     
     public func getStatistics() throws -> RileyLinkStatistics {
         return try session.getRileyLinkStatistics()
-    }
-
-    public func discoverCommands(in range: CountableClosedRange<UInt8>, _ updateHandler: (_ messages: [String]) -> Void) {
-
-        let codes = range.compactMap { MessageType(rawValue: $0) }
-
-        for code in codes {
-            var messages = [String]()
-
-            do {
-                messages.append(contentsOf: [
-                    "## Command \(code)",
-                ])
-
-                try wakeup()
-
-                // Try the short command message, without any arguments.
-                let shortMessage = PumpMessage(settings: settings, type: code)
-                let _: PumpAckMessageBody = try session.getResponse(to: shortMessage)
-
-                messages.append(contentsOf: [
-                    "Succeeded",
-                    ""
-                ])
-
-                // Check history?
-
-            } catch PumpOpsError.unexpectedResponse(let response, from: _) {
-                messages.append(contentsOf: [
-                    "Unexpected response:",
-                    response.txData.hexadecimalString,
-                ])
-            } catch PumpOpsError.unknownResponse(rx: let response, during: _) {
-                messages.append(contentsOf: [
-                    "Unknown response:",
-                    response.hexadecimalString,
-                    ])
-            } catch let error {
-                messages.append(contentsOf: [
-                    String(describing: error),
-                    "",
-                ])
-            }
-
-            updateHandler(messages)
-
-            Thread.sleep(until: Date(timeIntervalSinceNow: 2))
-        }
     }
 }
 
@@ -824,11 +804,6 @@ extension PumpOpsSession {
         } catch let error as LocalizedError {
             throw PumpOpsError.deviceError(error)
         }
-    }
-
-    /// - Throws: PumpOpsError.deviceError
-    func setCCLEDMode(_ mode: RileyLinkLEDMode) throws {
-        throw PumpOpsError.noResponse(during: "Tests")
     }
 
     /// - Throws:

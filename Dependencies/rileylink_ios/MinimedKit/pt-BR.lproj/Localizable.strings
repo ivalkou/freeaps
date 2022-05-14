@@ -50,7 +50,7 @@
 "Minimed %@" = "Minimed %@";
 
 /* Generic title of the minimed pump manager */
-"Minimed 500/700 Series" = "Minimed 500/700 Series";
+"Minimed 500/700 Series" = "Minimed Séries 500/700";
 
 /* Describing the North America pump region */
 "North America" = "América do Norte";
@@ -96,3 +96,9 @@
 
 /* Describing the worldwide pump region */
 "World-Wide" = "Mundial";
+
+/* Describing the Canada pump region */
+"Canada" = "Canadá";
+
+/* Pump error code when invalid history page is requested */
+"History page does not exist" = "A página de histórico não existe";

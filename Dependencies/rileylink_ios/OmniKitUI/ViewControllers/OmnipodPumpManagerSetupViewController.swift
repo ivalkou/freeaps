@@ -40,8 +40,6 @@ public class OmnipodPumpManagerSetupViewController: RileyLinkManagerSetupViewCon
         
     private(set) var pumpManager: OmnipodPumpManager?
     
-    internal var insulinType: InsulinType?
-    
     /*
      1. RileyLink
      - RileyLinkPumpManagerState
@@ -80,10 +78,10 @@ public class OmnipodPumpManagerSetupViewController: RileyLinkManagerSetupViewCon
         switch viewController {
         case let vc as PairPodSetupViewController:
             vc.rileyLinkPumpManager = rileyLinkPumpManager
-            if let deviceProvider = rileyLinkPumpManager?.rileyLinkDeviceProvider, let basalSchedule = basalSchedule, let insulinType = insulinType {
+            if let deviceProvider = rileyLinkPumpManager?.rileyLinkDeviceProvider, let basalSchedule = basalSchedule {
                 let connectionManagerState = rileyLinkPumpManager?.rileyLinkConnectionManagerState
                 let schedule = BasalSchedule(repeatingScheduleValues: basalSchedule.items)
-                let pumpManagerState = OmnipodPumpManagerState(podState: nil, timeZone: .currentFixed, basalSchedule: schedule, rileyLinkConnectionManagerState: connectionManagerState, insulinType: insulinType)
+                let pumpManagerState = OmnipodPumpManagerState(podState: nil, timeZone: .currentFixed, basalSchedule: schedule, rileyLinkConnectionManagerState: connectionManagerState)
                 let pumpManager = OmnipodPumpManager(
                     state: pumpManagerState,
                     rileyLinkDeviceProvider: deviceProvider,

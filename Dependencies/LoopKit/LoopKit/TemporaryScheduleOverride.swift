@@ -39,10 +39,6 @@ public struct TemporaryScheduleOverride: Hashable {
         public var isFinite: Bool {
             return timeInterval.isFinite
         }
-        
-        public var isInfinite: Bool {
-            return timeInterval.isInfinite
-        }
 
         public static func < (lhs: Duration, rhs: Duration) -> Bool {
             return lhs.timeInterval < rhs.timeInterval
@@ -52,21 +48,8 @@ public struct TemporaryScheduleOverride: Hashable {
     public var context: Context
     public var settings: TemporaryScheduleOverrideSettings
     public var startDate: Date
-    public let enactTrigger: EnactTrigger
     public let syncIdentifier: UUID
-    
-    public var actualEnd: End = .natural
-    
-    public var actualEndDate: Date {
-        switch actualEnd {
-        case .natural:
-            return scheduledEndDate
-        case .early(let endDate):
-            return endDate
-        case .deleted:
-            return scheduledEndDate
-        }
-    }
+    public let enactTrigger: EnactTrigger
 
     public var duration: Duration {
         didSet {
@@ -74,7 +57,7 @@ public struct TemporaryScheduleOverride: Hashable {
         }
     }
 
-    public var scheduledEndDate: Date {
+    public var endDate: Date {
         get {
             return startDate + duration.timeInterval
         }
@@ -90,16 +73,16 @@ public struct TemporaryScheduleOverride: Hashable {
 
     public var activeInterval: DateInterval {
         get {
-            return DateInterval(start: startDate, end: actualEndDate)
+            return DateInterval(start: startDate, end: endDate)
         }
         set {
             startDate = newValue.start
-            scheduledEndDate = newValue.end
+            endDate = newValue.end
         }
     }
 
     public func hasFinished(relativeTo date: Date = Date()) -> Bool {
-        return date > actualEndDate
+        return date > endDate
     }
 
     public init(context: Context, settings: TemporaryScheduleOverrideSettings, startDate: Date, duration: Duration, enactTrigger: EnactTrigger, syncIdentifier: UUID) {
@@ -135,6 +118,14 @@ extension TemporaryScheduleOverride: RawRepresentable {
         
         let startDate = Date(timeIntervalSince1970: startDateSeconds)
 
+        let syncIdentifier: UUID
+        if let syncIdentifierRaw = rawValue["syncIdentifier"] as? String,
+            let storedSyncIdentifier = UUID(uuidString: syncIdentifierRaw) {
+            syncIdentifier = storedSyncIdentifier
+        } else {
+            syncIdentifier = UUID()
+        }
+        
         let enactTrigger: EnactTrigger
         if let enactTriggerRaw = rawValue["enactTrigger"] as? EnactTrigger.RawValue,
             let storedEnactTrigger = EnactTrigger(rawValue: enactTriggerRaw)
@@ -142,14 +133,6 @@ extension TemporaryScheduleOverride: RawRepresentable {
             enactTrigger = storedEnactTrigger
         } else {
             enactTrigger = .local
-        }
-
-        let syncIdentifier: UUID
-        if let syncIdentifierRaw = rawValue["syncIdentifier"] as? String,
-            let storedSyncIdentifier = UUID(uuidString: syncIdentifierRaw) {
-            syncIdentifier = storedSyncIdentifier
-        } else {
-            syncIdentifier = UUID()
         }
         
         self.init(context: context, settings: settings, startDate: startDate, duration: duration, enactTrigger: enactTrigger, syncIdentifier: syncIdentifier)
@@ -162,12 +145,9 @@ extension TemporaryScheduleOverride: RawRepresentable {
             "startDate": startDate.timeIntervalSince1970,
             "duration": duration.rawValue,
             "syncIdentifier": syncIdentifier.uuidString,
-            "enactTrigger": enactTrigger.rawValue,
         ]
     }
 }
-
-extension TemporaryScheduleOverride: Codable {}
 
 extension TemporaryScheduleOverride.Context: RawRepresentable {
     public typealias RawValue = [String: Any]
@@ -214,58 +194,6 @@ extension TemporaryScheduleOverride.Context: RawRepresentable {
     }
 }
 
-extension TemporaryScheduleOverride.Context: Codable {
-    public init(from decoder: Decoder) throws {
-        if let string = try? decoder.singleValueContainer().decode(String.self) {
-            switch string {
-            case CodableKeys.preMeal.rawValue:
-                self = .preMeal
-            case CodableKeys.legacyWorkout.rawValue:
-                self = .legacyWorkout
-            case CodableKeys.custom.rawValue:
-                self = .custom
-            default:
-                throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "invalid enumeration"))
-            }
-        } else {
-            let container = try decoder.container(keyedBy: CodableKeys.self)
-            if let preset = try container.decodeIfPresent(Preset.self, forKey: .preset) {
-                self = .preset(preset.preset)
-            } else {
-                throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "invalid enumeration"))
-            }
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        switch self {
-        case .preMeal:
-            var container = encoder.singleValueContainer()
-            try container.encode(CodableKeys.preMeal.rawValue)
-        case .legacyWorkout:
-            var container = encoder.singleValueContainer()
-            try container.encode(CodableKeys.legacyWorkout.rawValue)
-        case .preset(let preset):
-            var container = encoder.container(keyedBy: CodableKeys.self)
-            try container.encode(Preset(preset: preset), forKey: .preset)
-        case .custom:
-            var container = encoder.singleValueContainer()
-            try container.encode(CodableKeys.custom.rawValue)
-        }
-    }
-
-    private struct Preset: Codable {
-        let preset: TemporaryScheduleOverridePreset
-    }
-
-    private enum CodableKeys: String, CodingKey {
-        case preMeal
-        case legacyWorkout
-        case preset
-        case custom
-    }
-}
-
 extension TemporaryScheduleOverride.Duration: RawRepresentable {
     public typealias RawValue = [String: Any]
 
@@ -297,46 +225,6 @@ extension TemporaryScheduleOverride.Duration: RawRepresentable {
         case .indefinite:
             return ["duration": "indefinite"]
         }
-    }
-}
-
-extension TemporaryScheduleOverride.Duration: Codable {
-    public init(from decoder: Decoder) throws {
-        if let string = try? decoder.singleValueContainer().decode(String.self) {
-            switch string {
-            case CodableKeys.indefinite.rawValue:
-                self = .indefinite
-            default:
-                throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "invalid enumeration"))
-            }
-        } else {
-            let container = try decoder.container(keyedBy: CodableKeys.self)
-            if let finite = try container.decodeIfPresent(Finite.self, forKey: .finite) {
-                self = .finite(finite.duration)
-            } else {
-                throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "invalid enumeration"))
-            }
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        switch self {
-        case .finite(let duration):
-            var container = encoder.container(keyedBy: CodableKeys.self)
-            try container.encode(Finite(duration: duration), forKey: .finite)
-        case .indefinite:
-            var container = encoder.singleValueContainer()
-            try container.encode(CodableKeys.indefinite.rawValue)
-        }
-    }
-
-    private struct Finite: Codable {
-        let duration: TimeInterval
-    }
-
-    private enum CodableKeys: String, CodingKey {
-        case finite
-        case indefinite
     }
 }
 
@@ -374,42 +262,3 @@ extension TemporaryScheduleOverride.EnactTrigger: RawRepresentable {
     }
 }
 
-extension TemporaryScheduleOverride.EnactTrigger: Codable {
-    public init(from decoder: Decoder) throws {
-        if let string = try? decoder.singleValueContainer().decode(String.self) {
-            switch string {
-            case CodableKeys.local.rawValue:
-                self = .local
-            default:
-                throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "invalid enumeration"))
-            }
-        } else {
-            let container = try decoder.container(keyedBy: CodableKeys.self)
-            if let remote = try container.decodeIfPresent(Remote.self, forKey: .remote) {
-                self = .remote(remote.address)
-            } else {
-                throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "invalid enumeration"))
-            }
-        }
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        switch self {
-        case .local:
-            var container = encoder.singleValueContainer()
-            try container.encode(CodableKeys.local.rawValue)
-        case .remote(let address):
-            var container = encoder.container(keyedBy: CodableKeys.self)
-            try container.encode(Remote(address: address), forKey: .remote)
-        }
-    }
-
-    private struct Remote: Codable {
-        let address: String
-    }
-
-    private enum CodableKeys: String, CodingKey {
-        case local
-        case remote
-    }
-}

@@ -6,19 +6,9 @@
 //  Copyright © 2019 LoopKit Authors. All rights reserved.
 //
 
-public protocol PumpManagerUIPlugin {
-    var pumpManagerType: PumpManagerUI.Type? { get }
-}
+import Foundation
 
-public protocol CGMManagerUIPlugin {
+public protocol LoopUIPlugin {
+    var pumpManagerType: PumpManagerUI.Type? { get }
     var cgmManagerType: CGMManagerUI.Type? { get }
 }
-
-public protocol ServiceUIPlugin {
-    var serviceType: ServiceUI.Type? { get }
-}
-
-public protocol LoopUIPlugin: PumpManagerUIPlugin, CGMManagerUIPlugin {}
-
-// TODO: Remove LoopUIPlugin after updating OmniKitPlugin and MinimedKitPlugin in rileylink_ios to explicitly
-// use PumpManagerUIPlugin and/or CGMManagerUIPlugin rather than LoopUIPlugin

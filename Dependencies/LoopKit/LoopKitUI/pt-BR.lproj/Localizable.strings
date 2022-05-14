@@ -78,7 +78,7 @@
 "com.loudnate.InsulinKit.totalDateLabel" = "desde %1$@";
 
 /* The title of the action used to dismiss an error alert */
-"com.loudnate.LoopKit.errorAlertActionTitle" = "OK";
+"com.loudnate.LoopKit.errorAlertActionTitle" = "Aceitar";
 
 /* The title for the override emoji condition section */
 "Condition" = "Estado";
@@ -129,7 +129,7 @@
 "Insulin sensitivity describes how your blood glucose should respond to a 1 Unit dose of insulin. Smaller values mean more insulin will be given when above target. Values that are too small can cause dangerously low blood glucose." = "A sensibilidade à insulina descreve como a glicose no sangue deve responder a uma dose unitária de insulina. Valores menores significam que mais insulina será administrada quando acima do objetivo. Valores muito pequenos podem causar hipoglicemia.";
 
 /* Placeholder for maximum value in glucose range */
-"max" = "max";
+"max" = "máx";
 
 /* The title text for the maximum basal rate value */
 "Maximum Basal Rate" = "Taxa Basal Máxima";
@@ -213,6 +213,9 @@
 
 /* The empty-state text for a configuration value */
 "Tap to set" = "Toque para Definir";
+
+/* Text directing the user to configure their first override preset */
+"Tap '+' to create a new override preset." = "Toque em '+' para criar uma nova pré-definição.";
 
 /* The text for the override target range setting */
 "Target Range" = "Intervalo Meta";

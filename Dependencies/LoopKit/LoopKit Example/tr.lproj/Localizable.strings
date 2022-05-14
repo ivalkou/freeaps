@@ -37,4 +37,3 @@
 
 /* Instructions on where to find the pump ID on a Minimed pump */
 "The pump ID can be found printed on the back, or near the bottom of the STATUS/Esc screen. It is the strictly numerical portion of the serial number (shown as SN or S/N)." = "Pompa ID kimliği, Pompanızın arka tarafında yazılı olarak bulunur. Veya DURUM/Esc tuşuna basıp ekranın alt kısmına giderek öğrenebilirsiniz. Seri numarası (SN veya S/N olarak gösterilir) ve sadece rakam kısmı yazılır. (6 haneli)";
-

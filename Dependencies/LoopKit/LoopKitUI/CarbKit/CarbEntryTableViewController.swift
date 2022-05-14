@@ -35,7 +35,7 @@ public final class CarbEntryTableViewController: UITableViewController {
                     queue: OperationQueue.main,
                     using: { [weak self] (note) -> Void in
                         switch note.name {
-                        case CarbStore.carbEntriesDidChange:
+                        case CarbStore.carbEntriesDidUpdate:
                             if let strongSelf = self, strongSelf.isViewLoaded {
                                 strongSelf.reloadData()
                             }
@@ -251,6 +251,8 @@ public final class CarbEntryTableViewController: UITableViewController {
             }
 
             cell.detailTextLabel?.text = detailText
+
+            cell.accessoryType = entry.isUploaded ? .checkmark : .none
         }
         return cell
     }

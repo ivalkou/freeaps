@@ -17,6 +17,9 @@
 /* Class = "UITextField"; placeholder = "Enter the 6-digit pump ID"; ObjectID = "HeG-VF-L5P"; */
 "HeG-VF-L5P.placeholder" = "Enter the 6-digit pump ID";
 
+/* Class = "UILabel"; text = "Review your pump settings below. You can change these settings at any time in Loopʼs Settings screen."; ObjectID = "HfQ-fG-8vO"; */
+"HfQ-fG-8vO.text" = "Review your pump settings below. You can change these settings at any time in Loopʼs Settings screen.";
+
 /* Class = "UILabel"; text = "If you travel to a different time zone for an extended period of time, you can change the pumpʼs time zone at any time in Loopʼs Settings screen."; ObjectID = "HuY-fE-vM8"; */
 "HuY-fE-vM8.text" = "If you travel to a different time zone for an extended period of time, you can change the pumpʼs time zone at any time in Loopʼs Settings screen.";
 
@@ -49,6 +52,9 @@
 
 /* Class = "UILabel"; text = "Your pump is ready for use."; ObjectID = "g1m-3k-XI3"; */
 "g1m-3k-XI3.text" = "Your pump is ready for use.";
+
+/* Class = "UITableViewController"; title = "Pump Settings"; ObjectID = "iQZ-kT-QUm"; */
+"iQZ-kT-QUm.title" = "Pump Settings";
 
 /* Class = "UITableViewSection"; footerTitle = "The pump region and color are denoted as the last 3 letters of the the model number (labeled as REF)."; ObjectID = "lGI-LD-xR7"; */
 "lGI-LD-xR7.footerTitle" = "The pump region and color are denoted as the last 3 letters of the the model number (labeled as REF).";

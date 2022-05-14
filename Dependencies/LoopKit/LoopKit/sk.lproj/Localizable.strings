@@ -1,98 +1,98 @@
 /* Describes a certain bolus failure (1: size of the bolus in units) */
-"%1$@ U bolus failed" = "%1$@ U bolus failed";
+"%1$@ U bolus failed" = "%1$@ J bolusu zlyhalo";
 
 /* Describes an uncertain bolus failure (1: size of the bolus in units) */
-"%1$@ U bolus may not have succeeded" = "%1$@ U bolus may not have succeeded";
+"%1$@ U bolus may not have succeeded" = "%1$@ J bolusu sa možno nepodarilo";
 
 /* The error description describing when Health sharing was denied */
-"Authorization Denied" = "Authorization Denied";
+"Authorization Denied" = "Autorizácia zamietnutá";
 
 /* Recovery instruction for an uncertain bolus failure */
-"Check your pump before retrying" = "Check your pump before retrying";
+"Check your pump before retrying" = "Skontrolujte vašu pumpu predtým ako skúsite znova";
 
 /* The description of an error returned when attempting to delete a sample not shared by the current app */
-"com.loudnate.CarbKit.deleteCarbEntryUnownedErrorDescription" = "Authorization Denied";
+"com.loudnate.CarbKit.deleteCarbEntryUnownedErrorDescription" = "Autorizácia zamietnutá";
 
 /* The error recovery suggestion when attempting to delete a sample not shared by the current app */
-"com.loudnate.carbKit.sharingDeniedErrorRecoverySuggestion" = "This sample can be deleted from the Health app";
+"com.loudnate.carbKit.sharingDeniedErrorRecoverySuggestion" = "Táto vzorka môže byť vymazaná z app Zdravie";
 
 /* Generic pump error description */
-"Communication Failure" = "Communication Failure";
+"Communication Failure" = "Spojenie zlyhalo";
 
 /* Generic pump error description */
-"Connection Failure" = "Connection Failure";
+"Connection Failure" = "Spojenie zlyhalo";
 
 /* Generic pump error description */
-"Device Refused" = "Device Refused";
+"Device Refused" = "Zariadenie Odmietnuté";
 
 /* Recovery suggestion for a no data error */
-"Ensure carb data exists for the specified date" = "Ensure carb data exists for the specified date";
+"Ensure carb data exists for the specified date" = "Uistite sa že údaje o sacharidoch existujú pre tento dátum";
 
 /* Glucose trend down */
-"Falling" = "Falling";
+"Falling" = "Klesá";
 
 /* Glucose trend down-down */
-"Falling fast" = "Falling fast";
+"Falling fast" = "Klesá rýchlo";
 
 /* Glucose trend down-down-down */
-"Falling very fast" = "Falling very fast";
+"Falling very fast" = "Klesá veľmi rýchlo";
 
 /* Glucose trend flat */
-"Flat" = "Flat";
+"Flat" = "Rovný";
 
 /* The short unit display string for grams per U */
-"g/U" = "g/U";
+"g/U" = "g/J";
 
 /* Generic pump error description */
-"Invalid Configuration" = "Invalid Configuration";
+"Invalid Configuration" = "Neplatná Konfigurácia";
 
 /* Recovery instruction for a certain bolus failure */
-"It is safe to retry" = "It is safe to retry";
+"It is safe to retry" = "Je bezpečné skúsiť znova";
 
 /* The short unit display string for milligrams per deciliter per U */
-"mg/dL/U" = "mg/dL/U";
+"mg/dL/U" = "mg/dL/J";
 
 /* The short unit display string for millimoles per liter */
 "mmol/L" = "mmol/L";
 
 /* The short unit display string for millimoles per liter per U */
-"mmol/L/U" = "mmol/L/U";
+"mmol/L/U" = "mmol/L/J";
 
 /* Sensor state description for the non-valid state */
-"Needs Attention" = "Needs Attention";
+"Needs Attention" = "Vyžaduje pozornosť";
 
 /* Describes an error for no data found in a CarbStore request */
-"No values found" = "No values found";
+"No values found" = "Nenašli sa údaje";
 
 /* Sensor state description for the valid state */
 "OK" = "OK";
 
 /* The error recovery suggestion when Health sharing was denied */
-"Please re-enable sharing in Health" = "Please re-enable sharing in Health";
+"Please re-enable sharing in Health" = "Prosím znovu povoľte zdieľanie v Zdravie";
 
 /* Glucose trend up */
-"Rising" = "Rising";
+"Rising" = "Stúpa";
 
 /* Glucose trend up-up */
-"Rising fast" = "Rising fast";
+"Rising fast" = "Stúpa rýchlo";
 
 /* Glucose trend up-up-up */
-"Rising very fast" = "Rising very fast";
+"Rising very fast" = "Stúpa veľmi rýchlo";
 
 /* The short unit display string for international units of insulin */
-"U" = "U";
+"U" = "J";
 
 /* The short unit display string for international units of insulin per hour */
-"U/hr" = "U/hr";
+"U/hr" = "J/hod";
 
 /* The long unit display string for a singular international unit of insulin */
-"Unit" = "Unit";
+"Unit" = "Jednotka";
 
 /* The long unit display string for a singular international unit of insulin per hour */
-"Unit/hour" = "Unit/hour";
+"Unit/hour" = "Jednotka/hodina";
 
 /* The long unit display string for international units of insulin */
-"Units" = "Units";
+"Units" = "Jednotky";
 
 /* The long unit display string for international units of insulin per hour */
-"Units/hour" = "Units/hour";
+"Units/hour" = "Jednotky/hodina";

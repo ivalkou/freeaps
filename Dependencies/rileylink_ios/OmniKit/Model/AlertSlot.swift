@@ -81,7 +81,7 @@ public enum PodAlert: CustomStringConvertible, RawRepresentable, Equatable {
     // auto-off timer; requires user input every x minutes
     case autoOffAlarm(active: Bool, countdownDuration: TimeInterval)
 
-    // pod suspended reminder, before suspendTime; short beep every 15 minutes if >= 30 min, else every 5 minutes
+    // pod suspended reminder, before suspendTime; short beep every 15 minutes if > 30 min, else every 5 minutes
     case podSuspendedReminder(active: Bool, suspendTime: TimeInterval)
 
     // pod suspend time expired alarm, after suspendTime; 2 sets of beeps every min for 3 minutes repeated every 15 minutes
@@ -147,7 +147,7 @@ public enum PodAlert: CustomStringConvertible, RawRepresentable, Equatable {
                     reminderInterval = TimeInterval(minutes: 15)
                     beepRepeat = .every15Minutes
                 } else {
-                    // Use 5-minute pod suspended reminder beeps for untimed & shorter scheduled suspend times.
+                    // Use 5-minute pod suspended reminder beeps for shorter scheduled suspend times.
                     reminderInterval = TimeInterval(minutes: 5)
                     beepRepeat = .every5Minutes
                 }
@@ -363,4 +363,13 @@ public struct AlertSet: RawRepresentable, Collection, CustomStringConvertible, E
             return alarmDescriptions.joined(separator: ", ")
         }
     }
+}
+
+// Returns true if there are any active suspend related alerts
+public func hasActiveSuspendAlert(configuredAlerts: [AlertSlot : PodAlert]) -> Bool {
+    // slot5 is for podSuspendedReminder and slot6 is for suspendTimeExpired
+    if configuredAlerts.contains(where: { ($0.key == .slot5 || $0.key == .slot6) && $0.value.configuration.active }) {
+        return true
+    }
+    return false
 }

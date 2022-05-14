@@ -126,7 +126,7 @@
 "Fast" = "Rask";
 
 /* The description shown on the insulin sensitivity schedule interface. */
-"Insulin sensitivity describes how your blood glucose should respond to a 1 Unit dose of insulin. Smaller values mean more insulin will be given when above target. Values that are too small can cause dangerously low blood glucose." = "Insulinfølsomhet beskriver hvordan blodsukkeret responderer på 1 enhet insulin. Mindre verdier betyr at mer insulin vil bli gitt når man er over målområdet. Verdier som er for små kan føre til farlig lavt blodsukker. ";
+"Insulin sensitivity describes how your blood glucose should respond to a 1 Unit dose of insulin. Smaller values mean more insulin will be given when above target. Values that are too small can cause dangerously low blood glucose." = "Insulinfølsomhet beskriver hvordan blodsukkeret forventes å respondere på 1 enhet insulin. Lavere verdier betyr at mer insulin vil bli gitt. Verdier som er for lave kan føre til farlig lavt blodsukker.";
 
 /* Placeholder for maximum value in glucose range */
 "max" = "maks";
@@ -213,6 +213,9 @@
 
 /* The empty-state text for a configuration value */
 "Tap to set" = "Trykk for å angi";
+
+/* Text directing the user to configure their first override preset */
+"Tap '+' to create a new override preset." = "Trykk på '+' for å opprette en ny 'Override'.";
 
 /* The text for the override target range setting */
 "Target Range" = "Målområde";

@@ -17,7 +17,7 @@ public struct LoopStatus {
     let iob: IOBStatus?
     let cob: COBStatus?
     let predicted: PredictedBG?
-    let automaticDoseRecommendation: AutomaticDoseRecommendation?
+    let recommendedTempBasal: RecommendedTempBasal?
     let recommendedBolus: Double?
     let enacted: LoopEnacted?
     let rileylinks: [RileyLinkStatus]?
@@ -26,14 +26,14 @@ public struct LoopStatus {
     let forecastError: ForecastError?
     let testingDetails: [String: Any]?
 
-    public init(name: String, version: String, timestamp: Date, iob: IOBStatus? = nil, cob: COBStatus? = nil, predicted: PredictedBG? = nil, automaticDoseRecommendation: AutomaticDoseRecommendation? = nil, recommendedBolus: Double? = nil, enacted: LoopEnacted? = nil, rileylinks: [RileyLinkStatus]? = nil, failureReason: Error? = nil, currentCorrectionRange: CorrectionRange? = nil, forecastError: ForecastError? = nil, testingDetails: [String: Any]? = nil) {
+    public init(name: String, version: String, timestamp: Date, iob: IOBStatus? = nil, cob: COBStatus? = nil, predicted: PredictedBG? = nil, recommendedTempBasal:RecommendedTempBasal? = nil, recommendedBolus: Double? = nil, enacted: LoopEnacted? = nil, rileylinks: [RileyLinkStatus]? = nil, failureReason: Error? = nil, currentCorrectionRange: CorrectionRange? = nil, forecastError: ForecastError? = nil, testingDetails: [String: Any]? = nil) {
         self.name = name
         self.version = version
         self.timestamp = timestamp
         self.iob = iob
         self.cob = cob
         self.predicted = predicted
-        self.automaticDoseRecommendation = automaticDoseRecommendation
+        self.recommendedTempBasal = recommendedTempBasal
         self.recommendedBolus = recommendedBolus
         self.enacted = enacted
         self.rileylinks = rileylinks
@@ -62,8 +62,8 @@ public struct LoopStatus {
             rval["predicted"] = predicted.dictionaryRepresentation
         }
 
-        if let automaticDoseRecommendation = automaticDoseRecommendation {
-            rval["automaticDoseRecommendation"] = automaticDoseRecommendation.dictionaryRepresentation
+        if let recommendedTempBasal = recommendedTempBasal {
+            rval["recommendedTempBasal"] = recommendedTempBasal.dictionaryRepresentation
         }
 
         if let recommendedBolus = recommendedBolus {

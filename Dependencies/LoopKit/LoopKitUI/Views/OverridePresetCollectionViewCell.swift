@@ -39,8 +39,6 @@ final class OverridePresetCollectionViewCell: UICollectionViewCell, Identifiable
             } else {
                 insulinNeedsBar.backgroundColor = .white
             }
-
-            insulinNeedsBar.isUserInteractionEnabled = false
         }
     }
 

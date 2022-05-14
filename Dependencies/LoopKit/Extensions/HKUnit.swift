@@ -22,10 +22,6 @@ extension HKUnit {
         return HKUnit.internationalUnit().unitDivided(by: .hour())
     }()
 
-    static let gramsPerUnit: HKUnit = {
-        return HKUnit.gram().unitDivided(by: .internationalUnit())
-    }()
-    
     var foundationUnit: Unit? {
         if self == HKUnit.milligramsPerDeciliter {
             return UnitConcentrationMass.milligramsPerDeciliter
@@ -40,14 +36,5 @@ extension HKUnit {
         }
 
         return nil
-    }
-    
-    /// The smallest value expected to be visible on a chart
-    var chartableIncrement: Double {
-        if self == .milligramsPerDeciliter {
-            return 1
-        } else {
-            return 1 / 25
-        }
     }
 }

@@ -34,7 +34,7 @@ open class LevelHUDView: BaseHUDView {
         case let x? where x > 0.25:
             tintColor = stateColors?.normal
         case let x? where x > 0.10:
-            tintColor = stateColors?.warning
+            tintColor = stateColors?.normal
             levelMaskView.tintColor = stateColors?.warning
         default:
             tintColor = stateColors?.error

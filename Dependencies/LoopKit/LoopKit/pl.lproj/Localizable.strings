@@ -1,5 +1,5 @@
 /* Describes a certain bolus failure (1: size of the bolus in units) */
-"%1$@ U bolus failed" = "%1$@ J bolusa nie zostało podane";
+"%1$@ U bolus failed" = "Bolus %1$@ U nie powiódł się";
 
 /* Describes an uncertain bolus failure (1: size of the bolus in units) */
 "%1$@ U bolus may not have succeeded" = "%1$@ J bolusa mogło nie zostać podane";

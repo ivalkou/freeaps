@@ -84,13 +84,13 @@
 "Error Suspending" = "Pause feilet";
 
 /* The title of the command to fetch recent glucose */
-"Fetch Enlite Glucose" = "Hent enlite blodsukker";
+"Fetch Enlite Glucose" = "Hent Enlite blodsukker";
 
 /* The title of the command to fetch recent history */
 "Fetch Recent History" = "Hent nylig historikk";
 
 /* Progress message for fetching pump glucose. */
-"Fetching glucose…" = "Henter glukose…";
+"Fetching glucose…" = "Henter blodsukker…";
 
 /* Progress message for fetching pump history. */
 "Fetching history…" = "Henter historikk…";
@@ -132,7 +132,7 @@
 "On Idle" = "På Vent";
 
 /* Pump find device instruction */
-"On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device" = "On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device";
+"On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device" = "På pumpen, gå til \"Find Device\" skjermen og velg \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device";
 
 /* The title text for the preferred insulin data source config */
 "Preferred Data Source" = "Foretrukken datakilde";

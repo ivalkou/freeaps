@@ -1,12 +1,3 @@
-/* Description for an inactive alert modifier */
-" (inactive)" = " (ei-aktiivinen)";
-
-/* The format string for minutes (1: number of minutes string) */
-"%1$@ minutes" = "%1$@ minuuttia";
-
-/* The format string for Alerts: (1: the alerts string) */
-"Alerts: %1$@\n" = "Hälytykset: %1$@\n";
-
 /* Description for auto-off alarm */
 "Auto-off alarm" = "Autom. pois -varoitus";
 
@@ -34,9 +25,6 @@
 /* Pod state when pod has been deactivated */
 "Deactivated" = "Deaktivoitu";
 
-/* The format string for Delivery Status: (1: delivery status string) */
-"Delivery Status: %1$@\n" = "Annostelun tila: %1$@\n";
-
 /* Description for Empty reservoir pod fault */
 "Empty reservoir" = "Säiliö tyhjä";
 
@@ -60,9 +48,6 @@
 
 /* The format string describing a bolus that was interrupted. (1: The amount delivered)(2: The amount scheduled)(3: Start time of the dose)(4: duration)(5: scheduled certainty) */
 "InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@" = "KeskeytettyBolus: %1$@ U (%2$@ U ohjelmoitu) %3$@ %4$@ %5$@";
-
-/* The format string for Last Bolus Not Delivered: (1: bolus not delivered string) */
-"Last Bolus Not Delivered: %1$@ U\n" = "Viim. bolusta ei annosteltu: %1$@ U\n";
 
 /* Description for low reservoir alarm */
 "Low reservoir advisory alarm" = "Säiliö lähes tyhjä -tiedotehälytys";
@@ -191,4 +176,3 @@
 
 /* Description waiting for pairing reminder */
 "Waiting for pairing reminder" = "Odotetaan yhdistämismuistutusta";
-

@@ -9,7 +9,7 @@
 "%1$@ – %2$@ %3$@" = "%1$@ – %2$@ %3$@";
 
 /* The format for an insulin needs percentage. */
-"%@%% of normal insulin" = "%@%% of normal insulin";
+"%@%% of normal insulin" = "%@%% normálneho inzulínu";
 
 /* Appends a full-stop to a statement */
 "%@." = "%@.";
@@ -18,7 +18,7 @@
 "%@U" = "%@J";
 
 /* Title of the carb entry absorption time cell */
-"Absorption Time" = "Čas vstrebania";
+"Absorption Time" = "Absorbčný čas";
 
 /* The title for the override emoji activity section */
 "Activity" = "Aktivita";
@@ -27,7 +27,7 @@
 "Are you sure you want to delete all history entries?" = "Naozaj chcete vymazať celú históriu podaní?";
 
 /* Action sheet confirmation message for reservoir deletion */
-"Are you sure you want to delete all reservoir values?" = "Naozaj chcete vymazať všetky údaje rezervoára?";
+"Are you sure you want to delete all reservoir values?" = "Naozaj chcete vymazať všetky údaje zásobníka?";
 
 /* The title of the button to add the credentials for a service */
 "Add Account" = "Pridať účet";
@@ -48,22 +48,22 @@
 "Cancel" = "Zrušiť";
 
 /* The text for the override cancellation button */
-"Cancel Override" = "Cancel Override";
+"Cancel Override" = "Zrušiť Režim";
 
 /* Title text for suspend resume button when temp basal canceling */
 "Canceling Temp Basal" = "Ruší sa Dočasný Bazál";
 
 /* The title of the view controller to create a new carb entry */
-"Add Carb Entry" = "Pridaj Sach";
+"Add Carb Entry" = "Pridať Sach";
 
 /* The title of the view controller to edit an existing carb entry */
-"Edit Carb Entry" = "Uprav Sach";
+"Edit Carb Entry" = "Upraviť Sach";
 
 /* Footer text for customizing an override from a preset (1: preset name) */
-"Changes will only apply this time you enable the override. The default settings of %@ will not be affected." = "Zmeny budú uplatnené iba počas aktívneho override. Prednastavené nastavenia %@ nebudú ovplyvnené.";
+"Changes will only apply this time you enable the override. The default settings of %@ will not be affected." = "Zmeny budú uplatnené iba počas času keď je režim aktívny. Prednastavené nastavenia %@ nebudú ovplyvnené.";
 
 /* Carb entry section footer text explaining absorption time */
-"Choose a longer absorption time for larger meals, or those containing fats and proteins. This is only guidance to the algorithm and need not be exact." = "Zvoľte dlhší čas vstrebania pre väčšie jedlá, alebo jedlá s obsahom bielkovín a tukov. Toto je iba návod pre algoritmus a nemusí byť presný.";
+"Choose a longer absorption time for larger meals, or those containing fats and proteins. This is only guidance to the algorithm and need not be exact." = "Zvoľte dlhší absorbčný čas pre väčšie jedlá, alebo jedlá s obsahom bielkovín a tukov. Toto je iba návod pre algoritmus a nemusí byť presný.";
 
 /* The format string describing the date of a COB value. The first format argument is the localized date. */
 "com.loudnate.CarbKit.COBDateLabel" = "dňa %1$@";
@@ -160,93 +160,96 @@
 "Overall Insulin Needs" = "Celková Potreba Inzulínu";
 
 /* The title text for the override presets screen */
-"Override Presets" = "Override Presets";
+"Override Presets" = "Prednastavené režimy";
 
 /* Text directing the user to configure override presets */
-"Override presets can be set up under the 'Configuration' section of the settings screen." = "Override presets can be set up under the 'Configuration' section of the settings screen.";
+"Override presets can be set up under the 'Configuration' section of the settings screen." = "Prednastavené režimy môžu byť nastavené v sekcii Nastavenia \"Konfigurácia\".";
 
 /* The section title of glucose overrides */
-"Overrides" = "Overrides";
+"Overrides" = "Režimy";
 
 /* Title for the pre-meal override range */
-"Pre-Meal" = "Pre-Meal";
+"Pre-Meal" = "Pred-Jedlom";
 
 /* The section header text override presets */
-"PRESETS" = "PRESETS";
+"PRESETS" = "Prednastavené";
 
 /* The title of the screen displaying a pump event */
-"Pump Event" = "Pump Event";
+"Pump Event" = "Udalosť Pumpy";
 
 /* Title text for button to resume insulin delivery */
-"Resume Delivery" = "Resume Delivery";
+"Resume Delivery" = "Obnoviť podávanie inzulínu";
 
 /* Title text for button when insulin delivery is in the process of being resumed */
-"Resuming" = "Resuming";
+"Resuming" = "Obnovuje sa";
 
 /* The text for the override preset name field placeholder */
-"Running" = "Running";
+"Running" = "Spustené";
 
 /* Button text for saving glucose correction range schedule
    Button text for saving insulin sensitivity schedule */
-"Save" = "Save";
+"Save" = "Uložiť";
 
 /* The section header text for a scheduled override */
-"SCHEDULED OVERRIDE" = "SCHEDULED OVERRIDE";
+"SCHEDULED OVERRIDE" = "Plánovaný Režim";
 
 /* Section title for slow absorbing food */
-"Slow" = "Slow";
+"Slow" = "Pomalé";
 
 /* The text for the override start time */
-"Start Time" = "Start Time";
+"Start Time" = "Čas začiatku";
 
 /* Title text for suspend resume button when temp basal starting */
-"Starting Temp Basal" = "Starting Temp Basal";
+"Starting Temp Basal" = "Spustiť Dočasný Bazál";
 
 /* Title text for button to suspend insulin delivery */
-"Suspend Delivery" = "Suspend Delivery";
+"Suspend Delivery" = "Pozastaviť Podávanie inzulínu";
 
 /* Title text for button when insulin delivery is in the process of being stopped */
-"Suspending" = "Suspending";
+"Suspending" = "Pozastavuje sa";
 
 /* The text for the override preset symbol setting */
 "Symbol" = "Symbol";
 
 /* The empty-state text for a configuration value */
-"Tap to set" = "Tap to set";
+"Tap to set" = "Stlačením nastavte";
+
+/* Text directing the user to configure their first override preset */
+"Tap '+' to create a new override preset." = "Stlačte '+' pre nový prednastavený režim.";
 
 /* The text for the override target range setting */
-"Target Range" = "Target Range";
+"Target Range" = "Cieľový rozsah";
 
 /* The title for the override selection screen */
-"Temporary Override" = "Temporary Override";
+"Temporary Override" = "Dočasný Režim";
 
 /* The default placeholder string for a credential */
-"Required" = "Required";
+"Required" = "Povinné";
 
 /* Alert body displayed absorption time greater than max (1: maximum absorption time) */
-"The maximum absorption time is %@" = "The maximum absorption time is %@";
+"The maximum absorption time is %@" = "Maximálny absorbčný čas je %@";
 
 /* Alert body displayed for quantity greater than max (1: maximum quantity in grams) */
-"The maximum allowed amount is %@ grams" = "The maximum allowed amount is %@ grams";
+"The maximum allowed amount is %@ grams" = "Maximálna povolená hodnota je %@ gramov";
 
 /* The schedule table view header describing the configured time zone difference from the default time zone. The substitution parameters are: (1: time zone name)(2: +/-)(3: time interval) */
-"Times in %1$@%2$@%3$@" = "Times in %1$@%2$@%3$@";
+"Times in %1$@%2$@%3$@" = "Časy v %1$@%2$@%3$@";
 
 /* The unit string for units per hour */
-"U/hour" = "U/hour";
+"U/hour" = "J/hod";
 
 /* The unit string for units */
-"Units" = "Units";
+"Units" = "Jednotky";
 
 /* Accessibility value for an unknown value
    The default title to use when an entry has none */
-"Unknown" = "Unknown";
+"Unknown" = "Neznáme";
 
 /* Label indicating validation is occurring */
-"Verifying" = "Verifying";
+"Verifying" = "Overuje sa";
 
 /* Title of an alert containing a validation warning */
-"Warning" = "Warning";
+"Warning" = "Upozornenie";
 
 /* Title for the workout override range */
-"Workout" = "Workout";
+"Workout" = "Cvičenie";

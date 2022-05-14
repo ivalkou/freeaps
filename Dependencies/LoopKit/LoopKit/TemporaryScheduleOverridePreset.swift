@@ -66,5 +66,3 @@ extension TemporaryScheduleOverridePreset: RawRepresentable {
         ]
     }
 }
-
-extension TemporaryScheduleOverridePreset: Codable {}

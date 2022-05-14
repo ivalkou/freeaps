@@ -8,7 +8,7 @@
 "Bolus in progress" = "ボーラスが進行中";
 
 /* The format string describing a bolus. (1: The amount delivered)(2: Start time of the dose)(3: duration)(4: scheduled certainty) */
-"ボーラス: %1$@U %2$@ %3$@ %4$@" = "Bolus: %1$@U %2$@ %3$@ %4$@";
+"Bolus: %1$@U %2$@ %3$@ %4$@" = "Bolus: %1$@U %2$@ %3$@ %4$@";
 
 /* Delivery status when bolusing */
 "Bolusing" = "ボーラス注入中";
@@ -40,7 +40,7 @@
 /* Description for finish setup */
 "Finish setup " = "設定終了";
 
-/* Pod initialized */
+/* Pod inititialized */
 "Initialized" = "初期化完了";
 
 /* The format string for Internal pod fault (1: The fault code value) */
@@ -105,7 +105,7 @@
 "Pod Fault: %1$@" = "ポッドエラー: %1$@";
 
 /* Error message when cannula insertion fails because the pod is in an unexpected state */
-"Pod is not in a state ready for cannula insertion." = "ポッドがカニューレを挿入できる状態ではありません。";
+"Pod is not in a state ready for cannula insertion" = "ポッドがカニューレを挿入できる状態ではありません。";
 
 /* Error message when prime fails because the pod is in an unexpected state */
 "Pod is not in a state ready for priming." = "ポッドがプライミングできる状態ではありません。";
@@ -164,9 +164,9 @@
 
 /* Error message shown when empty response from pod was received */
 "Unexpected response from pod" = "ポッドから予期せぬ反応";
-　
+
 /* The format string for Unknown pod fault (1: The fault code value) */
-"Unknown pod fault %1$03d" = "不明なポッドエラー %1$03d";
+"Unknown pod fault %1$03d" = "Unknown pod fault %1$03d";
 
 /* Recovery suggestion when operation could not be completed due to existing bolus in progress */
 "Wait for existing bolus to finish, or cancel bolus" = "進行中のボーラスが完了するのを待つか、ボーラスをキャンセルしてください。";
@@ -176,3 +176,42 @@
 
 /* Description waiting for pairing reminder */
 "Waiting for pairing reminder" = "ペアリングリマインダー待機中";
+
+/* Error message shown when pod sends ack instead of response */
+"Pod sent ack instead of response" = "Pod sent ack instead of response";
+
+/* Format string for invalid message error code (1: error code number) */
+"Command error %1$u" = "Command error %1$u";
+
+/* "Format string for unexpected pod change" */
+"Unexpected pod change" = "Unexpected pod change";
+
+/* Format string for activation time exceeded */
+"Activation time exceeded" = "Activation time exceeded";
+
+/* Format string for poor pod signal strength */
+"Poor signal strength" = "Poor signal strength";
+
+/* Format string for pod signal strength too high */
+"Signal strength too high" = "Signal strength too high";
+
+/* Recovery suggestion when no response is received from pod */
+"Please try repositioning the RileyLink and try again" = "Please try repositioning the RileyLink and try again";
+
+/* Recovery suggestion when ack received instead of response */
+"Try again" = "Try again";
+
+/* Recovery suggestion when unexpected address received */
+"Crosstalk possible. Please move to a new location and try again" = "Crosstalk possible. Please move to a new location and try again";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Please bring only original pod in range or deactivate original pod";
+
+/* Recovery suggestion when pairing signal strength is too low */
+"Please reposition the RileyLink relative to the pod" = "Please reposition the RileyLink relative to the pod";
+
+/* Recovery suggestion when pairing signal strength is too high */
+"Please reposition the RileyLink further from the pod" = "Please reposition the RileyLink further from the pod";
+
+/* Description for an inactive alert modifier */
+" (inactive)" = " (inactive)";

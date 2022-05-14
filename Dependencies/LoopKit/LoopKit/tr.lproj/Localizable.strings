@@ -29,16 +29,16 @@
 "Ensure carb data exists for the specified date" = "Belirtilen tarih için karbonhidrat verilerinin mevcut olduğundan emin olun";
 
 /* Glucose trend down */
-"Falling" = "Düşmekte";
+"Falling" = "Düşme";
 
 /* Glucose trend down-down */
-"Falling fast" = "Hızlı düşmekte";
+"Falling fast" = "Hızlı düşme";
 
 /* Glucose trend down-down-down */
-"Falling very fast" = "Çok hızlı düşmekte";
+"Falling very fast" = "Çok hızlı düşme";
 
 /* Glucose trend flat */
-"Flat" = "Değişmeyen";
+"Flat" = "Düz";
 
 /* The short unit display string for grams per U */
 "g/U" = "g/Ü";
@@ -71,13 +71,13 @@
 "Please re-enable sharing in Health" = "Lütfen Health paylaşımı yeniden etkinleştirin";
 
 /* Glucose trend up */
-"Rising" = "Yükselmekte";
+"Rising" = "Yükselen";
 
 /* Glucose trend up-up */
-"Rising fast" = "Hızlı yükselmekte";
+"Rising fast" = "Hızlı yükselen";
 
 /* Glucose trend up-up-up */
-"Rising very fast" = "Çok hızlı yükselmekte";
+"Rising very fast" = "Çok hızlı yükselen";
 
 /* The short unit display string for international units of insulin */
 "U" = "Ü";
@@ -92,7 +92,7 @@
 "Unit/hour" = "Ünite/saat";
 
 /* The long unit display string for international units of insulin */
-"Units" = "Ünite";
+"Units" = "Birimler";
 
 /* The long unit display string for international units of insulin per hour */
 "Units/hour" = "Ünite/saat";

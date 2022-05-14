@@ -1,12 +1,5 @@
-/* Description for an inactive alert modifier */
-" (inactive)" = " (inactive)";
-
-/* Format string for activation time exceeded
-   Pod state when activation not completed in the time allowed */
-"Activation time exceeded" = "Activation time exceeded";
-
 /* Description for auto-off alarm */
-"Auto-off alarm" = "Auto-off alarm";
+"Auto-off alarm" = "Alarm auto-vypnutý";
 
 /* Pod state when running below fifty units */
 "Below 50 units" = "Menej ako 50 jednotiek";
@@ -18,22 +11,16 @@
 "Bolus: %1$@U %2$@ %3$@ %4$@" = "Bolus: %1$@J %2$@ %3$@ %4$@";
 
 /* Delivery status when bolusing */
-"Bolusing" = "Bolusing";
+"Bolusing" = "Podáva sa";
 
 /* Delivery status when bolusing and temp basal is running */
-"Bolusing with temp basal" = "Bolusing with temp basal";
+"Bolusing with temp basal" = "Podáva sa cez dočasný bazál";
 
 /* Pod state when inserting cannula */
 "Cannula inserting" = "Nastrelenie kanuly";
 
 /* String describing a dose that was certainly scheduled */
-"Certain" = "Certain";
-
-/* Format string for invalid message error code (1: error code number) */
-"Command error %1$u" = "Command error %1$u";
-
-/* Recovery suggestion when unexpected address received */
-"Crosstalk possible. Please move to a new location and try again" = "Crosstalk possible. Please move to a new location and try again";
+"Certain" = "Určený";
 
 /* Pod state when pod has been deactivated */
 "Deactivated" = "Deaktivované";
@@ -45,7 +32,7 @@
 "Empty response from pod" = "Žiadna odpoveď z Podu";
 
 /* Pod state error event logged shutting down */
-"Error event logged, shutting down" = "Error event logged, shutting down";
+"Error event logged, shutting down" = "Zaprotokolovaná udalosť chyby, vypína sa";
 
 /* Description for expiration alert */
 "Expiration alert" = "Upozornenie o expirácii";
@@ -54,7 +41,7 @@
 "Finish setup " = "Dokončiť nastavenie ";
 
 /* Pod inititialized */
-"Initialized" = "Initialized";
+"Initialized" = "Inicializovaný";
 
 /* The format string for Internal pod fault (1: The fault code value) */
 "Internal pod fault %1$03d" = "Interná chyba Podu %1$03d";
@@ -93,26 +80,17 @@
 /* Pod status after pairing */
 "Paired" = "Spárované";
 
-/* Recovery suggestion on unexpected pod change */
-"Please bring only original pod in range or deactivate original pod" = "Please bring only original pod in range or deactivate original pod";
-
 /* Recovery suggestion when no response is received from pod */
 "Please bring your pod closer to the RileyLink and try again" = "Priblížte váš Pod k RileyLinku a skúste znova";
 
 /* Recover suggestion shown when no pod is paired */
 "Please pair a new pod" = "Prosím spárujte nový Pod";
 
-/* Recovery suggestion when pairing signal strength is too high */
-"Please reposition the RileyLink further from the pod" = "Please reposition the RileyLink further from the pod";
-
-/* Recovery suggestion when pairing signal strength is too low */
-"Please reposition the RileyLink relative to the pod" = "Please reposition the RileyLink relative to the pod";
-
 /* Error message shown when user cannot pair because pod is already paired */
 "Pod already paired" = "Pod je už spárovaný";
 
 /* Error message shown when prime is attempted, but pod is already primed */
-"Pod already primed" = "Pod already primed";
+"Pod already primed" = "Pod je už naplnený";
 
 /* Description for expiration advisory alarm */
 "Pod expiration advisory alarm" = "Varovný alarm Expirácia Podu";
@@ -130,23 +108,17 @@
 "Pod is not in a state ready for cannula insertion" = "Pod nie je v stave pripravený pre zavedenie kanyly";
 
 /* Error message when prime fails because the pod is in an unexpected state */
-"Pod is not in a state ready for priming." = "Pod is not in a state ready for priming.";
+"Pod is not in a state ready for priming." = "Pod nie je v stave pripravený na plnenie.";
 
 /* Error message action could not be performed because pod is suspended */
 "Pod is suspended" = "Pod je pozastavený";
 
-/* Error message shown when pod sends ack instead of response */
-"Pod sent ack instead of response" = "Pod sent ack instead of response";
-
 /* Pod state when prime or cannula insertion has not completed in the time allotted */
 "Pod setup window expired" = "Nastavenie okna Podu expirovalo";
 
-/* Format string for poor pod signal strength */
-"Poor signal strength" = "Poor signal strength";
-
 /* Delivery status when pod is priming
    Pod status when priming */
-"Priming" = "Priming";
+"Priming" = "Plnenie";
 
 /* Pod state when ready for basal programming */
 "Ready for basal programming" = "Pripravený na programovanie bazálu";
@@ -163,9 +135,6 @@
 /* Description for shutdown imminent alarm */
 "Shutdown imminent alarm" = "Vypnúť bezprostredný alarm";
 
-/* Format string for pod signal strength too high */
-"Signal strength too high" = "Signal strength too high";
-
 /* The format string describing a suspend. (1: Time)(2: Scheduled certainty */
 "Suspend: %1$@ %2$@" = "Pozastaviť: %1$@ %2$@";
 
@@ -173,44 +142,76 @@
 "Suspended" = "Pozastavené";
 
 /* Pod tank fill completed */
-"Tank fill completed" = "Tank fill completed";
+"Tank fill completed" = "Plnenie zásobníka ukončené";
 
 /* Pod power to motor activated */
-"Tank power activated" = "Tank power activated";
+"Tank power activated" = "Zásobník napájanie aktivované";
 
 /* Error message shown when temp basal could not be set due to existing temp basal in progress */
 "Temp basal in progress" = "Dočasný bazál už prebieha";
 
 /* Delivery status when temp basal is running */
-"Temp basal running" = "Temp basal running";
+"Temp basal running" = "Beží dočasný bazál";
 
 /* The format string describing a temp basal. (1: The rate)(2: Start time)(3: duration)(4: volume)(5: scheduled certainty */
-"TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@";
+"TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "Dočasný Bazál: %1$@ J/hod %2$@ %3$@ %4$@ J %5$@";
 
 /* The format string for pod expiration notification body (1: time until expiration) */
-"Time to replace your pod! Your pod will expire in %1$@" = "Time to replace your pod! Your pod will expire in %1$@";
-
-/* Recovery suggestion when ack received instead of response */
-"Try again" = "Try again";
+"Time to replace your pod! Your pod will expire in %1$@" = "Čas vymeniť váš Pod! Váš Pod expriruje o %1$@";
 
 /* String describing a dose that was possibly scheduled */
-"Uncertain" = "Uncertain";
-
-/* Format string for unexpected pod change */
-"Unexpected pod change" = "Unexpected pod change";
+"Uncertain" = "Neznáme";
 
 /* Error message shown when empty response from pod was received */
-"Unexpected response from pod" = "Unexpected response from pod";
+"Unexpected response from pod" = "Neočakávaná odpoveď Podu";
 
 /* The format string for Unknown pod fault (1: The fault code value) */
-"Unknown pod fault %1$03d" = "Unknown pod fault %1$03d";
+"Unknown pod fault %1$03d" = "Neznáma chyba Podu %1$03d";
 
 /* Recovery suggestion when operation could not be completed due to existing bolus in progress */
-"Wait for existing bolus to finish, or cancel bolus" = "Wait for existing bolus to finish, or cancel bolus";
+"Wait for existing bolus to finish, or cancel bolus" = "Počkajte kým sa ukončí podanie bolusu, alebo zrušte bolus";
 
 /* Recovery suggestion when operation could not be completed due to existing temp basal in progress */
-"Wait for existing temp basal to finish, or suspend to cancel" = "Wait for existing temp basal to finish, or suspend to cancel";
+"Wait for existing temp basal to finish, or suspend to cancel" = "Počkajte kým skončí dočasný bazál, alebo pozastavte pre zrušenie";
 
 /* Description waiting for pairing reminder */
-"Waiting for pairing reminder" = "Waiting for pairing reminder";
+"Waiting for pairing reminder" = "Čakanie na pripomienku pre párovanie";
 
+/* Error message shown when pod sends ack instead of response */
+"Pod sent ack instead of response" = "Pod zaslal \"ack\" namiesto odpovede";
+
+/* Format string for invalid message error code (1: error code number) */
+"Command error %1$u" = "Chyba príkazu %1$u";
+
+/* "Format string for unexpected pod change" */
+"Unexpected pod change" = "Neočakávaná výmena Podu";
+
+/* Format string for activation time exceeded */
+"Activation time exceeded" = "Prekročený čas aktivácie";
+
+/* Format string for poor pod signal strength */
+"Poor signal strength" = "Slabá intenzita signálu";
+
+/* Format string for pod signal strength too high */
+"Signal strength too high" = "Intenzita signálu príliš vysoká";
+
+/* Recovery suggestion when no response is received from pod */
+"Please try repositioning the RileyLink and try again" = "Prosím premiestnite váš RileyLink a skúste znova";
+
+/* Recovery suggestion when ack received instead of response */
+"Try again" = "Skúsiť znova";
+
+/* Recovery suggestion when unexpected address received */
+"Crosstalk possible. Please move to a new location and try again" = "Možné kríženie komunikácie. Prosím presuňte sa na iné miesto a skúste znova";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Prosím dajte k dosahu iba pôvodný pod alebo deaktivujte pôvodný pod";
+
+/* Recovery suggestion when pairing signal strength is too low */
+"Please reposition the RileyLink relative to the pod" = "Prosím premiestnite RileyLink prislúchajúci k podu";
+
+/* Recovery suggestion when pairing signal strength is too high */
+"Please reposition the RileyLink further from the pod" = "Prosím premiestnite RileyLink ďalej od podu";
+
+/* Description for an inactive alert modifier */
+" (inactive)" = " (neaktívne)";

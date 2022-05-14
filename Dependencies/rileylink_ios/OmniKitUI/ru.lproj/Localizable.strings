@@ -48,13 +48,13 @@
 "Are you sure you want to stop using Omnipod?" = "Подтвердите остановку Omnipod";
 
 /* The title text for the address assigned to the pod */
-"Assigned Address" = "Заданный адрес";
+"Assigned Address" = "Полученный адрес";
 
 /* The title of the cell showing pod basal status */
 "Basal Delivery" = "Подача базала";
 
 /* The title text for the basal rate schedule */
-"Basal Rates" = "Скорости базала";
+"Basal Rates" = "Настройки базала";
 
 /* The title of the cell showing pod bolus status */
 "Bolus Delivery" = "Подача болюса";
@@ -103,19 +103,19 @@
 "Error disabling bolus beeps" = "Ошибка отключения звукового сигнала болюса";
 
 /* The alert title for enable bolus beeps error */
-"Error enabling bolus beeps" = "Ошибка подключения звукового сигнала болюса";
+"Error enabling bolus beeps" = "Ошибка включения звукового сигнала болюса";
 
 /* The alert title for enable Confirmation Beeps */
-"Enable Confirmation Beeps" = "Включить подтверждающие звуковые сигналы";
+"Enable Confirmation Beeps" = "Разрешить подтверждающие звуковые сигналы";
 
 /* The alert title for Disable Confirmation Beep */
-"Disable Confirmation Beeps" = "Включить подтверждающие звуковые сигналы";
+"Disable Confirmation Beeps" = "Запретить подтверждающие звуковые сигналы";
 
 /* The alert title for enable Automatic Bolus Beeps */
-"Enable Automatic Bolus Beeps" = "Включить звуковые сигналы автоматического болюса";
+"Enable Automatic Bolus Beeps" = "Разрешить звуковые сигналы автоматического болюса";
 
 /* The alert title for Disable Automatic Bolus Beeps */
-"Disable Automatic Bolus Beeps" = "Выключить звуковые сигналы автоматического болюса";
+"Disable Automatic Bolus Beeps" = "Запретить звуковые сигналы автоматического болюса";
 
 /* The alert title for a resume error */
 "Error Resuming" = "Ошибка возобновления";
@@ -175,10 +175,10 @@
 "PI Version" = "Версия PI";
 
 /* The title of the command to play test beeps */
-"Play Test Beeps" = "Включить проверку сигналов";
+"Play Test Beeps" = "Воспроизвести тестовый звуковой сигнал";
 
 /* Progress message for play test beeps. */
-"Play Test Beeps…" = "Проверка тест сигналов";
+"Playing Test Beeps…" = "Воспроизведение тестового звукового сигнала…";
 
 /* The title of the cell showing the pod pm version */
 "PM Version" = "Версия PM";
@@ -206,7 +206,7 @@
 "Replace Pod Now" = "Немедленно замените Pod";
 
 /* The title of the cell showing reservoir status */
-"Reservoir" = "Картридж";
+"Reservoir" = "Резервуар";
 
 /* Button title for retrying pod deactivation */
 "Retry Pod Deactivation" = "Повторить деактивацию Pod’a";
@@ -216,7 +216,7 @@
 "Save" = "Сохранить";
 
 /* The detail text of the basal row when pod is running scheduled basal */
-"Schedule" = "По графику";
+"Schedule" = "Расписание";
 
 /* The title of the status section in settings */
 "Status" = "Состояние";
@@ -246,16 +246,34 @@
 "Unable to deactivate pod. Please continue and pair a new one." = "Не удалось деактивировать Pod. Продолжить и соединить с новым";
 
 /* The detail text for delivered insulin when no measurement is available */
-"Unknown" = "Неизвестно";
+"Unknown" = "Неизвестный";
 
 /* The title of the diagnostics section in settings */
 "Diagnostics" = "Диагностика";
 
 /* The diagnostic command Read Pod Status */
-"Read Pod Status" = "Прочитать статус помпы";
+"Read Pod Status" = "Получить состояние Pod-а";
 
 /* The diagnostic command Read Pulse Log */
-"Read Pulse Log" = "Читать журнал сигналов";
+"Read Pulse Log" = "Читать журнал импульсов";
 
 /* The title of the pod details section in settings */
-"Pod Details" = "Подробности пода";
+"Pod Details" = "Подробности Pod-а";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Пожалуйста, держите только исходный pod в зоне действия, либо деактивируйте исходный pod";
+
+/* The format string for Last Bolus Not Delivered: (1: bolus not delivered string)*/
+"Last Bolus Not Delivered: %1$@ U\n" = "Не подано из последнего болюса: %1$@U\n";
+
+/* The format string for Delivery Status: (1: delivery status string) */
+"Delivery Status: %1$@\n" = "Статус подачи: %1$@\n";
+
+/* The format string for minutes (1: number of minutes string) */
+"%1$@ minutes" = "%1$@ минут";
+
+/* The format string for Alerts: (1: the alerts string) */
+"Alerts: %1$@\n" = "Внимание: %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "Если проблема не устранена, перейдите в другое место и попробуйте снова";

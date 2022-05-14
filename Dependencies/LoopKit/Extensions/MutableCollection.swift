@@ -7,7 +7,7 @@
 //
 
 extension MutableCollection {
-    public mutating func mutateEach(_ body: (inout Element) throws -> Void) rethrows {
+    mutating func mutateEach(_ body: (inout Element) throws -> Void) rethrows {
         var index = startIndex
         while index != endIndex {
             try body(&self[index])

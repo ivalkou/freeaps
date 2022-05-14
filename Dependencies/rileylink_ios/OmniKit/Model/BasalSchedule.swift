@@ -16,7 +16,12 @@ public struct BasalScheduleEntry: RawRepresentable, Equatable {
     let startTime: TimeInterval
     
     public init(rate: Double, startTime: TimeInterval) {
-        self.rate = rate
+        var rrate = roundToSupportedBasalRate(rate: rate)
+        if rrate == 0 && Pod.zeroBasalRate == 0 {
+            // Got a zero scheduled basal rate for an Eros pod, use the min allowed
+            rrate = Pod.pulseSize
+        }
+        self.rate = rrate
         self.startTime = startTime
     }
     

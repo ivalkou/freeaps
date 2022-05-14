@@ -14,8 +14,8 @@ public typealias HUDViewOrderPriority = Int
 
     @IBOutlet weak public var caption: UILabel! {
         didSet {
-            caption?.text = "–"
-            // TODO: Setting this color in code because the nib isn't being applied correctly. Review at a later date.
+            caption?.text = "—"
+            // Setting this color in code because the nib isn't being applied correctly
             if #available(iOSApplicationExtension 13.0, *) {
                 caption?.textColor = .label
             }

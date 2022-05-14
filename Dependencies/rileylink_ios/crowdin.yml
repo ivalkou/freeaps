@@ -1,0 +1,17 @@
+files:
+  - source: /RileyLinkKitUI/Base.lproj/Localizable.strings
+    translation: /RileyLinkKitUI/%osx_locale%.lproj/Localizable.strings
+  - source: /OmniKitUI/en.lproj/OmnipodPumpManager.strings
+    translation: /OmniKitUI/%osx_locale%.lproj/OmnipodPumpManager.strings
+  - source: /OmniKitUI/en.lproj/Localizable.strings
+    translation: /OmniKitUI/%osx_locale%.lproj/Localizable.strings
+  - source: /MinimedKit/Base.lproj/Localizable.strings
+    translation: /MinimedKit/%osx_locale%.lproj/Localizable.strings
+  - source: /MinimedKitUI/Base.lproj/Localizable.strings
+    translation: /MinimedKitUI/%osx_locale%.lproj/Localizable.strings
+  - source: MinimedKitUI/en.lproj/MinimedPumpManager.strings
+    translation: MinimedKitUI/%osx_locale%.lproj/MinimedPumpManager.strings
+  - source: /OmniKit/en.lproj/Localizable.strings
+    translation: /OmniKit/%osx_locale%.lproj/Localizable.strings
+  - source: /OmniKitPacketParser/en.lproj/Localizable.strings
+    translation: /OmniKitPacketParser/%osx_locale%.lproj/Localizable.strings

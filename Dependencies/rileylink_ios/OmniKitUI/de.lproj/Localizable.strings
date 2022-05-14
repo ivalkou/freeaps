@@ -36,7 +36,7 @@
 "Active Time" = "Laufzeit";
 
 /* The title of the cell showing the Pod Active Clock */
-"Pod Active Clock" = "Pod aktive Zeit";
+"Pod Active Clock" = "Anzeige des Pod-Alters";
 
 /* The title of the cell showing alarm status */
 "Alarms" = "Alarme";
@@ -72,7 +72,7 @@
 "Configuration" = "Konfiguration";
 
 /* The title of the Insulin Type */
-"Insulin Type" = "Insulin Typ";
+"Insulin Type" = "Insulinart";
 
 /* The title of the continue action in an action sheet */
 "Continue" = "Fortsetzen";
@@ -106,16 +106,16 @@
 "Error enabling bolus beeps" = "Fehler beim Aktivieren der Bolustöne";
 
 /* The alert title for enable Confirmation Beeps */
-"Enable Confirmation Beeps" = "Bestätigungssignale aktivieren";
+"Enable Confirmation Beeps" = "Bestätigungstöne einschalten";
 
 /* The alert title for Disable Confirmation Beep */
-"Disable Confirmation Beeps" = "Bestätigungssignale deaktivieren";
+"Disable Confirmation Beeps" = "Bestätigungstöne ausschalten";
 
 /* The alert title for enable Automatic Bolus Beeps */
-"Enable Automatic Bolus Beeps" = "Automatischen Bolus Piepton aktivieren";
+"Enable Automatic Bolus Beeps" = "Töne bei automatischem Bolus einschalten";
 
 /* The alert title for Disable Automatic Bolus Beeps */
-"Disable Automatic Bolus Beeps" = "Automatischen Bolus Piepton aktivieren";
+"Disable Automatic Bolus Beeps" = "Töne bei automatischem Bolus ausschalten";
 
 /* The alert title for a resume error */
 "Error Resuming" = "Fehler beim Fortfahren";
@@ -157,7 +157,7 @@
 "Invalid entry" = "Ungültiger Eintrag";
 
 /* The title of the cell showing the pod lot id */
-"Lot" = "Lot";
+"Lot" = "Charge";
 
 /* The detail text for bolus delivery when no bolus is being delivered */
 "None" = "Keiner";
@@ -178,7 +178,7 @@
 "Play Test Beeps" = "Testtöne abspielen";
 
 /* Progress message for play test beeps. */
-"Play Test Beeps…" = "Testtöne abspielen";
+"Playing Test Beeps…" = "Spiele Testtöne ab…";
 
 /* The title of the cell showing the pod pm version */
 "PM Version" = "PM-Version";
@@ -249,13 +249,31 @@
 "Unknown" = "Unbekannt";
 
 /* The title of the diagnostics section in settings */
-"Diagnostics" = "Diagnose-Infos";
+"Diagnostics" = "Diagnose";
 
 /* The diagnostic command Read Pod Status */
-"Read Pod Status" = "Pod-Status abrufen";
+"Read Pod Status" = "Pod-Status ablesen";
 
 /* The diagnostic command Read Pulse Log */
-"Read Pulse Log" = "Pulse-Log lesen";
+"Read Pulse Log" = "Pulse-Log ablesen";
 
 /* The title of the pod details section in settings */
-"Pod Details" = "Pod Details";
+"Pod Details" = "Pod-Details";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Bitte halten Sie nur den Original-Pod in der Reichweite oder deaktivieren Sie den Original-Pod";
+
+/* The format string for Last Bolus Not Delivered: (1: bolus not delivered string)*/
+"Last Bolus Not Delivered: %1$@ U\n" = "Letzter Bolus nicht abgegeben: %1$@ U\n";
+
+/* The format string for Delivery Status: (1: delivery status string) */
+"Delivery Status: %1$@\n" = "Status der Abgabe: %1$@\n";
+
+/* The format string for minutes (1: number of minutes string) */
+"%1$@ minutes" = "%1$@ Minuten";
+
+/* The format string for Alerts: (1: the alerts string) */
+"Alerts: %1$@\n" = "Warnmeldungen: %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "If the problem persists, move to a new area and try again";

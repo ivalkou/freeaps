@@ -11,7 +11,7 @@
 "%1$@%2$@%3$@" = "%1$@%2$@%3$@";
 
 /* Instructions on selecting battery chemistry type */
-"Alkaline and Lithium batteries decay at differing rates. Alkaline tend to have a linear voltage drop over time whereas lithium cell batteries tend to maintain voltage until halfway through their lifespan. Under normal usage in a Non-MySentry compatible Minimed (x22/x15) insulin pump running Loop, Alkaline batteries last approximately 4 to 5 days. Lithium batteries last between 1-2 weeks. This selection will use different battery voltage decay rates for each of the battery chemistry types and alert the user when a battery is approximately 8 to 10 hours from failure." = "Щелочные и литиевые батарейки садятся с различной скоростью. У щелочных падение линейное, в то время как литиевые сохраняют  напряжение в течение половины срока службы. При нормальном пользовании в помпе Minimed без Mysentry (x22/x15) с применением алгоритма ИПЖ щелочные батарейки служат примерно от 4 до 5 дней. Литиевые служат от 1 до 2 недель. Эта настройка будет использовать разную скорость падения напряжения батареек в зависимости от их химического типа и предупреждать пользователя за 8-10 часов до отказа ";
+"Alkaline and Lithium batteries decay at differing rates. Alkaline tend to have a linear voltage drop over time whereas lithium cell batteries tend to maintain voltage until halfway through their lifespan. Under normal usage in a Non-MySentry compatible Minimed (x22/x15) insulin pump running Loop, Alkaline batteries last approximately 4 to 5 days. Lithium batteries last between 1-2 weeks. This selection will use different battery voltage decay rates for each of the battery chemistry types and alert the user when a battery is approximately 8 to 10 hours from failure." = "Щелочные и литиевые батарейки садятся с различной скоростью. У щелочных падение напряжения линейное, в то время как литиевые сохраняют напряжение в течение половины срока службы. При нормальном пользовании в помпе Minimed без MySentry (x22/x15) с применением алгоритма ИПЖ щелочные батарейки служат примерно от 4 до 5 дней. Литиевые служат от 1 до 2 недель. Эта настройка будет использовать разную скорость падения напряжения батареек в зависимости от их химического типа и предупреждать пользователя за 8-10 часов до отказа.";
 
 /* Confirmation message for deleting a pump */
 "Are you sure you want to delete this pump?" = "Вы уверены, что хотите удалить эту помпу?";
@@ -38,7 +38,7 @@
 "Change Time" = "Изменить время";
 
 /* The title of the command to change pump time zone */
-"Change Time Zone" = "Изменить временной пояс";
+"Change Time Zone" = "Изменить часовой пояс";
 
 /* Progress message for changing pump time. */
 "Changing time…" = "Изменяется время…";
@@ -72,10 +72,10 @@
 "Discovering commands…" = "Обнаружение команд…";
 
 /* The title of the command to enable diagnostic LEDs */
-"Enable Diagnostic LEDs" = "Включить LED лампочки диагностики";
+"Enable Diagnostic LEDs" = "Включить диагностические LED";
 
 /* Progress message for enabling diagnostic LEDs */
-"Enabled Diagnostic LEDs" = "LED лампочки диагностики включены";
+"Enabled Diagnostic LEDs" = "Диагностические LED включены";
 
 /* The alert title for a resume error */
 "Error Resuming" = "Ошибка при возобновлении";
@@ -102,7 +102,7 @@
 "Firmware" = "Прошивка";
 
 /* The title of the cell showing the pump firmware version */
-"Firmware Version" = "Firmware Version";
+"Firmware Version" = "Версия прошивки";
 
 /* The title of the command to get pump model */
 "Get Pump Model" = "Получить модель помпы";
@@ -132,7 +132,7 @@
 "On Idle" = "Бездействие";
 
 /* Pump find device instruction */
-"On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device" = "On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device";
+"On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device" = "На вашей помпе перейдите на экран \"Найти устройство\" и выберите \"Найти Устройство\".\n\nГлавное меню >\nУтилиты >\nПодключение устройств >\nДругие устройства >\nВ>\nНайти устройство";
 
 /* The title text for the preferred insulin data source config */
 "Preferred Data Source" = "Предпочтительный источник данных";
@@ -145,7 +145,7 @@
 
 /* The title of the cell showing pump ID
    The title text for the pump ID config value */
-"Pump ID" = "Инд номер помпы";
+"Pump ID" = "Идентификационный № помпы";
 
 /* The title of the cell showing the pump model number */
 "Pump Model" = "Модель помпы";
@@ -166,7 +166,7 @@
 "Reading pump status…" = "Чтение статуса помпы…";
 
 /* The title of the cell showing the pump region */
-"Region" = "Region";
+"Region" = "Регион";
 
 /* Button title to retry sentry setup */
 "Retry" = "Повторить попытку";
@@ -206,4 +206,4 @@
 "Unknown" = "Неизвестно";
 
 /* The title of the cell showing uptime */
-"Uptime" = "Uptime";
+"Uptime" = "Время работы";

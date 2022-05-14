@@ -37,4 +37,3 @@
 
 /* Instructions on where to find the pump ID on a Minimed pump */
 "The pump ID can be found printed on the back, or near the bottom of the STATUS/Esc screen. It is the strictly numerical portion of the serial number (shown as SN or S/N)." = "Số ID của bơm có thể nhìn thấy phía sau của bơm hay gần mục STATUS/Esc. Đây là phần số của số seri (bắt đầu bằng SN hay S/N).";
-

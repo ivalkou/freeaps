@@ -16,9 +16,6 @@
 /* Pump error code when bolus is in progress */
 "Bolus in progress" = "Bolus käynnissä";
 
-/* Describing the Canada pump region */
-"Canada" = "Kanada";
-
 /* Suggestions for diagnosing a command refused pump error */
 "Check that the pump is not suspended or priming, or has a percent temp basal type" = "Tarkista, että pumppu ei ole pysäytetty, vakiotäytöllä tai basaalityypiksi ei ole valittu prosentteja";
 
@@ -36,9 +33,6 @@
 
 /* Describing the pump history insulin data source */
 "Event History" = "Tapahtumahistoria";
-
-/* Pump error code when invalid history page is requested */
-"History page does not exist" = "Historiasivua ei ole olemassa";
 
 /* Format string for failure reason. (1: The operation being performed) (2: The response data) */
 "Invalid response during %1$@: %2$@" = "Virheellinen vastaus %1$@: %2$@";
@@ -103,3 +97,8 @@
 /* Describing the worldwide pump region */
 "World-Wide" = "Maailmanlaajuinen";
 
+/* Describing the Canada pump region */
+"Canada" = "Kanada";
+
+/* Pump error code when invalid history page is requested */
+"History page does not exist" = "Historiasivua ei ole olemassa";

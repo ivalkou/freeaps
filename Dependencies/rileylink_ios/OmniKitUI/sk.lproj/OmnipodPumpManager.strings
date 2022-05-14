@@ -5,7 +5,7 @@
 "3HH-eJ-lRh.title" = "RileyLink Nastavenie";
 
 /* Class = "UITableViewController"; title = "Pod Settings"; ObjectID = "6vo-Ov-UpE"; */
-"6vo-Ov-UpE.title" = "Pod Settings";
+"6vo-Ov-UpE.title" = "Nastavenia Podu";
 
 /* Class = "UITableViewController"; title = "Pump Setup"; ObjectID = "91O-Un-vKc"; */
 "91O-Un-vKc.title" = "Nastavenie Pumpy";
@@ -47,7 +47,7 @@
 "k1Y-x4-m0a.title" = "Nastavenie Pumpy";
 
 /* Class = "UILabel"; text = "Review your settings below. They will be programmed into the pod during pairing. You can change these settings at any time in Loopʼs Settings screen."; ObjectID = "kLL-SQ-K0a"; */
-"kLL-SQ-K0a.text" = "Review your settings below. They will be programmed into the pod during pairing. You can change these settings at any time in Loopʼs Settings screen.";
+"kLL-SQ-K0a.text" = "Skontrolujte svoje nastavenia nižšie. Budú naprogramované do podu počas párovania. Tieto nastavenia môžete kedykoľvek zmeniť v sekcii Nastavenia Loop.";
 
 /* Class = "UINavigationItem"; title = "Setup Complete"; ObjectID = "nDb-R5-e02"; */
 "nDb-R5-e02.title" = "Nastavenie je dokončené";
@@ -59,10 +59,10 @@
 "rcC-ke-lUP.headerTitle" = "Aplikujte POD";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "vEc-Km-ewe"; */
-"vEc-Km-ewe.text" = "Label";
+"vEc-Km-ewe.text" = "Označenie";
 
-/* Class = "UILabel"; text = "Fill a new pod with insulin. Listen for 2 beeps from the pod during filling. Keep RileyLink adjacent to the pod during pairing."; ObjectID = "vmF-Dc-3DS"; */
-"vmF-Dc-3DS.text" = "Fill a new pod with insulin. Listen for 2 beeps from the pod during filling. Keep the RileyLink about 6 inches from the pod during pairing.";
+/* Class = "UILabel"; text = "Fill a new pod with insulin. Listen for 2 beeps from the pod during filling. Keep the RileyLink about 6 inches from the pod during pairing."; ObjectID = "vmF-Dc-3DS"; */
+"vmF-Dc-3DS.text" = "Naplňte nový pod inzulínom. Budete počuť 2 pípnutia z podu počas napĺňania. Uložte RileyLink približne 15 cm od podu počas párovania.";
 
 /* Class = "UINavigationItem"; title = "Replace Pod"; ObjectID = "yy1-xf-HdR"; */
 "yy1-xf-HdR.title" = "Vymeňte Pod";

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import LoopKit
 
 public enum SetupProgress: Int {
     case addressAssigned = 0
@@ -102,13 +101,11 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
         return active
     }
     
-    public var insulinType: InsulinType
-    
     // the following two vars are not persistent across app restarts
     public var deliveryStatusVerified: Bool
     public var lastCommsOK: Bool
 
-    public init(address: UInt32, piVersion: String, pmVersion: String, lot: UInt32, tid: UInt32, packetNumber: Int = 0, messageNumber: Int = 0, insulinType: InsulinType) {
+    public init(address: UInt32, piVersion: String, pmVersion: String, lot: UInt32, tid: UInt32, packetNumber: Int = 0, messageNumber: Int = 0) {
         self.address = address
         self.nonceState = NonceState(lot: lot, tid: tid)
         self.piVersion = piVersion
@@ -124,7 +121,6 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
         self.primeFinishTime = nil
         self.setupProgress = .addressAssigned
         self.configuredAlerts = [.slot7: .waitingForPairingReminder]
-        self.insulinType = insulinType
         self.deliveryStatusVerified = false
         self.lastCommsOK = false
     }
@@ -223,7 +219,7 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
             deliveryStatusVerified = false // remember that we had inconsistent (bolus) delivery status
             if podProgressStatus.readyForDelivery {
                 // Create an unfinalizedBolus with the remaining bolus amount to capture what we can.
-                unfinalizedBolus = UnfinalizedDose(bolusAmount: bolusNotDelivered, startTime: Date(), scheduledCertainty: .certain, insulinType: insulinType, automatic: nil)
+                unfinalizedBolus = UnfinalizedDose(bolusAmount: bolusNotDelivered, startTime: Date(), scheduledCertainty: .certain)
             }
         }
         if deliveryStatus.tempBasalRunning && unfinalizedTempBasal == nil { // active temp basal that Loop doesn't know about?
@@ -416,12 +412,6 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
         }
         
         self.primeFinishTime = rawValue["primeFinishTime"] as? Date
-        
-        if let rawInsulinType = rawValue["insulinType"] as? InsulinType.RawValue, let insulinType = InsulinType(rawValue: rawInsulinType) {
-            self.insulinType = insulinType
-        } else {
-            insulinType = .novolog
-        }
 
         self.deliveryStatusVerified = false
         self.lastCommsOK = false
@@ -439,8 +429,7 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
             "finalizedDoses": finalizedDoses.map( { $0.rawValue }),
             "alerts": activeAlertSlots.rawValue,
             "messageTransportState": messageTransportState.rawValue,
-            "setupProgress": setupProgress.rawValue,
-            "insulinType": insulinType.rawValue
+            "setupProgress": setupProgress.rawValue
             ]
         
         if let unfinalizedBolus = self.unfinalizedBolus {
@@ -516,7 +505,6 @@ public struct PodState: RawRepresentable, Equatable, CustomDebugStringConvertibl
             "* setupProgress: \(setupProgress)",
             "* primeFinishTime: \(String(describing: primeFinishTime))",
             "* configuredAlerts: \(String(describing: configuredAlerts))",
-            "* insulinType: \(String(describing: insulinType))",
             "",
             fault != nil ? String(reflecting: fault!) : "fault: nil",
             "",

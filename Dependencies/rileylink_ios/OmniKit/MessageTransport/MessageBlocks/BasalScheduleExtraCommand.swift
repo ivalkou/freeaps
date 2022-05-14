@@ -55,7 +55,7 @@ public struct BasalScheduleExtraCommand : MessageBlock {
         for entryIndex in (0..<numEntries) {
             let offset = 10 + entryIndex * 6
             let totalPulses = Double(encodedData[offset...].toBigEndian(UInt16.self)) / 10.0
-            let timerCounter = encodedData[(offset+2)...].toBigEndian(UInt32.self)
+            let timerCounter = encodedData[(offset+2)...].toBigEndian(UInt32.self) & ~nearZeroBasalRateFlag
             let delayBetweenPulses = TimeInterval(hundredthsOfMilliseconds: Double(timerCounter))
             entries.append(RateEntry(totalPulses: totalPulses, delayBetweenPulses: delayBetweenPulses))
         }
@@ -86,7 +86,12 @@ public struct BasalScheduleExtraCommand : MessageBlock {
         self.currentEntryIndex = UInt8(entryIndex)
         let timeRemainingInEntry = duration - (scheduleOffsetNearestSecond - entry.startTime)
         let rate = mergedSchedule.rateAt(offset: scheduleOffsetNearestSecond)
-        let pulsesPerHour = round(rate / Pod.pulseSize)
+        var rrate = roundToSupportedBasalTimingRate(rate: rate)
+        if rrate == 0.0 {
+            // prevent app crash if a 0.0 scheduled basal ever gets here for Eros
+            rrate = nearZeroBasalRate
+        }
+        let pulsesPerHour = rrate / Pod.pulseSize
         let timeBetweenPulses = TimeInterval(hours: 1) / pulsesPerHour
         self.delayUntilNextTenthOfPulse = timeRemainingInEntry.truncatingRemainder(dividingBy: (timeBetweenPulses / 10))
         self.remainingPulses = pulsesPerHour * (timeRemainingInEntry-self.delayUntilNextTenthOfPulse) / .hours(1) + 0.1

@@ -133,7 +133,7 @@
 "Expires" = "Expiruje";
 
 /* Pod life HUD view label */
-"Fault" = "Fault";
+"Fault" = "Porucha";
 
 /* The title of the command to finish pod setup */
 "Finish pod setup" = "Dokončiť nastavenie Podu";
@@ -160,102 +160,120 @@
 "Lot" = "Lot";
 
 /* The detail text for bolus delivery when no bolus is being delivered */
-"None" = "None";
+"None" = "Žiadne";
 
 /* Button title to pair with pod during setup */
-"Pair" = "Pair";
+"Pair" = "Párovať";
 
 /* The title of the command to pair new pod */
-"Pair New Pod" = "Pair New Pod";
+"Pair New Pod" = "Párovať Nový pod";
 
 /* The text of the loading label when pairing */
-"Pairing…" = "Pairing…";
+"Pairing…" = "Páruje sa…";
 
 /* The title of the cell showing the pod pi version */
-"PI Version" = "PI Version";
+"PI Version" = "PI Verzia";
 
 /* The title of the command to play test beeps */
-"Play Test Beeps" = "Play Test Beeps";
+"Play Test Beeps" = "Prehrať Testovacie Pípnutie";
 
 /* Progress message for play test beeps. */
-"Play Test Beeps…" = "Play Test Beeps…";
+"Playing Test Beeps…" = "Prehráva Testovacie Pípnutie…";
 
 /* The title of the cell showing the pod pm version */
-"PM Version" = "PM Version";
+"PM Version" = "PM Verzia";
 
 /* Label describing pod age view */
-"Pod Age" = "Pod Age";
+"Pod Age" = "Trvanie Podu";
 
 /* Title of the pod settings view controller */
-"Pod Settings" = "Pod Settings";
+"Pod Settings" = "Nastavenia Podu";
 
 /* The text of the loading label when pod is primed */
-"Primed" = "Primed";
+"Primed" = "Nastrelený";
 
 /* The text of the loading label when priming */
-"Priming…" = "Priming…";
+"Priming…" = "Nastreľuje sa…";
 
 /* Label describing time remaining view */
-"Remaining" = "Remaining";
+"Remaining" = "Ostáva";
 
 /* Label indicating pod replacement necessary
    The title of the command to replace pod */
-"Replace Pod" = "Replace Pod";
+"Replace Pod" = "Vymeniť Pod";
 
 /* The title of the command to replace pod when there is a pod fault */
-"Replace Pod Now" = "Replace Pod Now";
+"Replace Pod Now" = "Vymeniť Pod teraz";
 
 /* The title of the cell showing reservoir status */
-"Reservoir" = "Reservoir";
+"Reservoir" = "Zásobník";
 
 /* Button title for retrying pod deactivation */
-"Retry Pod Deactivation" = "Retry Pod Deactivation";
+"Retry Pod Deactivation" = "Opakujte Deaktiváciu Podu";
 
 /* Title of button to save delivery limit settings
    Title of button to sync basal profile when no pod paired */
-"Save" = "Save";
+"Save" = "Uložiť";
 
 /* The detail text of the basal row when pod is running scheduled basal */
-"Schedule" = "Schedule";
+"Schedule" = "Naplánovaný";
 
 /* The title of the status section in settings */
-"Status" = "Status";
+"Status" = "Stav";
 
 /* A message indicating a command succeeded */
-"Succeeded" = "Succeeded";
+"Succeeded" = "Úspešné";
 
 /* The detail text of the basal row when pod is suspended */
-"Suspended" = "Suspended";
+"Suspended" = "Pozastavené";
 
 /* Title text for the button to delete Omnipod PumpManager */
-"Switch from Omnipod Pumps" = "Switch from Omnipod Pumps";
+"Switch from Omnipod Pumps" = "Prepnúť z Omnipod púmp";
 
 /* Title of button to sync basal profile from pod */
-"Sync With Pod" = "Sync With Pod";
+"Sync With Pod" = "Synchronizovať s Podom";
 
 /* The title of the command to run the test command */
-"Test Command" = "Test Command";
+"Test Command" = "Testovať Ovládanie";
 
 /* Progress message for testing commands. */
-"Testing Commands…" = "Testing Commands…";
+"Testing Commands…" = "Testovanie Ovládania…";
 
 /* The error message shown when Loop's basal schedule has more entries than the pod can support */
-"Too many entries" = "Too many entries";
+"Too many entries" = "Príliš veľa vstupov";
 
 /* Instructions when pod cannot be deactivated */
-"Unable to deactivate pod. Please continue and pair a new one." = "Unable to deactivate pod. Please continue and pair a new one.";
+"Unable to deactivate pod. Please continue and pair a new one." = "Nemožno deaktivovať Pod. Prosím pokračujte a párujte nový.";
 
 /* The detail text for delivered insulin when no measurement is available */
-"Unknown" = "Unknown";
+"Unknown" = "Neznáme";
 
 /* The title of the diagnostics section in settings */
-"Diagnostics" = "Diagnostics";
+"Diagnostics" = "Diagnostiky";
 
 /* The diagnostic command Read Pod Status */
-"Read Pod Status" = "Read Pod Status";
+"Read Pod Status" = "Zistiť stav Podu";
 
 /* The diagnostic command Read Pulse Log */
-"Read Pulse Log" = "Read Pulse Log";
+"Read Pulse Log" = "Čítať protokol pulzov";
 
 /* The title of the pod details section in settings */
-"Pod Details" = "Pod Details";
+"Pod Details" = "Detaily Podu";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Prosím dajte k dosahu iba pôvodný pod alebo deaktivujte pôvodný pod";
+
+/* The format string for Last Bolus Not Delivered: (1: bolus not delivered string)*/
+"Last Bolus Not Delivered: %1$@ U\n" = "Posledný nepodaný Bolus:%1$@ J\n";
+
+/* The format string for Delivery Status: (1: delivery status string) */
+"Delivery Status: %1$@\n" = "Stav Podania: %1$@\n";
+
+/* The format string for minutes (1: number of minutes string) */
+"%1$@ minutes" = "%1$@ minút";
+
+/* The format string for Alerts: (1: the alerts string) */
+"Alerts: %1$@\n" = "Varovania: %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "Ak problém pretrváva, presuňte sa na iné miesto a skúste znova";

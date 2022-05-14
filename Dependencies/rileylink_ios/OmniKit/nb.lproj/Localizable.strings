@@ -14,7 +14,7 @@
 "Bolusing" = "Gir bolus";
 
 /* Delivery status when bolusing and temp basal is running */
-"Bolusing with temp basal" = "Gir bolus med temp-basal";
+"Bolusing with temp basal" = "Gir bolus med aktiv midlertidig basal";
 
 /* Pod state when inserting cannula */
 "Cannula inserting" = "Setter inn kanyle";
@@ -105,7 +105,7 @@
 "Pod Fault: %1$@" = "Pod-feil: %1$@";
 
 /* Error message when cannula insertion fails because the pod is in an unexpected state */
-"Pod is not in a state ready for cannula insertion." = "Pod er ikke klar for å sette inn kanyle.";
+"Pod is not in a state ready for cannula insertion" = "Pod er ikke klar for å sette inn kanyle";
 
 /* Error message when prime fails because the pod is in an unexpected state */
 "Pod is not in a state ready for priming." = "Pod er ikke klar for fylling";
@@ -176,3 +176,42 @@
 
 /* Description waiting for pairing reminder */
 "Waiting for pairing reminder" = "Venter på påminnelse for sammenkobling";
+
+/* Error message shown when pod sends ack instead of response */
+"Pod sent ack instead of response" = "Pod sendte bekreftelse i stedet for svar";
+
+/* Format string for invalid message error code (1: error code number) */
+"Command error %1$u" = "Kommandofeil %1$u";
+
+/* "Format string for unexpected pod change" */
+"Unexpected pod change" = "Uventet pod-skifte";
+
+/* Format string for activation time exceeded */
+"Activation time exceeded" = "Aktiveringstiden er overskredet";
+
+/* Format string for poor pod signal strength */
+"Poor signal strength" = "Dårlig signalstyrke";
+
+/* Format string for pod signal strength too high */
+"Signal strength too high" = "For høy signalstyrke";
+
+/* Recovery suggestion when no response is received from pod */
+"Please try repositioning the RileyLink and try again" = "Vennligst flytt Pod eller RileyLink, og prøv på nytt";
+
+/* Recovery suggestion when ack received instead of response */
+"Try again" = "Prøv på nytt";
+
+/* Recovery suggestion when unexpected address received */
+"Crosstalk possible. Please move to a new location and try again" = "Elektronisk støy i omgivelsene? Prøv på ny i et annet rom.";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Vennligst ha bare den opprinnelige poden innenfor rekkevidde, eller deaktiver den opprinnelige poden";
+
+/* Recovery suggestion when pairing signal strength is too low */
+"Please reposition the RileyLink relative to the pod" = "Vennligst flytt RileyLink i forhold til poden";
+
+/* Recovery suggestion when pairing signal strength is too high */
+"Please reposition the RileyLink further from the pod" = "Vennligst flytt RileyLink lenger bort fra poden";
+
+/* Description for an inactive alert modifier */
+" (inactive)" = " (inaktiv)";

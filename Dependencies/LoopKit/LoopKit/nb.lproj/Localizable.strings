@@ -14,7 +14,7 @@
 "com.loudnate.CarbKit.deleteCarbEntryUnownedErrorDescription" = "Autorisasjon avslått";
 
 /* The error recovery suggestion when attempting to delete a sample not shared by the current app */
-"com.loudnate.carbKit.sharingDeniedErrorRecoverySuggestion" = "Denne testen kan slettes fra Health-appen";
+"com.loudnate.carbKit.sharingDeniedErrorRecoverySuggestion" = "Denne testen kan slettes fra Helse-appen";
 
 /* Generic pump error description */
 "Communication Failure" = "Kommunikasjonsfeil";
@@ -23,10 +23,10 @@
 "Connection Failure" = "Tilkoblingsfeil";
 
 /* Generic pump error description */
-"Device Refused" = "Enheten nektet";
+"Device Refused" = "Enheten ble avvist";
 
 /* Recovery suggestion for a no data error */
-"Ensure carb data exists for the specified date" = "Verifiser at karbohydratoppføring eksisterer for den valgte datoen";
+"Ensure carb data exists for the specified date" = "Sikre at det finnes data karbo-data for den angitte datoen";
 
 /* Glucose trend down */
 "Falling" = "Faller";
@@ -38,7 +38,7 @@
 "Falling very fast" = "Faller veldig raskt";
 
 /* Glucose trend flat */
-"Flat" = "Flatt";
+"Flat" = "Flat";
 
 /* The short unit display string for grams per U */
 "g/U" = "g/E";
@@ -59,25 +59,25 @@
 "mmol/L/U" = "mmol/L/E";
 
 /* Sensor state description for the non-valid state */
-"Needs Attention" = "Trenger tilsyn";
+"Needs Attention" = "Trenger oppmerksomhet";
 
 /* Describes an error for no data found in a CarbStore request */
 "No values found" = "Ingen verdier funnet";
 
 /* Sensor state description for the valid state */
-"OK" = "Ok";
+"OK" = "OK";
 
 /* The error recovery suggestion when Health sharing was denied */
-"Please re-enable sharing in Health" = "Vennligst aktiver deling i Health på nytt";
+"Please re-enable sharing in Health" = "Vennligst aktiver deling i Helse-appen på nytt";
 
 /* Glucose trend up */
 "Rising" = "Stiger";
 
 /* Glucose trend up-up */
-"Rising fast" = "Stiger fort";
+"Rising fast" = "Stiger raskt";
 
 /* Glucose trend up-up-up */
-"Rising very fast" = "Stiger veldig fort";
+"Rising very fast" = "Stiger veldig raskt";
 
 /* The short unit display string for international units of insulin */
 "U" = "E";

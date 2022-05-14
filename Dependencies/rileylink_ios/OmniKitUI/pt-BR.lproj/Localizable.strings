@@ -109,13 +109,13 @@
 "Enable Confirmation Beeps" = "Ativar Som de Confirmação";
 
 /* The alert title for Disable Confirmation Beep */
-"Disable Confirmation Beeps" = "Disable Confirmation Beeps";
+"Disable Confirmation Beeps" = "Ativar Som de Confirmação";
 
 /* The alert title for enable Automatic Bolus Beeps */
 "Enable Automatic Bolus Beeps" = "Ativar Som de Bolus Automático";
 
 /* The alert title for Disable Automatic Bolus Beeps */
-"Disable Automatic Bolus Beeps" = "Disable Automatic Bolus Beeps";
+"Disable Automatic Bolus Beeps" = "Desativar Som de Bolus Automático";
 
 /* The alert title for a resume error */
 "Error Resuming" = "Erro ao Retomar";
@@ -178,7 +178,7 @@
 "Play Test Beeps" = "Tocar bipes de teste";
 
 /* Progress message for play test beeps. */
-"Play Test Beeps…" = "Tocar bipes de teste…";
+"Playing Test Beeps…" = "Reproduzindo Bips de Teste…";
 
 /* The title of the cell showing the pod pm version */
 "PM Version" = "Versão PM";
@@ -259,3 +259,21 @@
 
 /* The title of the pod details section in settings */
 "Pod Details" = "Detalhes do Pod";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Por favor, traga apenas o pod original para perto ou desative o pod original";
+
+/* The format string for Last Bolus Not Delivered: (1: bolus not delivered string)*/
+"Last Bolus Not Delivered: %1$@ U\n" = "Último Bolus Não Entregue: %1$@ U\n";
+
+/* The format string for Delivery Status: (1: delivery status string) */
+"Delivery Status: %1$@\n" = "Status da Entrega: %1$@\n";
+
+/* The format string for minutes (1: number of minutes string) */
+"%1$@ minutes" = "%1$@ minutos";
+
+/* The format string for Alerts: (1: the alerts string) */
+"Alerts: %1$@\n" = "Alertas: %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "Se o problema persistir, mova para uma nova área e tente novamente";

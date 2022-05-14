@@ -54,7 +54,7 @@
 "Basal Delivery" = "Basalleveranse";
 
 /* The title text for the basal rate schedule */
-"Basal Rates" = "Basal-satser";
+"Basal Rates" = "Basal-program";
 
 /* The title of the cell showing pod bolus status */
 "Bolus Delivery" = "Bolus-leveranse";
@@ -66,7 +66,7 @@
 "Change Time Zone" = "Endre tidssone";
 
 /* Progress message for changing pod time. */
-"Changing time…" = "Endrer tid...";
+"Changing time…" = "Endrer tid…";
 
 /* The title of the configuration section in settings */
 "Configuration" = "Konfigurasjon";
@@ -178,7 +178,7 @@
 "Play Test Beeps" = "Spill test-toner";
 
 /* Progress message for play test beeps. */
-"Play Test Beeps…" = "Spill test-toner…";
+"Playing Test Beeps…" = "Spiller test-toner…";
 
 /* The title of the cell showing the pod pm version */
 "PM Version" = "PM-versjon";
@@ -196,7 +196,7 @@
 "Priming…" = "Fyller…";
 
 /* Label describing time remaining view */
-"Remaining" = "Gjenstående";
+"Remaining" = "Gjenstår";
 
 /* Label indicating pod replacement necessary
    The title of the command to replace pod */
@@ -259,3 +259,21 @@
 
 /* The title of the pod details section in settings */
 "Pod Details" = "Pod-info";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Vennligst ha bare den opprinnelige poden innenfor rekkevidde, eller deaktiver den opprinnelige poden";
+
+/* The format string for Last Bolus Not Delivered: (1: bolus not delivered string)*/
+"Last Bolus Not Delivered: %1$@ U\n" = "Siste bolus ikke levert: %1$@ E\n";
+
+/* The format string for Delivery Status: (1: delivery status string) */
+"Delivery Status: %1$@\n" = "Leveringsstatus: %1$@\n";
+
+/* The format string for minutes (1: number of minutes string) */
+"%1$@ minutes" = "%1$@ minutter";
+
+/* The format string for Alerts: (1: the alerts string) */
+"Alerts: %1$@\n" = "Varsler %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "Hvis problemet vedvarer, gå til et annet område og prøv igjen";

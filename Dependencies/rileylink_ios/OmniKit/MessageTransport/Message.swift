@@ -18,27 +18,6 @@ public enum MessageError: Error {
     case validationFailed(description: String)
 }
 
-extension MessageError: LocalizedError {
-    public var errorDescription: String? {
-        switch self {
-        case .notEnoughData:
-            return LocalizedString("Not enough data", comment: "Description for MessageError notEnoughData")
-        case .invalidCrc:
-            return LocalizedString("Invalid CRC", comment: "Description for MessageError invalidCrc")
-        case .parsingError:
-            return LocalizedString("Parsing Error: ", comment: "Description for MessageError parsingError")
-        case .unknownValue(let value, let typeDescription):
-            return String(format: LocalizedString("Unknown Value (%1$@) for type %2$@", comment: "Format string for description of MessageError unknownValue. (1: value) (2: Type)"), String(describing: value), typeDescription)
-        case .validationFailed(let description):
-            return String(format: LocalizedString("Validation failed: %1$@", comment: "Format string for description of MessageError validationFailed. (1: description of validation failure)"), description)
-        case .invalidSequence:
-            return LocalizedString("Unexpected message sequence number", comment: "Description for MessageError invalidSequence")
-        case .invalidAddress(address: let address):
-            return String(format: LocalizedString("Invalid address: (%1$@)", comment: "Description for MessageError invalidSequence"), String(format: "%08x", address))
-        }
-    }
-}
-
 struct Message {
     let address: UInt32
     let messageBlocks: [MessageBlock]

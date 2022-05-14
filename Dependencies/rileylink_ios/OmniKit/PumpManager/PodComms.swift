@@ -45,15 +45,6 @@ class PodComms: CustomDebugStringConvertible {
         self.messageLogger = nil
     }
     
-    var insulinType: InsulinType? {
-        get { podState?.insulinType }
-        set {
-            if let insulinType = newValue {
-                podState?.insulinType = insulinType
-            }
-        }
-    }
-    
     /// Handles all the common work to send and verify the version response for the two pairing commands, AssignAddress and SetupPod.
     ///  Has side effects of creating pod state, assigning startingPacketNumber, and updating pod state.
     ///
@@ -79,7 +70,7 @@ class PodComms: CustomDebugStringConvertible {
     ///     - MessageError.invalidSequence
     ///     - MessageError.invalidAddress
     ///     - RileyLinkDeviceError
-    private func sendPairMessage(address: UInt32, transport: PodMessageTransport, message: Message, insulinType: InsulinType) throws -> VersionResponse {
+    private func sendPairMessage(address: UInt32, transport: PodMessageTransport, message: Message) throws -> VersionResponse {
 
         defer {
             log.debug("sendPairMessage saving current transport packet #%d", transport.packetNumber)
@@ -179,8 +170,7 @@ class PodComms: CustomDebugStringConvertible {
                     lot: config.lot,
                     tid: config.tid,
                     packetNumber: transport.packetNumber,
-                    messageNumber: transport.messageNumber,
-                    insulinType: insulinType
+                    messageNumber: transport.messageNumber
                 )
                 // podState setupProgress state should be addressAssigned
             }
@@ -236,7 +226,7 @@ class PodComms: CustomDebugStringConvertible {
         }
     }
 
-    private func assignAddress(address: UInt32, commandSession: CommandSession, insulinType: InsulinType) throws {
+    private func assignAddress(address: UInt32, commandSession: CommandSession) throws {
         commandSession.assertOnSessionQueue()
 
         let packetNumber, messageNumber: Int
@@ -257,10 +247,10 @@ class PodComms: CustomDebugStringConvertible {
         let assignAddress = AssignAddressCommand(address: address)
         let message = Message(address: 0xffffffff, messageBlocks: [assignAddress], sequenceNum: transport.messageNumber)
 
-        _ = try sendPairMessage(address: address, transport: transport, message: message, insulinType: insulinType)
+        _ = try sendPairMessage(address: address, transport: transport, message: message)
     }
     
-    private func setupPod(podState: PodState, timeZone: TimeZone, commandSession: CommandSession, insulinType: InsulinType) throws {
+    private func setupPod(podState: PodState, timeZone: TimeZone, commandSession: CommandSession) throws {
         commandSession.assertOnSessionQueue()
         
         let transport = PodMessageTransport(session: commandSession, address: 0xffffffff, ackAddress: podState.address, state: podState.messageTransportState)
@@ -273,7 +263,7 @@ class PodComms: CustomDebugStringConvertible {
         
         let versionResponse: VersionResponse
         do {
-            versionResponse = try sendPairMessage(address: podState.address, transport: transport, message: message, insulinType: insulinType)
+            versionResponse = try sendPairMessage(address: podState.address, transport: transport, message: message)
         } catch let error {
             if case PodCommsError.podAckedInsteadOfReturningResponse = error {
                 log.default("SetupPod acked instead of returning response.")
@@ -298,7 +288,6 @@ class PodComms: CustomDebugStringConvertible {
         using deviceSelector: @escaping (_ completion: @escaping (_ device: RileyLinkDevice?) -> Void) -> Void,
         timeZone: TimeZone,
         messageLogger: MessageLogger?,
-        insulinType: InsulinType,
         _ block: @escaping (_ result: SessionRunResult) -> Void)
     {
         deviceSelector { (device) in
@@ -312,7 +301,7 @@ class PodComms: CustomDebugStringConvertible {
                     self.configureDevice(device, with: commandSession)
                     
                     if self.podState == nil {
-                        try self.assignAddress(address: address, commandSession: commandSession, insulinType: insulinType)
+                        try self.assignAddress(address: address, commandSession: commandSession)
                     }
                     
                     guard self.podState != nil else {
@@ -321,7 +310,7 @@ class PodComms: CustomDebugStringConvertible {
                     }
 
                     if self.podState!.setupProgress.isPaired == false {
-                        try self.setupPod(podState: self.podState!, timeZone: timeZone, commandSession: commandSession, insulinType: insulinType)
+                        try self.setupPod(podState: self.podState!, timeZone: timeZone, commandSession: commandSession)
                     }
 
                     guard self.podState!.setupProgress.isPaired else {

@@ -11,7 +11,7 @@
 "Alkaline" = "Alkaliskt";
 
 /* The format string description of a BasalProfileStartPumpEvent. (1: The index of the profile)(2: The basal rate) */
-"Basal Profile %1$@: %2$@ U/hour" = "Basalprofil %1$@: %2$@ E/h";
+"Basal Profile %1$@: %2$@ U/hour" = "Basalprofil %1$@: %2$@ IE/timme";
 
 /* Pump error code when bolus is in progress */
 "Bolus in progress" = "Ger bolus";
@@ -50,7 +50,7 @@
 "Minimed %@" = "Minimed %@";
 
 /* Generic title of the minimed pump manager */
-"Minimed 500/700 Series" = "Minimed 500/700 Series";
+"Minimed 500/700 Series" = "Minimed 500/700-serien";
 
 /* Describing the North America pump region */
 "North America" = "Nordamerika";
@@ -77,7 +77,7 @@
 "RileyLink radio tune failed" = "RileyLink radiosignal misslyckad";
 
 /* The format string description of a TempBasalPumpEvent. (1: The rate of the temp basal in minutes) */
-"Temporary Basal: %1$.3f U/hour" = "Temporär basal: %1$.3f E/timme";
+"Temporary Basal: %1$.3f U/hour" = "Temporär basal: %1$.3f IE/timme";
 
 /* The format string description of a TempBasalDurationPumpEvent. (1: The duration of the temp basal in minutes) */
 "Temporary Basal: %1$d min" = "Temporär basal: %1$d min";
@@ -96,3 +96,9 @@
 
 /* Describing the worldwide pump region */
 "World-Wide" = "Global";
+
+/* Describing the Canada pump region */
+"Canada" = "Kanada";
+
+/* Pump error code when invalid history page is requested */
+"History page does not exist" = "Sidan med händelsehistorik finns inte";

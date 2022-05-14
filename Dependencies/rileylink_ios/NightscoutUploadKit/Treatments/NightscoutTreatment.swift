@@ -31,16 +31,14 @@ public class NightscoutTreatment: DictionaryRepresentable {
     let notes: String?
     let id: String?
     let eventType: String?
-    let syncIdentifier: String?
 
 
-    public init(timestamp: Date, enteredBy: String, notes: String? = nil, id: String? = nil, eventType: String? = nil, syncIdentifier: String? = nil) {
+    public init(timestamp: Date, enteredBy: String, notes: String? = nil, id: String? = nil, eventType: String? = nil) {
         self.timestamp = timestamp
         self.enteredBy = enteredBy
         self.id = id
         self.notes = notes
         self.eventType = eventType
-        self.syncIdentifier = syncIdentifier
     }
     
     public var dictionaryRepresentation: [String: Any] {
@@ -57,10 +55,6 @@ public class NightscoutTreatment: DictionaryRepresentable {
         }
         if let eventType = eventType {
             rval["eventType"] = eventType
-        }
-        // Not part of the normal NS model, but we store here to be able to match to client provided ids
-        if let syncIdentifier = syncIdentifier {
-            rval["syncIdentifier"] = syncIdentifier
         }
         return rval
     }

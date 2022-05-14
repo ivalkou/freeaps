@@ -21,6 +21,7 @@ extension PumpConfig {
                     } else {
                         Button("Add Medtronic") { state.addPump(.minimed) }
                         Button("Add Omnipod") { state.addPump(.omnipod) }
+                        Button("Add Omnipod Dash") { state.addPump(.omnipodDash) }
                         Button("Add Simulator") { state.addPump(.simulator) }
                     }
                 }

@@ -179,7 +179,7 @@
 "Save to Pump…" = "Salvar na Bomba…";
 
 /* The title of the command to send a button press */
-"Send Button Press" = "Send Button Press";
+"Send Button Press" = "Enviar Pressionar Botão";
 
 /* Progress message for sending button press to pump. */
 "Sending button press…" = "Enviando aperto do botão";
@@ -207,4 +207,3 @@
 
 /* The title of the cell showing uptime */
 "Uptime" = "Tempo Ligado";
-

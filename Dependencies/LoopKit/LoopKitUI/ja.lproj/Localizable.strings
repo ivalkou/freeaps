@@ -1,18 +1,3 @@
-/* Separator between min and max glucose values */
-"-" = "-";
-
-/* Appends a full-stop to a statement */
-"%@." = "%@.";
-
-/* The format for an insulin needs percentage. */
-"%@%% of normal insulin" = "%@%% of normal insulin";
-
-/* Format string for reservoir volume. (1: The localized volume) */
-"%@U" = "%@U";
-
-/* The format for a glucose target range. (1: min target)(2: max target)(3: glucose unit) */
-"%1$@ – %2$@ %3$@" = "%1$@ – %2$@ %3$@";
-
 /* The format for an override preset cell. (1: symbol)(2: name)
    The format for an override symbol and name (1: symbol)(2: name) */
 "%1$@ %2$@" = "%1$@ %2$@";
@@ -20,23 +5,35 @@
 /* Accessibility format string for (1: localized volume)(2: time) */
 "%1$@ units remaining at %2$@" = "%1$@ units remaining at %2$@";
 
+/* The format for a glucose target range. (1: min target)(2: max target)(3: glucose unit) */
+"%1$@ – %2$@ %3$@" = "%1$@ – %2$@ %3$@";
+
+/* The format for an insulin needs percentage. */
+"%@%% of normal insulin" = "%@%% of normal insulin";
+
+/* Appends a full-stop to a statement */
+"%@." = "%@.";
+
+/* Format string for reservoir volume. (1: The localized volume) */
+"%@U" = "%@U";
+
 /* Title of the carb entry absorption time cell */
 "Absorption Time" = "吸収時間";
 
 /* The title for the override emoji activity section */
 "Activity" = "アクティビティ";
 
-/* The title of the button to add the credentials for a service */
-"Add Account" = "アカウントを追加";
-
-/* The title of the view controller to create a new carb entry */
-"Add Carb Entry" = "糖質の記入を追加";
-
 /* Action sheet confirmation message for pump history deletion */
 "Are you sure you want to delete all history entries?" = "入力履歴をすべて削除しますか?";
 
 /* Action sheet confirmation message for reservoir deletion */
 "Are you sure you want to delete all reservoir values?" = "リザーバの値をすべて削除しますか?";
+
+/* The title of the button to add the credentials for a service */
+"Add Account" = "アカウントを追加";
+
+/* The title of the button to remove the credentials for a service */
+"Delete Account" = "アカウントを削除";
 
 /* Describes a percentage decrease in overall insulin needs */
 "Basal, bolus, and correction insulin dose amounts are decreased by %@%%." = "基礎、ボーラス、補正注入の量が %@%%減ります。";
@@ -55,6 +52,12 @@
 
 /* Title text for suspend resume button when temp basal canceling */
 "Canceling Temp Basal" = "一時基礎レートをキャンセルします";
+
+/* The title of the view controller to create a new carb entry */
+"Add Carb Entry" = "糖質の記入を追加";
+
+/* The title of the view controller to edit an existing carb entry */
+"Edit Carb Entry" = "糖質の記入を編集";
 
 /* Footer text for customizing an override from a preset (1: preset name) */
 "Changes will only apply this time you enable the override. The default settings of %@ will not be affected." = "オーバーライドの有効化は今回のみ適用されます。%@ の初期設定は変わりません。";
@@ -95,17 +98,11 @@
 /* Title of the carb entry date picker cell */
 "Date" = "日付";
 
-/* The title of the button to remove the credentials for a service */
-"Delete Account" = "アカウントを削除";
-
 /* Button title to delete all objects */
 "Delete All" = "すべて削除";
 
 /* The text for the override duration setting */
 "Duration" = "期間";
-
-/* The title of the view controller to edit an existing carb entry */
-"Edit Carb Entry" = "糖質の記入を編集";
 
 /* The title for the override editing screen */
 "Edit Override" = "オーバーライドを編集";
@@ -180,9 +177,6 @@
 /* The title of the screen displaying a pump event */
 "Pump Event" = "ポンプイベント";
 
-/* The default placeholder string for a credential */
-"Required" = "必須";
-
 /* Title text for button to resume insulin delivery */
 "Resume Delivery" = "注入を再開";
 
@@ -220,11 +214,17 @@
 /* The empty-state text for a configuration value */
 "Tap to set" = "タップして確定";
 
+/* Text directing the user to configure their first override preset */
+"Tap '+' to create a new override preset." = "Tap '+' to create a new override preset.";
+
 /* The text for the override target range setting */
 "Target Range" = "ターゲット範囲";
 
 /* The title for the override selection screen */
 "Temporary Override" = "一時的オーバーライト";
+
+/* The default placeholder string for a credential */
+"Required" = "必須";
 
 /* Alert body displayed absorption time greater than max (1: maximum absorption time) */
 "The maximum absorption time is %@" = "最大吸収時間: %@";
@@ -253,4 +253,3 @@
 
 /* Title for the workout override range */
 "Workout" = "運動";
-

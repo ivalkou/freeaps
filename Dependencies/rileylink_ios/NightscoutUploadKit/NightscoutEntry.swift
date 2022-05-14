@@ -23,7 +23,7 @@ public class NightscoutEntry: DictionaryRepresentable {
     let device: String
     let glucoseType: GlucoseType
     
-    public init(glucose: Int, timestamp: Date, device: String, glucoseType: GlucoseType,
+    init(glucose: Int, timestamp: Date, device: String, glucoseType: GlucoseType,
          previousSGV: Int? = nil, previousSGVNotActive: Bool? = nil, direction: String? = nil) {
         
         self.glucose = glucose

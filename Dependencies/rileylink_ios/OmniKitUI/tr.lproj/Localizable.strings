@@ -1,5 +1,5 @@
 /* Accessibility format string for (1: localized volume)(2: time) */
-"%1$@ units remaining at %2$@" = "%1$@ ünite %2$@'de kaldı";
+"%1$@ units remaining at %2$@" = "%2$@'de %1$@ ünite kaldı";
 
 /* The format string for displaying an offset from a time zone: (1: GMT)(2: -)(3: 4:00) */
 "%1$@%2$@%3$@" = "%1$@%2$@%3$@";
@@ -66,7 +66,7 @@
 "Change Time Zone" = "Zaman dilimini Değiştir";
 
 /* Progress message for changing pod time. */
-"Changing time…" = "Zaman değiştir…";
+"Changing time…" = "Zaman değişiyor…";
 
 /* The title of the configuration section in settings */
 "Configuration" = "Yapılandırma";
@@ -100,10 +100,10 @@
 "Enable Bolus Beeps" = "Bolus Uyarılarını Etkinleştir";
 
 /* The alert title for disable bolus beeps error */
-"Error disabling bolus beeps" = "Bolus uyarılarını devre dışı bırakılırken hata oluştu";
+"Error disabling bolus beeps" = "Bolus uyarıları devre dışı bırakılırken hata oluştu";
 
 /* The alert title for enable bolus beeps error */
-"Error enabling bolus beeps" = "Bolus uyarılarını etkinleştirirken hata oluştu";
+"Error enabling bolus beeps" = "Bolus Uyarı seslerini etkinleştirirken hata oluştu";
 
 /* The alert title for enable Confirmation Beeps */
 "Enable Confirmation Beeps" = "Onay Uyarılarını Etkinleştir";
@@ -130,13 +130,13 @@
 "Expired" = "Süresi doldu";
 
 /* The title of the cell showing the pod expiration */
-"Expires" = "Bitiyor";
+"Expires" = "Süresi doluyor";
 
 /* Pod life HUD view label */
 "Fault" = "Hata";
 
 /* The title of the command to finish pod setup */
-"Finish pod setup" = "Pod kurulumu bitir";
+"Finish pod setup" = "Pod kurulumunu bitir";
 
 /* Accessibility format string for (1: localized volume)(2: time) */
 "Greater than %1$@ units remaining at %2$@" = "%2$@ 'te %1$@ üniteden fazla kaldı";
@@ -166,10 +166,10 @@
 "Pair" = "Eşleştir";
 
 /* The title of the command to pair new pod */
-"Pair New Pod" = "Yeni Pod Eşle";
+"Pair New Pod" = "Yeni Pod Eşleştir";
 
 /* The text of the loading label when pairing */
-"Pairing…" = "Eşlestiriliyor…";
+"Pairing…" = "Eşleştiriliyor…";
 
 /* The title of the cell showing the pod pi version */
 "PI Version" = "PI Sürümü";
@@ -178,7 +178,7 @@
 "Play Test Beeps" = "Test Bip Sesi Çal";
 
 /* Progress message for play test beeps. */
-"Play Test Beeps…" = "Test Bip Sesi Çal…";
+"Playing Test Beeps…" = "Test Bip Sesi Çalınıyor…";
 
 /* The title of the cell showing the pod pm version */
 "PM Version" = "PM Sürümü";
@@ -196,7 +196,7 @@
 "Priming…" = "Hazırlanıyor…";
 
 /* Label describing time remaining view */
-"Remaining" = "Geri Kalan";
+"Remaining" = "Kalan";
 
 /* Label indicating pod replacement necessary
    The title of the command to replace pod */
@@ -216,16 +216,16 @@
 "Save" = "Kaydet";
 
 /* The detail text of the basal row when pod is running scheduled basal */
-"Schedule" = "Planlama";
+"Schedule" = "Planla";
 
 /* The title of the status section in settings */
 "Status" = "Durum";
 
 /* A message indicating a command succeeded */
-"Succeeded" = "Başarılı oldu";
+"Succeeded" = "Başarılı";
 
 /* The detail text of the basal row when pod is suspended */
-"Suspended" = "İptal edildi";
+"Suspended" = "Askıya Alındı";
 
 /* Title text for the button to delete Omnipod PumpManager */
 "Switch from Omnipod Pumps" = "Omnipod'u kullanmayı bırak";
@@ -249,7 +249,7 @@
 "Unknown" = "Bilinmiyor";
 
 /* The title of the diagnostics section in settings */
-"Diagnostics" = "Teşhis";
+"Diagnostics" = "Tanılama";
 
 /* The diagnostic command Read Pod Status */
 "Read Pod Status" = "Pod Durumunu Oku";
@@ -259,3 +259,21 @@
 
 /* The title of the pod details section in settings */
 "Pod Details" = "Pod Ayrıntıları";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Lütfen yalnızca orijinal pod'u yakınlaştırın veya orijinal pod'u devre dışı bırakın";
+
+/* The format string for Last Bolus Not Delivered: (1: bolus not delivered string)*/
+"Last Bolus Not Delivered: %1$@ U\n" = "Son Bolus iletilmedi: %1$@ Ü\n";
+
+/* The format string for Delivery Status: (1: delivery status string) */
+"Delivery Status: %1$@\n" = "İletim durumu: %1$@\n";
+
+/* The format string for minutes (1: number of minutes string) */
+"%1$@ minutes" = "%1$@ dakika";
+
+/* The format string for Alerts: (1: the alerts string) */
+"Alerts: %1$@\n" = "Uyarılar: %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "Eğer problem devam ederse, başka bir yere geçip tekrar deneyiniz";

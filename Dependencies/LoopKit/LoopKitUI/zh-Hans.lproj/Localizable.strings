@@ -214,6 +214,9 @@
 /* The empty-state text for a configuration value */
 "Tap to set" = "点击设置";
 
+/* Text directing the user to configure their first override preset */
+"Tap '+' to create a new override preset." = "Tap '+' to create a new override preset.";
+
 /* The text for the override target range setting */
 "Target Range" = "目标范围";
 

@@ -50,7 +50,7 @@
 "InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@" = "Болюс прерван%1$@ ед (%2$@ ед намечено) %3$@ %4$@ %5$@";
 
 /* Description for low reservoir alarm */
-"Low reservoir advisory alarm" = "Оповещение о малом запасе инсулина в картридже";
+"Low reservoir advisory alarm" = "Оповещение о малом запасе инсулина";
 
 /* Recovery suggestion when no RileyLink is available */
 "Make sure your RileyLink is nearby and powered on" = "Убедитесь, что RileyLink поблизости и включен";
@@ -59,7 +59,7 @@
 "No alerts" = "Активных оповещений нет";
 
 /* Error message shown when no pod is paired */
-"No pod paired" = "Нет сопряжения с подом";
+"No pod paired" = "Нет сопряженного пода";
 
 /* Error message shown when no response from pod was received */
 "No response from pod" = "Нет ответа от пода";
@@ -166,7 +166,7 @@
 "Unexpected response from pod" = "Неожиданный отклик Omnipod";
 
 /* The format string for Unknown pod fault (1: The fault code value) */
-"Unknown pod fault %1$03d" = "Неизвестная неполадка Omnipod";
+"Unknown pod fault %1$03d" = "Неизвестная неполадка Omnipod %1$03d";
 
 /* Recovery suggestion when operation could not be completed due to existing bolus in progress */
 "Wait for existing bolus to finish, or cancel bolus" = "Дождитесь окончания подачи болюса или отмените его";

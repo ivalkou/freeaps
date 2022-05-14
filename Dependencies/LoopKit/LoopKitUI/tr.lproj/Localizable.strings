@@ -45,7 +45,7 @@
 "Basal, bolus, and correction insulin dose amounts are unaffected." = "Bazal, bolus ve düzeltme insülin doz miktarları etkilenmez.";
 
 /* The title of the cancel action in an action sheet */
-"Cancel" = "Vazgeç";
+"Cancel" = "İptal Et";
 
 /* The text for the override cancellation button */
 "Cancel Override" = "Geçersiz kılmayı İptal et";
@@ -141,7 +141,7 @@
 "Medium" = "Orta";
 
 /* Placeholder for minimum value in glucose range */
-"min" = "dk";
+"min" = "min";
 
 /* Alert action title to open error help */
 "More Info" = "Daha Fazla Bilgi";
@@ -214,6 +214,9 @@
 /* The empty-state text for a configuration value */
 "Tap to set" = "Ayarlamak için dokun";
 
+/* Text directing the user to configure their first override preset */
+"Tap '+' to create a new override preset." = "Yeni bir geçersiz kılma ön ayarı oluşturmak için '+' öğesine dokunun.";
+
 /* The text for the override target range setting */
 "Target Range" = "Hedef Aralığı";
 
@@ -230,7 +233,7 @@
 "The maximum allowed amount is %@ grams" = "İzin verilen maksimum miktar %@ gramdır";
 
 /* The schedule table view header describing the configured time zone difference from the default time zone. The substitution parameters are: (1: time zone name)(2: +/-)(3: time interval) */
-"Times in %1$@%2$@%3$@" = "Saat dilimi %1$@%2$@%3$@";
+"Times in %1$@%2$@%3$@" = "Zaman saat dilimi %1$@%2$@%3$@";
 
 /* The unit string for units per hour */
 "U/hour" = "Ü/Sa";

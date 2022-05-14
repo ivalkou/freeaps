@@ -26,7 +26,7 @@
 "Firmware" = "固件";
 
 /* The title of the cell showing current rileylink frequency */
-"Frequency" = "频段";
+"Frequency" = "Frequency";
 
 /* The title of the cell showing device name */
 "Name" = "设备名称";
@@ -38,64 +38,64 @@
 "Signal Strength" = "信号强度";
 
 /* The header of the cells showing connection monitoring */
-"Connection Monitoring" = "连接状态设置";
+"Connection Monitoring" = "Connection Monitoring";
 
 /* The title of the cell showing uptime */
-"Uptime" = "Uptime";
+"Uptime" = "正常运行时间";
 
 /* The title of the cell showing battery level */
 "Battery level" = "电池电量";
 
 /* The title of the cell showing Voltage */
-"Voltage" = "电压";
+"Voltage" = "Voltage";
 
 /* "The title of the section for alerts" */
 "Alert" = "警报";
 
 /* The title of the cell showing Low Battery Alert */
-"Low Battery Alert" = "电池报警";
+"Low Battery Alert" = "Low Battery Alert";
 
 /* Header of list showing battery level alert options */
-"Battery level Alert" = "电池电量警报";
+"Battery level Alert" = "Battery level Alert";
 
 /* Battery level alert OFF in list of options */
 "OFF" = "关闭";
 
 /* The title of the command to update diagnostic LEDs */
-"Diagnostic LEDs" = "诊断指示灯";
+"Diagnostic LEDs" = "Diagnostic LEDs";
 
 /* The title of the command to fetch RileyLink statistics */
-"Get RileyLink Statistics" = "获取 RileyLink 统计";
+"Get RileyLink Statistics" = "Get RileyLink Statistics";
 
 /* The title of the command to invert BLE connection LED logic */
-"Invert LED Logic" = "反转指示灯逻辑。";
+"Invert LED Logic" = "Invert LED Logic";
 
 /* The header of the cells showing test commands */
-"Test Commands" = "测试命令";
+"Test Commands" = "Test Commands";
 
 /* The title of the cell showing Lighten Yellow LED */
-"Lighten Yellow LED" = "点亮黄色指示灯";
+"Lighten Yellow LED" = "Lighten Yellow LED";
 
 /* The title of the cell showing Lighten Yellow LED */
-"Lighten Red LED" = "点亮红色指示灯";
+"Lighten Red LED" = "Lighten Red LED";
 
 /* The title of the cell showing Test Vibration */
-"Test Vibration" = "测试振动";
+"Test Vibration" = "测试震动";
 
 /* The title of the cell for sounding device finding piezo */
-"Find Device" = "寻找设备";
+"Find Device" = "查找设备";
 
 /* The title of the cell for connection LED */
-"Connection LED" = "连接指示灯";
+"Connection LED" = "Connection LED";
 
 /* The title of the cell for connection vibration */
-"Connection Vibration" = "连接振动";
+"Connection Vibration" = "Connection Vibration";
 
 /* Detail text when battery alert disabled. */
 "Off" = "关闭";
 
 /* Text indicating LED Mode is on */
-"On" = "开启";
+"On" = "开";
 
 /* Text indicating LED Mode is off */
 "Off" = "关闭";

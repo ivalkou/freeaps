@@ -7,18 +7,11 @@
 //
 
 
-func fractionThrough<Metric: FloatingPoint>(
-    _ value: Metric,
-    in range: ClosedRange<Metric>,
-    using transform: (Metric) -> Metric = { $0 }
-) -> Metric {
+func fractionThrough<T: FloatingPoint>(
+    _ value: T,
+    in range: ClosedRange<T>,
+    using transform: (T) -> T = { $0 }
+) -> T {
     let transformedLowerBound = transform(range.lowerBound)
     return (transform(value) - transformedLowerBound) / (transform(range.upperBound) - transformedLowerBound)
-}
-
-func interpolatedValue<Metric: FloatingPoint>(
-    at fraction: Metric,
-    through range: ClosedRange<Metric>
-) -> Metric {
-    fraction * (range.upperBound - range.lowerBound) + range.lowerBound
 }

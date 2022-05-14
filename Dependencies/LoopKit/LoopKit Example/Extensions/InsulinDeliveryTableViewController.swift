@@ -9,4 +9,4 @@
 import LoopKitUI
 
 
-extension LegacyInsulinDeliveryTableViewController: IdentifiableClass { }
+extension InsulinDeliveryTableViewController: IdentifiableClass { }

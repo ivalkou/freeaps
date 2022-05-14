@@ -10,8 +10,8 @@ import Foundation
 
 public class PumpSuspendTreatment: NightscoutTreatment {
 
-    public init(timestamp: Date, enteredBy: String, id: String? = nil, syncIdentifier: String? = nil) {
-        super.init(timestamp: timestamp, enteredBy: enteredBy, id: id, eventType: "Suspend Pump", syncIdentifier: syncIdentifier)
+    public init(timestamp: Date, enteredBy: String) {
+        super.init(timestamp: timestamp, enteredBy: enteredBy, eventType: "Suspend Pump")
     }
 
 }

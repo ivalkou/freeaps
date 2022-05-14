@@ -11,7 +11,7 @@ import HealthKit
 
 public enum PumpManagerResult<T> {
     case success(T)
-    case failure(PumpManagerError)
+    case failure(Error)
 }
 
 public protocol PumpManagerStatusObserver: AnyObject {
@@ -38,7 +38,7 @@ public protocol PumpManagerDelegate: DeviceManagerDelegate, PumpManagerStatusObs
 
     func pumpManager(_ pumpManager: PumpManager, hasNewPumpEvents events: [NewPumpEvent], lastReconciliation: Date?, completion: @escaping (_ error: Error?) -> Void)
 
-    func pumpManager(_ pumpManager: PumpManager, didReadReservoirValue units: Double, at date: Date, completion: @escaping (_ result: Result<(newValue: ReservoirValue, lastValue: ReservoirValue?, areStoredValuesContinuous: Bool), Error>) -> Void)
+    func pumpManager(_ pumpManager: PumpManager, didReadReservoirValue units: Double, at date: Date, completion: @escaping (_ result: PumpManagerResult<(newValue: ReservoirValue, lastValue: ReservoirValue?, areStoredValuesContinuous: Bool)>) -> Void)
 
     func pumpManager(_ pumpManager: PumpManager, didAdjustPumpClockBy adjustment: TimeInterval)
 
@@ -80,7 +80,7 @@ public protocol PumpManager: DeviceManager {
     /// The primary client receiving notifications about the pump lifecycle
     /// All delegate methods are called on `delegateQueue`
     var pumpManagerDelegate: PumpManagerDelegate? { get set }
-    
+
     /// Whether the PumpManager provides DoseEntry values for scheduled basal delivery. If false, Loop will use the basal schedule to infer normal basal delivery during times not overridden by:
     ///  - Temporary basal delivery
     ///  - Suspend/Resume pairs
@@ -95,7 +95,7 @@ public protocol PumpManager: DeviceManager {
     
     /// The most-recent status
     var status: PumpManagerStatus { get }
-    
+
     /// Adds an observer of changes in PumpManagerStatus
     ///
     /// Observers are held by weak reference.
@@ -112,12 +112,10 @@ public protocol PumpManager: DeviceManager {
     /// - Parameter observer: The observing object
     func removeStatusObserver(_ observer: PumpManagerStatusObserver)
     
-    /// Ensure that the pump's data (reservoir/events) is up to date.  If not, fetch it.
-    /// After a successful fetch, the PumpManager should call the completion block.
-    /// Then, it must call the delegate method `pumpManagerRecommendsLoop(_:)` if it has an accurate and up to date understanding of insulin delivery
-    /// and has reported it via the appropriate status observer and delegate calls.
-    func ensureCurrentPumpData(completion: (() -> Void)?)
-    
+    /// Fetch the pump data (reservoir/events) if it is out of date.
+    /// After a successful fetch, the PumpManager should trigger a loop by calling the delegate method `pumpManagerRecommendsLoop(_:)`
+    func assertCurrentPumpData()
+
     /// Loop calls this method when the current environment requires the pump to provide its own periodic
     /// scheduling via BLE.
     /// The manager may choose to still enable its own heartbeat even if `mustProvideBLEHeartbeat` is false
@@ -130,10 +128,12 @@ public protocol PumpManager: DeviceManager {
     ///
     /// - Parameters:
     ///   - units: The number of units to deliver
-    ///   - automatic: Whether the dose was triggered automatically as opposed to commanded by user
+    ///   - startDate: The date the bolus command was originally set
+    ///   - automatic: bool is true for auto/micro bolus, false if user initiates bolus
+    ///   - willRequest: A closure called just before the pump command is sent, if all preconditions are met
     ///   - completion: A closure called after the command is complete
     ///   - result: A DoseEntry or an error describing why the command failed
-    func enactBolus(units: Double, automatic: Bool, completion: @escaping (_ result: PumpManagerResult<DoseEntry>) -> Void)
+    func enactBolus(units: Double, at startDate: Date, automatic: Bool, willRequest: @escaping (_ dose: DoseEntry) -> Void, completion: @escaping (_ result: PumpManagerResult<DoseEntry>) -> Void)
 
     /// Cancels the current, in progress, bolus.
     ///
@@ -147,9 +147,10 @@ public protocol PumpManager: DeviceManager {
     /// - Parameters:
     ///   - unitsPerHour: The temporary basal rate to set
     ///   - duration: The duration of the temporary basal rate.
+    ///   - automatic: bool is false for a manually enabled temp basal, true for Loop enacted or suggested temp basal
     ///   - completion: A closure called after the command is complete
     ///   - result: A DoseEntry or an error describing why the command failed
-    func enactTempBasal(unitsPerHour: Double, for duration: TimeInterval, completion: @escaping (_ result: PumpManagerResult<DoseEntry>) -> Void)
+    func enactTempBasal(unitsPerHour: Double, for duration: TimeInterval, automatic: Bool, completion: @escaping (_ result: PumpManagerResult<DoseEntry>) -> Void)
 
     /// Send a command to the pump to suspend delivery
     ///
@@ -164,25 +165,6 @@ public protocol PumpManager: DeviceManager {
     ///   - completion: A closure called after the command is complete
     ///   - error: An error describing why the command failed
     func resumeDelivery(completion: @escaping (_ error: Error?) -> Void)
-    
-    /// Notifies the PumpManager of a change in the user's preference for maximum basal rate.
-    ///
-    /// - Parameters:
-    ///   - rate: The maximum rate the pumpmanager should expect to receive in an enactTempBasal command.
-    func setMaximumTempBasalRate(_ rate: Double)
-
-    typealias SyncSchedule = (_ items: [RepeatingScheduleValue<Double>], _ completion: @escaping (Result<BasalRateSchedule, Error>) -> Void) -> Void
-
-    /// Sync the schedule of basal rates to the pump, annotating the result with the proper time zone.
-    ///
-    /// - Precondition:
-    ///   - `scheduleItems` must not be empty.
-    ///
-    /// - Parameters:
-    ///   - scheduleItems: The items comprising the basal rate schedule
-    ///   - completion: A closure called after the command is complete
-    ///   - result: A BasalRateSchedule or an error describing why the command failed
-    func syncBasalRateSchedule(items scheduleItems: [RepeatingScheduleValue<Double>], completion: @escaping (_ result: Result<BasalRateSchedule, Error>) -> Void)
 }
 
 
@@ -205,5 +187,4 @@ public extension PumpManager {
             completion()
         }
     }
-
 }

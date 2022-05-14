@@ -1,0 +1,13 @@
+language: objective-c
+osx_image: xcode11
+
+before_script:
+    - carthage bootstrap
+
+script:
+    # Build frameworks and run tests
+    - xcodebuild -project CGMBLEKit.xcodeproj -scheme Shared build -destination name="iPhone 8" test 
+    # Build apps
+    - xcodebuild -project CGMBLEKit.xcodeproj -scheme "CGMBLEKit Example" build -destination name="iPhone 8"
+    - xcodebuild -project CGMBLEKit.xcodeproj -scheme ResetTransmitter build -destination name="iPhone 8"
+

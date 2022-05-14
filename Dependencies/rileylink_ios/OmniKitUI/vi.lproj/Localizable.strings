@@ -35,6 +35,9 @@
 /* The title of the cell showing the pod activated at time */
 "Active Time" = "Thời gian Hoạt động";
 
+/* The title of the cell showing the Pod Active Clock */
+"Pod Active Clock" = "Pod Active Clock";
+
 /* The title of the cell showing alarm status */
 "Alarms" = "Cảnh báo";
 
@@ -68,6 +71,9 @@
 /* The title of the configuration section in settings */
 "Configuration" = "Cấu hình";
 
+/* The title of the Insulin Type */
+"Insulin Type" = "Insulin Type";
+
 /* The title of the continue action in an action sheet */
 "Continue" = "Tiếp tục";
 
@@ -75,7 +81,7 @@
 "Deactivate" = "Hủy kích hoạt";
 
 /* Button title for pod deactivation
- Button title to deactivate pod */
+   Button title to deactivate pod */
 "Deactivate Pod" = "Hủy kích hoạt Pod";
 
 /* Button title to delete Omnipod PumpManager */
@@ -98,6 +104,18 @@
 
 /* The alert title for enable bolus beeps error */
 "Error enabling bolus beeps" = "Lỗi trong việc bật tiếng beep liều bolus";
+
+/* The alert title for enable Confirmation Beeps */
+"Enable Confirmation Beeps" = "Enable Confirmation Beeps";
+
+/* The alert title for Disable Confirmation Beep */
+"Disable Confirmation Beeps" = "Disable Confirmation Beeps";
+
+/* The alert title for enable Automatic Bolus Beeps */
+"Enable Automatic Bolus Beeps" = "Enable Automatic Bolus Beeps";
+
+/* The alert title for Disable Automatic Bolus Beeps */
+"Disable Automatic Bolus Beeps" = "Disable Automatic Bolus Beeps";
 
 /* The alert title for a resume error */
 "Error Resuming" = "Lỗi khi đang tái thực hiện";
@@ -160,7 +178,7 @@
 "Play Test Beeps" = "Kiểm tra tiếng Beep";
 
 /* Progress message for play test beeps. */
-"Play Test Beeps…" = "Kiểm tra tiếng Beep…";
+"Playing Test Beeps…" = "Playing Test Beeps…";
 
 /* The title of the cell showing the pod pm version */
 "PM Version" = "PM Version";
@@ -181,7 +199,7 @@
 "Remaining" = "Đang còn lại";
 
 /* Label indicating pod replacement necessary
- The title of the command to replace pod */
+   The title of the command to replace pod */
 "Replace Pod" = "Thay thế Pod";
 
 /* The title of the command to replace pod when there is a pod fault */
@@ -194,7 +212,7 @@
 "Retry Pod Deactivation" = "Hủy kích hoạt pod lại";
 
 /* Title of button to save delivery limit settings
- Title of button to sync basal profile when no pod paired */
+   Title of button to sync basal profile when no pod paired */
 "Save" = "Lưu";
 
 /* The detail text of the basal row when pod is running scheduled basal */
@@ -229,3 +247,33 @@
 
 /* The detail text for delivered insulin when no measurement is available */
 "Unknown" = "Không xác định";
+
+/* The title of the diagnostics section in settings */
+"Diagnostics" = "Diagnostics";
+
+/* The diagnostic command Read Pod Status */
+"Read Pod Status" = "Read Pod Status";
+
+/* The diagnostic command Read Pulse Log */
+"Read Pulse Log" = "Read Pulse Log";
+
+/* The title of the pod details section in settings */
+"Pod Details" = "Pod Details";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Please bring only original pod in range or deactivate original pod";
+
+/* The format string for Last Bolus Not Delivered: (1: bolus not delivered string)*/
+"Last Bolus Not Delivered: %1$@ U\n" = "Last Bolus Not Delivered: %1$@ U\n";
+
+/* The format string for Delivery Status: (1: delivery status string) */
+"Delivery Status: %1$@\n" = "Delivery Status: %1$@\n";
+
+/* The format string for minutes (1: number of minutes string) */
+"%1$@ minutes" = "%1$@ minutes";
+
+/* The format string for Alerts: (1: the alerts string) */
+"Alerts: %1$@\n" = "Alerts: %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "If the problem persists, move to a new area and try again";

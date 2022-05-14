@@ -1,11 +1,9 @@
+
 /* Class = "UITableViewSection"; headerTitle = "Remove POD"; ObjectID = "1LF-te-Bdd"; */
 "1LF-te-Bdd.headerTitle" = "Remove POD";
 
 /* Class = "UINavigationItem"; title = "RileyLink Setup"; ObjectID = "3HH-eJ-lRh"; */
 "3HH-eJ-lRh.title" = "RileyLink Setup";
-
-/* Class = "UITableViewController"; title = "Pod Settings"; ObjectID = "6vo-Ov-UpE"; */
-"6vo-Ov-UpE.title" = "Pod Settings";
 
 /* Class = "UITableViewController"; title = "Pump Setup"; ObjectID = "91O-Un-vKc"; */
 "91O-Un-vKc.title" = "Pump Setup";
@@ -46,9 +44,6 @@
 /* Class = "UITableViewController"; title = "Pump Setup"; ObjectID = "k1Y-x4-m0a"; */
 "k1Y-x4-m0a.title" = "Pump Setup";
 
-/* Class = "UILabel"; text = "Review your settings below. They will be programmed into the pod during pairing. You can change these settings at any time in Loopʼs Settings screen."; ObjectID = "kLL-SQ-K0a"; */
-"kLL-SQ-K0a.text" = "Review your settings below. They will be programmed into the pod during pairing. You can change these settings at any time in Loopʼs Settings screen.";
-
 /* Class = "UINavigationItem"; title = "Setup Complete"; ObjectID = "nDb-R5-e02"; */
 "nDb-R5-e02.title" = "Setup Complete";
 
@@ -61,7 +56,7 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "vEc-Km-ewe"; */
 "vEc-Km-ewe.text" = "Label";
 
-/* Class = "UILabel"; text = "Fill a new pod with insulin. Listen for 2 beeps from the pod during filling. Keep RileyLink adjacent to the pod during pairing."; ObjectID = "vmF-Dc-3DS"; */
+/* Class = "UILabel"; text = "Fill a new pod with insulin. Listen for 2 beeps from the pod during filling. Keep the RileyLink about 6 inches from the pod during pairing."; ObjectID = "vmF-Dc-3DS"; */
 "vmF-Dc-3DS.text" = "Fill a new pod with insulin. Listen for 2 beeps from the pod during filling. Keep the RileyLink about 6 inches from the pod during pairing.";
 
 /* Class = "UINavigationItem"; title = "Replace Pod"; ObjectID = "yy1-xf-HdR"; */

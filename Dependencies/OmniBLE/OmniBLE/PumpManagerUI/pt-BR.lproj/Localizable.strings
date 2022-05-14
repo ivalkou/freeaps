@@ -1,0 +1,502 @@
+/* The text of the loading label when pairing */
+"Pairing…" = "Emparelhando…";
+
+/* The text of the loading label when priming */
+"Priming…" = "Preparando…";
+
+/* The text of the loading label when pod is primed */
+"Primed" = "Preparado";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "Se o problema persistir, mova para uma nova área e tente novamente";
+
+/* Button title to pair with pod during setup*/
+"Pair" = "Emparelhar";
+
+/* Button title to deactivate pod because of fault during setup */
+"Deactivate" = "Desativar";
+
+/* Confirmation message for shutting down a pod */
+"Are you sure you want to shutdown this pod?" = "Tem certeza de que deseja encerrar este pod?";
+
+/* Button title to deactivate pod */
+"Deactivate Pod" = "Desativar Pod";
+
+/* The title of the continue action in an action sheet */
+"Continue" = "Continuar";
+
+/* Title text for button to disable confirmation beeps" */
+"Disable Confirmation Beeps" = "Ativar Som de Confirmação";
+
+/* Title text for button to enable confirmation beeps */
+"Enable Confirmation Beeps" = "Ativar Som de Confirmação";
+
+/* Title text for button to disable automatic bolus beeps */
+"Disable Automatic Bolus Beeps" = "Desativar Som de Bolus Automático";
+
+/* Title text for button to enable automatic bolus beeps */
+"Enable Automatic Bolus Beeps" = "Ativar Som de Bolus Automático";
+
+/* Title of the pod settings view controller" */
+"Pod Settings" = "Configurações do Pod";
+
+/* The title of the configuration section in settings */
+"Configuration" = "Configuração";
+
+/* The title of the diagnostics section in settings */
+"Diagnostics" = "Diagnósticos";
+
+/* The title of the pod details section in settings */
+"Pod Details" = "Detalhes do Pod";
+
+/* The title of the cell showing alarm status */
+"Alarms" = "Alarmes";
+
+/* The title of the cell showing the pod expiration */
+"Expires" = "Expira";
+
+/* The title of the cell showing the pod expiration after expiry */
+"Expired" = "Expirada";
+
+/* The title of the cell showing the pod active clock */
+"Pod Active Clock" = "Relógio Ativo do Pod";
+
+/* The title of the cell showing pod bolus status */
+"Bolus Delivery" = "Entrega de Bolus";
+
+/* The title of the cell showing pod basal status */
+"Basal Delivery" = "Entrega Basal";
+
+/* The title of the cell showing reservoir status */
+"Reservoir" = "Reservatório";
+
+/* The title of the cell showing delivered insulin */
+"Insulin Delivered" = "Insulina Entregue";
+
+/* The title of the cell showing the pod expiration reminder date */
+"Expiration Reminder" = "Lembrete de Expiração";
+
+/* The title of the command to change pump time zone */
+"Change Time Zone" = "Mudar Fuso Horário";
+
+/* The title of the command to pair new pod */
+"Pair New Pod" = "Emparelhar Novo Pod";
+
+/* The title of the command to replace pod when there is a pod fault */
+"Replace Pod Now" = "Substituir Pod Agora";
+
+/* The title of the command to finish pod setup */
+"Finish pod setup" = "Concluir configuração do pod";
+
+/* The title of the command to replace pod */
+"Replace Pod" = "Substituir Pod";
+
+/* The title of the command to read the pod status" */
+"Read Pod Status" = "Ler Estado do Pod";
+
+/* The title of the command to play test beeps */
+"Play Test Beeps" = "Tocar Bipes de Teste";
+
+/* The title of the command to read the pulse log */
+"Read Pulse Log" = "Ler Registro de Pulso";
+
+/* The title of the command to run the test command */
+"Test Command" = "Testar Comando";
+
+/* The title of the cell showing the pod lot number" */
+"Lot Number" = "Número de Lote";
+
+/* The title of the cell showing the pod sequence number */
+"Sequence Number" = "Número da Sequência";
+
+/* The title of the cell showing the firmware version */
+"Firmware Version" = "Versão do Firmware";
+
+/* The title of the cell showing the BLE firmware version" */
+"BLE Firmware Version" = "Versão do Firmware BLE";
+
+/* The title of the cell showing the BLE device name */
+"BLE Device Name" = "Nome do Dispositivo BLE";
+
+/* Title text for the button to delete Omnipod Dash PumpManager */
+"Switch from Omnipod Dash Pumps" = "Mudar de Bombas Omnipod Dash";
+
+/* The alert title for a resume error */
+"Error Resuming" = "Erro ao Retomar";
+
+/* The alert title for a suspend error */
+"Error Suspending" = "Erro ao Suspender";
+
+/* The alert title for enable confirmation beeps error */
+"Error enabling confirmation beeps" = "Erro ao habilitar sons de confirmação";
+
+/* The alert title for disable confirmation beeps error */
+"Error disabling confirmation beeps" = "Erro ao desabilitar sons de confirmação";
+
+/* Confirmation message for removing Omnipod Dash PumpManager */
+"Are you sure you want to stop using Omnipod Dash?" = "Tem certeza de que deseja parar de usar o Omnipod Dash?";
+
+/* Button title to delete Omnipod Dash PumpManager */
+"Delete Omnipod Dash" = "Remover Omnipod Dash";
+
+/* The title of the cancel action in an action sheet */
+"Cancel" = "Cancelar";
+
+/* Alerts detail when no alerts unacknowledged */
+"None" = "Nenhum";
+
+/* The detail text of the basal row when pod is suspended */
+"Suspended" = "Suspenso";
+
+/* Format string for temp basal rate. (1: The localized amount) */
+"%@ U/hour" = "%@ U/hora";
+
+/* The detail text of the basal row when pod is running scheduled basal */
+"Schedule" = "Agendada";
+
+/* The detail text for bolus delivery when no bolus is being delivered */
+"None" = "Nenhum";
+
+/* Format string for bolus progress when finished. (1: The localized amount) */
+"%@ U (Finished)" = "%@ U (Completo)";
+
+/* Format string for bolus progress. (1: The delivered amount) (2: The programmed amount) (3: the percent progress) */
+"%@ U of %@ U (%@)" = "%@ U do %@ U (%@)";
+
+/* The detail text for delivered insulin when no measurement is available */
+"Unknown" = "Desconhecido";
+
+/* Format string for delivered insulin. (1: The localized amount) */
+"%@ U" = "%@ U";
+
+/* Format string for reservoir reading when above or equal to maximum reading. (1: The localized amount) */
+"%@+ U" = "%@+ U";
+
+/* Format string for insulin remaining in reservoir. (1: The localized amount) */
+"%@ U" = "%@ U";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.poweredOff) */
+"Bluetooth is powered off" = "O Bluetooth está desligado";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.resetting) */
+"Bluetooth is resetting" = "O Bluetooth está reiniciando";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.unauthorized) */
+"Bluetooth use is unauthorized" = "Uso de Bluetooth não autorizado";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.unsupported) */
+"Bluetooth use unsupported on this device" = "Uso de Bluetooth não suportado neste dispositivo";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.unknown) */
+"Bluetooth is unavailable for an unknown reason." = "O Bluetooth não está disponível por motivos desconhecidos.";
+
+/* The format string for BluetoothManagerError.bluetoothNotAvailable for unknown state (1: the unknown state) */
+"Bluetooth is unavailable: %1$@" = "Bluetooth indisponível: %1$@";
+
+/* recoverySuggestion for BluetoothManagerError.bluetoothNotAvailable(.poweredOff) */
+"Turn bluetooth on" = "Ativar o Bluetooth";
+
+/* recoverySuggestion for BluetoothManagerError.bluetoothNotAvailable(.resetting) */
+"Try again" = "Tente novamente";
+
+/* recoverySuggestion for BluetoothManagerError.bluetoothNotAvailable(.unauthorized) */
+"Please enable bluetooth permissions for this app in system settings" = "Por favor, ative as permissões de bluetooth para este aplicativo nas configurações do sistema";
+
+/* recoverySuggestion for BluetoothManagerError.bluetoothNotAvailable(.unsupported) */
+"Please use a different device with bluetooth capabilities" = "Por favor, use um dispositivo diferente com recursos do bluetooth";
+
+/* Error message description for PeripheralManagerError.notReady */
+"Peripheral Not Ready" = "Periférico Não Pronto";
+
+/* Error message description for PeripheralManagerError.incorrectResponse */
+"Incorrect Response" = "Resposta Incorreta";
+
+/* Error message description for PeripheralManagerError.timeout */
+"Timeout" = "Tempo Esgotado";
+
+/* Error message description for PeripheralManagerError.emptyValue */
+"Empty Value" = "Valor Vazio";
+
+/* Error message description for PeripheralManagerError.unknownCharacteristic */
+"Unknown Characteristic" = "Característica Desconhecida";
+
+/* Error message description for PeripheralManagerError.nack */
+"Nack" = "Nack";
+
+/* The format string for PodProtocolError.invalidLTKKey (1: message associated with error) */
+"Invalid LTK Key: %1$@" = "Chave LTK inválida: %1$@";
+
+/* The format string for PodProtocolError.pairingException (1: message associated with error)" */
+"Pairing Exception: %1$@" = "Exceção de Pareamento: %1$@";
+
+/* The format string for PodProtocolError.messageIOException (1: message associated with error)" */
+"Message IO Exception: %1$@" = "Exceção de Mensagem IO: %1$@";
+
+/* The format string for PodProtocolError.couldNotParseMessageException (1: message associated with error) */
+"Could not parse message: %1$@" = "Não foi possível processar a mensagem: %1$@";
+
+/* The format string for PodProtocolError.incorrectPacketException (1: payload)(2: location) */
+"Incorrect Packet Exception: %1$@ (location=%2$d)" = "Exceção de Pacote Incorreto: %1$@ (local=%2$d)";
+
+/* The format string for description of PodProtocolError.invalidCrc (1:payload crc)(2:computed crc) */
+"Payload crc32 %1$@ does not match computed crc32 %2$@" = "Crc32 %1$@ do Payload não coincide com crc32 %2$@ calculado";
+
+/* Description for auto-off alarm */
+"Auto-off alarm" = "Alarme de desligamento automático";
+
+/* Pod state when running below fifty units */
+"Below 50 units" = "Abaixo de 50 unidades";
+
+/* Error message shown when operation could not be completed due to existing bolus in progress */
+"Bolus in progress" = "Bolus em andamento";
+
+/* The format string describing a bolus. (1: The amount delivered)(2: Start time of the dose)(3: duration)(4: scheduled certainty) */
+"Bolus: %1$@U %2$@ %3$@ %4$@" = "Bolus: %1$@U %2$@ %3$@ %4$@";
+
+/* Delivery status when bolusing */
+"Bolusing" = "Aplicando bolus";
+
+/* Delivery status when bolusing and temp basal is running */
+"Bolusing with temp basal" = "Aplicando bolus com basal temporária";
+
+/* Pod state when inserting cannula */
+"Cannula inserting" = "Inserindo cânula";
+
+/* String describing a dose that was certainly scheduled */
+"Certain" = "Certo";
+
+/* Pod state when pod has been deactivated */
+"Deactivated" = "Desativado";
+
+/* Description for Empty reservoir pod fault */
+"Empty reservoir" = "Reservatório vazio";
+
+/* Error message shown when empty response from pod was received */
+"Empty response from pod" = "Resposta do pod vazia";
+
+/* Pod state error event logged shutting down */
+"Error event logged, shutting down" = "Evento de erro registrado, desligando";
+
+/* Description for expiration alert */
+"Expiration alert" = "Alerta de expiração";
+
+/* Description for finish setup */
+"Finish setup " = "Concluir configuração ";
+
+/* Pod inititialized */
+"Initialized" = "Inicializado";
+
+/* The format string for Internal pod fault (1: The fault code value) */
+"Internal pod fault %1$03d" = "Falha interna do pod %1$03d";
+
+/* The format string describing a bolus that was interrupted. (1: The amount delivered)(2: The amount scheduled)(3: Start time of the dose)(4: duration)(5: scheduled certainty) */
+"InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@" = "BolusInterrompido: %1$@ U (%2$@ U agendado) %3$@ %4$@ %5$@";
+
+/* Description for low reservoir alarm */
+"Low reservoir advisory alarm" = "Alarme de reservatório baixo";
+
+/* Pod alert state when no alerts are active */
+"No alerts" = "Sem alertas";
+
+/* Error message shown when no pod is paired */
+"No pod paired" = "Nenhum pod emparelhado";
+
+/* Error message shown when no response from pod was received */
+"No response from pod" = "Nenhuma resposta do pod";
+
+/* Delivery status when basal is running
+   Pod state when running above fifty units */
+"Normal" = "Normal";
+
+/* Description for Occlusion detected pod fault */
+"Occlusion detected" = "Oclusão detectada";
+
+/* Generic title of the omnipod pump manager */
+"Omnipod" = "Omnipod";
+
+/* Pod status after pairing */
+"Paired" = "Emparelhado";
+
+/* Recover suggestion shown when no pod is paired */
+"Please pair a new pod" = "Por favor, emparelhe um novo pod";
+
+/* Error message shown when user cannot pair because pod is already paired */
+"Pod already paired" = "Pod já emparelhado";
+
+/* Error message shown when prime is attempted, but pod is already primed */
+"Pod already primed" = "Pod já preparado";
+
+/* Description for expiration advisory alarm */
+"Pod expiration advisory alarm" = "Alarme de expiração do pod";
+
+/* The title for pod expiration notification */
+"Pod Expiration Notice" = "Aviso de Expiração do Pod";
+
+/* Description for Pod expired pod fault */
+"Pod expired" = "Pod expirado";
+
+/* Format string for pod fault code */
+"Pod Fault: %1$@" = "Falha no Pod: %1$@";
+
+/* Error message when cannula insertion fails because the pod is in an unexpected state */
+"Pod is not in a state ready for cannula insertion." = "Pod não está em um estado pronto para inserção de canula.";
+
+/* Error message when prime fails because the pod is in an unexpected state */
+"Pod is not in a state ready for priming." = "O Pod não está em um estado pronto para preparação.";
+
+/* Error message action could not be performed because pod is suspended */
+"Pod is suspended" = "O pod está suspenso";
+
+/* Pod state when prime or cannula insertion has not completed in the time allotted */
+"Pod setup window expired" = "A janela de configuração do pod expirou";
+
+/* Delivery status when pod is priming
+   Pod status when priming */
+"Priming" = "Preparando";
+
+/* Pod state when ready for basal programming */
+"Ready for basal programming" = "Pronto para programação basal";
+
+/* Pod state when ready for cannula insertion */
+"Ready to insert cannula" = "Pronto para inserir a cânula";
+
+/* The format string describing a resume. (1: Time)(2: Scheduled certainty */
+"Resume: %1$@ %2$@" = "Retomar: %1$@ %2$@";
+
+/* Delivery status when basal is running */
+"Scheduled Basal" = "Basal Agendado";
+
+/* Description for shutdown imminent alarm */
+"Shutdown imminent alarm" = "Desativar alarme iminente";
+
+/* The format string describing a suspend. (1: Time)(2: Scheduled certainty */
+"Suspend: %1$@ %2$@" = "Suspender: %1$@ %2$@";
+
+/* Delivery status when insulin delivery is suspended */
+"Suspended" = "Suspenso";
+
+/* Pod tank fill completed */
+"Tank fill completed" = "Preenchimento do reservatório concluído";
+
+/* Pod power to motor activated */
+"Tank power activated" = "Alimentação do reservatório ativada";
+
+/* Error message shown when temp basal could not be set due to existing temp basal in progress */
+"Temp basal in progress" = "Basal temporária em andamento";
+
+/* Delivery status when temp basal is running */
+"Temp basal running" = "Executando basal temporária";
+
+/* The format string describing a temp basal. (1: The rate)(2: Start time)(3: duration)(4: volume)(5: scheduled certainty */
+"TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "Basal Temporária: %1$@ U/hora %2$@ %3$@ %4$@ U %5$@";
+
+/* The format string for pod expiration notification body (1: time until expiration) */
+"Time to replace your pod! Your pod will expire in %1$@" = "Hora de substituir o seu pod! Seu pod expirará em %1$@";
+
+/* String describing a dose that was possibly scheduled */
+"Uncertain" = "Incerto";
+
+/* Error message shown when empty response from pod was received */
+"Unexpected response from pod" = "Resposta inesperada do pod";
+
+/* The format string for Unknown pod fault (1: The fault code value) */
+"Unknown pod fault %1$03d" = "Falha desconhecida do pod %1$03d";
+
+/* Recovery suggestion when operation could not be completed due to existing bolus in progress */
+"Wait for existing bolus to finish, or cancel bolus" = "Aguarde a conclusão do bolus existente ou cancele-o";
+
+/* Recovery suggestion when operation could not be completed due to existing temp basal in progress */
+"Wait for existing temp basal to finish, or suspend to cancel" = "Aguarde até que a basal temporária seja concluída, ou suspenda para cancelar";
+
+/* Description waiting for pairing reminder */
+"Waiting for pairing reminder" = "Aguardando lembrete de emparelhamento";
+
+/* Error message shown when pod sends ack instead of response */
+"Pod sent ack instead of response" = "Pod enviou ack em vez de resposta";
+
+/* Error message shown when empty response from pod was received" */
+"Unexpected response from pod" = "Resposta inesperada do pod";
+
+/* Error message for when unexpected address is received (1: received address) (2: expected address) */
+"Invalid address 0x%x. Expected 0x%x" = "Endereço inválido 0x%x. Esperado 0x%x";
+
+/* Error message shown when the pod is not connected. */
+"Pod not connected" = "Pod não conectado";
+
+/* Error message action could not be performed because pod is suspended */
+"Pod is suspended" = "Pod suspenso";
+
+/* Format string for pod fault code */
+"Pod Fault: %1$@" = "Falha no Pod: %1$@";
+
+/* Error message when command is rejected because an unacknowledged command is pending. */
+"Communication issue: Unacknowledged command pending." = "Problema de comunicação: Comando pendente não reconhecido.";
+
+/* Format string for invalid message error code (1: error code number) */
+"Command error %1$u" = "Erro de comando %1$u";
+
+/* Format string for unexpected pod change*/
+"Unexpected pod change" = "Alteração inesperada de pod";
+
+/* Format string for activation time exceeded */
+"Activation time exceeded" = "Tempo de ativação excedido";
+
+/* Format string for poor pod signal strength */
+"Poor signal strength" = "Sinal fraco";
+
+/* Format string for pod signal strength too high" */
+"Signal strength too high" = "Sinal forte demais";
+
+/* Error message for PodCommsError.noPodsFound */
+"No pods found" = "Nenhum pod encontrado";
+
+/* Error message for PodCommsError.tooManyPodsFound */
+"Too many pods found" = "Foram encontrados muitos pods";
+
+/* Recovery suggestion when no response is received from pod */
+"Make sure iPhone is nearby the active pod" = "Certifique-se de que iPhone está próximo ao pod ativo";
+
+/* Recovery suggestion when ack received instead of response */
+"Try again" = "Tente novamente";
+
+/* Recovery suggestion when unexpected address received */
+"Crosstalk possible. Please move to a new location" = "Conversação cruzada possível. Por favor, vá para uma nova localização";
+
+/* Recovery suggestion when no pod is available */
+"Make sure your pod is nearby and try again." = "Certifique-se que seu pod está por perto e tente novamente.";
+
+/* Recovery suggestion when operation could not be completed due to existing bolus in progress */
+"Wait for existing bolus to finish, or cancel bolus" = "Aguarde a conclusão do bolus existente ou cancele-o";
+
+/* Recovery suggestion when operation could not be completed due to existing temp basal in progress */
+"Wait for existing temp basal to finish, or suspend to cancel" = "Aguarde a conclusão da basal temporária existente, ou suspenda para cancelar";
+
+/* Recovery suggestion when pod is suspended" */
+"Resume delivery" = "Retomar entrega";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Por favor, traga apenas o pod original para perto ou desative o pod original";
+
+/* Recovery suggestion when pairing signal strength is too low */
+"Please reposition iPhone relative to the pod" = "Reposicione o iPhone em relação ao pod";
+
+/* Recovery suggestion when pairing signal strength is too high */
+"Please reposition iPhone further from the pod" = "Reposicione o iPhone mais longe do pod";
+
+/* Recovery suggestion for PodCommsError.noPodsFound */
+"Make sure your pod is filled and nearby." = "Certifique-se de que o pod está preenchido e por perto.";
+
+/* Recovery suggestion for PodCommsError.tooManyPodsFound */
+"Move to a new area away from any other pods and try again." = "Mude para uma nova área para longe de qualquer outro pod e tente novamente.";
+
+/* Title text for delivery limits */
+"Delivery Limits" = "Limites de Entrega";
+
+/* The title text for the basal rate schedule */
+"Basal Rates" = "Taxas Basais";
+
+/* The error message shown when Loop's basal schedule has more entries than the pod can support */
+"Too many entries" = "Muitas entradas";
+
+/* The error message shown when Loop's basal schedule has an unsupported rate */
+"Invalid entry" = "Entrada inválida";

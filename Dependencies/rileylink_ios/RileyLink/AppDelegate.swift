@@ -7,9 +7,7 @@
 //
 
 import UIKit
-import SwiftUI
 import CoreData
-import LoopKitUI
 import RileyLinkKit
 
 
@@ -23,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         if let navController = self.window?.rootViewController as? UINavigationController {
-            let mainViewController = MainViewController(deviceDataManager: deviceDataManager, insulinTintColor: .orange, guidanceColors: GuidanceColors(acceptable: .primary, warning: .yellow, critical: .red))
+            let mainViewController = MainViewController(deviceDataManager: deviceDataManager)
             navController.pushViewController(mainViewController, animated: false)
         }
         

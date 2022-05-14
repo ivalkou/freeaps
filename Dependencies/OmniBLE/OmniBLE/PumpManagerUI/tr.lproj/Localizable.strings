@@ -1,0 +1,502 @@
+/* The text of the loading label when pairing */
+"Pairing…" = "Eşleştiriliyor…";
+
+/* The text of the loading label when priming */
+"Priming…" = "Hazırlanıyor…";
+
+/* The text of the loading label when pod is primed */
+"Primed" = "Hazırlandı";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "Eğer problem devam ederse, başka bir yere geçip tekrar deneyiniz";
+
+/* Button title to pair with pod during setup*/
+"Pair" = "Eşleştir";
+
+/* Button title to deactivate pod because of fault during setup */
+"Deactivate" = "Devredışı bırak";
+
+/* Confirmation message for shutting down a pod */
+"Are you sure you want to shutdown this pod?" = "Bu pod'u iptal etmek istediğinizden emin misiniz?";
+
+/* Button title to deactivate pod */
+"Deactivate Pod" = "Pod'u devredışı bırak";
+
+/* The title of the continue action in an action sheet */
+"Continue" = "Devam et";
+
+/* Title text for button to disable confirmation beeps" */
+"Disable Confirmation Beeps" = "Onay Uyarılarını Devre Dışı Bırak";
+
+/* Title text for button to enable confirmation beeps */
+"Enable Confirmation Beeps" = "Onay Uyarılarını Etkinleştir";
+
+/* Title text for button to disable automatic bolus beeps */
+"Disable Automatic Bolus Beeps" = "Otomatik Bolus Uyarılarını Devre Dışı Bırak";
+
+/* Title text for button to enable automatic bolus beeps */
+"Enable Automatic Bolus Beeps" = "Otomatik Bolus Uyarılarını Etkinleştir";
+
+/* Title of the pod settings view controller" */
+"Pod Settings" = "Pod Ayarları";
+
+/* The title of the configuration section in settings */
+"Configuration" = "Yapılandırma";
+
+/* The title of the diagnostics section in settings */
+"Diagnostics" = "Teşhis";
+
+/* The title of the pod details section in settings */
+"Pod Details" = "Pod Ayrıntıları";
+
+/* The title of the cell showing alarm status */
+"Alarms" = "Alarmlar";
+
+/* The title of the cell showing the pod expiration */
+"Expires" = "Süresi doluyor";
+
+/* The title of the cell showing the pod expiration after expiry */
+"Expired" = "Süresi doldu";
+
+/* The title of the cell showing the pod active clock */
+"Pod Active Clock" = "Pod Etkin Saati";
+
+/* The title of the cell showing pod bolus status */
+"Bolus Delivery" = "Bolus İletimi";
+
+/* The title of the cell showing pod basal status */
+"Basal Delivery" = "Bazal İletimi";
+
+/* The title of the cell showing reservoir status */
+"Reservoir" = "Rezervuar";
+
+/* The title of the cell showing delivered insulin */
+"Insulin Delivered" = "İnsülin Gönderildi";
+
+/* The title of the cell showing the pod expiration reminder date */
+"Expiration Reminder" = "Süre Sonu Hatırlatıcısı";
+
+/* The title of the command to change pump time zone */
+"Change Time Zone" = "Zaman dilimini Değiştir";
+
+/* The title of the command to pair new pod */
+"Pair New Pod" = "Yeni Pod Eşleştir";
+
+/* The title of the command to replace pod when there is a pod fault */
+"Replace Pod Now" = "Pod'u şimdi değiştir";
+
+/* The title of the command to finish pod setup */
+"Finish pod setup" = "Pod kurulumunu tamamlayın";
+
+/* The title of the command to replace pod */
+"Replace Pod" = "Pod'u değiştir";
+
+/* The title of the command to read the pod status" */
+"Read Pod Status" = "Pod Durumunu Oku";
+
+/* The title of the command to play test beeps */
+"Play Test Beeps" = "Test Bip Sesi Çal";
+
+/* The title of the command to read the pulse log */
+"Read Pulse Log" = "Sinyal Kaydını Oku";
+
+/* The title of the command to run the test command */
+"Test Command" = "Komutu Dene";
+
+/* The title of the cell showing the pod lot number" */
+"Lot Number" = "Lot Numarası";
+
+/* The title of the cell showing the pod sequence number */
+"Sequence Number" = "Sıra Numarası";
+
+/* The title of the cell showing the firmware version */
+"Firmware Version" = "Donanım Yazılımı Sürümü";
+
+/* The title of the cell showing the BLE firmware version" */
+"BLE Firmware Version" = "BLE Donanım Yazılımı Sürümü";
+
+/* The title of the cell showing the BLE device name */
+"BLE Device Name" = "BLE Aygıt Adı";
+
+/* Title text for the button to delete Omnipod Dash PumpManager */
+"Switch from Omnipod Dash Pumps" = "Omnipod Dash Pompalarından Geçiş Yapın";
+
+/* The alert title for a resume error */
+"Error Resuming" = "Sürdürme Hatası";
+
+/* The alert title for a suspend error */
+"Error Suspending" = "Askıya alırken Hata Oluştu";
+
+/* The alert title for enable confirmation beeps error */
+"Error enabling confirmation beeps" = "Onay Uyarılarını Etkinleştirken hata oluştu";
+
+/* The alert title for disable confirmation beeps error */
+"Error disabling confirmation beeps" = "Onay Uyarılarını devre dışı bırakırken hata oluştu";
+
+/* Confirmation message for removing Omnipod Dash PumpManager */
+"Are you sure you want to stop using Omnipod Dash?" = "Omnipod Dash'ı kullanmayı bırakmak istediğinizden emin misiniz?";
+
+/* Button title to delete Omnipod Dash PumpManager */
+"Delete Omnipod Dash" = "Omnipod Dash'ı Sill";
+
+/* The title of the cancel action in an action sheet */
+"Cancel" = "İptal";
+
+/* Alerts detail when no alerts unacknowledged */
+"None" = "Yok";
+
+/* The detail text of the basal row when pod is suspended */
+"Suspended" = "Askıya Alındı";
+
+/* Format string for temp basal rate. (1: The localized amount) */
+"%@ U/hour" = "%@ Ü/saat";
+
+/* The detail text of the basal row when pod is running scheduled basal */
+"Schedule" = "Planlama";
+
+/* The detail text for bolus delivery when no bolus is being delivered */
+"None" = "Yok";
+
+/* Format string for bolus progress when finished. (1: The localized amount) */
+"%@ U (Finished)" = "%@ Ü (Tamamlandı)";
+
+/* Format string for bolus progress. (1: The delivered amount) (2: The programmed amount) (3: the percent progress) */
+"%@ U of %@ U (%@)" = "%@ Ü %@ Ü 'den (%@)";
+
+/* The detail text for delivered insulin when no measurement is available */
+"Unknown" = "Bilinmiyor";
+
+/* Format string for delivered insulin. (1: The localized amount) */
+"%@ U" = "%@ Ü";
+
+/* Format string for reservoir reading when above or equal to maximum reading. (1: The localized amount) */
+"%@+ U" = "%@+ Ü";
+
+/* Format string for insulin remaining in reservoir. (1: The localized amount) */
+"%@ U" = "%@ Ü";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.poweredOff) */
+"Bluetooth is powered off" = "Bluetooth kapalı";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.resetting) */
+"Bluetooth is resetting" = "Bluetooth sıfırlanıyor";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.unauthorized) */
+"Bluetooth use is unauthorized" = "Bluetooth kullanımı yetkisiz";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.unsupported) */
+"Bluetooth use unsupported on this device" = "Bu cihazda Bluetooth kullanımı desteklenmiyor";
+
+/* Error description for BluetoothManagerError.bluetoothNotAvailable(.unknown) */
+"Bluetooth is unavailable for an unknown reason." = "Bluetooth bilinmeyen bir nedenle kullanılamıyor.";
+
+/* The format string for BluetoothManagerError.bluetoothNotAvailable for unknown state (1: the unknown state) */
+"Bluetooth is unavailable: %1$@" = "Bluetooth kullanılamıyor: %1$@";
+
+/* recoverySuggestion for BluetoothManagerError.bluetoothNotAvailable(.poweredOff) */
+"Turn bluetooth on" = "Bluetooth'u açın";
+
+/* recoverySuggestion for BluetoothManagerError.bluetoothNotAvailable(.resetting) */
+"Try again" = "Yeniden deneyin";
+
+/* recoverySuggestion for BluetoothManagerError.bluetoothNotAvailable(.unauthorized) */
+"Please enable bluetooth permissions for this app in system settings" = "Lütfen sistem ayarlarında bu uygulama için bluetooth izinlerini etkinleştirin";
+
+/* recoverySuggestion for BluetoothManagerError.bluetoothNotAvailable(.unsupported) */
+"Please use a different device with bluetooth capabilities" = "Lütfen bluetooth özelliklerine sahip farklı bir cihaz kullanın";
+
+/* Error message description for PeripheralManagerError.notReady */
+"Peripheral Not Ready" = "Çevre Birimi Hazır Değil";
+
+/* Error message description for PeripheralManagerError.incorrectResponse */
+"Incorrect Response" = "Yanlış Yanıt";
+
+/* Error message description for PeripheralManagerError.timeout */
+"Timeout" = "Zaman Aşımı";
+
+/* Error message description for PeripheralManagerError.emptyValue */
+"Empty Value" = "Boş Değer";
+
+/* Error message description for PeripheralManagerError.unknownCharacteristic */
+"Unknown Characteristic" = "Bilinmeyen Özellik";
+
+/* Error message description for PeripheralManagerError.nack */
+"Nack" = "Nack";
+
+/* The format string for PodProtocolError.invalidLTKKey (1: message associated with error) */
+"Invalid LTK Key: %1$@" = "LTK Anahtarı Geçersiz: %1$@";
+
+/* The format string for PodProtocolError.pairingException (1: message associated with error)" */
+"Pairing Exception: %1$@" = "Eşleştirme İstisnası: %1$@";
+
+/* The format string for PodProtocolError.messageIOException (1: message associated with error)" */
+"Message IO Exception: %1$@" = "İleti GÇ İstisnası: %1$@";
+
+/* The format string for PodProtocolError.couldNotParseMessageException (1: message associated with error) */
+"Could not parse message: %1$@" = "İleti ayrıştırılamadı: %1$@";
+
+/* The format string for PodProtocolError.incorrectPacketException (1: payload)(2: location) */
+"Incorrect Packet Exception: %1$@ (location=%2$d)" = "Hatalı Paket İstisnası: %1$@ (konum=%2$d)";
+
+/* The format string for description of PodProtocolError.invalidCrc (1:payload crc)(2:computed crc) */
+"Payload crc32 %1$@ does not match computed crc32 %2$@" = "Crc32 %1$@ yükü, hesaplanan crc32 %2$@ ile eşleşmiyor";
+
+/* Description for auto-off alarm */
+"Auto-off alarm" = "Otomatik kapanma alarmı";
+
+/* Pod state when running below fifty units */
+"Below 50 units" = "50 ünite'den az";
+
+/* Error message shown when operation could not be completed due to existing bolus in progress */
+"Bolus in progress" = "Bolus devam ediyor";
+
+/* The format string describing a bolus. (1: The amount delivered)(2: Start time of the dose)(3: duration)(4: scheduled certainty) */
+"Bolus: %1$@U %2$@ %3$@ %4$@" = "Bolus: %1$@Ü %2$@ %3$@ %4$@";
+
+/* Delivery status when bolusing */
+"Bolusing" = "Bolus veriliyor";
+
+/* Delivery status when bolusing and temp basal is running */
+"Bolusing with temp basal" = "Geçici bazal ile bolus verme";
+
+/* Pod state when inserting cannula */
+"Cannula inserting" = "Kanül yerleştirme";
+
+/* String describing a dose that was certainly scheduled */
+"Certain" = "Belirli";
+
+/* Pod state when pod has been deactivated */
+"Deactivated" = "Devre dışı";
+
+/* Description for Empty reservoir pod fault */
+"Empty reservoir" = "Rezervuar boş";
+
+/* Error message shown when empty response from pod was received */
+"Empty response from pod" = "Pod'tan boş yanıt";
+
+/* Pod state error event logged shutting down */
+"Error event logged, shutting down" = "Hata olayı günlüğe kaydedildi, kapatılıyor";
+
+/* Description for expiration alert */
+"Expiration alert" = "Süre sonu uyarısı";
+
+/* Description for finish setup */
+"Finish setup " = "Kurulumu Bitir ";
+
+/* Pod inititialized */
+"Initialized" = "Başlatıldı";
+
+/* The format string for Internal pod fault (1: The fault code value) */
+"Internal pod fault %1$03d" = "Dahili pod hatası %1$03d";
+
+/* The format string describing a bolus that was interrupted. (1: The amount delivered)(2: The amount scheduled)(3: Start time of the dose)(4: duration)(5: scheduled certainty) */
+"InterruptedBolus: %1$@ U (%2$@ U scheduled) %3$@ %4$@ %5$@" = "KesilenBolus: %1$@ Ü (%2$@ Ü planlanan) %3$@ %4$@ %5$@";
+
+/* Description for low reservoir alarm */
+"Low reservoir advisory alarm" = "Düşük rezervuar bildirim alarmı";
+
+/* Pod alert state when no alerts are active */
+"No alerts" = "Uyarı yok";
+
+/* Error message shown when no pod is paired */
+"No pod paired" = "Eşleşmiş pod bulunmuyor";
+
+/* Error message shown when no response from pod was received */
+"No response from pod" = "Pod yanıt vermiyor";
+
+/* Delivery status when basal is running
+   Pod state when running above fifty units */
+"Normal" = "Normal";
+
+/* Description for Occlusion detected pod fault */
+"Occlusion detected" = "Tıkanma tespit edildi";
+
+/* Generic title of the omnipod pump manager */
+"Omnipod" = "Omnipod";
+
+/* Pod status after pairing */
+"Paired" = "Eşleştirildi";
+
+/* Recover suggestion shown when no pod is paired */
+"Please pair a new pod" = "Lütfen yeni bir pod eşleştirin";
+
+/* Error message shown when user cannot pair because pod is already paired */
+"Pod already paired" = "Pod zaten eşleştirilmiş";
+
+/* Error message shown when prime is attempted, but pod is already primed */
+"Pod already primed" = "Pod zaten hazır";
+
+/* Description for expiration advisory alarm */
+"Pod expiration advisory alarm" = "Pod sona erme bildirim uyarısı";
+
+/* The title for pod expiration notification */
+"Pod Expiration Notice" = "Pod Sona Erme Bildirimi";
+
+/* Description for Pod expired pod fault */
+"Pod expired" = "Pod süreci sona erdi";
+
+/* Format string for pod fault code */
+"Pod Fault: %1$@" = "Pod Hatası: %1$@";
+
+/* Error message when cannula insertion fails because the pod is in an unexpected state */
+"Pod is not in a state ready for cannula insertion." = "Pod kanül yerleştirmeye hazır durumda değil.";
+
+/* Error message when prime fails because the pod is in an unexpected state */
+"Pod is not in a state ready for priming." = "Pod kullanıma hazır durumda değil.";
+
+/* Error message action could not be performed because pod is suspended */
+"Pod is suspended" = "Pod durduldu";
+
+/* Pod state when prime or cannula insertion has not completed in the time allotted */
+"Pod setup window expired" = "Pod kurulum penceresinin süresi doldu";
+
+/* Delivery status when pod is priming
+   Pod status when priming */
+"Priming" = "Hazırlanıyor";
+
+/* Pod state when ready for basal programming */
+"Ready for basal programming" = "Bazal programlama için hazır";
+
+/* Pod state when ready for cannula insertion */
+"Ready to insert cannula" = "Kanül yerleştirmeye hazır";
+
+/* The format string describing a resume. (1: Time)(2: Scheduled certainty */
+"Resume: %1$@ %2$@" = "Devam Et: %1$@ %2$@";
+
+/* Delivery status when basal is running */
+"Scheduled Basal" = "Planlanan Bazal";
+
+/* Description for shutdown imminent alarm */
+"Shutdown imminent alarm" = "Her an kapanabilir alarmı";
+
+/* The format string describing a suspend. (1: Time)(2: Scheduled certainty */
+"Suspend: %1$@ %2$@" = "Durdurma: %1$@ %2$@";
+
+/* Delivery status when insulin delivery is suspended */
+"Suspended" = "Askıya Alındı";
+
+/* Pod tank fill completed */
+"Tank fill completed" = "Rezervuar doldurma işlemi tamamlandı";
+
+/* Pod power to motor activated */
+"Tank power activated" = "Tank gücü etkinleştirildi";
+
+/* Error message shown when temp basal could not be set due to existing temp basal in progress */
+"Temp basal in progress" = "Geçici bazal devam ediyor";
+
+/* Delivery status when temp basal is running */
+"Temp basal running" = "Geçici bazal işletiliyor";
+
+/* The format string describing a temp basal. (1: The rate)(2: Start time)(3: duration)(4: volume)(5: scheduled certainty */
+"TempBasal: %1$@ U/hour %2$@ %3$@ %4$@ U %5$@" = "TempBasal: %1$@ Ü/saat %2$@ %3$@ %4$@ Ü %5$@";
+
+/* The format string for pod expiration notification body (1: time until expiration) */
+"Time to replace your pod! Your pod will expire in %1$@" = "Pod'unuzu değiştirme zamanı! Pod'unuzun süresi %1$@ içinde sona erecek";
+
+/* String describing a dose that was possibly scheduled */
+"Uncertain" = "Belirsiz";
+
+/* Error message shown when empty response from pod was received */
+"Unexpected response from pod" = "Pod'tan beklenmeyen yanıt";
+
+/* The format string for Unknown pod fault (1: The fault code value) */
+"Unknown pod fault %1$03d" = "Bilinmeyen pod hatası: %1$03d";
+
+/* Recovery suggestion when operation could not be completed due to existing bolus in progress */
+"Wait for existing bolus to finish, or cancel bolus" = "Mevcut bolusun bitmesini bekleyin veya bolusu iptal edin";
+
+/* Recovery suggestion when operation could not be completed due to existing temp basal in progress */
+"Wait for existing temp basal to finish, or suspend to cancel" = "Mevcut geçici bazalın bitmesini bekleyin veya askıya almak için iptal edin";
+
+/* Description waiting for pairing reminder */
+"Waiting for pairing reminder" = "Eşleşme hatırlatıcısı bekleniyor";
+
+/* Error message shown when pod sends ack instead of response */
+"Pod sent ack instead of response" = "Pod yanıt yerine onay gönderdi";
+
+/* Error message shown when empty response from pod was received" */
+"Unexpected response from pod" = "Pod'tan beklenmeyen yanıt";
+
+/* Error message for when unexpected address is received (1: received address) (2: expected address) */
+"Invalid address 0x%x. Expected 0x%x" = "Geçersiz adres 0x%x. Beklenen 0x%x";
+
+/* Error message shown when the pod is not connected. */
+"Pod not connected" = "Pod bağlı değil";
+
+/* Error message action could not be performed because pod is suspended */
+"Pod is suspended" = "Pod durduldu";
+
+/* Format string for pod fault code */
+"Pod Fault: %1$@" = "Pod Hatası: %1$@";
+
+/* Error message when command is rejected because an unacknowledged command is pending. */
+"Communication issue: Unacknowledged command pending." = "İletişim sorunu: Onaylanmayan komut beklemede.";
+
+/* Format string for invalid message error code (1: error code number) */
+"Command error %1$u" = "Komut hatası %1$u";
+
+/* Format string for unexpected pod change*/
+"Unexpected pod change" = "Beklenmeyen pod değişikliği";
+
+/* Format string for activation time exceeded */
+"Activation time exceeded" = "Aktivasyon süresi aşıldı";
+
+/* Format string for poor pod signal strength */
+"Poor signal strength" = "Düşük sinyal gücü";
+
+/* Format string for pod signal strength too high" */
+"Signal strength too high" = "Sinyal gücü çok fazla";
+
+/* Error message for PodCommsError.noPodsFound */
+"No pods found" = "Pod bulunamadı";
+
+/* Error message for PodCommsError.tooManyPodsFound */
+"Too many pods found" = "Çok fazla pod bulundu";
+
+/* Recovery suggestion when no response is received from pod */
+"Make sure iPhone is nearby the active pod" = "IPhone'un etkin pod'a yakın olduğundan emin olun";
+
+/* Recovery suggestion when ack received instead of response */
+"Try again" = "Tekrar deneyin";
+
+/* Recovery suggestion when unexpected address received */
+"Crosstalk possible. Please move to a new location" = "Çakışma olasılığı mümkün. Lütfen yeni bir konuma geçin";
+
+/* Recovery suggestion when no pod is available */
+"Make sure your pod is nearby and try again." = "Pod'unuzun yakında olduğundan emin olun ve tekrar deneyin.";
+
+/* Recovery suggestion when operation could not be completed due to existing bolus in progress */
+"Wait for existing bolus to finish, or cancel bolus" = "Mevcut bolusun bitmesini bekleyin veya bolusu iptal edin";
+
+/* Recovery suggestion when operation could not be completed due to existing temp basal in progress */
+"Wait for existing temp basal to finish, or suspend to cancel" = "Mevcut geçici bazalın bitmesini bekleyin veya askıya almak için iptal edin";
+
+/* Recovery suggestion when pod is suspended" */
+"Resume delivery" = "İletime devam et";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Lütfen kapsama alanına yalnızca orijinal pod'u getirin veya orijinal pod'u devre dışı bırakın";
+
+/* Recovery suggestion when pairing signal strength is too low */
+"Please reposition iPhone relative to the pod" = "Lütfen iPhone'u pod'a göre yeniden konumlandırın";
+
+/* Recovery suggestion when pairing signal strength is too high */
+"Please reposition iPhone further from the pod" = "Lütfen iPhone'u pod'tan daha uzağa konumlandırın";
+
+/* Recovery suggestion for PodCommsError.noPodsFound */
+"Make sure your pod is filled and nearby." = "Pod'unuzun dolu ve yakında olduğundan emin olun.";
+
+/* Recovery suggestion for PodCommsError.tooManyPodsFound */
+"Move to a new area away from any other pods and try again." = "Diğer pod'lardan uzakta yeni bir alana gidin ve tekrar deneyin.";
+
+/* Title text for delivery limits */
+"Delivery Limits" = "Teslimat Limitleri";
+
+/* The title text for the basal rate schedule */
+"Basal Rates" = "Bazal Oranları";
+
+/* The error message shown when Loop's basal schedule has more entries than the pod can support */
+"Too many entries" = "Çok fazla girdi";
+
+/* The error message shown when Loop's basal schedule has an unsupported rate */
+"Invalid entry" = "Geçersiz girdi";

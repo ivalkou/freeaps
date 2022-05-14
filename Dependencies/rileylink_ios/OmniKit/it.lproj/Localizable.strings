@@ -105,7 +105,7 @@
 "Pod Fault: %1$@" = "Errore Pod: %1$@";
 
 /* Error message when cannula insertion fails because the pod is in an unexpected state */
-"Pod is not in a state ready for cannula insertion." = "Pod non è pronto per l’inserimento della cannula.";
+"Pod is not in a state ready for cannula insertion" = "Pod non è pronto per l’inserimento della cannula.";
 
 /* Error message when prime fails because the pod is in an unexpected state */
 "Pod is not in a state ready for priming." = "Pod non è pronto per il caricamento";
@@ -176,3 +176,42 @@
 
 /* Description waiting for pairing reminder */
 "Waiting for pairing reminder" = "In attesa del promemoria di abbinamento";
+
+/* Error message shown when pod sends ack instead of response */
+"Pod sent ack instead of response" = "Pod inviato ack invece di risposta";
+
+/* Format string for invalid message error code (1: error code number) */
+"Command error %1$u" = "Errore di comando %1$u";
+
+/* "Format string for unexpected pod change" */
+"Unexpected pod change" = "Cambio pod inatteso";
+
+/* Format string for activation time exceeded */
+"Activation time exceeded" = "Tempo di attivazione superato";
+
+/* Format string for poor pod signal strength */
+"Poor signal strength" = "Scarsa intensità del segnale";
+
+/* Format string for pod signal strength too high */
+"Signal strength too high" = "Potenza segnale troppo alta";
+
+/* Recovery suggestion when no response is received from pod */
+"Please try repositioning the RileyLink and try again" = "Prova a riposizionare RileyLink e riprova";
+
+/* Recovery suggestion when ack received instead of response */
+"Try again" = "Prova di nuovo";
+
+/* Recovery suggestion when unexpected address received */
+"Crosstalk possible. Please move to a new location and try again" = "Crosstalk possibile. Si prega di spostarsi in una nuova posizione e riprovare";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Si prega di portare solo il pod originale nel range o disattivare il pod originale";
+
+/* Recovery suggestion when pairing signal strength is too low */
+"Please reposition the RileyLink relative to the pod" = "Si prega di riposizionare RileyLink relativo al pod";
+
+/* Recovery suggestion when pairing signal strength is too high */
+"Please reposition the RileyLink further from the pod" = "Si prega di riposizionare il RileyLink più lontano dal pod";
+
+/* Description for an inactive alert modifier */
+" (inactive)" = " (inattivo)";

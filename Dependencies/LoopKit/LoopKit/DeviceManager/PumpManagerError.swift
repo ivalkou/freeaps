@@ -18,9 +18,6 @@ public enum PumpManagerError: Error {
 
     /// The device is in an error state
     case deviceState(LocalizedError?)
-    
-    /// A command issued to the pump was sent, but we do not know if the pump received it
-    case uncertainDelivery
 }
 
 
@@ -35,8 +32,6 @@ extension PumpManagerError: LocalizedError {
             return error?.errorDescription ?? LocalizedString("Connection Failure", comment: "Generic pump error description")
         case .deviceState(let error):
             return error?.errorDescription ?? LocalizedString("Device Refused", comment: "Generic pump error description")
-        case .uncertainDelivery:
-            return LocalizedString("Uncertain Delivery", comment: "Error description for uncertain delivery")
         }
     }
 
@@ -50,8 +45,6 @@ extension PumpManagerError: LocalizedError {
             return error?.failureReason
         case .deviceState(let error):
             return error?.failureReason
-        case .uncertainDelivery:
-            return LocalizedString("Communications interrupted during insulin delivery command.", comment: "Failure reason for uncertain delivery")
         }
     }
 
@@ -65,8 +58,6 @@ extension PumpManagerError: LocalizedError {
             return error?.recoverySuggestion
         case .deviceState(let error):
             return error?.recoverySuggestion
-        case .uncertainDelivery:
-            return LocalizedString("Make sure your pump is within communication range of your phone.", comment: "Recovery suggestion for uncertain delivery")
         }
     }
 
@@ -80,8 +71,6 @@ extension PumpManagerError: LocalizedError {
             return error?.helpAnchor
         case .deviceState(let error):
             return error?.helpAnchor
-        case .uncertainDelivery:
-            return nil
         }
     }
 }

@@ -50,13 +50,13 @@
 "It is safe to retry" = "Можно повторить";
 
 /* The short unit display string for milligrams per deciliter per U */
-"mg/dL/U" = "mg/dL/U";
+"mg/dL/U" = "мг/дл/Ед";
 
 /* The short unit display string for millimoles per liter */
 "mmol/L" = "ммоль/л";
 
 /* The short unit display string for millimoles per liter per U */
-"mmol/L/U" = "mmol/L/U";
+"mmol/L/U" = "ммоль/л/Ед";
 
 /* Sensor state description for the non-valid state */
 "Needs Attention" = "Требует внимания";
@@ -83,16 +83,16 @@
 "U" = "ед";
 
 /* The short unit display string for international units of insulin per hour */
-"U/hr" = "U/hr";
+"U/hr" = "Ед/ч";
 
 /* The long unit display string for a singular international unit of insulin */
-"Unit" = "Unit";
+"Unit" = "Единица измерения";
 
 /* The long unit display string for a singular international unit of insulin per hour */
-"Unit/hour" = "Unit/hour";
+"Unit/hour" = "Ед/час";
 
 /* The long unit display string for international units of insulin */
 "Units" = "Единицы";
 
 /* The long unit display string for international units of insulin per hour */
-"Units/hour" = "Units/hour";
+"Units/hour" = "Ед/час";

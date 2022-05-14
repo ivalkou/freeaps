@@ -2,10 +2,10 @@
 "A bolus is already in progress" = "ボーラス注入中";
 
 /* The description of AlarmClockReminderPumpEvent */
-"AlarmClockReminder" = "アラームリマインダー";
+"AlarmClockReminder" = "AlarmClockReminder";
 
 /* The description of AlarmSensorPumpEvent */
-"AlarmSensor" = "アラームセンサー";
+"AlarmSensor" = "AlarmSensor";
 
 /* Describing the battery chemistry as Alkaline */
 "Alkaline" = "アルカリ";
@@ -96,3 +96,9 @@
 
 /* Describing the worldwide pump region */
 "World-Wide" = "World-Wide";
+
+/* Describing the Canada pump region */
+"Canada" = "Canada";
+
+/* Pump error code when invalid history page is requested */
+"History page does not exist" = "History page does not exist";

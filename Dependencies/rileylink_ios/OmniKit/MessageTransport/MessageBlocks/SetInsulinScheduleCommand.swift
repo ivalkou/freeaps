@@ -164,7 +164,11 @@ public struct SetInsulinScheduleCommand : NonceResyncableMessageBlock {
     public init(nonce: UInt32, basalSchedule: BasalSchedule, scheduleOffset: TimeInterval) {
         let scheduleOffsetNearestSecond = round(scheduleOffset)
         let table = BasalDeliveryTable(schedule: basalSchedule)
-        let rate = basalSchedule.rateAt(offset: scheduleOffsetNearestSecond)
+        var rate = roundToSupportedBasalTimingRate(rate: basalSchedule.rateAt(offset: scheduleOffsetNearestSecond))
+        if rate == 0.0 {
+            // prevent app crash if a 0.0 scheduled basal ever gets here for Eros
+            rate = nearZeroBasalRate
+        }
 
         let segment = Int(scheduleOffsetNearestSecond / BasalDeliveryTable.segmentDuration)
 

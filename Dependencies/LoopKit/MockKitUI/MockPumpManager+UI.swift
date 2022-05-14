@@ -7,57 +7,39 @@
 //
 
 import Foundation
-import SwiftUI
 import LoopKit
 import LoopKitUI
 import MockKit
 
 
 extension MockPumpManager: PumpManagerUI {
-    private var appName: String {
-        return Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as! String
-    }
-    
-    public var smallImage: UIImage? { return UIImage(named: "Pump Simulator", in: Bundle(for: MockPumpManagerSettingsViewController.self), compatibleWith: nil) }
-    
-    public static func setupViewController(insulinTintColor: Color, guidanceColors: GuidanceColors, allowedInsulinTypes: [InsulinType]) -> (UIViewController & CompletionNotifying & PumpManagerSetupViewController) {
+    public static func setupViewController() -> (UIViewController & CompletionNotifying & PumpManagerSetupViewController) {
         return MockPumpManagerSetupViewController.instantiateFromStoryboard()
     }
 
-    public func settingsViewController(insulinTintColor: Color, guidanceColors: GuidanceColors, allowedInsulinTypes: [InsulinType]) -> (UIViewController & CompletionNotifying) {
-        let settings = MockPumpManagerSettingsViewController(pumpManager: self, supportedInsulinTypes: allowedInsulinTypes)
+    public func settingsViewController() -> (UIViewController & CompletionNotifying) {
+        let settings = MockPumpManagerSettingsViewController(pumpManager: self)
         let nav = SettingsNavigationViewController(rootViewController: settings)
         return nav
     }
-    
-    public func deliveryUncertaintyRecoveryViewController(insulinTintColor: Color, guidanceColors: GuidanceColors) -> (UIViewController & CompletionNotifying) {
-        return DeliveryUncertaintyRecoveryViewController(appName: appName, uncertaintyStartedAt: Date()) {
-            self.state.deliveryCommandsShouldTriggerUncertainDelivery = false
-            self.state.deliveryIsUncertain = false
-        }
+
+    public var smallImage: UIImage? {
+        return UIImage(named: "Simulator Small", in: Bundle(for: MockPumpManagerSettingsViewController.self), compatibleWith: nil)
     }
 
-    public func hudProvider(insulinTintColor: Color, guidanceColors: GuidanceColors, allowedInsulinTypes: [InsulinType]) -> HUDProvider? {
-        return MockHUDProvider(pumpManager: self, allowedInsulinTypes: allowedInsulinTypes)
+    public func hudProvider() -> HUDProvider? {
+        return MockHUDProvider(pumpManager: self)
     }
 
-    public static func createHUDView(rawValue: HUDProvider.HUDViewRawState) -> LevelHUDView? {
-        return MockHUDProvider.createHUDView(rawValue: rawValue)
+    public static func createHUDViews(rawValue: [String : Any]) -> [BaseHUDView] {
+        return MockHUDProvider.createHUDViews(rawValue: rawValue)
     }
-    
-    
 }
 
 // MARK: - DeliveryLimitSettingsTableViewControllerSyncSource
 extension MockPumpManager {
     public func syncDeliveryLimitSettings(for viewController: DeliveryLimitSettingsTableViewController, completion: @escaping (DeliveryLimitSettingsResult) -> Void) {
-        guard let maximumBasalRatePerHour = viewController.maximumBasalRatePerHour,
-            let maximumBolus = viewController.maximumBolus else
-        {
-            completion(.failure(MockPumpManagerError.missingSettings))
-            return
-        }
-        completion(.success(maximumBasalRatePerHour: maximumBasalRatePerHour, maximumBolus: maximumBolus))
+        completion(.success(maximumBasalRatePerHour: viewController.maximumBasalRatePerHour ?? 5.0, maximumBolus: viewController.maximumBolus ?? 25.0))
     }
 
     public func syncButtonTitle(for viewController: DeliveryLimitSettingsTableViewController) -> String {
@@ -76,14 +58,7 @@ extension MockPumpManager {
 // MARK: - BasalScheduleTableViewControllerSyncSource
 extension MockPumpManager {
     public func syncScheduleValues(for viewController: BasalScheduleTableViewController, completion: @escaping (SyncBasalScheduleResult<Double>) -> Void) {
-        syncBasalRateSchedule(items: viewController.scheduleItems) { result in
-            switch result {
-            case .success(let schedule):
-                completion(.success(scheduleItems: schedule.items, timeZone: schedule.timeZone))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        completion(.success(scheduleItems: viewController.scheduleItems, timeZone: .currentFixed))
     }
 
     public func syncButtonTitle(for viewController: BasalScheduleTableViewController) -> String {

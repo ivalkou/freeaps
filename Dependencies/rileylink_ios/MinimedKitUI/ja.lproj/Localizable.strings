@@ -2,10 +2,10 @@
 "%1$@  %2$@/%3$@  %4$@" = "%1$@  %2$@/%3$@  %4$@";
 
 /* The format string describing number of basal schedule entries: (1: number of entries) */
-"%1$@ basal schedule entries\n" = "基礎パターン入力 %1$@回\\n\n";
+"%1$@ basal schedule entries\n" = "基礎パターン入力 %1$@回\n\n";
 
 /* The format string describing units of insulin remaining: (1: number of units) */
-"%1$@ Units of insulin remaining\n" = "インスリン 残り%1$@U\\n\n";
+"%1$@ Units of insulin remaining\n" = "インスリン 残り%1$@U\n\n";
 
 /* The format string for displaying an offset from a time zone: (1: GMT)(2: -)(3: 4:00) */
 "%1$@%2$@%3$@" = "%1$@%2$@%3$@";
@@ -23,13 +23,13 @@
 "Basal Rates" = "基礎レート";
 
 /* The format string describing pump battery voltage: (1: battery voltage) */
-"Battery: %1$@ volts\n" = "電池: %1$@ ボルト\\n\n";
+"Battery: %1$@ volts\n" = "電池: %1$@ ボルト\n\n";
 
 /* The label indicating the best radio frequency */
 "Best Frequency" = "最良周波数";
 
 /* The format string describing pump bolusing state: (1: bolusing) */
-"Bolusing: %1$@\n" = "ボーラス注入中: %1$@\\n\n";
+"Bolusing: %1$@\n" = "ボーラス注入中: %1$@\n\n";
 
 /* The title of the cancel action in an action sheet */
 "Cancel" = "キャンセル";

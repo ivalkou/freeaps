@@ -13,9 +13,7 @@ public enum PumpAlarmType {
     case noDelivery             
     case batteryDepleted
     case autoOff
-    case deviceReset
-    case deviceResetBatteryIssue17
-    case deviceResetBatteryIssue21
+    case deviceReset            
     case reprogramError         
     case emptyReservoir         
     case unknownType(rawType: UInt8)
@@ -32,10 +30,6 @@ public enum PumpAlarmType {
             self = .autoOff 
         case 16:
             self = .deviceReset
-        case 17:
-            self = .deviceResetBatteryIssue17
-        case 21:
-            self = .deviceResetBatteryIssue21
         case 61:
             self = .reprogramError
         case 62:

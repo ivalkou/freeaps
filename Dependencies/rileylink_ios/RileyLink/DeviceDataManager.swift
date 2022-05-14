@@ -58,7 +58,6 @@ extension DeviceDataManager: RileyLinkConnectionManagerDelegate {
 }
 
 extension DeviceDataManager: PumpManagerDelegate {
-    
     func pumpManager(_ pumpManager: PumpManager, didAdjustPumpClockBy adjustment: TimeInterval) {
         log.debug("didAdjustPumpClockBy %@", adjustment)
     }
@@ -91,9 +90,9 @@ extension DeviceDataManager: PumpManagerDelegate {
     func pumpManager(_ pumpManager: PumpManager, hasNewPumpEvents events: [NewPumpEvent], lastReconciliation: Date?, completion: @escaping (_ error: Error?) -> Void) {
     }
     
-    func pumpManager(_ pumpManager: PumpManager, didReadReservoirValue units: Double, at date: Date, completion: @escaping (Result<(newValue: ReservoirValue, lastValue: ReservoirValue?, areStoredValuesContinuous: Bool), Error>) -> Void) {
+    func pumpManager(_ pumpManager: PumpManager, didReadReservoirValue units: Double, at date: Date, completion: @escaping (_ result: PumpManagerResult<(newValue: ReservoirValue, lastValue: ReservoirValue?, areStoredValuesContinuous: Bool)>) -> Void) {
     }
-
+    
     func pumpManagerRecommendsLoop(_ pumpManager: PumpManager) {
     }
     
@@ -123,22 +122,5 @@ extension DeviceDataManager: DeviceManagerDelegate {
         DispatchQueue.main.async {
             UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
         }
-    }
-
-    func removeNotificationRequests(for manager: DeviceManager, identifiers: [String]) {
-        DispatchQueue.main.async {
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
-        }
-    }
-
-    func deviceManager(_ manager: DeviceManager, logEventForDeviceIdentifier deviceIdentifier: String?, type: DeviceLogEntryType, message: String, completion: ((Error?) -> Void)?) {}
-}
-
-// MARK: - AlertPresenter
-extension DeviceDataManager: AlertPresenter {
-    func issueAlert(_ alert: Alert) {
-    }
-    
-    func retractAlert(identifier: Alert.Identifier) {
     }
 }

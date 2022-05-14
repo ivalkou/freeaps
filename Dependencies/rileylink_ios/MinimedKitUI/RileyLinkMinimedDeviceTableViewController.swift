@@ -256,8 +256,6 @@ public class RileyLinkMinimedDeviceTableViewController: UITableViewController {
         case pressDownButton
         case readPumpStatus
         case readBasalSchedule
-        case enableLED
-        case discoverCommands
         case getStatistics
     }
 
@@ -377,12 +375,6 @@ public class RileyLinkMinimedDeviceTableViewController: UITableViewController {
             case .readBasalSchedule:
                 cell.textLabel?.text = LocalizedString("Read Basal Schedule", comment: "The title of the command to read basal schedule")
             
-            case .enableLED:
-                cell.textLabel?.text = LocalizedString("Enable Diagnostic LEDs", comment: "The title of the command to enable diagnostic LEDs")
-
-            case .discoverCommands:
-                cell.textLabel?.text = LocalizedString("Discover Commands", comment: "The title of the command to discover commands")
-                
             case .getStatistics:
                 cell.textLabel?.text = LocalizedString("RileyLink Statistics", comment: "The title of the command to fetch RileyLink statistics")
             }
@@ -459,11 +451,6 @@ public class RileyLinkMinimedDeviceTableViewController: UITableViewController {
                 vc = .readPumpStatus(ops: ops, device: device, measurementFormatter: measurementFormatter)
             case .readBasalSchedule:
                 vc = .readBasalSchedule(ops: ops, device: device, integerFormatter: integerFormatter)
-            case .enableLED:
-//                vc = .enableLEDs(ops: ops, device: device)
-                vc = .getStatistics(ops: ops, device: device)
-            case .discoverCommands:
-                vc = .discoverCommands(ops: ops, device: device)
             case .getStatistics:
                 vc = .getStatistics(ops: ops, device: device)
             }

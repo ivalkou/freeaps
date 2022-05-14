@@ -5,7 +5,7 @@
 "%1$@ basal schedule entries\n" = "%1$@ basal schedule entries\n";
 
 /* The format string describing units of insulin remaining: (1: number of units) */
-"%1$@ Units of insulin remaining\n" = "%1$@ Units of insulin remaining\n";
+"%1$@ Units of insulin remaining\n" = "%1$@ Jednotiek zostávajúci inzulín\n";
 
 /* The format string for displaying an offset from a time zone: (1: GMT)(2: -)(3: 4:00) */
 "%1$@%2$@%3$@" = "%1$@%2$@%3$@";
@@ -105,10 +105,10 @@
 "Firmware Version" = "Firmware Verzia";
 
 /* The title of the command to get pump model */
-"Get Pump Model" = "Get Pump Model";
+"Get Pump Model" = "Určiť Model Pumpy";
 
 /* Progress message for getting statistics. */
-"Get Statistics…" = "Get Statistics…";
+"Get Statistics…" = "Vybrať Štatistiky…";
 
 /* Instructions on selecting an insulin data source */
 "Insulin delivery can be determined from the pump by either interpreting the event history or comparing the reservoir volume over time. Reading event history allows for a more accurate status graph and uploading up-to-date treatment data to Nightscout, at the cost of faster pump battery drain and the possibility of a higher radio error rate compared to reading only reservoir volume. If the selected source cannot be used for any reason, the system will attempt to fall back to the other option." = "Insulin delivery can be determined from the pump by either interpreting the event history or comparing the reservoir volume over time. Reading event history allows for a more accurate status graph and uploading up-to-date treatment data to Nightscout, at the cost of faster pump battery drain and the possibility of a higher radio error rate compared to reading only reservoir volume. If the selected source cannot be used for any reason, the system will attempt to fall back to the other option.";
@@ -117,10 +117,10 @@
 "Last Awake" = "Last Awake";
 
 /* The title of the cell describing no radio awake data */
-"Listening Off" = "Listening Off";
+"Listening Off" = "Počúvanie Vypnuté";
 
 /* The title of the command to pair with mysentry */
-"MySentry Pair" = "MySentry Pair";
+"MySentry Pair" = "Párovať MySentry";
 
 /* The title of the cell showing device name */
 "Name" = "Názov";
@@ -132,10 +132,10 @@
 "On Idle" = "On Idle";
 
 /* Pump find device instruction */
-"On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device" = "On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device";
+"On your pump, go to the Find Device screen and select \"Find Device\".\n\nMain Menu >\nUtilities >\nConnect Devices >\nOther Devices >\nOn >\nFind Device" = "Na vašej pumpe, chodťe na Nájsť Zariadenie a zvoľte \"Nájsť Zariadenie\".\n\nHlavné Menu>\nPomocné >\nPripojiť Zariadenia >\nIné Zariadenia >\nZap >\nNájsť Zariadenie";
 
 /* The title text for the preferred insulin data source config */
-"Preferred Data Source" = "Preferred Data Source";
+"Preferred Data Source" = "Obľúbený Zdroj Dát";
 
 /* The title of the section describing the pump */
 "Pump" = "Pumpa";
@@ -157,54 +157,53 @@
 "Read Basal Schedule" = "Prečítať rozvrh bazálu";
 
 /* The title of the command to read pump status */
-"Read Pump Status" = "Read Pump Status";
+"Read Pump Status" = "Zistiť stav Pumpy";
 
 /* Progress message for reading basal schedule */
-"Reading basal schedule…" = "Reading basal schedule…";
+"Reading basal schedule…" = "Načítava sa rozvrh bazálu…";
 
 /* Progress message for reading pump status */
-"Reading pump status…" = "Reading pump status…";
+"Reading pump status…" = "Načítavam stav pumpy…";
 
 /* The title of the cell showing the pump region */
-"Region" = "Region";
+"Region" = "Región";
 
 /* Button title to retry sentry setup */
-"Retry" = "Retry";
+"Retry" = "Znova";
 
 /* The title of the command to fetch RileyLink statistics */
-"RileyLink Statistics" = "RileyLink Statistics";
+"RileyLink Statistics" = "RileyLink Štatistiky";
 
 /* Title of button to save basal profile to pump
    Title of button to save delivery limit settings to pump */
-"Save to Pump…" = "Save to Pump…";
+"Save to Pump…" = "Uložiť do Pumpy…";
 
 /* The title of the command to send a button press */
-"Send Button Press" = "Send Button Press";
+"Send Button Press" = "Poslať stlačenie tlačidla";
 
 /* Progress message for sending button press to pump. */
-"Sending button press…" = "Sending button press…";
+"Sending button press…" = "Posiela stlačenie tlačidla…";
 
 /* The title of the cell showing BLE signal strength (RSSI) */
-"Signal Strength" = "Signal Strength";
+"Signal Strength" = "Sila Signálu";
 
 /* A message indicating a command succeeded */
-"Succeeded" = "Succeeded";
+"Succeeded" = "Úspešné";
 
 /* The format string describing pump suspended state: (1: suspended) */
-"Suspended: %1$@\n" = "Suspended: %1$@\n";
+"Suspended: %1$@\n" = "Pozastavené: %1$@\n";
 
 /* The label indicating the results of each frequency trial */
-"Trials" = "Trials";
+"Trials" = "Skúšobné verzie";
 
 /* The title of the command to re-tune the radio */
-"Tune Radio Frequency" = "Tune Radio Frequency";
+"Tune Radio Frequency" = "Naladiť Rádiovú Frekvenciu";
 
 /* Progress message for tuning radio */
-"Tuning radio…" = "Tuning radio…";
+"Tuning radio…" = "Ladí sa rádio…";
 
 /* The detail text for an unknown pump model */
-"Unknown" = "Unknown";
+"Unknown" = "Neznámy";
 
 /* The title of the cell showing uptime */
-"Uptime" = "Uptime";
-
+"Uptime" = "Doba prevádzky";

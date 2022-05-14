@@ -32,7 +32,7 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
 
     public var confirmationBeeps: Bool
 
-    public var automaticBolusBeeps: Bool
+    public var extendedBeeps: Bool
 
     // Temporal state not persisted
 
@@ -50,23 +50,20 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
 
     internal var lastPumpDataReportDate: Date?
     
-    internal var insulinType: InsulinType
-
     public var rileyLinkBatteryAlertLevel: Int?
-
+    
     public var lastRileyLinkBatteryAlertDate: Date = .distantPast
 
     // MARK: -
 
-    public init(podState: PodState?, timeZone: TimeZone, basalSchedule: BasalSchedule, rileyLinkConnectionManagerState: RileyLinkConnectionManagerState?, insulinType: InsulinType) {
+    public init(podState: PodState?, timeZone: TimeZone, basalSchedule: BasalSchedule, rileyLinkConnectionManagerState: RileyLinkConnectionManagerState?) {
         self.podState = podState
         self.timeZone = timeZone
         self.basalSchedule = basalSchedule
         self.rileyLinkConnectionManagerState = rileyLinkConnectionManagerState
         self.unstoredDoses = []
         self.confirmationBeeps = false
-        self.automaticBolusBeeps = false
-        self.insulinType = insulinType
+        self.extendedBeeps = false
     }
     
     public init?(rawValue: RawValue) {
@@ -117,18 +114,12 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
         } else {
             rileyLinkConnectionManagerState = nil
         }
-        
-        var insulinType: InsulinType?
-        if let rawInsulinType = rawValue["insulinType"] as? InsulinType.RawValue {
-            insulinType = InsulinType(rawValue: rawInsulinType)
-        }
 
         self.init(
             podState: podState,
             timeZone: timeZone,
             basalSchedule: basalSchedule,
-            rileyLinkConnectionManagerState: rileyLinkConnectionManagerState,
-            insulinType: insulinType ?? .novolog
+            rileyLinkConnectionManagerState: rileyLinkConnectionManagerState
         )
 
         if let expirationReminderDate = rawValue["expirationReminderDate"] as? Date {
@@ -143,16 +134,17 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
             self.unstoredDoses = []
         }
 
-        self.confirmationBeeps = rawValue["confirmationBeeps"] as? Bool ?? rawValue["bolusBeeps"] as? Bool ?? false
-        
-        self.automaticBolusBeeps = rawValue["automaticBolusBeeps"] as? Bool ?? false
+        self.confirmationBeeps = rawValue["confirmationBeeps"] as? Bool ?? false
+
+        self.extendedBeeps = rawValue["extendedBeeps"] as? Bool ?? rawValue["automaticBolusBeeps"] as? Bool ?? false
 
         if let pairingAttemptAddress = rawValue["pairingAttemptAddress"] as? UInt32 {
             self.pairingAttemptAddress = pairingAttemptAddress
         }
-
+        
         rileyLinkBatteryAlertLevel = rawValue["rileyLinkBatteryAlertLevel"] as? Int
         lastRileyLinkBatteryAlertDate = rawValue["lastRileyLinkBatteryAlertDate"] as? Date ?? Date.distantPast
+
     }
     
     public var rawValue: RawValue {
@@ -162,8 +154,7 @@ public struct OmnipodPumpManagerState: RawRepresentable, Equatable {
             "basalSchedule": basalSchedule.rawValue,
             "unstoredDoses": unstoredDoses.map { $0.rawValue },
             "confirmationBeeps": confirmationBeeps,
-            "automaticBolusBeeps": automaticBolusBeeps,
-            "insulinType": insulinType.rawValue,
+            "extendedBeeps": extendedBeeps,
         ]
         
         value["podState"] = podState?.rawValue
@@ -208,9 +199,8 @@ extension OmnipodPumpManagerState: CustomDebugStringConvertible {
             "* lastPumpDataReportDate: \(String(describing: lastPumpDataReportDate))",
             "* isPumpDataStale: \(String(describing: isPumpDataStale))",
             "* confirmationBeeps: \(String(describing: confirmationBeeps))",
-            "* automaticBolusBeeps: \(String(describing: automaticBolusBeeps))",
+            "* extendedBeeps: \(String(describing: extendedBeeps))",
             "* pairingAttemptAddress: \(String(describing: pairingAttemptAddress))",
-            "* insulinType: \(String(describing: insulinType))",
             "* rileyLinkBatteryAlertLevel: \(String(describing: rileyLinkBatteryAlertLevel))",
             "* lastRileyLinkBatteryAlertDate \(String(describing: lastRileyLinkBatteryAlertDate))",
             String(reflecting: podState),

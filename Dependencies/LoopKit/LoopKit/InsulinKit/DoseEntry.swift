@@ -18,8 +18,6 @@ public struct DoseEntry: TimelineValue, Equatable {
     public let unit: DoseUnit
     public let deliveredUnits: Double?
     public let description: String?
-    public let insulinType: InsulinType?
-    public let automatic: Bool?
     internal(set) public var syncIdentifier: String?
 
     /// The scheduled basal rate during this dose entry
@@ -29,12 +27,11 @@ public struct DoseEntry: TimelineValue, Equatable {
         self.init(type: .suspend, startDate: suspendDate, value: 0, unit: .units)
     }
 
-    public init(resumeDate: Date, insulinType: InsulinType? = nil) {
-        self.init(type: .resume, startDate: resumeDate, value: 0, unit: .units, insulinType: insulinType)
+    public init(resumeDate: Date) {
+        self.init(type: .resume, startDate: resumeDate, value: 0, unit: .units)
     }
 
-    // If the insulin model field is nil, it's assumed that the model is the type of insulin the pump dispenses
-    public init(type: DoseType, startDate: Date, endDate: Date? = nil, value: Double, unit: DoseUnit, deliveredUnits: Double? = nil, description: String? = nil, syncIdentifier: String? = nil, scheduledBasalRate: HKQuantity? = nil, insulinType: InsulinType? = nil, automatic: Bool? = nil) {
+    public init(type: DoseType, startDate: Date, endDate: Date? = nil, value: Double, unit: DoseUnit, deliveredUnits: Double? = nil, description: String? = nil, syncIdentifier: String? = nil, scheduledBasalRate: HKQuantity? = nil) {
         self.type = type
         self.startDate = startDate
         self.endDate = endDate ?? startDate
@@ -44,16 +41,12 @@ public struct DoseEntry: TimelineValue, Equatable {
         self.description = description
         self.syncIdentifier = syncIdentifier
         self.scheduledBasalRate = scheduledBasalRate
-        self.insulinType = insulinType
-        self.automatic = automatic
     }
 }
 
 
 extension DoseEntry {
-    public static var units = HKUnit.internationalUnit()
-    
-    public static let unitsPerHour = HKUnit.internationalUnit().unitDivided(by: .hour())
+    static let unitsPerHour = HKUnit.internationalUnit().unitDivided(by: .hour())
 
     private var hours: Double {
         return endDate.timeIntervalSince(startDate).hours
@@ -142,58 +135,5 @@ extension DoseEntry {
         }
 
         return deliveredUnits ?? round(programmedUnits * DoseEntry.minimumMinimedIncrementPerUnit) / DoseEntry.minimumMinimedIncrementPerUnit
-    }
-}
-
-extension DoseEntry: Codable {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type = try container.decode(DoseType.self, forKey: .type)
-        self.startDate = try container.decode(Date.self, forKey: .startDate)
-        self.endDate = try container.decode(Date.self, forKey: .endDate)
-        self.value = try container.decode(Double.self, forKey: .value)
-        self.unit = try container.decode(DoseUnit.self, forKey: .unit)
-        self.deliveredUnits = try container.decodeIfPresent(Double.self, forKey: .deliveredUnits)
-        self.description = try container.decodeIfPresent(String.self, forKey: .description)
-        self.syncIdentifier = try container.decodeIfPresent(String.self, forKey: .syncIdentifier)
-        self.insulinType = try container.decodeIfPresent(InsulinType.self, forKey: .insulinType)
-        if let scheduledBasalRate = try container.decodeIfPresent(Double.self, forKey: .scheduledBasalRate),
-            let scheduledBasalRateUnit = try container.decodeIfPresent(String.self, forKey: .scheduledBasalRateUnit) {
-            self.scheduledBasalRate = HKQuantity(unit: HKUnit(from: scheduledBasalRateUnit), doubleValue: scheduledBasalRate)
-        }
-        self.automatic = try container.decode(Bool.self, forKey: .automatic)
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(type, forKey: .type)
-        try container.encode(startDate, forKey: .startDate)
-        try container.encode(endDate, forKey: .endDate)
-        try container.encode(value, forKey: .value)
-        try container.encode(unit, forKey: .unit)
-        try container.encodeIfPresent(deliveredUnits, forKey: .deliveredUnits)
-        try container.encodeIfPresent(description, forKey: .description)
-        try container.encodeIfPresent(syncIdentifier, forKey: .syncIdentifier)
-        try container.encodeIfPresent(insulinType, forKey: .insulinType)
-        if let scheduledBasalRate = scheduledBasalRate {
-            try container.encode(scheduledBasalRate.doubleValue(for: DoseEntry.unitsPerHour), forKey: .scheduledBasalRate)
-            try container.encode(DoseEntry.unitsPerHour.unitString, forKey: .scheduledBasalRateUnit)
-        }
-        try container.encode(automatic, forKey: .automatic)
-    } 
-
-    private enum CodingKeys: String, CodingKey {
-        case type
-        case startDate
-        case endDate
-        case value
-        case unit
-        case deliveredUnits
-        case description
-        case syncIdentifier
-        case scheduledBasalRate
-        case scheduledBasalRateUnit
-        case insulinType
-        case automatic
     }
 }

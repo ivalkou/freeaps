@@ -72,7 +72,7 @@
 "Configuration" = "Configuration";
 
 /* The title of the Insulin Type */
-"Insulin Type" = "Insulin Type";
+"Insulin Type" = "Type d'Insuline";
 
 /* The title of the continue action in an action sheet */
 "Continue" = "Continuer";
@@ -106,7 +106,7 @@
 "Error enabling bolus beeps" = "Erreur lors de l’activation des bips de bolus";
 
 /* The alert title for enable Confirmation Beeps */
-"Enable Confirmation Beeps" = "Enable Confirmation Beeps";
+"Enable Confirmation Beeps" = "Activer les bips de confirmation";
 
 /* The alert title for Disable Confirmation Beep */
 "Disable Confirmation Beeps" = "Disable Confirmation Beeps";
@@ -178,7 +178,7 @@
 "Play Test Beeps" = "Jouer des bips de test";
 
 /* Progress message for play test beeps. */
-"Play Test Beeps…" = "Bips de test en cours";
+"Playing Test Beeps…" = "Playing Test Beeps…";
 
 /* The title of the cell showing the pod pm version */
 "PM Version" = "Version PM";
@@ -259,3 +259,21 @@
 
 /* The title of the pod details section in settings */
 "Pod Details" = "Pod Details";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Please bring only original pod in range or deactivate original pod";
+
+/* The format string for Last Bolus Not Delivered: (1: bolus not delivered string)*/
+"Last Bolus Not Delivered: %1$@ U\n" = "Last Bolus Not Delivered: %1$@ U\n";
+
+/* The format string for Delivery Status: (1: delivery status string) */
+"Delivery Status: %1$@\n" = "Delivery Status: %1$@\n";
+
+/* The format string for minutes (1: number of minutes string) */
+"%1$@ minutes" = "%1$@ minutes";
+
+/* The format string for Alerts: (1: the alerts string) */
+"Alerts: %1$@\n" = "Alerts: %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "If the problem persists, move to a new area and try again";

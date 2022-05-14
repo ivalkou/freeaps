@@ -5,6 +5,7 @@ import LoopKit
 import LoopKitUI
 import MinimedKit
 import MockKit
+import OmniBLE
 import OmniKit
 import SwiftDate
 import Swinject
@@ -26,6 +27,7 @@ protocol DeviceDataManager: GlucoseSource {
 private let staticPumpManagers: [PumpManagerUI.Type] = [
     MinimedPumpManager.self,
     OmnipodPumpManager.self,
+    OmniBLEPumpManager.self,
     MockPumpManager.self
 ]
 
@@ -66,6 +68,13 @@ final class BaseDeviceDataManager: DeviceDataManager, Injectable {
 
                 if let omnipod = pumpManager as? OmnipodPumpManager {
                     guard let endTime = omnipod.state.podState?.expiresAt else {
+                        pumpExpiresAtDate.send(nil)
+                        return
+                    }
+                    pumpExpiresAtDate.send(endTime)
+                }
+                if let omnipodDash = pumpManager as? OmniBLEPumpManager {
+                    guard let endTime = omnipodDash.state.podState?.expiresAt else {
                         pumpExpiresAtDate.send(nil)
                         return
                     }
@@ -294,6 +303,20 @@ extension BaseDeviceDataManager: PumpManagerDelegate {
             }
 
             guard let endTime = omnipod.state.podState?.expiresAt else {
+                pumpExpiresAtDate.send(nil)
+                return
+            }
+            pumpExpiresAtDate.send(endTime)
+        }
+        if let omnipodDash = pumpManager as? OmniBLEPumpManager {
+            let reservoir = omnipodDash.state.podState?.lastInsulinMeasurements?.reservoirLevel ?? 0xDEAD_BEEF
+
+            storage.save(Decimal(reservoir), as: OpenAPS.Monitor.reservoir)
+            broadcaster.notify(PumpReservoirObserver.self, on: processQueue) {
+                $0.pumpReservoirDidChange(Decimal(reservoir))
+            }
+
+            guard let endTime = omnipodDash.state.podState?.expiresAt else {
                 pumpExpiresAtDate.send(nil)
                 return
             }

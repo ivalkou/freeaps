@@ -12,7 +12,7 @@ import XCTest
 class PodStateTests: XCTestCase {
 
     func testNonceValues() {
-        var podState = PodState(address: 0x1f000000, piVersion: "1.1.0", pmVersion: "1.1.0", lot: 42560, tid: 661771, insulinType: .novolog)
+        var podState = PodState(address: 0x1f000000, piVersion: "1.1.0", pmVersion: "1.1.0", lot: 42560, tid: 661771)
         
         XCTAssertEqual(podState.currentNonce, 0x8c61ee59)
         podState.advanceToNextNonce()
@@ -26,7 +26,7 @@ class PodStateTests: XCTestCase {
     func testResyncNonce() {
         do {
             let config = try VersionResponse(encodedData: Data(hexadecimalString: "011502070002070002020000a62b0002249da11f00ee860318")!)
-            var podState = PodState(address: 0x1f00ee86, piVersion: "1.1.0", pmVersion: "1.1.0", lot: config.lot, tid: config.tid, insulinType: .novolog)
+            var podState = PodState(address: 0x1f00ee86, piVersion: "1.1.0", pmVersion: "1.1.0", lot: config.lot, tid: config.tid)
 
             XCTAssertEqual(42539, config.lot)
             XCTAssertEqual(140445,  config.tid)

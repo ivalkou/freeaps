@@ -25,7 +25,7 @@ final class MockHUDProvider: NSObject, HUDProvider {
 
     private weak var batteryView: BatteryLevelHUDView?
 
-    init(pumpManager: MockPumpManager, allowedInsulinTypes: [InsulinType]) {
+    init(pumpManager: MockPumpManager) {
         self.pumpManager = pumpManager
         self.lastPumpManagerStatus = pumpManager.status
         super.init()
@@ -34,8 +34,8 @@ final class MockHUDProvider: NSObject, HUDProvider {
 
     var visible: Bool = false
 
-    var hudViewRawState: HUDViewRawState {
-        var rawValue: HUDViewRawState = [
+    var hudViewsRawState: HUDViewsRawState {
+        var rawValue: HUDViewsRawState = [
             "pumpReservoirCapacity": pumpManager.pumpReservoirCapacity
         ]
 
@@ -48,16 +48,19 @@ final class MockHUDProvider: NSObject, HUDProvider {
         return rawValue
     }
 
-    func createHUDView() -> LevelHUDView? {
+    func createHUDViews() -> [BaseHUDView] {
         reservoirView = ReservoirVolumeHUDView.instantiate()
         updateReservoirView()
-    
-        return reservoirView
+
+        batteryView = BatteryLevelHUDView.instantiate()
+        updateBatteryView()
+
+        return [reservoirView, batteryView].compactMap { $0 }
     }
 
-    static func createHUDView(rawValue: HUDViewRawState) -> LevelHUDView? {
+    static func createHUDViews(rawValue: HUDViewsRawState) -> [BaseHUDView] {
         guard let pumpReservoirCapacity = rawValue["pumpReservoirCapacity"] as? Double else {
-            return nil
+            return []
         }
 
         let reservoirVolumeHUDView = ReservoirVolumeHUDView.instantiate()
@@ -67,7 +70,11 @@ final class MockHUDProvider: NSObject, HUDProvider {
             reservoirVolumeHUDView.setReservoirVolume(volume: reservoirUnitsRemaining, at: Date())
         }
 
-        return reservoirVolumeHUDView
+        let batteryPercentage = rawValue["pumpBatteryChargeRemaining"] as? Double
+        let batteryLevelHUDView = BatteryLevelHUDView.instantiate()
+        batteryLevelHUDView.batteryLevel = batteryPercentage
+
+        return [reservoirVolumeHUDView, batteryLevelHUDView]
     }
 
     func didTapOnHUDView(_ view: BaseHUDView) -> HUDTapAction? {

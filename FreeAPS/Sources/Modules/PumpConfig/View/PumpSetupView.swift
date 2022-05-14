@@ -4,6 +4,7 @@ import MinimedKit
 import MinimedKitUI
 import MockKit
 import MockKitUI
+import OmniBLE
 import OmniKit
 import OmniKitUI
 import SwiftUI
@@ -24,6 +25,8 @@ extension PumpConfig {
                 setupViewController = MinimedPumpManager.setupViewController()
             case .omnipod:
                 setupViewController = OmnipodPumpManager.setupViewController()
+            case .omnipodDash:
+                setupViewController = OmniBLEPumpManager.setupViewController()
             case .simulator:
                 setupViewController = MockPumpManager.setupViewController()
             }

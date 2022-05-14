@@ -786,7 +786,7 @@ public class RileyLinkDeviceTableViewController: UITableViewController {
                 }
                 alert.addAction(action)
 
-                for value in [20,30,40,50] {
+                for value in [20,30,40,50,95] {
                     let action = UIAlertAction.init(title: "\(value)%", style: .default) { _ in
                         self.batteryAlertLevel = value
                         self.tableView.reloadData()

@@ -36,11 +36,6 @@ extension HistoryPage {
                 if let changeTimeEvent = event as? ChangeTimePumpEvent, let newTimeEvent = lastEvent as? NewTimePumpEvent {
                     timeAdjustmentInterval += (newTimeEvent.timestamp.date?.timeIntervalSince(changeTimeEvent.timestamp.date!))!
                 }
-                
-                if let alarm = event as? PumpAlarmPumpEvent, alarm.alarmType.indicatesUnrecoverableClockIssue {
-                    NSLog("Found device reset battery issue in history (%@). Ending history fetch.", String(describing: event))
-                    return (events: events, hasMoreEvents: false, cancelledEarly: true)
-                }
 
                 if let date = timestamp.date?.addingTimeInterval(timeAdjustmentInterval) {
 
@@ -69,17 +64,5 @@ extension HistoryPage {
         }
 
         return (events: events, hasMoreEvents: true, cancelledEarly: false)
-    }
-}
-
-extension PumpAlarmType {
-    var indicatesUnrecoverableClockIssue: Bool {
-        switch self {
-        case .deviceResetBatteryIssue17, .deviceResetBatteryIssue21:
-            return true
-        default:
-            return false
-        }
-        
     }
 }

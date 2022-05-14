@@ -50,7 +50,7 @@
 "kLL-SQ-K0a.text" = "Se over innstillinger under. Disse blir programmert inn i pod ved sammenkobling. Du kan når som helst endre disse på skjermbildet for innstillinger i Loop.";
 
 /* Class = "UINavigationItem"; title = "Setup Complete"; ObjectID = "nDb-R5-e02"; */
-"nDb-R5-e02.title" = "Oppsett ferdig.";
+"nDb-R5-e02.title" = "Konfigureringen er ferdig";
 
 /* Class = "UITableViewSection"; footerTitle = "NOTE: If cannula sticks out, press cancel."; ObjectID = "rcC-ke-lUP"; */
 "rcC-ke-lUP.footerTitle" = "MERK: Hvis kanylen stikker ut, trykk avbryt.";
@@ -61,7 +61,7 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "vEc-Km-ewe"; */
 "vEc-Km-ewe.text" = "Etikett";
 
-/* Class = "UILabel"; text = "Fill a new pod with insulin. Listen for 2 beeps from the pod during filling. Keep RileyLink adjacent to the pod during pairing."; ObjectID = "vmF-Dc-3DS"; */
+/* Class = "UILabel"; text = "Fill a new pod with insulin. Listen for 2 beeps from the pod during filling. Keep the RileyLink about 6 inches from the pod during pairing."; ObjectID = "vmF-Dc-3DS"; */
 "vmF-Dc-3DS.text" = "Fyll en ny pod med insulin. Lytt etter 2 pip mens du fyller. Hold RileyLink i nærheten under sammenkobling.";
 
 /* Class = "UINavigationItem"; title = "Replace Pod"; ObjectID = "yy1-xf-HdR"; */

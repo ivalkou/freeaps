@@ -5,7 +5,7 @@
 "Carb Ratios" = "Taxas de Carbs";
 
 /* The title for the cell navigating to the carbs screen */
-"Carbs" = "Carbs";
+"Carbs" = "Carboidratos";
 
 /* The title text for the glucose correction range schedule */
 "Correction Range" = "Faixa de Correção";
@@ -30,11 +30,10 @@
 "Reservoir" = "Reservatório";
 
 /* Title for the cell resetting the data manager */
-"Reset" = "Restabelecer";
+"Reset" = "Redefinir";
 
 /* Title of button to sync basal profile from pump */
 "Sync With Pump" = "Sincronizar com a Bomba";
 
 /* Instructions on where to find the pump ID on a Minimed pump */
 "The pump ID can be found printed on the back, or near the bottom of the STATUS/Esc screen. It is the strictly numerical portion of the serial number (shown as SN or S/N)." = "O ID da bomba pode ser encontrado impresso na parte traseira ou na parte inferior da tela STATUS/Esc. É a parte estritamente numérica do número de série (mostrado como SN ou S/N).";
-

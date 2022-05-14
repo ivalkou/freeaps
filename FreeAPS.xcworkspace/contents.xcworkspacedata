@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Dependencies/OmniBLE/OmniBLE.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Dependencies/MKRingProgressView/MKRingProgressView.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Dependencies/dexcom-share-client-swift/ShareClient.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:FreeAPS.xcodeproj">
    </FileRef>
    <FileRef

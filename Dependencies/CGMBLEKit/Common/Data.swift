@@ -33,27 +33,23 @@ extension Data {
     }
 
     mutating func append<T: FixedWidthInteger>(_ newElement: T) {
-        withUnsafePointer(to: newElement.littleEndian) { (ptr: UnsafePointer<T>) in
-            append(UnsafeBufferPointer(start: ptr, count: 1))
-        }
+        var element = newElement.littleEndian
+        append(UnsafeBufferPointer(start: &element, count: 1))
     }
 
     mutating func appendBigEndian<T: FixedWidthInteger>(_ newElement: T) {
-        withUnsafePointer(to: newElement.bigEndian) { (ptr: UnsafePointer<T>) in
-            append(UnsafeBufferPointer(start: ptr, count: 1))
-        }
+        var element = newElement.bigEndian
+        append(UnsafeBufferPointer(start: &element, count: 1))
     }
 
     init<T: FixedWidthInteger>(_ value: T) {
-        self = withUnsafePointer(to: value.littleEndian) { (ptr: UnsafePointer<T>) -> Data in
-            return Data(buffer: UnsafeBufferPointer(start: ptr, count: 1))
-        }
+        var value = value.littleEndian
+        self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
     }
 
     init<T: FixedWidthInteger>(bigEndian value: T) {
-        self = withUnsafePointer(to: value.bigEndian) { (ptr: UnsafePointer<T>) -> Data in
-            return Data(buffer: UnsafeBufferPointer(start: ptr, count: 1))
-        }
+        var value = value.bigEndian
+        self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
     }
 }
 

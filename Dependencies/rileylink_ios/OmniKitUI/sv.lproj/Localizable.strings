@@ -15,22 +15,22 @@
 "%@ U (Finished)" = "%@ E (Klar)";
 
 /* Format string for bolus progress. (1: The delivered amount) (2: The programmed amount) (3: the percent progress) */
-"%@ U of %@ U (%@)" = "%@ E av %@ E (%@)";
+"%@ U of %@ U (%@)" = "%1$@ IE av %2$@ IE (%3$@)";
 
 /* Format string for temp basal rate. (1: The localized amount) */
-"%@ U/hour" = "%@ E/h";
+"%@ U/hour" = "%@ IE/h";
 
 /* Format string for bolus percent progress. (1: Percent progress) */
 "%@%%" = "%@%%";
 
 /* Format string for reservoir reading when above or equal to maximum reading. (1: The localized amount) */
-"%@+ U" = "%@+ E";
+"%@+ U" = "%@+ IE";
 
 /* Appends a full-stop to a statement */
 "%@." = "%@.";
 
 /* Format string for reservoir volume. (1: The localized volume) */
-"%@U" = "%@E";
+"%@U" = "%@IE";
 
 /* The title of the cell showing the pod activated at time */
 "Active Time" = "Aktiv tid";
@@ -178,7 +178,7 @@
 "Play Test Beeps" = "Spela upp testljud";
 
 /* Progress message for play test beeps. */
-"Play Test Beeps…" = "Spelar upp testljud…";
+"Playing Test Beeps…" = "Spelar upp testljud…";
 
 /* The title of the cell showing the pod pm version */
 "PM Version" = "PM-version";
@@ -259,3 +259,21 @@
 
 /* The title of the pod details section in settings */
 "Pod Details" = "Poddetaljer";
+
+/* Recovery suggestion on unexpected pod change */
+"Please bring only original pod in range or deactivate original pod" = "Ha endast din ursprungliga podd inom räckvidd eller inaktivera ursprunglig podd";
+
+/* The format string for Last Bolus Not Delivered: (1: bolus not delivered string)*/
+"Last Bolus Not Delivered: %1$@ U\n" = "Sista bolus ej given: %1$@ IE\n";
+
+/* The format string for Delivery Status: (1: delivery status string) */
+"Delivery Status: %1$@\n" = "Status på insulintillförsel: %1$@\n";
+
+/* The format string for minutes (1: number of minutes string) */
+"%1$@ minutes" = "%1$@ minuter";
+
+/* The format string for Alerts: (1: the alerts string) */
+"Alerts: %1$@\n" = "Varningar: %1$@\n";
+
+/* Additional pairing recovery suggestion on multiple pairing failures */
+"If the problem persists, move to a new area and try again" = "Om problemet kvarstår, förflytta dig till ny plats och försök igen";

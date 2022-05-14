@@ -20,7 +20,7 @@
 "Cannula inserting" = "植入管路";
 
 /* String describing a dose that was certainly scheduled */
-"Certain" = "Certain";
+"Certain" = "科学之";
 
 /* Pod state when pod has been deactivated */
 "Deactivated" = "已解除";
