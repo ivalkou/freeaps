@@ -18,11 +18,16 @@ extension DataTable {
         }
 
         func carbs() -> [CarbsEntry] {
-            carbsStorage.recent()
+            carbsStorage.recent().sorted { $0.createdAt > $1.createdAt }
         }
 
         func deleteCarbs(at date: Date) {
+            guard let healthCarb = carbsStorage.recent().first(where: { $0.createdAt == date }) else {
+                debug(.service, "Failed to delete carbs")
+                return
+            }
             nightscoutManager.deleteCarbs(at: date)
+            healthkitManager.deleteCarb(syncID: healthCarb.id)
         }
 
         func glucose() -> [BloodGlucose] {
@@ -31,7 +36,7 @@ extension DataTable {
 
         func deleteGlucose(id: String) {
             glucoseStorage.removeGlucose(ids: [id])
-            healthkitManager.deleteGlucise(syncID: id)
+            healthkitManager.deleteGlucose(syncID: id)
         }
     }
 }

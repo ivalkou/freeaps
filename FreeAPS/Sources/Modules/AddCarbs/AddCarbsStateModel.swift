@@ -4,6 +4,8 @@ extension AddCarbs {
     final class StateModel: BaseStateModel<Provider> {
         @Injected() var carbsStorage: CarbsStorage!
         @Injected() var apsManager: APSManager!
+        @Injected() var healthKitManager: HealthKitManager!
+        @Published var ID: String = UUID().uuidString
         @Published var carbs: Decimal = 0
         @Published var date = Date()
         @Published var carbsRequired: Decimal?
@@ -18,9 +20,11 @@ extension AddCarbs {
                 return
             }
 
-            carbsStorage.storeCarbs([
-                CarbsEntry(createdAt: date, carbs: carbs, enteredBy: CarbsEntry.manual)
-            ])
+            let carbArray = [
+                CarbsEntry(id: ID, createdAt: date, carbs: carbs, enteredBy: CarbsEntry.manual)
+            ]
+            carbsStorage.storeCarbs(carbArray)
+            healthKitManager.saveIfNeeded(carbs: carbArray)
 
             if settingsManager.settings.skipBolusScreenAfterCarbs {
                 apsManager.determineBasalSync()

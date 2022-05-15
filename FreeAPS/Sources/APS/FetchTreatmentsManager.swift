@@ -10,6 +10,7 @@ final class BaseFetchTreatmentsManager: FetchTreatmentsManager, Injectable {
     @Injected() var nightscoutManager: NightscoutManager!
     @Injected() var tempTargetsStorage: TempTargetsStorage!
     @Injected() var carbsStorage: CarbsStorage!
+    @Injected() var healthKitManager: HealthKitManager!
 
     private var lifetime = Lifetime()
     private let timer = DispatchTimer(timeInterval: 1.minutes.timeInterval)
@@ -22,18 +23,28 @@ final class BaseFetchTreatmentsManager: FetchTreatmentsManager, Injectable {
     private func subscribe() {
         timer.publisher
             .receive(on: processQueue)
-            .flatMap { _ -> AnyPublisher<([CarbsEntry], [TempTarget]), Never> in
+            .flatMap { _ -> AnyPublisher<([CarbsEntry], [TempTarget], [CarbsEntry]), Never> in
                 debug(.nightscout, "FetchTreatmentsManager heartbeat")
                 debug(.nightscout, "Start fetching carbs and temptargets")
-                return Publishers.CombineLatest(
+                return Publishers.CombineLatest3(
                     self.nightscoutManager.fetchCarbs(),
-                    self.nightscoutManager.fetchTempTargets()
+                    self.nightscoutManager.fetchTempTargets(),
+                    self.healthKitManager.fetchCarbs()
                 ).eraseToAnyPublisher()
             }
-            .sink { carbs, targets in
-                let filteredCarbs = carbs.filter { !($0.enteredBy?.contains(CarbsEntry.manual) ?? false) }
+            .sink { carbs, targets, carbsFromHealth in
+                let since = self.carbsStorage.syncDate()
+                let nsCarbs = carbs.filter { !($0.enteredBy?.contains(CarbsEntry.manual) ?? false) }
+
+                let allCarbs = nsCarbs + carbsFromHealth
+                let filteredCarbs = allCarbs.filter { $0.createdAt > since }
+                let carbsForHealth = allCarbs.filter { !carbsFromHealth.contains($0) }
+
                 if filteredCarbs.isNotEmpty {
                     self.carbsStorage.storeCarbs(filteredCarbs)
+                }
+                if carbsForHealth.isNotEmpty {
+                    self.healthKitManager.saveIfNeeded(carbs: filteredCarbs)
                 }
                 let filteredTargets = targets.filter { !($0.enteredBy?.contains(TempTarget.manual) ?? false) }
                 if filteredTargets.isNotEmpty {

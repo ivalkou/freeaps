@@ -2,7 +2,7 @@
 "Commands" = "Komutlar";
 
 /* The connected state */
-"Connected" = "Bağlı";
+"Connected" = "Bağlandı";
 
 /* The in-progress connecting state */
 "Connecting" = "Bağlanıyor";
