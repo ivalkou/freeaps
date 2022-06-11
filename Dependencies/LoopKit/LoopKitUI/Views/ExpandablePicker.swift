@@ -40,7 +40,7 @@ public struct ExpandablePicker: View {
             if pickerShouldExpand {
                 HStack(alignment: .center) {
                     Picker(selection: self.pickerIndex, label: Text("")) {
-                        ForEach(0 ..< self.items.count) {
+                        ForEach(0 ..< self.items.count, id: \.self) {
                             Text(self.items[$0])
                        }
                     }

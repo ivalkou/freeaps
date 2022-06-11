@@ -21,6 +21,12 @@ extension GarminConfig {
                         }
                     }
                 }
+
+                Section(header: Text("About")) {
+                    Button("View sources on github.") {
+                        UIApplication.shared.open(URL(string: "https://github.com/ivalkou/FreeAPSXGarmin")!)
+                    }
+                }
             }
             .onAppear(perform: configureView)
             .navigationTitle("Garmin Watch")

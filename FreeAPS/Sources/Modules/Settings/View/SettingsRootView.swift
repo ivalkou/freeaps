@@ -16,7 +16,6 @@ extension Settings {
 
                 Section(header: Text("Devices")) {
                     Text("Pump").navigationLink(to: .pumpConfig, from: self)
-                    Text("Garmin watch").navigationLink(to: .garmin, from: self)
                 }
 
                 Section(header: Text("Services")) {
@@ -41,6 +40,9 @@ extension Settings {
                 Section(header: Text("Developer")) {
                     Toggle("Debug options", isOn: $state.debugOptions)
                     if state.debugOptions {
+                        Group {
+                            Text("Garmin watch").navigationLink(to: .garmin, from: self)
+                        }
                         Group {
                             Text("Preferences")
                                 .navigationLink(to: .configEditor(file: OpenAPS.Settings.preferences), from: self)
@@ -102,9 +104,10 @@ extension Settings {
                     }
                 }
 
-                Section {
-                    Toggle("Animated Background", isOn: $state.animatedBackground)
-                }
+                // Disabled until next holidays
+//                Section {
+//                    Toggle("Animated Background", isOn: $state.animatedBackground)
+//                }
 
                 Section {
                     Text("Share logs")

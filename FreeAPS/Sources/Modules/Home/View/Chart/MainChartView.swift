@@ -244,7 +244,7 @@ struct MainChartView: View {
     private func timeLabelsView(fullSize: CGSize) -> some View {
         ZStack {
             // X time labels
-            ForEach(0 ..< hours + hours) { hour in
+            ForEach(0 ..< hours + hours, id: \.self) { hour in
                 Text(dateFormatter.string(from: firstHourDate().addingTimeInterval(hour.hours.timeInterval)))
                     .font(.caption)
                     .position(

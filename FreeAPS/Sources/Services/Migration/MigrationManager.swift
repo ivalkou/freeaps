@@ -1,7 +1,3 @@
-//
-// Main Migration tool of App
-//
-
 import Combine
 import Foundation
 import SwiftUI
