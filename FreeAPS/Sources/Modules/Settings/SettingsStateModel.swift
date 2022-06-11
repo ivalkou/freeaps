@@ -19,7 +19,8 @@ extension Settings {
 
             buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "Unknown"
 
-            subscribeSetting(\.animatedBackground, on: $animatedBackground) { animatedBackground = $0 }
+            // Disabled until next holidays
+//            subscribeSetting(\.animatedBackground, on: $animatedBackground) { animatedBackground = $0 }
         }
 
         func logItems() -> [URL] {
