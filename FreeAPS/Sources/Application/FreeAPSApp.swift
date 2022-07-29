@@ -49,11 +49,8 @@ import Swinject
 
     var body: some Scene {
         WindowGroup {
-            ZStack {
-                rootView
-            }
-            .animation(.easeIn(duration: 0.75), value: self.loadingIsEnded)
-
+            rootView
+                .animation(.easeIn(duration: 0.75), value: self.loadingIsEnded)
         }
         .onChange(of: scenePhase) { newScenePhase in
             debug(.default, "APPLICATION PHASE: \(newScenePhase)")
