@@ -17,7 +17,7 @@ extension BasalProfileEditor {
         private var rateFormatter: NumberFormatter {
             let formatter = NumberFormatter()
             formatter.numberStyle = .decimal
-            formatter.maximumFractionDigits = 1
+            formatter.maximumFractionDigits = 2
             return formatter
         }
 
