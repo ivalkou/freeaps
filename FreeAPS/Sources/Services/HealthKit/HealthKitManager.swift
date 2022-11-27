@@ -221,7 +221,7 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
 
         loadSamplesFromHealth(sampleType: sampleType, withIDs: events.map(\.id))
             .receive(on: processQueue)
-            .flatMap { samples -> AnyPublisher<([InsulinBolus], [InsulinBasal]), Never> in
+            .compactMap { samples -> ([InsulinBolus], [InsulinBasal]) in
                 let sampleIDs = samples.compactMap(\.syncIdentifier)
                 let bolus = events
                     .filter { $0.type == .bolus && !sampleIDs.contains($0.id) }
@@ -229,14 +229,31 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                         guard let amount = event.amount else { return nil }
                         return InsulinBolus(id: event.id, amount: amount, date: event.timestamp)
                     }
-                return Publishers.CombineLatest(
-                    Just(bolus),
-                    Just([])
-                ).eraseToAnyPublisher()
+                let basalEvents = events
+                    .filter { $0.type == .tempBasal && !sampleIDs.contains($0.id) }
+                let basal = basalEvents.enumerated()
+                    .compactMap { item -> InsulinBasal? in
+                        let nextElementEventIndex = item.offset + 1
+                        guard basalEvents.count > nextElementEventIndex else { return nil }
+                        let nextBasalEvent = basalEvents[nextElementEventIndex]
+                        let secondsOfCurrentBasal = nextBasalEvent.timestamp.timeIntervalSince(item.element.timestamp)
+                        let amount = Decimal(secondsOfCurrentBasal / 3600) * (item.element.rate ?? 0)
+                        let id = String(item.element.id.dropFirst())
+                        guard amount > 0,
+                              id != ""
+                        else { return nil }
+                        return InsulinBasal(
+                            id: id,
+                            amount: amount,
+                            startDelivery: item.element.timestamp,
+                            endDelivery: nextBasalEvent.timestamp
+                        )
+                    }
+                return (bolus, basal)
             }
-            .sink(receiveValue: { bolus, _ in
+            .sink(receiveValue: { bolus, basal in
                 // save bolus
-                let samplesToSave = bolus
+                let bolusSamples = bolus
                     .map {
                         HKQuantitySample(
                             type: sampleType,
@@ -253,7 +270,24 @@ final class BaseHealthKitManager: HealthKitManager, Injectable {
                         )
                     }
 
-                self.healthKitStore.save(samplesToSave) { _, _ in }
+                let basalSamples = basal
+                    .map {
+                        HKQuantitySample(
+                            type: sampleType,
+                            quantity: HKQuantity(unit: .internationalUnit(), doubleValue: Double($0.amount)),
+                            start: $0.startDelivery,
+                            end: $0.endDelivery,
+                            metadata: [
+                                HKMetadataKeyInsulinDeliveryReason: NSNumber(1),
+                                HKMetadataKeyExternalUUID: $0.id,
+                                HKMetadataKeySyncIdentifier: $0.id,
+                                HKMetadataKeySyncVersion: 1,
+                                Config.freeAPSMetaKey: true
+                            ]
+                        )
+                    }
+
+                self.healthKitStore.save(bolusSamples + basalSamples) { _, _ in }
             })
             .store(in: &lifetime)
     }
@@ -635,4 +669,9 @@ private struct InsulinBolus {
     var date: Date
 }
 
-private struct InsulinBasal {}
+private struct InsulinBasal {
+    var id: String
+    var amount: Decimal
+    var startDelivery: Date
+    var endDelivery: Date
+}
