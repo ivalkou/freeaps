@@ -587,6 +587,10 @@ final class BaseAPSManager: APSManager, Injectable {
             enacted.timestamp = Date()
             enacted.recieved = received
             storage.save(enacted, as: OpenAPS.Enact.enacted)
+
+            // Create a tdd.json
+            tdd(enacted_: enacted)
+
             debug(.apsManager, "Suggestion enacted. Received: \(received)")
             DispatchQueue.main.async {
                 self.broadcaster.notify(EnactedSuggestionObserver.self, on: .main) {
@@ -595,6 +599,67 @@ final class BaseAPSManager: APSManager, Injectable {
             }
             nightscout.uploadStatus()
         }
+    }
+
+    private func tdd(enacted_: Suggestion) {
+        // Add to tdd.json:
+        let preferences = settingsManager.preferences
+        let currentTDD = enacted_.tdd ?? 0
+        let file = OpenAPS.Monitor.tdd
+        let tdd = TDD(
+            TDD: currentTDD,
+            timestamp: Date(),
+            id: UUID().uuidString
+        )
+        var uniqEvents: [TDD] = []
+        storage.transaction { storage in
+            storage.append(tdd, to: file, uniqBy: \.id)
+            uniqEvents = storage.retrieve(file, as: [TDD].self)?
+                .filter { $0.timestamp.addingTimeInterval(14.days.timeInterval) > Date() }
+                .sorted { $0.timestamp > $1.timestamp } ?? []
+            var total: Decimal = 0
+            var indeces: Decimal = 0
+            for uniqEvent in uniqEvents {
+                if uniqEvent.TDD > 0 {
+                    total += uniqEvent.TDD
+                    indeces += 1
+                }
+            }
+            let entriesPast2hours = storage.retrieve(file, as: [TDD].self)?
+                .filter { $0.timestamp.addingTimeInterval(2.hours.timeInterval) > Date() }
+                .sorted { $0.timestamp > $1.timestamp } ?? []
+            var totalAmount: Decimal = 0
+            var nrOfIndeces: Decimal = 0
+            for entry in entriesPast2hours {
+                if entry.TDD > 0 {
+                    totalAmount += entry.TDD
+                    nrOfIndeces += 1
+                }
+            }
+            if indeces == 0 {
+                indeces = 1
+            }
+            if nrOfIndeces == 0 {
+                nrOfIndeces = 1
+            }
+            let average14 = total / indeces
+            let average2hours = totalAmount / nrOfIndeces
+            let weight = preferences.weightPercentage
+            let weighted_average = weight * average2hours + (1 - weight) * average14
+            let averages = TDD_averages(
+                average_total_data: roundDecimal(average14, 1),
+                weightedAverage: roundDecimal(weighted_average, 1),
+                past2hoursAverage: roundDecimal(average2hours, 1),
+                date: Date()
+            )
+            storage.save(averages, as: OpenAPS.Monitor.tdd_averages)
+            storage.save(Array(uniqEvents), as: file)
+        }
+    }
+
+    private func roundDecimal(_ decimal: Decimal, _ digits: Double) -> Decimal {
+        let rounded = round(Double(decimal) * pow(10, digits)) / pow(10, digits)
+        return Decimal(rounded)
     }
 
     private func processError(_ error: Error) {
