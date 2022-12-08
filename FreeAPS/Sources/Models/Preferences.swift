@@ -48,6 +48,7 @@ struct Preferences: JSON {
     var useWeightedAverage: Bool = false
     var weightPercentage: Decimal = 0.65
     var tddAdjBasal: Bool = false
+    var threshold_setting: Decimal = 65
 }
 
 extension Preferences {
@@ -98,6 +99,7 @@ extension Preferences {
         case useWeightedAverage
         case weightPercentage
         case tddAdjBasal
+        case threshold_setting
     }
 }
 
