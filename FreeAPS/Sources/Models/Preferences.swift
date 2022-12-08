@@ -42,7 +42,7 @@ struct Preferences: JSON {
     var suspendZerosIOB: Bool = true
     var timestamp: Date?
     var adjustmentFactor: Decimal = 1.0
-    var enableChris: Bool = false
+    var sigmoid: Bool = false
     var enableDynamicCR: Bool = false
     var useNewFormula: Bool = false
     var useWeightedAverage: Bool = false
@@ -92,7 +92,7 @@ extension Preferences {
         case noisyCGMTargetMultiplier
         case suspendZerosIOB = "suspend_zeros_iob"
         case adjustmentFactor
-        case enableChris
+        case sigmoid
         case enableDynamicCR
         case useNewFormula
         case useWeightedAverage
