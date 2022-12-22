@@ -66,9 +66,11 @@
 
 /* Add carbs screen */
 "Add Carbs" = "Add Carbs";
+"Add without bolus" = "Add without bolus";
 
 /* Add carbs header and button in Watch app. You can skip the last " " space. It's just for differentiation */
 "Add Carbs " = "Add Carbs ";
+"Without bolus" = "Without bolus";
 
 /*  */
 "Amount Carbs" = "Amount Carbs";

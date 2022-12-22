@@ -66,9 +66,11 @@
 
 /* Add carbs screen */
 "Add Carbs" = "Ввод углеводов";
+"Add without bolus" = "Ввод без болюса";
 
 /* Add carbs header and button in Watch app. You can skip the last " " space. It's just for differentiation */
 "Add Carbs " = "Ввод углеводов";
+"Without bolus" = "Без болюса";
 
 /*  */
 "Amount Carbs" = "Кол-во углеводов";

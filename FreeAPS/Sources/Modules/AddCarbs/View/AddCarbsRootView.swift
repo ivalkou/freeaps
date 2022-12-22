@@ -35,8 +35,11 @@ extension AddCarbs {
                 }
 
                 Section {
-                    Button { state.add() }
+                    Button { state.addCarbs() }
                     label: { Text("Add") }
+                        .disabled(state.carbs <= 0)
+                    Button { state.addCarbsWitoutBolus() }
+                    label: { Text("Add witout bolus") }
                         .disabled(state.carbs <= 0)
                 }
             }

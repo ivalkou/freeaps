@@ -49,7 +49,7 @@ import Swinject
 
     var body: some Scene {
         WindowGroup {
-            Main.RootView(resolver: resolver)
+            rootView
                 .onOpenURL(perform: handleURL)
         }
         .onChange(of: scenePhase) { newScenePhase in
