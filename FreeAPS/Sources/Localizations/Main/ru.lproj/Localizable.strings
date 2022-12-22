@@ -72,6 +72,18 @@
 "Add Carbs " = "Ввод углеводов";
 "Without bolus" = "Без болюса";
 
+/* Fast Add carbs button */
+"Fast Add" = "Добавить быстро";
+
+/* Fast Add carbs button description */
+"Carbs will add and FreeAPX X will update forecasts without bolus" = "Углеводы будут добавлены без ввода болюса, FreeAPS X автоматически обновит прогнозы";
+
+/* Simple Add carbs button */
+"Simple Add" = "Просто добавить";
+
+/* Simple Add carbs button description*/
+"Carbs will add without bolus" = "Углеводы будут добавлены без ввода болюса";
+
 /*  */
 "Amount Carbs" = "Кол-во углеводов";
 

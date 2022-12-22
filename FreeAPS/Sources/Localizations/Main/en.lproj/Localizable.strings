@@ -72,6 +72,18 @@
 "Add Carbs " = "Add Carbs ";
 "Without bolus" = "Without bolus";
 
+/* Fast Add carbs button */
+"Fast Add" = "Fast Add";
+
+/* Fast Add carbs button description */
+"Carbs will add and FreeAPX X will update forecasts without bolus" = "Carbs will add and FreeAPX X will update forecasts without bolus";
+
+/* Simple Add carbs button */
+"Simple Add" = "Simple Add";
+
+/* Simple Add carbs button description*/
+"Carbs will add without bolus" = "Carbs will add without bolus";
+
 /*  */
 "Amount Carbs" = "Amount Carbs";
 
