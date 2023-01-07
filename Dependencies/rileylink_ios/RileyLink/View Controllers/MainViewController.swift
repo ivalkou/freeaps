@@ -32,7 +32,7 @@ class MainViewController: RileyLinkSettingsViewController {
 
         super.init(rileyLinkPumpManager: rileyLinkPumpManager, devicesSectionIndex: Section.rileyLinks.rawValue, style: .grouped)
         
-        self.title = NSLocalizedString("RileyLink Testing", comment: "Title for RileyLink Testing main view controller")
+        self.title = LocalizedString("RileyLink Testing", comment: "Title for RileyLink Testing main view controller")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -85,7 +85,7 @@ class MainViewController: RileyLinkSettingsViewController {
         case setupOmnipod
     }
     
-    weak var rileyLinkManager: RileyLinkDeviceManager!
+    weak var rileyLinkManager: RileyLinkBluetoothDeviceProvider!
     
     @objc private func deviceConnectionStateDidChange() {
         DispatchQueue.main.async {
@@ -94,7 +94,7 @@ class MainViewController: RileyLinkSettingsViewController {
     }
     
     private var shouldAllowAddingPump: Bool {
-        return deviceDataManager.rileyLinkConnectionManager.connectingCount > 0
+        return rileyLinkManager.connectingCount > 0
     }
 
     // MARK: Data Source
@@ -136,13 +136,13 @@ class MainViewController: RileyLinkSettingsViewController {
                     let textButtonCell = cell as? TextButtonTableViewCell
                     textButtonCell?.isEnabled = shouldAllowAddingPump
                     textButtonCell?.isUserInteractionEnabled = shouldAllowAddingPump
-                    cell.textLabel?.text = NSLocalizedString("Add Minimed Pump", comment: "Title text for button to set up a new minimed pump")
+                    cell.textLabel?.text = LocalizedString("Add Minimed Pump", comment: "Title text for button to set up a new minimed pump")
                 case .setupOmnipod:
                     cell = tableView.dequeueReusableCell(withIdentifier: TextButtonTableViewCell.className, for: indexPath)
                     let textButtonCell = cell as? TextButtonTableViewCell
                     textButtonCell?.isEnabled = shouldAllowAddingPump
                     textButtonCell?.isUserInteractionEnabled = shouldAllowAddingPump
-                    cell.textLabel?.text = NSLocalizedString("Setup Omnipod", comment: "Title text for button to set up omnipod")
+                    cell.textLabel?.text = LocalizedString("Setup Omnipod", comment: "Title text for button to set up omnipod")
                 }
             }
         }
@@ -154,7 +154,7 @@ class MainViewController: RileyLinkSettingsViewController {
         case .rileyLinks:
             return super.tableView(tableView, titleForHeaderInSection: section)
         case .pump:
-            return NSLocalizedString("Pumps", comment: "Title text for section listing configured pumps")
+            return LocalizedString("Pumps", comment: "Title text for section listing configured pumps")
         }
     }
     
@@ -176,7 +176,7 @@ class MainViewController: RileyLinkSettingsViewController {
         switch Section(rawValue: indexPath.section)! {
         case .rileyLinks:
             let device = devicesDataSource.devices[indexPath.row]
-            let vc = RileyLinkDeviceTableViewController(device: device)
+            let vc = RileyLinkDeviceTableViewController(device: device, batteryAlertLevel: nil, batteryAlertLevelChanged: nil)
             show(vc, sender: indexPath)
         case .pump:
             if let pumpManager = deviceDataManager.pumpManager {
@@ -184,7 +184,7 @@ class MainViewController: RileyLinkSettingsViewController {
                 settings.completionDelegate = self
                 present(settings, animated: true)
             } else {
-                var setupViewController: PumpManagerSetupViewController & UIViewController & CompletionNotifying
+                var setupViewController: UIViewController & PumpManagerOnboarding & CompletionNotifying
                 switch PumpActionRow(rawValue: indexPath.row)! {
                 case .addMinimedPump:
                     setupViewController = UIStoryboard(name: "MinimedPumpManager", bundle: Bundle(for: MinimedPumpManagerSetupViewController.self)).instantiateViewController(withIdentifier: "DevelopmentPumpSetup") as! MinimedPumpManagerSetupViewController
@@ -221,9 +221,14 @@ extension MainViewController: CompletionDelegate {
     }
 }
 
-extension MainViewController: PumpManagerSetupViewControllerDelegate {
-    func pumpManagerSetupViewController(_ pumpManagerSetupViewController: PumpManagerSetupViewController, didSetUpPumpManager pumpManager: PumpManagerUI) {
+extension MainViewController: PumpManagerCreateDelegate {
+    func pumpManagerOnboarding(_ notifying: PumpManagerCreateNotifying, didCreatePumpManager pumpManager: PumpManagerUI) {
         deviceDataManager.pumpManager = pumpManager
+    }
+}
+
+extension MainViewController: PumpManagerOnboardingDelegate {
+    func pumpManagerOnboarding(_ notifying: PumpManagerOnboarding, didOnboardPumpManager pumpManager: PumpManagerUI, withSettings settings: PumpManagerSetupSettings) {
         show(pumpManager.settingsViewController(insulinTintColor: insulinTintColor, guidanceColors: guidanceColors), sender: nil)
         tableView.reloadSections(IndexSet([Section.pump.rawValue]), with: .none)
     }

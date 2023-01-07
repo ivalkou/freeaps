@@ -16,7 +16,7 @@ extension AutotuneConfig {
         private var rateFormatter: NumberFormatter {
             let formatter = NumberFormatter()
             formatter.numberStyle = .decimal
-            formatter.maximumFractionDigits = 3
+            formatter.maximumFractionDigits = 2
             return formatter
         }
 
@@ -71,6 +71,16 @@ extension AutotuneConfig {
                                 Text(rateFormatter.string(from: autotune.basalProfile[index].rate as NSNumber) ?? "0")
                                 Text("U/hr").foregroundColor(.secondary)
                             }
+                        }
+                        HStack {
+                            Text("Total")
+                                .bold()
+                                .foregroundColor(.primary)
+                            Spacer()
+                            Text(rateFormatter.string(from: autotune.basalProfile.reduce(0) { $0 + $1.rate } as NSNumber) ?? "0")
+                                .foregroundColor(.primary) +
+                                Text(" U/day")
+                                .foregroundColor(.secondary)
                         }
                     }
 

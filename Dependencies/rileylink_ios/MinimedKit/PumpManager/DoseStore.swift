@@ -14,7 +14,7 @@ extension Collection where Element == TimestampedHistoryEvent {
     
     func pumpEvents(from model: PumpModel) -> [NewPumpEvent] {
         var events: [NewPumpEvent] = []
-        var lastTempBasalAmount: DoseEntry?
+        var lastTempBasal: DoseEntry?
         var lastSuspend: DoseEntry?
         // Always assume the sequence may have started rewound. LoopKit will ignore unmatched resume events.
         var isRewound = true
@@ -25,8 +25,11 @@ extension Collection where Element == TimestampedHistoryEvent {
             var dose: DoseEntry?
             var eventType: LoopKit.PumpEventType?
 
+            title = String(describing: type(of: event.pumpEvent))
+
             switch event.pumpEvent {
             case let bolus as BolusNormalPumpEvent:
+                title = LocalizedString("Bolus", comment: "Event title for bolus")
                 let bolusEndDate: Date
                 if let lastSuspend = lastSuspend, bolus.programmed != bolus.amount, lastSuspend.startDate > event.date {
                     bolusEndDate = lastSuspend.startDate
@@ -35,36 +38,56 @@ extension Collection where Element == TimestampedHistoryEvent {
                 } else {
                     bolusEndDate = event.date.addingTimeInterval(model.bolusDeliveryTime(units: bolus.amount))
                 }
-                dose = DoseEntry(type: .bolus, startDate: event.date, endDate: bolusEndDate, value: bolus.programmed, unit: .units, deliveredUnits: bolus.amount)
-            case is SuspendPumpEvent:
-                dose = DoseEntry(suspendDate: event.date)
+                var automatic: Bool?
+                if !bolus.wasRemotelyTriggered {
+                    automatic = false
+                }
+                dose = DoseEntry(type: .bolus, startDate: event.date, endDate: bolusEndDate, value: bolus.programmed, unit: .units, deliveredUnits: bolus.amount, automatic: automatic, isMutable: event.isMutable(atDate: now, forPump: model), wasProgrammedByPumpUI: !bolus.wasRemotelyTriggered)
+            case let suspendEvent as SuspendPumpEvent:
+                title = LocalizedString("Suspend", comment: "Event title for suspend")
+                dose = DoseEntry(suspendDate: event.date, wasProgrammedByPumpUI: !suspendEvent.wasRemotelyTriggered)
                 lastSuspend = dose
-            case is ResumePumpEvent:
-                dose = DoseEntry(resumeDate: event.date)
+            case let resumeEvent as ResumePumpEvent:
+                title = LocalizedString("Resume", comment: "Event title for resume")
+                dose = DoseEntry(resumeDate: event.date, wasProgrammedByPumpUI: !resumeEvent.wasRemotelyTriggered)
             case let temp as TempBasalPumpEvent:
                 if case .Absolute = temp.rateType {
-                    lastTempBasalAmount = DoseEntry(type: .tempBasal, startDate: event.date, value: temp.rate, unit: .unitsPerHour)
+                    lastTempBasal = DoseEntry(type: .tempBasal, startDate: event.date, value: temp.rate, unit: .unitsPerHour, isMutable: event.isMutable(atDate: now, forPump: model), wasProgrammedByPumpUI: !temp.wasRemotelyTriggered)
+                    continue
+                } else {
+                    title = LocalizedString("Percent Temp Basal", comment: "Event title for percent based temp basal")
                 }
-            case let temp as TempBasalDurationPumpEvent:
-                if let amount = lastTempBasalAmount, amount.startDate == event.date {
+            case let tempDuration as TempBasalDurationPumpEvent:
+                if let lastTemp = lastTempBasal, lastTemp.startDate == event.date {
+                    if tempDuration.duration == 0 {
+                        title = LocalizedString("Cancel Temp Basal", comment: "Event title for temp basal cancel")
+                    } else {
+                        title = LocalizedString("Temp Basal", comment: "Event title for temporary basal rate start")
+                    }
                     dose = DoseEntry(
                         type: .tempBasal,
                         startDate: event.date,
-                        endDate: event.date.addingTimeInterval(TimeInterval(minutes: Double(temp.duration))),
-                        value: amount.unitsPerHour,
-                        unit: .unitsPerHour
+                        endDate: event.date.addingTimeInterval(TimeInterval(minutes: Double(tempDuration.duration))),
+                        value: lastTemp.unitsPerHour,
+                        unit: .unitsPerHour,
+                        automatic: false, // If this was automatic dose, it should be set as such during reconciliation
+                        isMutable: event.isMutable(atDate: now, forPump: model),
+                        wasProgrammedByPumpUI: lastTemp.wasProgrammedByPumpUI
                     )
                 }
             case let basal as BasalProfileStartPumpEvent:
+                title = LocalizedString("Scheduled Basal", comment: "Event title for starting scheduled basal")
                 dose = DoseEntry(
                     type: .basal,
                     startDate: event.date,
                     // Use the maximum-possible duration for a basal entry; its true duration will be reconciled against other entries.
                     endDate: event.date.addingTimeInterval(.hours(24)),
                     value: basal.scheduleEntry.rate,
-                    unit: .unitsPerHour
+                    unit: .unitsPerHour,
+                    isMutable: event.isMutable(atDate: now, forPump: model)
                 )
             case is RewindPumpEvent:
+                title = LocalizedString("Rewind", comment: "Event title for rewind")
                 eventType = .rewind
 
                 /* 
@@ -77,6 +100,7 @@ extension Collection where Element == TimestampedHistoryEvent {
                 dose = DoseEntry(suspendDate: event.date)
                 isRewound = true
             case is PrimePumpEvent:
+                title = LocalizedString("Prime", comment: "Event title for rewind")
                 eventType = .prime
 
                 if isRewound {
@@ -84,6 +108,7 @@ extension Collection where Element == TimestampedHistoryEvent {
                     dose = DoseEntry(resumeDate: event.date)
                 }
             case let alarm as PumpAlarmPumpEvent:
+                title = alarm.alarmType.localizedString
                 eventType = .alarm
 
                 if case .noDelivery = alarm.alarmType {
@@ -91,18 +116,42 @@ extension Collection where Element == TimestampedHistoryEvent {
                 }
                 break
             case let alarm as ClearAlarmPumpEvent:
+                title = "Clear Alarm"
                 eventType = .alarmClear
 
                 if case .noDelivery = alarm.alarmType {
                     dose = DoseEntry(resumeDate: event.date)
                 }
                 break
+            case is JournalEntryMealMarkerPumpEvent:
+                title = "Meal"
+                break
+            case is JournalEntryPumpLowBatteryPumpEvent:
+                title = "Low Battery"
+                break
+            case is JournalEntryPumpLowReservoirPumpEvent:
+                title = "Low Reservoir"
+                break
+            case is ChangeBasalProfilePumpEvent:
+                title = "Change Basal Schedule"
+                break
+            case is ChangeBasalProfilePatternPumpEvent:
+                title = "Change Basal Profile Schedule"
+                break
+            case is SelectBasalProfilePumpEvent:
+                title = "Select Profile"
+                break
+            case is ChangeTimePumpEvent:
+                title = "Change Time"
+                break
+            case is NewTimePumpEvent:
+                title = "New Time"
+                break
             default:
                 break
             }
 
-            title = String(describing: event.pumpEvent)
-            events.append(NewPumpEvent(date: event.date, dose: dose, isMutable: event.isMutable(atDate: now, forPump: model), raw: event.pumpEvent.rawData, title: title, type: eventType))
+            events.append(NewPumpEvent(date: event.date, dose: dose, raw: event.pumpEvent.rawData, title: title, type: eventType))
         }
 
         return events

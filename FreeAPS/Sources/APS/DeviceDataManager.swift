@@ -5,6 +5,7 @@ import LoopKit
 import LoopKitUI
 import MinimedKit
 import MockKit
+import OmniBLE
 import OmniKit
 import SwiftDate
 import Swinject
@@ -12,36 +13,49 @@ import UserNotifications
 
 protocol DeviceDataManager: GlucoseSource {
     var pumpManager: PumpManagerUI? { get set }
+    var bluetoothManager: BluetoothStateManager { get }
     var loopInProgress: Bool { get set }
     var pumpDisplayState: CurrentValueSubject<PumpDisplayState?, Never> { get }
     var recommendsLoop: PassthroughSubject<Void, Never> { get }
     var bolusTrigger: PassthroughSubject<Bool, Never> { get }
+    var manualTempBasal: PassthroughSubject<Bool, Never> { get }
     var errorSubject: PassthroughSubject<Error, Never> { get }
     var pumpName: CurrentValueSubject<String, Never> { get }
     var pumpExpiresAtDate: CurrentValueSubject<Date?, Never> { get }
     func heartbeat(date: Date)
     func createBolusProgressReporter() -> DoseProgressReporter?
+    var alertHistoryStorage: AlertHistoryStorage! { get }
 }
 
 private let staticPumpManagers: [PumpManagerUI.Type] = [
     MinimedPumpManager.self,
     OmnipodPumpManager.self,
+    OmniBLEPumpManager.self,
     MockPumpManager.self
 ]
 
-private let staticPumpManagersByIdentifier: [String: PumpManagerUI.Type] = staticPumpManagers.reduce(into: [:]) { map, Type in
-    map[Type.managerIdentifier] = Type
-}
+private let staticPumpManagersByIdentifier: [String: PumpManagerUI.Type] = [
+    MinimedPumpManager.managerIdentifier: MinimedPumpManager.self,
+    OmnipodPumpManager.managerIdentifier: OmnipodPumpManager.self,
+    OmniBLEPumpManager.managerIdentifier: OmniBLEPumpManager.self,
+    MockPumpManager.managerIdentifier: MockPumpManager.self
+]
+
+// private let staticPumpManagersByIdentifier: [String: PumpManagerUI.Type] = staticPumpManagers.reduce(into: [:]) { map, Type in
+//    map[Type.managerIdentifier] = Type
+// }
 
 private let accessLock = NSRecursiveLock(label: "BaseDeviceDataManager.accessLock")
 
 final class BaseDeviceDataManager: DeviceDataManager, Injectable {
     private let processQueue = DispatchQueue.markedQueue(label: "BaseDeviceDataManager.processQueue")
     @Injected() private var pumpHistoryStorage: PumpHistoryStorage!
+    @Injected() var alertHistoryStorage: AlertHistoryStorage!
     @Injected() private var storage: FileStorage!
     @Injected() private var broadcaster: Broadcaster!
     @Injected() private var glucoseStorage: GlucoseStorage!
     @Injected() private var settingsManager: SettingsManager!
+    @Injected() private var bluetoothProvider: BluetoothStateManager!
 
     @Persisted(key: "BaseDeviceDataManager.lastEventDate") var lastEventDate: Date? = nil
     @SyncAccess(lock: accessLock) @Persisted(key: "BaseDeviceDataManager.lastHeartBeatTime") var lastHeartBeatTime: Date =
@@ -51,6 +65,8 @@ final class BaseDeviceDataManager: DeviceDataManager, Injectable {
     let bolusTrigger = PassthroughSubject<Bool, Never>()
     let errorSubject = PassthroughSubject<Error, Never>()
     let pumpNewStatus = PassthroughSubject<Void, Never>()
+    let manualTempBasal = PassthroughSubject<Bool, Never>()
+    private let router = FreeAPSApp.resolver.resolve(Router.self)!
     @SyncAccess private var pumpUpdateCancellable: AnyCancellable?
     private var pumpUpdatePromise: Future<Bool, Never>.Promise?
     @SyncAccess var loopInProgress: Bool = false
@@ -71,6 +87,13 @@ final class BaseDeviceDataManager: DeviceDataManager, Injectable {
                     }
                     pumpExpiresAtDate.send(endTime)
                 }
+                if let omnipodBLE = pumpManager as? OmniBLEPumpManager {
+                    guard let endTime = omnipodBLE.state.podState?.expiresAt else {
+                        pumpExpiresAtDate.send(nil)
+                        return
+                    }
+                    pumpExpiresAtDate.send(endTime)
+                }
             } else {
                 pumpDisplayState.value = nil
                 pumpExpiresAtDate.send(nil)
@@ -78,6 +101,8 @@ final class BaseDeviceDataManager: DeviceDataManager, Injectable {
             }
         }
     }
+
+    var bluetoothManager: BluetoothStateManager { bluetoothProvider }
 
     var hasBLEHeartbeat: Bool {
         (pumpManager as? MockPumpManager) == nil
@@ -91,6 +116,7 @@ final class BaseDeviceDataManager: DeviceDataManager, Injectable {
         injectServices(resolver)
         setupPumpManager()
         UIDevice.current.isBatteryMonitoringEnabled = true
+        broadcaster.register(AlertObserver.self, observer: self)
     }
 
     func setupPumpManager() {
@@ -132,12 +158,12 @@ final class BaseDeviceDataManager: DeviceDataManager, Injectable {
             pumpUpdatePromise = promise
             debug(.deviceManager, "Waiting for pump update and loop recommendation")
             processQueue.safeSync {
-                pumpManager.ensureCurrentPumpData {
+                pumpManager.ensureCurrentPumpData { _ in
                     debug(.deviceManager, "Pump data updated.")
                 }
             }
         }
-        .timeout(60, scheduler: processQueue)
+        .timeout(20, scheduler: processQueue)
         .replaceError(with: false)
         .replaceEmpty(with: false)
         .sink(receiveValue: updateUpdateFinished)
@@ -178,7 +204,7 @@ final class BaseDeviceDataManager: DeviceDataManager, Injectable {
 
     @Persisted(key: "BaseDeviceDataManager.lastFetchGlucoseDate") private var lastFetchGlucoseDate: Date = .distantPast
 
-    func fetch() -> AnyPublisher<[BloodGlucose], Never> {
+    func fetch(_: DispatchTimer?) -> AnyPublisher<[BloodGlucose], Never> {
         guard let medtronic = pumpManager as? MinimedPumpManager else {
             warning(.deviceManager, "Fetch minilink glucose failed: Pump is not Medtronic")
             return Just([]).eraseToAnyPublisher()
@@ -196,6 +222,9 @@ final class BaseDeviceDataManager: DeviceDataManager, Injectable {
                     switch result {
                     case .noData:
                         debug(.deviceManager, "Minilink glucose is empty")
+                        promise(.success([]))
+                    case .unreliableData:
+                        debug(.deviceManager, "Unreliable data received")
                         promise(.success([]))
                     case let .newData(glucose):
                         let directions: [BloodGlucose.Direction?] = [nil]
@@ -242,6 +271,15 @@ final class BaseDeviceDataManager: DeviceDataManager, Injectable {
 }
 
 extension BaseDeviceDataManager: PumpManagerDelegate {
+    func pumpManagerPumpWasReplaced(_: PumpManager) {
+        debug(.deviceManager, "pumpManagerPumpWasReplaced")
+    }
+
+    var detectedSystemTimeOffset: TimeInterval {
+        // trustedTimeChecker.detectedSystemTimeOffset
+        0
+    }
+
     func pumpManager(_: PumpManager, didAdjustPumpClockBy adjustment: TimeInterval) {
         debug(.deviceManager, "didAdjustPumpClockBy \(adjustment)")
     }
@@ -262,7 +300,7 @@ extension BaseDeviceDataManager: PumpManagerDelegate {
         true
     }
 
-    func pumpManager(_ pumpManager: PumpManager, didUpdate status: PumpManagerStatus, oldStatus _: PumpManagerStatus) {
+    func pumpManager(_ pumpManager: PumpManager, didUpdate status: PumpManagerStatus, oldStatus: PumpManagerStatus) {
         dispatchPrecondition(condition: .onQueue(processQueue))
         debug(.deviceManager, "New pump status Bolus: \(status.bolusState)")
         debug(.deviceManager, "New pump status Basal: \(String(describing: status.basalDeliveryState))")
@@ -271,6 +309,10 @@ extension BaseDeviceDataManager: PumpManagerDelegate {
             bolusTrigger.send(true)
         } else {
             bolusTrigger.send(false)
+        }
+
+        if status.insulinType != oldStatus.insulinType {
+            settingsManager.updateInsulinCurve(status.insulinType)
         }
 
         let batteryPercent = Int((status.pumpBatteryChargeRemaining ?? 1) * 100)
@@ -286,11 +328,24 @@ extension BaseDeviceDataManager: PumpManagerDelegate {
         }
 
         if let omnipod = pumpManager as? OmnipodPumpManager {
-            let reservoir = omnipod.state.podState?.lastInsulinMeasurements?.reservoirLevel ?? 0xDEAD_BEEF
+            let reservoirVal = omnipod.state.podState?.lastInsulinMeasurements?.reservoirLevel ?? 0xDEAD_BEEF
+            // TODO: find the value Pod.maximumReservoirReading
+            let reservoir = Decimal(reservoirVal) > 50.0 ? 0xDEAD_BEEF : reservoirVal
 
             storage.save(Decimal(reservoir), as: OpenAPS.Monitor.reservoir)
             broadcaster.notify(PumpReservoirObserver.self, on: processQueue) {
                 $0.pumpReservoirDidChange(Decimal(reservoir))
+            }
+
+            if let tempBasal = omnipod.state.podState?.unfinalizedTempBasal, !tempBasal.isFinished(),
+               !tempBasal.automatic
+            {
+                // the manual basal temp is launch - block every thing
+                debug(.deviceManager, "manual temp basal")
+                manualTempBasal.send(true)
+            } else {
+                // no more manual Temp Basal !
+                manualTempBasal.send(false)
             }
 
             guard let endTime = omnipod.state.podState?.expiresAt else {
@@ -298,6 +353,43 @@ extension BaseDeviceDataManager: PumpManagerDelegate {
                 return
             }
             pumpExpiresAtDate.send(endTime)
+
+            if let startTime = omnipod.state.podState?.activatedAt {
+                storage.save(startTime, as: OpenAPS.Monitor.podAge)
+            }
+        }
+
+        if let omnipodBLE = pumpManager as? OmniBLEPumpManager {
+            let reservoirVal = omnipodBLE.state.podState?.lastInsulinMeasurements?.reservoirLevel ?? 0xDEAD_BEEF
+            // TODO: find the value Pod.maximumReservoirReading
+            let reservoir = Decimal(reservoirVal) > 50.0 ? 0xDEAD_BEEF : reservoirVal
+
+            storage.save(Decimal(reservoir), as: OpenAPS.Monitor.reservoir)
+            broadcaster.notify(PumpReservoirObserver.self, on: processQueue) {
+                $0.pumpReservoirDidChange(Decimal(reservoir))
+            }
+
+            // manual temp basal on
+            if let tempBasal = omnipodBLE.state.podState?.unfinalizedTempBasal, !tempBasal.isFinished(),
+               !tempBasal.automatic
+            {
+                // the manual basal temp is launch - block every thing
+                debug(.deviceManager, "manual temp basal")
+                manualTempBasal.send(true)
+            } else {
+                // no more manual Temp Basal !
+                manualTempBasal.send(false)
+            }
+
+            guard let endTime = omnipodBLE.state.podState?.expiresAt else {
+                pumpExpiresAtDate.send(nil)
+                return
+            }
+            pumpExpiresAtDate.send(endTime)
+
+            if let startTime = omnipodBLE.state.podState?.activatedAt {
+                storage.save(startTime, as: OpenAPS.Monitor.podAge)
+            }
         }
     }
 
@@ -375,28 +467,62 @@ extension BaseDeviceDataManager: PumpManagerDelegate {
 // MARK: - DeviceManagerDelegate
 
 extension BaseDeviceDataManager: DeviceManagerDelegate {
-    func scheduleNotification(
-        for _: DeviceManager,
-        identifier: String,
-        content: UNNotificationContent,
-        trigger: UNNotificationTrigger?
-    ) {
-        let request = UNNotificationRequest(
-            identifier: identifier,
-            content: content,
-            trigger: trigger
+    func issueAlert(_ alert: Alert) {
+        alertHistoryStorage.storeAlert(
+            AlertEntry(
+                alertIdentifier: alert.identifier.alertIdentifier,
+                primitiveInterruptionLevel: alert.interruptionLevel.storedValue as? Decimal,
+                issuedDate: Date(),
+                managerIdentifier: alert.identifier.managerIdentifier,
+                triggerType: alert.trigger.storedType,
+                triggerInterval: alert.trigger.storedInterval as? Decimal,
+                contentTitle: alert.foregroundContent?.title,
+                contentBody: alert.foregroundContent?.body
+            )
         )
-
-        DispatchQueue.main.async {
-            UNUserNotificationCenter.current().add(request)
-        }
     }
 
-    func clearNotification(for _: DeviceManager, identifier: String) {
-        DispatchQueue.main.async {
-            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
-        }
+    func retractAlert(identifier: Alert.Identifier) {
+        alertHistoryStorage.deleteAlert(identifier: identifier.alertIdentifier)
     }
+
+    func doesIssuedAlertExist(identifier _: Alert.Identifier, completion _: @escaping (Result<Bool, Error>) -> Void) {
+        debug(.deviceManager, "doesIssueAlertExist")
+    }
+
+    func lookupAllUnretracted(managerIdentifier _: String, completion _: @escaping (Result<[PersistedAlert], Error>) -> Void) {
+        debug(.deviceManager, "lookupAllUnretracted")
+    }
+
+    func lookupAllUnacknowledgedUnretracted(
+        managerIdentifier _: String,
+        completion _: @escaping (Result<[PersistedAlert], Error>) -> Void
+    ) {}
+
+    func recordRetractedAlert(_: Alert, at _: Date) {}
+
+//    func scheduleNotification(
+//        for _: DeviceManager,
+//        identifier: String,
+//        content: UNNotificationContent,
+//        trigger: UNNotificationTrigger?
+//    ) {
+//        let request = UNNotificationRequest(
+//            identifier: identifier,
+//            content: content,
+//            trigger: trigger
+//        )
+//
+//        DispatchQueue.main.async {
+//            UNUserNotificationCenter.current().add(request)
+//        }
+//    }
+//
+//    func clearNotification(for _: DeviceManager, identifier: String) {
+//        DispatchQueue.main.async {
+//            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
+//        }
+//    }
 
     func removeNotificationRequests(for _: DeviceManager, identifiers: [String]) {
         DispatchQueue.main.async {
@@ -433,10 +559,64 @@ extension BaseDeviceDataManager: CGMManagerDelegate {
 
 // MARK: - AlertPresenter
 
-extension BaseDeviceDataManager: AlertPresenter {
-    func issueAlert(_: Alert) {}
-    func retractAlert(identifier _: Alert.Identifier) {}
+extension BaseDeviceDataManager: AlertObserver {
+    func AlertDidUpdate(_ alerts: [AlertEntry]) {
+        alerts.forEach { alert in
+            if alert.acknowledgedDate == nil {
+                ackAlert(alert: alert)
+            }
+        }
+    }
+
+    private func ackAlert(alert: AlertEntry) {
+        let typeMessage: MessageType
+        let alertUp = alert.alertIdentifier.uppercased()
+        if alertUp.contains("FAULT") || alertUp.contains("ERROR") {
+            typeMessage = .errorPump
+        } else {
+            typeMessage = .warning
+        }
+
+        let messageCont = MessageContent(content: alert.contentBody ?? "Unknown", type: typeMessage)
+        let alertIssueDate = alert.issuedDate
+
+        processQueue.async {
+            // if not alert in OmniPod/BLE, the acknowledgeAlert didn't do callbacks- Hack to manage this case
+            if let omnipodBLE = self.pumpManager as? OmniBLEPumpManager {
+                if omnipodBLE.state.activeAlerts.isEmpty {
+                    // force to ack alert in the alertStorage
+                    self.alertHistoryStorage.ackAlert(alertIssueDate, nil)
+                }
+            }
+
+            if let omniPod = self.pumpManager as? OmnipodPumpManager {
+                if omniPod.state.activeAlerts.isEmpty {
+                    // force to ack alert in the alertStorage
+                    self.alertHistoryStorage.ackAlert(alertIssueDate, nil)
+                }
+            }
+
+            self.pumpManager?.acknowledgeAlert(alertIdentifier: alert.alertIdentifier) { error in
+                self.router.alertMessage.send(messageCont)
+                if let error = error {
+                    self.alertHistoryStorage.ackAlert(alertIssueDate, error.localizedDescription)
+                    debug(.deviceManager, "acknowledge not succeeded with error \(error.localizedDescription)")
+                } else {
+                    self.alertHistoryStorage.ackAlert(alertIssueDate, nil)
+                }
+            }
+
+            self.broadcaster.notify(pumpNotificationObserver.self, on: self.processQueue) {
+                $0.pumpNotification(alert: alert)
+            }
+        }
+    }
 }
+
+// extension BaseDeviceDataManager: AlertPresenter {
+//    func issueAlert(_: Alert) {}
+//    func retractAlert(identifier _: Alert.Identifier) {}
+// }
 
 // MARK: Others
 
