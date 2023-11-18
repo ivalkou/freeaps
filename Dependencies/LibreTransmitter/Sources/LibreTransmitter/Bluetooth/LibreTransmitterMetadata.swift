@@ -80,6 +80,7 @@ public enum SensorType: String, CustomStringConvertible {
     case libre1    = "DF"
     case libre1A2 =  "A2"
     case libre2    = "9D"
+    case libre2C5    = "C5"
     case libreUS14day   = "E5"
     case libreProH = "70"
 
@@ -91,6 +92,8 @@ public enum SensorType: String, CustomStringConvertible {
             return "Libre 1 A2"
         case .libre2:
             return "Libre 2"
+        case .libre2C5:
+            return "Libre 2 C5"
         case .libreUS14day:
             return "Libre US"
         case .libreProH:
@@ -105,7 +108,7 @@ public extension SensorType {
 
         let start = patchInfo[0..<2].uppercased()
 
-        let choices: [String: SensorType] = ["DF": .libre1, "A2": .libre1A2, "9D": .libre2, "E5": .libreUS14day, "70": .libreProH]
+        let choices: [String: SensorType] = ["DF": .libre1, "A2": .libre1A2, "C5": .libre2C5, "9D": .libre2, "E5": .libreUS14day, "70": .libreProH]
 
         if let res = choices[start] {
             self = res
