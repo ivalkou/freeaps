@@ -93,7 +93,6 @@ final class BaseWatchManager: NSObject, WatchManager, Injectable {
                         until: untilDate
                     )
                 }
-            self.state.bolusAfterCarbs = !self.settingsManager.settings.skipBolusScreenAfterCarbs
             let eBG = self.evetualBGStraing()
             self.state.eventualBG = eBG.map { "⇢ " + $0 }
             self.state.eventualBGRaw = eBG
@@ -240,18 +239,12 @@ extension BaseWatchManager: WCSessionDelegate {
                 CarbsEntry(createdAt: Date(), carbs: Decimal(carbs), enteredBy: CarbsEntry.manual)
             ])
 
-            if settingsManager.settings.skipBolusScreenAfterCarbs {
-                apsManager.determineBasalSync()
-                replyHandler(["confirmation": true])
-                return
-            } else {
-                apsManager.determineBasal()
-                    .sink { _ in
-                        replyHandler(["confirmation": true])
-                    }
-                    .store(in: &lifetime)
-                return
-            }
+            apsManager.determineBasal()
+                .sink { _ in
+                    replyHandler(["confirmation": true])
+                }
+                .store(in: &lifetime)
+            return
         }
 
         if let tempTargetID = message["tempTarget"] as? String {

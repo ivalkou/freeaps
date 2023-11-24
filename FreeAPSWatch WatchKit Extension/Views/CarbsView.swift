@@ -52,6 +52,7 @@ struct CarbsView: View {
                     WKInterfaceDevice.current().play(.click)
                     // Get amount from displayed string
                     let amount = Int(numberFormatter.string(from: amount as NSNumber)!) ?? Int(amount.rounded())
+                    state.bolusAfterCarbs = true
                     state.addCarbs(amount)
                 }
                 label: {
@@ -62,6 +63,24 @@ struct CarbsView: View {
                             .frame(width: 24, height: 24)
                             .foregroundColor(.loopGreen)
                         Text("Add Carbs ")
+                    }
+                }
+                .disabled(amount <= 0)
+                Button {
+                    WKInterfaceDevice.current().play(.click)
+                    // Get amount from displayed string
+                    let amount = Int(numberFormatter.string(from: amount as NSNumber)!) ?? Int(amount.rounded())
+                    state.bolusAfterCarbs = false
+                    state.addCarbs(amount)
+                }
+                label: {
+                    HStack {
+                        Image("carbs", bundle: nil)
+                            .renderingMode(.template)
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(.loopGreen)
+                        Text("Without bolus")
                     }
                 }
                 .disabled(amount <= 0)

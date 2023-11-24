@@ -12,7 +12,7 @@ extension AddCarbs {
             carbsRequired = provider.suggestion?.carbsReq
         }
 
-        func add() {
+        func addCarbs() {
             guard carbs > 0 else {
                 showModal(for: nil)
                 return
@@ -22,12 +22,21 @@ extension AddCarbs {
                 CarbsEntry(createdAt: date, carbs: carbs, enteredBy: CarbsEntry.manual)
             ])
 
-            if settingsManager.settings.skipBolusScreenAfterCarbs {
-                apsManager.determineBasalSync()
+            showModal(for: .bolus(waitForSuggestion: true))
+        }
+
+        func addCarbsWitoutBolus() {
+            guard carbs > 0 else {
                 showModal(for: nil)
-            } else {
-                showModal(for: .bolus(waitForSuggestion: true))
+                return
             }
+
+            carbsStorage.storeCarbs([
+                CarbsEntry(createdAt: date, carbs: carbs, enteredBy: CarbsEntry.manual)
+            ])
+
+            apsManager.determineBasalSync()
+            showModal(for: nil)
         }
     }
 }

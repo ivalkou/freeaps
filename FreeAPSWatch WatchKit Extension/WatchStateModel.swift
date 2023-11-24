@@ -157,7 +157,6 @@ class WatchStateModel: NSObject, ObservableObject {
         iob = state.iob
         cob = state.cob
         tempTargets = state.tempTargets
-        bolusAfterCarbs = state.bolusAfterCarbs ?? true
         eventualBG = state.eventualBG ?? ""
         lastUpdate = Date()
     }
