@@ -17,7 +17,7 @@ extension Migration {
                     )
                     .frame(width: 80, height: 80)
                     .rotationEffect(.degrees(state.animated ? 360 : 0))
-                    .animation(.linear(duration: 0.7).repeatForever(autoreverses: false))
+                    .animation(.linear(duration: 0.7).repeatForever(autoreverses: false), value: state.animated)
                 VStack(spacing: 0) {
                     Text("Preparing data")
                         .font(.title)

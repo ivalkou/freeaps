@@ -943,11 +943,8 @@ Enact a temp Basal or a temp target */
 /* */
 "Connect to Apple Health" = "Connect to Apple Health";
 
-/* Show when have not permissions for writing to Health */
-"For write data to Apple Health you must give permissions in Settings > Health > Data Access" = "For write data to Apple Health you must give permissions in Settings > Health > Data Access";
-
 /* */
-"After you create glucose records in the Health app, please open FreeAPS X to help us guaranteed transfer changed data" = "After you create glucose records in the Health app, please open FreeAPS X to help us guaranteed transfer changed data";
+"After you create records in the Health app, please open FreeAPS X to help us guaranteed transfer changed data" = "After you create records in the Health app, please open FreeAPS X to help us guaranteed transfer changed data";
 /* --------------------------------------------
 */
 /*
