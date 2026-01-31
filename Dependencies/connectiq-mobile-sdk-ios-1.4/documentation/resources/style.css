@@ -1,0 +1,140 @@
+/* unvisited link */
+a:link {
+    color: #01A6D2;
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: #01A6D2;
+}
+
+/* mouse over link */
+a:hover {
+    color: #4DB849;
+    text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color: #333;
+}
+
+body {
+    color: #333;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    line-height: 1.5rem;
+    margin: 50px 100px 50px 100px;
+}
+
+p>code {
+    color: #000;
+    background: #EEE;
+}
+
+dd {
+    margin-bottom: 15px;
+    margin-left: 0px;
+}
+
+dt {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+figcaption {
+    color: #555;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.75rem;
+    font-style: italic;
+}
+
+figure {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+h1 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 8px;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+pre.prettyprint {
+    margin-left: 25px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #999;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+    padding: 5px;
+}
+
+td {
+    background-color: #D2E6F1;
+}
+
+#connect_iq_logo {
+    clear: both;
+    float: right;
+    padding-bottom: 20px;
+}
+
+#tagline {
+    clear: both;
+    color: #777;
+    float:right;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+#title {
+    clear: both;
+    float: right;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 38px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#version {
+    clear: both;
+    color: #777;
+    float:right;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-bottom: 80px;
+}
+
+#warning{
+    border: 1px solid;
+    border-color: #C0C0C0;
+    border-left-width: 7px;
+    border-left-color: #F3BB5A;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    color: #000000;
+    background-color: #F9DDA3;
+    background-image: url('warning.png');
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+
+.clear {
+    clear: both;
+}
+

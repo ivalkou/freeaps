@@ -23,7 +23,7 @@ extension ManualTempBasal {
                         Text("U/hr").foregroundColor(.secondary)
                     }
                     Picker(selection: $state.durationIndex, label: Text("Duration")) {
-                        ForEach(0 ..< state.durationValues.count) { index in
+                        ForEach(0 ..< state.durationValues.count, id: \.self) { index in
                             Text(
                                 String(
                                     format: "%.0f h %02.0f min",

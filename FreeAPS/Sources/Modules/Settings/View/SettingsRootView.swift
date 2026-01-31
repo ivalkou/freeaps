@@ -20,6 +20,7 @@ extension Settings {
 
                 Section(header: Text("Services")) {
                     Text("Nightscout").navigationLink(to: .nighscoutConfig, from: self)
+                    Text("LibreView").navigationLink(to: .libreViewConfig, from: self)
                     Text("CGM").navigationLink(to: .cgm, from: self)
                     if HKHealthStore.isHealthDataAvailable() {
                         Text("Apple Health").navigationLink(to: .healthkit, from: self)
@@ -40,6 +41,9 @@ extension Settings {
                 Section(header: Text("Developer")) {
                     Toggle("Debug options", isOn: $state.debugOptions)
                     if state.debugOptions {
+                        Group {
+                            Text("Garmin watch").navigationLink(to: .garmin, from: self)
+                        }
                         Group {
                             Text("Preferences")
                                 .navigationLink(to: .configEditor(file: OpenAPS.Settings.preferences), from: self)
@@ -101,9 +105,10 @@ extension Settings {
                     }
                 }
 
-                Section {
-                    Toggle("Animated Background", isOn: $state.animatedBackground)
-                }
+                // Disabled until next holidays
+//                Section {
+//                    Toggle("Animated Background", isOn: $state.animatedBackground)
+//                }
 
                 Section {
                     Text("Share logs")

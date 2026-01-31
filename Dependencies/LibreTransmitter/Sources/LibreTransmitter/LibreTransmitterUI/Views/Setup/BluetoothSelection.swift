@@ -22,7 +22,7 @@ struct SignalStrengthIndicator: View {
     var totalBars: Int = 5
     var body: some View {
         HStack {
-            ForEach(0..<totalBars) { bar in
+            ForEach(0..<totalBars, id: \.self) { bar in
                 RoundedRectangle(cornerRadius: 3)
                     .divided(amount: (CGFloat(bar) + 1) / CGFloat(self.totalBars))
                     .fill(Color.primary.opacity(bar < self.bars ? 1 : 0.3))

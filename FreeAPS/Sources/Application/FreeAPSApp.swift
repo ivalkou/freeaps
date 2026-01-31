@@ -49,16 +49,25 @@ import Swinject
 
     var body: some Scene {
         WindowGroup {
-            ZStack {
-                rootView
-            }
-            .animation(.easeIn(duration: 0.75), value: self.loadingIsEnded)
+            Main.RootView(resolver: resolver)
+                .onOpenURL(perform: handleURL)
         }
         .onChange(of: scenePhase) { newScenePhase in
             debug(.default, "APPLICATION PHASE: \(newScenePhase)")
         }
     }
 
+    private func handleURL(_ url: URL) {
+        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+
+        switch components?.host {
+        case "device-select-resp":
+            resolver.resolve(NotificationCenter.self)!.post(name: .openFromGarminConnect, object: url)
+        default: break
+        }
+    }
+
+    // Migration is temporary disabled
     @ViewBuilder private var rootView: some View {
         if !loadingIsEnded {
             Screen.migration.view(resolver: resolver)

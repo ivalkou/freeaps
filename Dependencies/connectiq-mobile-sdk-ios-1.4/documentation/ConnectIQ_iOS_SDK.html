@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Connect IQ iOS SDK Documenation</title>
+	<meta name="author" content="Garmin International"/>
+	<meta name="date" content="October 31, 2019"/>
+	<link type="text/css" rel="stylesheet" href="resources/style.css"/>
+</head>
+<body>
+
+<div id="connect_iq_logo">
+<figure>
+<img src="resources/images/connect_iq_logo.png" style="max-width:471px;" title="Powered by Garmin" />
+</figure>
+</div>
+
+<div id="title">Connect IQ Mobile SDK</div>
+
+<div id="tagline">A Guide to building companion mobile apps on iOS for Monkey C applications</div>
+
+<div id="version">Version 1.4</div>
+
+<div class="clear"/>
+
+<h1 id="tableofcontents">Table of Contents</h1><div class="TOC">
+
+
+<ul>
+<li><a href="#tableofcontents">Table of Contents</a></li>
+<li><a href="#gettingstarted">Getting Started</a>
+
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#configuringaprojecttousethemobilesdk">Configuring a project to use the Mobile SDK</a>
+
+<ul>
+<li><a href="#addtheframeworktotheproject">Add the framework to the project</a></li>
+<li><a href="#embedtheconnectiqframeworkasabinary">Embed the ConnectIQ framework as a binary</a></li>
+<li><a href="#addrequiredlinkerflags">Add required linker flags</a></li>
+<li><a href="#registeraurlscheme">Register a URL scheme</a></li>
+<li><a href="#setbluetoothusagedescription">Set Bluetooth usage description</a></li>
+<li><a href="#setbackgroundexecutionmodeoptional">Set background execution mode (optional)</a></li>
+</ul></li>
+<li><a href="#initializingthesdk">Initializing the SDK</a></li>
+<li><a href="#implementingauioverridedelegate">Implementing a UI override delegate</a></li>
+</ul></li>
+<li><a href="#workingwithdevices">Working With Devices</a>
+
+<ul>
+<li><a href="#findingconnectiq-compatibledevices">Finding Connect IQ-compatible devices</a></li>
+<li><a href="#listeningfordeviceevents">Listening for device events</a></li>
+</ul></li>
+<li><a href="#workingwithapps">Working With Apps</a>
+
+<ul>
+<li><a href="#creatinganappinstance">Creating an app instance</a></li>
+<li><a href="#requestinganapp’sstatus">Requesting an app’s status</a></li>
+<li><a href="#installingupgradingormanaginganapp">Installing, upgrading, or managing an app</a></li>
+<li><a href="#openinganapponthegarmindevice">Opening an app on the Garmin device</a></li>
+<li><a href="#sendingmessages">Sending messages</a></li>
+<li><a href="#receivingmessages">Receiving messages</a></li>
+</ul></li>
+</ul>
+</div>
+
+<h1 id="gettingstarted">Getting Started</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The Connect IQ Mobile SDK allows companion iOS applications to be created that interact with Monkey C applications running on Garmin wearable devices. This allows feature-rich user experiences to be built by retrieving remote data or offloading resource-intensive tasks from the wearable device to the iOS device. This document will guide you through adding the Mobile SDK to an iOS project, as well as introducing the SDK’s API and how to communicate with your Monkey C apps.</p>
+
+<h2 id="configuringaprojecttousethemobilesdk">Configuring a project to use the Mobile SDK</h2>
+
+<h3 id="addtheframeworktotheproject">Add the framework to the project</h3>
+
+<p>The Mobile SDK for iOS is distributed as an iOS framework package and can be found in the root directory of the Connect IQ SDK. To enable the framework,
+ add an entry to the <code>Target &gt; General &gt; Linked Frameworks and Libraries</code> panel. To do this, click the + at the bottom of the Linked Frameworks and Libraries list, click <code>Add Other...</code>, browse for <code>ConnectIQ.framework</code>, and click OK.</p>
+
+<p><img src="resources/images/image1.png" alt="" /></p>
+
+<p>You will be presented with a dialog box to choose which targets to add the Framework to. Ensure that the appropriate targets are checked and then click Finish.</p>
+
+<p><img src="resources/images/image2.png" alt="" /><br></p>
+
+<h3 id="embedtheconnectiqframeworkasabinary">Embed the ConnectIQ framework as a binary</h3>
+
+<p>To allow a project to build with the Mobile SDK, embed the framework as a binary for each of the project’s targets by adding an entry to the <code>Target &gt; General &gt; Embedded Binaries</code> panel.</p>
+
+<p><img src="resources/images/image3.png" alt="" /></p>
+
+<h3 id="addrequiredlinkerflags">Add required linker flags</h3>
+
+<p>The Mobile SDK for iOS utilizes category methods internally. When importing a library that uses category methods, an additional flag must be specified to allow the library to be linked correctly. To do this, add the <code>–ObjC</code> flag to the <code>Target &gt; Build Settings &gt; Other Linker Flags</code> setting.</p>
+
+<p><img src="resources/images/image4.png" alt="" /></p>
+
+<h3 id="registeraurlscheme">Register a URL scheme</h3>
+
+<p>Unlike the Mobile SDK for Android, apps created with the Mobile SDK for iOS are standalone apps and do not directly rely on Garmin Connect Mobile (GCM) to communicate with a wearable device. They do, however, require GCM to initially discover Connect IQ-compatible devices that are available for communication, or to install Monkey C applications on the wearable device. The companion app and GCM exchange information by launching each other via the iOS URL scheme system. To facilitate this, a URL scheme that GCM can send data to must be registered by the app. To do this, add an entry to the <code>Target &gt; Info &gt; URL Types</code> panel. A string that is not likely to collide with any other apps on the iOS device should be chosen. See the Apple documentation for more information on <a href="https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Inter-AppCommunication/Inter-AppCommunication.html#//apple_ref/doc/uid/TP40007072-CH6-SW1">custom URL schemes</a>.</p>
+
+<p><img src="resources/images/image5.png" alt="" /></p>
+
+<p>If you are compiling against the iOS 9 SDK or above you will need to add an entry for <code>gcm-ciq</code> to <a href="https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/uid/TP40009250-SW14">LSApplicationQueriesSchemes</a> in your app’s Info.plist. This is needed to ensure that the SDK can verify if GCM is installed. If this key is not present in your Info.plist it will need to be added.</p>
+
+<p>If your project doesn&#8217;t already set <a href="https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html">CFBundleDisplayName</a> in your app’s Info.plist, you will need to add a definition. You can set this to <code>${PRODUCT_NAME}</code> if you are unsure what value to use.</p>
+
+<h3 id="setbluetoothusagedescription">Set Bluetooth usage description</h3>
+
+<p>Starting in iOS 10 it is required to set strings explaining the usage of BLE peripheral access. The <a href="https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW20">NSBluetoothPeripheralUsageDescription</a> key must be set in Info.plist to explain your app&#8217;s usage of BLE to be accepted by iTunes Connect. If this key is not present in your Info.plist it will need to be added.</p>
+
+<h3 id="setbackgroundexecutionmodeoptional">Set background execution mode (optional)</h3>
+
+<p>The iOS system allows apps that communicate with Bluetooth devices to be woken up to execute in the background when a connected device has data to send. This can be useful for companion apps that process requests for their respective Monkey C applications on a wearable device. To enable this behavior, turn on the <code>Uses Bluetooth LE accessories</code> option in the <code>Target &gt; Capabilities &gt; Background Modes</code> panel.</p>
+
+<p><img src="resources/images/image6.png" alt="" /></p>
+
+<h2 id="initializingthesdk">Initializing the SDK</h2>
+
+<p>All interaction with the Mobile SDK is done through the <code>ConnectIQ</code> class. This class must be initialized during app startup with the project’s URL scheme and a UI override delegate. Typically this is done within the app delegate’s <code>application:didFinishLaunchingWithOptions:</code> method.</p>
+
+<pre><code class="objective-c">[[ConnectIQ sharedInstance] initializeWithUrlScheme:@&quot;exapp-123456&quot;
+                                 uiOverrideDelegate:self];
+</code></pre>
+
+<p>The URL scheme should be the same string chosen in Step 4 of <em>Configuring a project to use the Mobile SDK</em>.
+When invoking a method of the <code>ConnectIQ</code> class that requires GCM to be installed and it is not present on the iOS system, by default an alert dialog will be shown to the user that allows them to go to the Apple App Store page for GCM to install it. By passing an instance of an object that conforms to the <code>IQUIOverrideDelegate</code> protocol here, custom behavior or a specialized UI may be specified in this case. To use the default alert dialog and behavior, pass <code>nil</code>.</p>
+
+<h2 id="implementingauioverridedelegate">Implementing a UI override delegate</h2>
+
+<p>If a UI override delegate was specified and an action was performed that requires GCM to be installed, the <code>ConnectIQ</code> class will call the <code>needsToInstallConnectMobile</code> method on that delegate. The app should inform the user that GCM is required for this action and give the user the option to open the Apple App Store page for GCM or to cancel the action that triggered it. If the user chooses to install GCM, the <code>showAppStoreForConnectMobile</code> method may be called.</p>
+
+<pre><code class="objective-c">- (void)needsToInstallConnectMobile {
+    // Show alert to user with choice to install GCM
+    if (alert.result == YES) {
+       [[ConnectIQ sharedInstance] showAppStoreForConnectMobile];
+    }
+}
+</code></pre>
+
+<p>Note that this example is synchronous, but if UI is shown to the user, the <code>showAppStoreForConnectMobile</code> method should be called as a result of user input instead of directly in the <code>needsToInstallConnectMobile</code> method.</p>
+
+<h1 id="workingwithdevices">Working With Devices</h1>
+
+<h2 id="findingconnectiq-compatibledevices">Finding Connect IQ-compatible devices</h2>
+
+<p>The Mobile SDK for iOS can communicate directly with Connect IQ-compatible devices over Bluetooth. However, it must first know which devices are available. To accomplish this, a companion app must call the <code>showConnectIQDeviceSelection</code> method.</p>
+
+<pre><code class="objective-c">[[ConnectIQ sharedInstance] showConnectIQDeviceSelection];
+</code></pre>
+
+<p>This method launches GCM to the foreground and allows the user to choose which paired Connect IQ-compatible devices to share with the companion app. If GCM is not installed and a UI override delegate was set, its <code>needsToInstallConnectMobile</code> will be called.</p>
+
+<div id="warning">
+Note that by launching GCM, this method causes the companion app to go into the background, possibly resulting in the app being suspended. <strong>The companion app should expect to be suspended when calling this method.</strong>
+</div>
+
+<p>Once the user has selected which of the paired devices to share with the companion app, GCM will launch the companion app (via its registered URL scheme), passing the list of devices as serialized URL query items. The companion app should override its app delegate’s <code>application:openURL:sourceApplication:annotation:</code> method to listen for this. The companion app may then call the <code>parseDeviceSelectionResponseFromURL:</code> method to extract the query items into an <code>NSArray</code> of <code>IQDevice</code> objects that it can use with the Mobile SDK.</p>
+
+<pre><code class="objective-c">- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    if ([url.scheme isEqualToString:ReturnURLScheme] &amp;&amp;
+        [sourceApplication isEqualToString:IQGCMBundle]) {
+
+        NSArray *devices = [[ConnectIQ sharedInstance]
+                             parseDeviceSelectionResponseFromURL:url];
+        if (devices != nil) {
+            [self.devices removeAllObjects];
+            for (IQDevice *device in devices) {
+                self.devices[device.uuid] = device;
+            }
+            return YES;
+        }
+    }
+    return NO;
+}
+</code></pre>
+
+<p>Note that in this example, the parsed devices are stored to a dictionary for later use within the app, but are not cached in any kind of persistent storage.
+<div id="warning">
+To avoid needing to launch GCM excessively to discover devices, <strong>companion apps should cache devices to persistent storage.</strong>
+</div>
+<div id="warning">
+When a list of devices is returned by GCM, companion apps should clear all previously cached references to devices they may have known about. <strong>Always use only the latest list of devices that the user has authorized.</strong>
+</div></p>
+
+<h2 id="listeningfordeviceevents">Listening for device events</h2>
+
+<p>Once the companion app has one or more <code>IQDevice</code> instances from GCM, it may register with the <code>ConnectIQ</code> class to receive notifications when that device’s connection status changes by calling <code>registerForDeviceEvents:delegate:</code>.</p>
+
+<pre><code class="objective-c">[[ConnectIQ sharedInstance] registerForDeviceEvents:device
+                                           delegate:self];
+</code></pre>
+
+<p>The delegate passed in must be an instance of a class that conforms to the <code>IQDeviceEventDelegate</code> protocol. Once registered, the delegate’s <code>deviceStatusChanged:status:</code> method will be invoked when the device’s connection status changes. The <code>getDeviceStatus:</code> method may also be called to get the current connection status of the device. These methods both return a device’s status as an <code>IQDeviceStatus</code> value.
+<div id="warning">
+A companion app must register to receive device events before calling methods that operate on devices or apps, such as <code>getDeviceStatus:</code> or <code>sendMessage:toApp:progress:completion:</code>.
+</div>
+To stop listening for device events, a companion app may call either the <code>unregisterForDeviceEvents:delegate:</code> or <code>unregisterForAllDeviceEvents:</code> method.</p>
+
+<pre><code class="objective-c">// Stop listening to a single device
+[[ConnectIQ sharedInstance] unregisterForDeviceEvents:device
+                                             delegate:self];
+// ... or unregister all devices for this listener
+[[ConnectIQ sharedInstance] unregisterForAllDeviceEvents:self];
+</code></pre>
+
+<h1 id="workingwithapps">Working With Apps</h1>
+
+<h2 id="creatinganappinstance">Creating an app instance</h2>
+
+<p>Apps are represented in the Mobile SDK as instances of the <code>IQApp</code> class. An instance of the <code>IQApp</code> class represents a single app on a single device. This means that in order to work with an app that’s installed on two different devices, a companion app will need two instances of the <code>IQApp</code> class with the same app ID, one for each device. To create an app instance, use the <code>IQApp</code> class’s <code>appWithUUID:device:</code> method.</p>
+
+<pre><code class="objective-c">NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@”&lt;YourAppID&gt;”];
+IQApp *app = [IQApp appWithUUID:uuid device:device];
+</code></pre>
+
+<h2 id="requestinganapp’sstatus">Requesting an app’s status</h2>
+
+<p>Once an <code>IQApp</code> instance has been created that links an app ID to an <code>IQDevice</code> instance, a companion app may request the status of the app on that device by calling the <code>getAppStatus:completion:</code> method.</p>
+
+<pre><code class="objective-c">[[ConnectIQ sharedInstance] getAppStatus:app
+                              completion:^(IQAppStatus *appStatus) {
+    if (appStatus != nil &amp;&amp; appStatus.isInstalled) {
+        NSLog(@”App is installed! Version: %d”, appStatus.version);
+    }
+}];
+</code></pre>
+
+<p>This method communicates with the device over Bluetooth, and therefore is asynchronous. The completion block will be invoked when the device responds, or the request times out.
+If the request is successful, the completion block will be invoked with an instance of the <code>IQAppStatus</code> class. A companion app may inspect this status to discover if the app is installed on the device, and if so, what the version of that app is. A companion app could then potentially show a UI that recommends that the user upgrade the app on the device.
+If the device is not currently connected or the request times out, the completion block will be invoked with a <code>nil</code> status.</p>
+
+<h2 id="installingupgradingormanaginganapp">Installing, upgrading, or managing an app</h2>
+
+<p>If a companion app determines that an app is out of date or not installed, it may allow the user to install or upgrade that app by launching the Connect IQ store within GCM. To do this, simply call the <code>showConnectIQStoreForApp:</code> method.</p>
+
+<pre><code class="objective-c">[[ConnectIQ sharedInstance] showConnectIQStoreForApp:app];
+</code></pre>
+
+<p>A companion app may also call this method even if the app is installed and up-to-date on the device, to allow the user to manage or uninstall the app from the device.
+<div id="warning">
+Like the <code>showConnectIQDeviceSelection</code> method, by launching GCM, this method causes the companion app to go into the background, possibly resulting in the app being suspended. <strong>The companion app should expect to be suspended when calling this method.</strong>
+</div></p>
+
+<h2 id="openinganapponthegarmindevice">Opening an app on the Garmin device</h2>
+
+<p>A companion app can request that a CIQ app be opened on the target device. When doing so a prompt will be displayed to the user on the Garmin device to see if they app should be opened. If the user chooses to open the app then it will be immediately opened. This can be accomplished by calling the <code>openAppRequest:</code> method.</p>
+
+<pre><code class="objective-c">[[ConnectIQ sharedInstance] openAppRequest:app
+                                completion:^(IQSendMessageResult result) {
+    switch(result) {
+        case IQSendMessageResult_Success: NSLog(@”Popup was displayed”); break;
+        case IQSendMessageResult_Failure_PromptNotDisplayed: NSLog(@”Popup was
+                displayed”); break;
+        case IQSendMessageResult_Failure_AppAlreadyRunning: NSLog(@”Popup was
+                displayed”); break;
+    }
+}];
+</code></pre>
+
+<h2 id="sendingmessages">Sending messages</h2>
+
+<p>Once a companion app has determined that an app is installed on a connected device, the companion app may send messages over Bluetooth to that app’s mailbox by calling the <code>sendMessage:toApp:progress:completion:</code> method. This method takes an object as a message, an <code>IQApp</code> as the destination, and two blocks &#8211; one that is invoked periodically as the data transfer progresses, and one that is invoked once the transfer is finished.</p>
+
+<pre><code class="objective-c">NSArray *message = @[@”hello pi”, @(3.14159)];
+[[ConnectIQ sharedInstance] sendMessage:message
+                                  toApp:app
+                               progress:^(uint32_t sent, uint32_t total) {
+    float percent = 100 * sent / (float)total;
+    NSLog(@&quot;%02.2f%% - %u/%u&quot;, percent, sent, total);
+} completion:^(IQSendMessageResult result) {
+    NSLog(@&quot;Send message finished with result %@&quot;,
+        NSStringFromSendMessageResult(result));
+}];
+</code></pre>
+
+<div id="warning">
+The message object that is passed to this method is first converted by the SDK into a Monkey C-compatible type, and is then sent to the app’s mailbox on the device. Therefore, <strong>only Objective-C types that can be directly translated to comparable Monkey C types are valid.</strong>
+</div>
+
+<p>Valid message types include <code>NSString</code>, <code>NSNumber</code>, <code>NSArray</code>, <code>NSDictionary</code>, and <code>NSNull</code>. Take advantage of nesting other types inside an <code>NSArray</code> or <code>NSDictionary</code> to form complex messages. Values contained in <code>NSNumber</code> objects will be converted to the most appropriate Monkey C value type on the device.
+<div id="warning">
+Keep in mind that the wearable devices have limited memory and processing power compared to an iOS device. <strong>Messages should be as small as possible.</strong> However, sending frequent small messages can incur performance and battery life costs. Therefore, it is more desirable to send occasional large messages than it is to frequently send many tiny messages. <strong>Companion apps should aim to balance the costs of memory and performance by sending messages only when necessary and keeping message size to a minimum.</strong>
+</div></p>
+
+<h2 id="receivingmessages">Receiving messages</h2>
+
+<p>A companion app may register to receive messages that are sent from an app on a device by calling the <code>registerForAppMessages:delegate:</code> method. This method takes an <code>IQApp</code> to listen for messages from, and an instance of an object that conforms to the <code>IQAppMessageDelegate</code> protocol as the listener. After registering, when a message from that app is successfully received, the <code>receivedMessage:fromApp:</code> method will be called on the listener.
+To stop listening for app messages, a companion app may call either the unregisterForAppMessages:delegate: or unregisterForAllAppMessages: method.</p>
+
+<pre><code class="objective-c">- (void)viewWillAppear:(BOOL)animated {
+    [[ConnectIQ sharedInstance] registerForAppMessages:self.app delegate:self];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [[ConnectIQ sharedInstance] unregisterForAllAppMessages:self];
+}
+
+- (void)receivedMessage:(id)message fromApp:(IQApp *)app {
+    NSLog(@&quot;Received message from app %@: '%@'&quot;, app, message);
+}
+</code></pre>
+
+<div id="warning">
+A companion app may register to receive messages from multiple apps across many devices. However, <strong>multiple companion apps should never register to receive messages from the same app</strong>. The nature of Bluetooth communication on iOS prevents the Mobile SDK from determining which companion app to deliver the message to. Therefore, undefined behavior will result from multiple companion apps registering to receive messages from the same app.
+</div>
+
+<p><img src="resources/images/image8.png" alt="" />
+<img src="resources/images/image9.png" alt="" /></p>
+
+</body>
+</html>
