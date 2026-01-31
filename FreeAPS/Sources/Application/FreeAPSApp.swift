@@ -41,7 +41,8 @@ import Swinject
         _ = resolver.resolve(UserNotificationsManager.self)!
         _ = resolver.resolve(WatchManager.self)!
         _ = resolver.resolve(HealthKitManager.self)!
-        _ = resolver.resolve(BackupManager.self)!
+        // BackupManager is lazy-loaded when BackupSettings screen is opened
+        // _ = resolver.resolve(BackupManager.self)!
     }
 
     init() {

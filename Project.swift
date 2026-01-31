@@ -42,6 +42,27 @@ let project = Project(
                     """,
                     name: "SwiftFormat",
                     basedOnDependencyAnalysis: false
+                ),
+                .post(
+                    script: """
+                    # Embed ConnectIQ framework for device builds only
+                    if [ "$PLATFORM_NAME" = "iphoneos" ]; then
+                        CONNECTIQ_SOURCE="${SRCROOT}/Dependencies/connectiq-mobile-sdk-ios-1.4/ConnectIQ.xcframework/ios-armv7_arm64/ConnectIQ.framework"
+                        CONNECTIQ_DEST="${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}"
+
+                        if [ -d "$CONNECTIQ_SOURCE" ]; then
+                            mkdir -p "$CONNECTIQ_DEST"
+                            cp -R "$CONNECTIQ_SOURCE" "$CONNECTIQ_DEST/"
+
+                            # Sign the framework
+                            if [ -n "$EXPANDED_CODE_SIGN_IDENTITY" ]; then
+                                codesign --force --sign "$EXPANDED_CODE_SIGN_IDENTITY" "$CONNECTIQ_DEST/ConnectIQ.framework"
+                            fi
+                        fi
+                    fi
+                    """,
+                    name: "Embed ConnectIQ",
+                    basedOnDependencyAnalysis: false
                 )
             ],
             dependencies: [

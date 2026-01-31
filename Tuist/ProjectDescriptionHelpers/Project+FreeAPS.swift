@@ -29,7 +29,7 @@ public enum FreeAPSConfig {
     }
 
     public static var appGroupId: String {
-        "group.com.\(appGroupIdSuffix)"
+        "group.com.\(developerTeam).loopkit.LoopGroup"
     }
 }
 

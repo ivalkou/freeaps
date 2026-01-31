@@ -54,7 +54,6 @@ final class BaseBackupManager: BackupManager, Injectable {
                 self?.checkAndPerformBackup()
             }
             .store(in: &lifetime)
-        timer.fire()
         timer.resume()
     }
 
