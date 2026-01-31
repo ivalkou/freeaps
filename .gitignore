@@ -79,3 +79,17 @@ fastlane/test_output
 fastlane/FastlaneRunner
 
 ConfigOverride.xcconfig
+
+# Tuist
+.tuist-bin
+.tuist-version
+Derived/
+*.xcodeproj
+*.xcworkspace
+.env
+
+# Keep Dependencies xcodeproj files (they're not generated)
+!Dependencies/**/*.xcodeproj
+
+# Pre-built XCFrameworks (run scripts/build-dependencies.sh to generate)
+Frameworks/

@@ -1,6 +1,10 @@
 import SwiftUI
 import Swinject
 
+#if !targetEnvironment(simulator)
+    import ConnectIQ
+#endif
+
 extension GarminConfig {
     struct RootView: BaseView {
         let resolver: Resolver
@@ -8,19 +12,26 @@ extension GarminConfig {
 
         var body: some View {
             Form {
-                Section {
-                    Button("Select devices") {
-                        state.selectDevices()
-                    }
-                }
-
-                if state.devices.isNotEmpty {
-                    Section(header: Text("Connected devices")) {
-                        ForEach(state.devices, id: \.uuid) { device in
-                            Text(device.friendlyName)
+                #if !targetEnvironment(simulator)
+                    Section {
+                        Button("Select devices") {
+                            state.selectDevices()
                         }
                     }
-                }
+
+                    if state.devices.isNotEmpty {
+                        Section(header: Text("Connected devices")) {
+                            ForEach(state.devices, id: \.uuid) { device in
+                                Text(device.friendlyName)
+                            }
+                        }
+                    }
+                #else
+                    Section {
+                        Text("Garmin is not available in Simulator")
+                            .foregroundColor(.secondary)
+                    }
+                #endif
 
                 Section(header: Text("About")) {
                     Button("View sources on github.") {

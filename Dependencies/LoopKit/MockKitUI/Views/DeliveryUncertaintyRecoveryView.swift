@@ -9,13 +9,13 @@
 import SwiftUI
 import LoopKitUI
 
-struct DeliveryUncertaintyRecoveryView: View, HorizontalSizeClassOverride {
-    @Environment(\.dismiss) private var dismiss
+struct DeliveryUncertaintyRecoveryView: View {
+    @Environment(\.loopKitDismiss) private var loopKitDismiss
 
     let appName: String
     let uncertaintyStartedAt: Date
     let recoverCommsTapped: () -> Void
-    
+
     var body: some View {
         NavigationView {
             GuidePage(content: {
@@ -23,14 +23,13 @@ struct DeliveryUncertaintyRecoveryView: View, HorizontalSizeClassOverride {
             }) {
                 Button(action: {
                     self.recoverCommsTapped()
-                    self.dismiss()
+                    self.loopKitDismiss()
                 }) {
                     Text(LocalizedString("Recover Simulator", comment: "Button title recovering comms"))
                     .actionButtonStyle()
                     .padding()
                 }
             }
-            .environment(\.horizontalSizeClass, horizontalOverride)
             .navigationBarTitle(Text("Comms Recovery"), displayMode: .large)
             .navigationBarItems(leading: backButton)
         }
@@ -42,7 +41,7 @@ struct DeliveryUncertaintyRecoveryView: View, HorizontalSizeClassOverride {
     
     private var backButton: some View {
         Button(LocalizedString("Back", comment: "Back button text on DeliveryUncertaintyRecoveryView"), action: {
-            self.dismiss()
+            self.loopKitDismiss()
         })
     }
 }
@@ -69,7 +68,7 @@ class DeliveryUncertaintyRecoveryViewController: UIHostingController<AnyView>, C
             recoverCommsTapped()
             dismiss()
         }
-        .environment(\.dismiss, { dismiss() })
+        .environment(\.loopKitDismiss, { dismiss() })
         
         super.init(rootView: AnyView(view))
         

@@ -1,0 +1,917 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01F7DDB2ACB65D0C00A8382A /* SensorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D813AE851873FDC33D04CED /* SensorInfo.swift */; };
+		046C77B538C7B2366596D22D /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D7C1506915D9B734F873B8 /* Sensor.swift */; };
+		055FF49BCD0ADDCBA6A03BA6 /* SensorSerialNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422535D7CE21D8B63FB9131 /* SensorSerialNumber.swift */; };
+		0B9733BAA44C0911B9D30443 /* ModeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E2CF19A6DD87AF18318613 /* ModeSelectionView.swift */; };
+		0BE33C24BEB744C6E203DFE6 /* TimeIntervalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1F04D991B15DCF07FDBC8E /* TimeIntervalExtensions.swift */; };
+		10ABAA112179EB06A501A80A /* LimitedQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B56CEBA427A8BBAB3E9076B /* LimitedQueue.swift */; };
+		1150FBAE451EBF6E53FBF17F /* UserDefaults+Alarmsettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7EB57A68BC7E8ECFB5AD46 /* UserDefaults+Alarmsettings.swift */; };
+		119298DA0ACCDAC338E4EA77 /* Libre2DirectTransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138CF104CA2E8CD8D1D40929 /* Libre2DirectTransmitter.swift */; };
+		1294804BB1D46C5092C65138 /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD73D4FD0C7473416FA665B /* Measurement.swift */; };
+		1329BDBF38FD5D98FC8EB077 /* GlucoseSampleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB1ADE2756E0CCF38B32E9B /* GlucoseSampleValue.swift */; };
+		155B61A4FFC47116669FA22E /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB18BD65CA07D70AFD1ADAC7 /* DataExtensions.swift */; };
+		1655E0AA5199AC15F5B9C2D9 /* GlucoseFromRaw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0CF4EAFEC2B9BF953B3A62 /* GlucoseFromRaw.swift */; };
+		16F991090B7A40F7E5191963 /* UIApplication+metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95910B6016F1DAAB9703A966 /* UIApplication+metadata.swift */; };
+		1C4CBC199AF4DBB25750E519 /* icons8-down-arrow-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 56753BC92E7FC938E95258E4 /* icons8-down-arrow-50.png */; };
+		1C8F6EBECB9B54CEE8714E1E /* ConcreteGlucoseDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEA05A49684C83930FD5607 /* ConcreteGlucoseDisplayable.swift */; };
+		1F713D88D5F2A39138A3FC0C /* Libre2DirectSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78CE84C0361440ABDEDD38CD /* Libre2DirectSetup.swift */; };
+		20C7AAC1F5E5BEBACF05202E /* libresensor.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C281050ABFD325E2A88D36C /* libresensor.png */; };
+		2971D0246E5E9296245A0A92 /* ErrorTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59575C09C210CA6E80F98B0D /* ErrorTextFieldStyle.swift */; };
+		2BAB7B91230E90A4BE20665A /* Features.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD04512FC61D43325F466CB /* Features.swift */; };
+		2E41E509DC4A883BE7A57B62 /* LogExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566A57BAC54E7E6282ED3C69 /* LogExport.swift */; };
+		347D49116EC7ADA5F3828890 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDCBC6F021099C8423A5B4A /* bubble.png */; };
+		348B749D3133DA526BC932C1 /* UnfairLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA85AAED387A33BC6532E471 /* UnfairLock.swift */; };
+		39D54DDBE25E40305E653BFA /* RawGlucose.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64768EA1F9DA5575954DEDD0 /* RawGlucose.xcframework */; };
+		3D6BD0A366292FA5321B2249 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE2BE31B1A04E67563248C5 /* SettingsView.swift */; };
+		489CC010B49B208F491A299D /* icons8-slide-up-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DAE3CC173A1426E9BF148EE /* icons8-slide-up-50.png */; };
+		4954A61C31B07A05FFF70FFC /* LibreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8EA706925427BBE6B0D976E /* LibreError.swift */; };
+		59A10D8F55CD5D8A7EAF9217 /* GlucoseSmoothing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECBDC06AF036F448F0DDBDC /* GlucoseSmoothing.swift */; };
+		5C288DB1DE9D10787FD1420F /* GlucoseSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CCB7C792A878D993C19D30 /* GlucoseSettingsView.swift */; };
+		63D435031B78E412CA31E8F0 /* LibreTransmitterMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = E862B31B3B7C0A91E34C5663 /* LibreTransmitterMetadata.swift */; };
+		64DBC973356986E3F782192B /* BluetoothSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F130AEAA4DA7216456204DA /* BluetoothSelection.swift */; };
+		69EE8CE3A8EE88CFE9C91473 /* UserDefaults+Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5896C6EDEED9C1CD7C069 /* UserDefaults+Bluetooth.swift */; };
+		6A299FFFF4021898F96C7CD3 /* TransmitterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC09E11071AA26611271395 /* TransmitterInfo.swift */; };
+		6D87B73A08ABD70D35A1C6BB /* CalibrationEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939E69C2B0158008A03D16D1 /* CalibrationEditView.swift */; };
+		6E414317FE3DD17ED435A93B /* UserDefaults+GlucoseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4720013983538C98EE84129 /* UserDefaults+GlucoseSettings.swift */; };
+		6FD01DEF56FC62F544663F44 /* ic_bubble_mini_3-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F6E4EEE74A3BE71248C8757 /* ic_bubble_mini_3-2.png */; };
+		765192C366784F5C3715C21A /* BubbleTransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840EDC87D6FBE12365D787C0 /* BubbleTransmitter.swift */; };
+		78D5ACDC0B76EE371E1B1069 /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757FB34F5D0CF94EB5CB14DD /* HKUnit.swift */; };
+		7A482C99B9BC04D8E049236D /* PreLibre2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F240383C6716653C4A7D9AB /* PreLibre2.swift */; };
+		7ED2F6E935D0BE3FFD9941AD /* StatusMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8EEFDFA55620E10EA2D13D /* StatusMessage.swift */; };
+		80E5AE8D7BAC556E95245EE1 /* icons8-schedule-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 77393B786A2497664B12A6D2 /* icons8-schedule-50.png */; };
+		82B861EE7D08B51BD927EB83 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E924A847EA634315D3EB93 /* DateExtensions.swift */; };
+		880EBB41DD4EEB26B7CDF43E /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1643DB889F51CE5450C021 /* OSLog.swift */; };
+		8861D9CC9198B982445B94AE /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A15D040BF6A184E0BD5DA50 /* ViewExtensions.swift */; };
+		8A8D1BF1376CB26D12A4B2C8 /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BD2B1C74F9D16EE93068DA /* NotificationHelper.swift */; };
+		8B52CE88E8BE678E51D17DE4 /* HKQuantitySample+GlucoseKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC22BA726F6649A2745B64 /* HKQuantitySample+GlucoseKit.swift */; };
+		8D9F43E8E277A802243FB59E /* MessagePassing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D446623F4B8D367B3A6917 /* MessagePassing.swift */; };
+		92B1F8BB702AEB1D4E9255A0 /* UUIDContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C4E41CB5A0A444AE2D210A /* UUIDContainer.swift */; };
+		9414C2DFBBF714C672B5700E /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D7EB170F0D93538CB6E234 /* NotificationSettingsView.swift */; };
+		94F8C724652B08D4BEA6DD5E /* QuantityFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2C6FD97E1E923EC5568FCA /* QuantityFormatter.swift */; };
+		98F86D66C0E4DF8C659EAA37 /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AEE63F5AA8BE01E7DC3A2C8 /* NumericTextField.swift */; };
+		99AD3C0FF695507B28529A24 /* LibreTransmitterSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4063ADF5BABAAF7B14D6D /* LibreTransmitterSetupViewController.swift */; };
+		9AC50D0F4CE19E88D34B954C /* SampleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A4DA6A9CBD9222EA4749A /* SampleValue.swift */; };
+		9AE19B6531DE14A34CD287A1 /* SensorPairingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26741BF3ADD329133356C84 /* SensorPairingService.swift */; };
+		9B6A5197A5415E5B8C6AB871 /* GenericThrottler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE8CCAD1E3603EB0BE31FB8 /* GenericThrottler.swift */; };
+		9E21B45B3CC970E5C43C7D13 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA04B428DAFF6F1985C87244 /* LocalizedString.swift */; };
+		9F86F59B9CF71B61BC3A2460 /* GenericObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF25DC98EB4499BF4893676 /* GenericObservableObject.swift */; };
+		9FCF36221030E0868A091166 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4EF08438B89219C018AF95 /* Notification.swift */; };
+		A1644E2D8A287D4B6CB0ADAB /* LibreTransmitterProxyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5C50FBAAD7CC978BCFF76C /* LibreTransmitterProxyProtocol.swift */; };
+		A87FF5F49AD9AA5F7AA5764E /* Calibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C905990D526624B663CEB53 /* Calibration.swift */; };
+		AAAB5385DA5A0C2903A83D48 /* BluetoothSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D232D47857E31A8A96962A /* BluetoothSearch.swift */; };
+		AC2D193E36418903575EFD9B /* CBPeripheralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046AF707C1B0E0EE73804C73 /* CBPeripheralExtensions.swift */; };
+		B09AABAE1DA423B05A83921D /* WeakSynchronizedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D2B4278DE312F03E0A74B8 /* WeakSynchronizedDelegate.swift */; };
+		B49E492BEA05EA018E6BC4AD /* EnumeratedForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC74DEE6F11EF8F56110B3B /* EnumeratedForEach.swift */; };
+		B7D0F4452FC290433EAE1CDD /* LibreGlucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364D378AF3E4616E4C8530A7 /* LibreGlucose.swift */; };
+		BAAF24888AB9EB286F5E6D30 /* GlucoseValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A374A047D8B75E69DA0ACA /* GlucoseValue.swift */; };
+		BC87075141842BB35CB886E2 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F44E2D36B3A9390A8B5475 /* NumberFormatter.swift */; };
+		BD1E9C7F895A3A5977539323 /* BlueButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8288D9EC7D4ECC9ECA4AC08 /* BlueButtonStyle.swift */; };
+		BE089C707B69E80849B3C031 /* KeyChainManagerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F9C233F6AF0A069CDDC320 /* KeyChainManagerWrapper.swift */; };
+		C6B07D9FFD44EAB1D5BAD9A9 /* TuistBundle+LibreTransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F3D7342083B707ABB3A98A /* TuistBundle+LibreTransmitter.swift */; };
+		CA518A14AD93136AED1300EB /* SensorPairing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D8990F05D793A105F608E4 /* SensorPairing.swift */; };
+		CC2F884900C4381F99FB47C4 /* LibreTransmitterProxyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999D6064DE11284A879B4087 /* LibreTransmitterProxyManager.swift */; };
+		DA1E3704857344FF83510973 /* NewGlucoseSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC1B7671AF5A9716EE9D01E /* NewGlucoseSample.swift */; };
+		DD03649192DAA03F31865F00 /* CRC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490417B097ACFE6EBB77C545 /* CRC.swift */; };
+		DD801828508CCECC08EDBB7C /* DeviceLogEntryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C6449A58A1B7CDE725969D /* DeviceLogEntryType.swift */; };
+		DE16761BE1476A31D0C3029F /* HashableClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16555799E7A16237A15E1483 /* HashableClass.swift */; };
+		E2D75D5436559B4AE76CBFFA /* CompletionNotifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1F25385707C80C0CF47DE /* CompletionNotifying.swift */; };
+		E42C2053189209F87C566C8B /* GlucoseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9473C8AA0B3E9E0D61DB27 /* GlucoseInfo.swift */; };
+		E7109F4CCE7B2B48050FFFCC /* LibreTransmitterManager+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A451D67D4ED820F0E97A5E13 /* LibreTransmitterManager+UI.swift */; };
+		E8740B4BE6E9452615EBD5ED /* icons8-drop-down-arrow-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E59A20FD3BC61AEF0D989AE /* icons8-drop-down-arrow-50.png */; };
+		EC8F03A6496B0F473990CD3C /* icons8-up-50.png in Resources */ = {isa = PBXBuildFile; fileRef = A61A7AE0B670D12D7DEE3FBF /* icons8-up-50.png */; };
+		ED52D051D57F71BE6926C9A7 /* SensorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522577AF31751431E90C5DD /* SensorState.swift */; };
+		F99D7763D6D5CCC56BFA6AC5 /* LibreTransmitterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8EA654CCEA3839A2CA86A /* LibreTransmitterManager.swift */; };
+		FBAF5D0BA7A91A0CDC1A1024 /* SensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1984622E01C5617012EB258 /* SensorData.swift */; };
+		FC31EF7D6D58069EE25140E3 /* SettingsNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8979F4C359F81C7BA5D585 /* SettingsNavigationViewController.swift */; };
+		FD69F5D9ADAFDFC5615A2B66 /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61538498C19D0D32621BBDDC /* DoubleExtensions.swift */; };
+		FEEF0245CCC67F7F3AD5B267 /* MiaomiaoTransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557139CDD1A9B72D16E9B10 /* MiaomiaoTransmitter.swift */; };
+		FF024086FB4C75B60445BC40 /* miaomiao-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE6C5E24283203ABC43B1EF /* miaomiao-small.png */; };
+		FF49BC35D6E3610075E4171F /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEEEEB5723EA67D88C23B68 /* CollectionExtensions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4BC2C601BD4800693694FEF8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		046AF707C1B0E0EE73804C73 /* CBPeripheralExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBPeripheralExtensions.swift; sourceTree = "<group>"; };
+		04A4063ADF5BABAAF7B14D6D /* LibreTransmitterSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibreTransmitterSetupViewController.swift; sourceTree = "<group>"; };
+		0BEEEEB5723EA67D88C23B68 /* CollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
+		0C8EEFDFA55620E10EA2D13D /* StatusMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMessage.swift; sourceTree = "<group>"; };
+		0D813AE851873FDC33D04CED /* SensorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorInfo.swift; sourceTree = "<group>"; };
+		0E2C6FD97E1E923EC5568FCA /* QuantityFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityFormatter.swift; sourceTree = "<group>"; };
+		0F6E4EEE74A3BE71248C8757 /* ic_bubble_mini_3-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_bubble_mini_3-2.png"; sourceTree = "<group>"; };
+		11D446623F4B8D367B3A6917 /* MessagePassing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagePassing.swift; sourceTree = "<group>"; };
+		138CF104CA2E8CD8D1D40929 /* Libre2DirectTransmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Libre2DirectTransmitter.swift; sourceTree = "<group>"; };
+		14E924A847EA634315D3EB93 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		16555799E7A16237A15E1483 /* HashableClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashableClass.swift; sourceTree = "<group>"; };
+		16C6449A58A1B7CDE725969D /* DeviceLogEntryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceLogEntryType.swift; sourceTree = "<group>"; };
+		1FC74DEE6F11EF8F56110B3B /* EnumeratedForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumeratedForEach.swift; sourceTree = "<group>"; };
+		2422535D7CE21D8B63FB9131 /* SensorSerialNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorSerialNumber.swift; sourceTree = "<group>"; };
+		28D7C1506915D9B734F873B8 /* Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sensor.swift; sourceTree = "<group>"; };
+		2B56CEBA427A8BBAB3E9076B /* LimitedQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitedQueue.swift; sourceTree = "<group>"; };
+		2C281050ABFD325E2A88D36C /* libresensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = libresensor.png; sourceTree = "<group>"; };
+		2E0CF4EAFEC2B9BF953B3A62 /* GlucoseFromRaw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseFromRaw.swift; sourceTree = "<group>"; };
+		364D378AF3E4616E4C8530A7 /* LibreGlucose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibreGlucose.swift; sourceTree = "<group>"; };
+		3A15D040BF6A184E0BD5DA50 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		3A9473C8AA0B3E9E0D61DB27 /* GlucoseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseInfo.swift; sourceTree = "<group>"; };
+		3AEE63F5AA8BE01E7DC3A2C8 /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
+		3D1F04D991B15DCF07FDBC8E /* TimeIntervalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtensions.swift; sourceTree = "<group>"; };
+		3E59A20FD3BC61AEF0D989AE /* icons8-drop-down-arrow-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-drop-down-arrow-50.png"; sourceTree = "<group>"; };
+		3F240383C6716653C4A7D9AB /* PreLibre2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreLibre2.swift; sourceTree = "<group>"; };
+		41BD2B1C74F9D16EE93068DA /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
+		41D7EB170F0D93538CB6E234 /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
+		4522577AF31751431E90C5DD /* SensorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorState.swift; sourceTree = "<group>"; };
+		490417B097ACFE6EBB77C545 /* CRC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRC.swift; sourceTree = "<group>"; };
+		4C905990D526624B663CEB53 /* Calibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calibration.swift; sourceTree = "<group>"; };
+		4CD04512FC61D43325F466CB /* Features.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features.swift; sourceTree = "<group>"; };
+		4DAE3CC173A1426E9BF148EE /* icons8-slide-up-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-slide-up-50.png"; sourceTree = "<group>"; };
+		566A57BAC54E7E6282ED3C69 /* LogExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogExport.swift; sourceTree = "<group>"; };
+		56753BC92E7FC938E95258E4 /* icons8-down-arrow-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-down-arrow-50.png"; sourceTree = "<group>"; };
+		59575C09C210CA6E80F98B0D /* ErrorTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTextFieldStyle.swift; sourceTree = "<group>"; };
+		5DB8EA654CCEA3839A2CA86A /* LibreTransmitterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibreTransmitterManager.swift; sourceTree = "<group>"; };
+		5DE6C5E24283203ABC43B1EF /* miaomiao-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "miaomiao-small.png"; sourceTree = "<group>"; };
+		5DE8CCAD1E3603EB0BE31FB8 /* GenericThrottler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericThrottler.swift; sourceTree = "<group>"; };
+		60FC22BA726F6649A2745B64 /* HKQuantitySample+GlucoseKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKQuantitySample+GlucoseKit.swift"; sourceTree = "<group>"; };
+		61538498C19D0D32621BBDDC /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
+		63B1F25385707C80C0CF47DE /* CompletionNotifying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionNotifying.swift; sourceTree = "<group>"; };
+		64768EA1F9DA5575954DEDD0 /* RawGlucose.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RawGlucose.xcframework; sourceTree = "<group>"; };
+		6A7EB57A68BC7E8ECFB5AD46 /* UserDefaults+Alarmsettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Alarmsettings.swift"; sourceTree = "<group>"; };
+		6EEA05A49684C83930FD5607 /* ConcreteGlucoseDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcreteGlucoseDisplayable.swift; sourceTree = "<group>"; };
+		6F130AEAA4DA7216456204DA /* BluetoothSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothSelection.swift; sourceTree = "<group>"; };
+		7557139CDD1A9B72D16E9B10 /* MiaomiaoTransmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiaomiaoTransmitter.swift; sourceTree = "<group>"; };
+		757FB34F5D0CF94EB5CB14DD /* HKUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKUnit.swift; sourceTree = "<group>"; };
+		77393B786A2497664B12A6D2 /* icons8-schedule-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-schedule-50.png"; sourceTree = "<group>"; };
+		78CE84C0361440ABDEDD38CD /* Libre2DirectSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Libre2DirectSetup.swift; sourceTree = "<group>"; };
+		7CC1B7671AF5A9716EE9D01E /* NewGlucoseSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGlucoseSample.swift; sourceTree = "<group>"; };
+		81A374A047D8B75E69DA0ACA /* GlucoseValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseValue.swift; sourceTree = "<group>"; };
+		840EDC87D6FBE12365D787C0 /* BubbleTransmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTransmitter.swift; sourceTree = "<group>"; };
+		84C4E41CB5A0A444AE2D210A /* UUIDContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDContainer.swift; sourceTree = "<group>"; };
+		84F3D7342083B707ABB3A98A /* TuistBundle+LibreTransmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+LibreTransmitter.swift"; sourceTree = "<group>"; };
+		8D8979F4C359F81C7BA5D585 /* SettingsNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavigationViewController.swift; sourceTree = "<group>"; };
+		8ECBDC06AF036F448F0DDBDC /* GlucoseSmoothing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseSmoothing.swift; sourceTree = "<group>"; };
+		90D8990F05D793A105F608E4 /* SensorPairing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorPairing.swift; sourceTree = "<group>"; };
+		92CCB7C792A878D993C19D30 /* GlucoseSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseSettingsView.swift; sourceTree = "<group>"; };
+		939E69C2B0158008A03D16D1 /* CalibrationEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationEditView.swift; sourceTree = "<group>"; };
+		95910B6016F1DAAB9703A966 /* UIApplication+metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+metadata.swift"; sourceTree = "<group>"; };
+		999D6064DE11284A879B4087 /* LibreTransmitterProxyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibreTransmitterProxyManager.swift; sourceTree = "<group>"; };
+		A1984622E01C5617012EB258 /* SensorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorData.swift; sourceTree = "<group>"; };
+		A3E2CF19A6DD87AF18318613 /* ModeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeSelectionView.swift; sourceTree = "<group>"; };
+		A451D67D4ED820F0E97A5E13 /* LibreTransmitterManager+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LibreTransmitterManager+UI.swift"; sourceTree = "<group>"; };
+		A61A7AE0B670D12D7DEE3FBF /* icons8-up-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-up-50.png"; sourceTree = "<group>"; };
+		A6F9C233F6AF0A069CDDC320 /* KeyChainManagerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManagerWrapper.swift; sourceTree = "<group>"; };
+		A7F5896C6EDEED9C1CD7C069 /* UserDefaults+Bluetooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Bluetooth.swift"; sourceTree = "<group>"; };
+		A8EA706925427BBE6B0D976E /* LibreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibreError.swift; sourceTree = "<group>"; };
+		A8EB2AAD13ACE9D460D0087D /* LibreTransmitter-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LibreTransmitter-Info.plist"; sourceTree = "<group>"; };
+		B26741BF3ADD329133356C84 /* SensorPairingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorPairingService.swift; sourceTree = "<group>"; };
+		B8F44E2D36B3A9390A8B5475 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
+		BB18BD65CA07D70AFD1ADAC7 /* DataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtensions.swift; sourceTree = "<group>"; };
+		BD5C50FBAAD7CC978BCFF76C /* LibreTransmitterProxyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibreTransmitterProxyProtocol.swift; sourceTree = "<group>"; };
+		C32A4DA6A9CBD9222EA4749A /* SampleValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleValue.swift; sourceTree = "<group>"; };
+		CA85AAED387A33BC6532E471 /* UnfairLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnfairLock.swift; sourceTree = "<group>"; };
+		CB1643DB889F51CE5450C021 /* OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
+		CE4EF08438B89219C018AF95 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		DEDCBC6F021099C8423A5B4A /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
+		E3805D11143F3A232FF0DF43 /* LibreTransmitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LibreTransmitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4720013983538C98EE84129 /* UserDefaults+GlucoseSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+GlucoseSettings.swift"; sourceTree = "<group>"; };
+		E6D232D47857E31A8A96962A /* BluetoothSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothSearch.swift; sourceTree = "<group>"; };
+		E8288D9EC7D4ECC9ECA4AC08 /* BlueButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButtonStyle.swift; sourceTree = "<group>"; };
+		E862B31B3B7C0A91E34C5663 /* LibreTransmitterMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibreTransmitterMetadata.swift; sourceTree = "<group>"; };
+		EA04B428DAFF6F1985C87244 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		EAB1ADE2756E0CCF38B32E9B /* GlucoseSampleValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseSampleValue.swift; sourceTree = "<group>"; };
+		EAF25DC98EB4499BF4893676 /* GenericObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericObservableObject.swift; sourceTree = "<group>"; };
+		ECD73D4FD0C7473416FA665B /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
+		EFC09E11071AA26611271395 /* TransmitterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitterInfo.swift; sourceTree = "<group>"; };
+		F2D2B4278DE312F03E0A74B8 /* WeakSynchronizedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakSynchronizedDelegate.swift; sourceTree = "<group>"; };
+		FCE2BE31B1A04E67563248C5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C89577934D7AE8D4E466141E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39D54DDBE25E40305E653BFA /* RawGlucose.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0F0B6F2CAA0C00AAF88D65AC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A6F9C233F6AF0A069CDDC320 /* KeyChainManagerWrapper.swift */,
+				566A57BAC54E7E6282ED3C69 /* LogExport.swift */,
+				95910B6016F1DAAB9703A966 /* UIApplication+metadata.swift */,
+				6A7EB57A68BC7E8ECFB5AD46 /* UserDefaults+Alarmsettings.swift */,
+				A7F5896C6EDEED9C1CD7C069 /* UserDefaults+Bluetooth.swift */,
+				E4720013983538C98EE84129 /* UserDefaults+GlucoseSettings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		1019F9AB8F982BADFAAA4204 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				F91095662DE83CC3E8650345 /* Transmitter */,
+				E6D232D47857E31A8A96962A /* BluetoothSearch.swift */,
+				046AF707C1B0E0EE73804C73 /* CBPeripheralExtensions.swift */,
+				5DE8CCAD1E3603EB0BE31FB8 /* GenericThrottler.swift */,
+				E862B31B3B7C0A91E34C5663 /* LibreTransmitterMetadata.swift */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		34508FF7EF206B0A71783D55 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0BEEEEB5723EA67D88C23B68 /* CollectionExtensions.swift */,
+				BB18BD65CA07D70AFD1ADAC7 /* DataExtensions.swift */,
+				14E924A847EA634315D3EB93 /* DateExtensions.swift */,
+				61538498C19D0D32621BBDDC /* DoubleExtensions.swift */,
+				16555799E7A16237A15E1483 /* HashableClass.swift */,
+				CE4EF08438B89219C018AF95 /* Notification.swift */,
+				3D1F04D991B15DCF07FDBC8E /* TimeIntervalExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3BE50FE8FAAD7BBC564241CC /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				E8288D9EC7D4ECC9ECA4AC08 /* BlueButtonStyle.swift */,
+				59575C09C210CA6E80F98B0D /* ErrorTextFieldStyle.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		5FB5C35A3673DB3D245CBFEA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3805D11143F3A232FF0DF43 /* LibreTransmitter.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6D60E2749D9321EB72224838 /* LibreSensor */ = {
+			isa = PBXGroup;
+			children = (
+				BF113A7C458F3DB98882A7DA /* GlucoseAlgorithm */,
+				8993EC4697A4754F99D0B0BF /* SensorContents */,
+				4C905990D526624B663CEB53 /* Calibration.swift */,
+				A8EA706925427BBE6B0D976E /* LibreError.swift */,
+				2B56CEBA427A8BBAB3E9076B /* LimitedQueue.swift */,
+			);
+			path = LibreSensor;
+			sourceTree = "<group>";
+		};
+		6E43F6219279CF387212D7F6 /* Derived */ = {
+			isa = PBXGroup;
+			children = (
+				F5FCEA547C415776830FEA25 /* InfoPlists */,
+				6EB398A0C72B6CC3C596DEF8 /* Sources */,
+			);
+			path = Derived;
+			sourceTree = "<group>";
+		};
+		6EB398A0C72B6CC3C596DEF8 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				84F3D7342083B707ABB3A98A /* TuistBundle+LibreTransmitter.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		751A0C5DF81CE45CA9EE9CC7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				939E69C2B0158008A03D16D1 /* CalibrationEditView.swift */,
+				92CCB7C792A878D993C19D30 /* GlucoseSettingsView.swift */,
+				41D7EB170F0D93538CB6E234 /* NotificationSettingsView.swift */,
+				FCE2BE31B1A04E67563248C5 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8993EC4697A4754F99D0B0BF /* SensorContents */ = {
+			isa = PBXGroup;
+			children = (
+				490417B097ACFE6EBB77C545 /* CRC.swift */,
+				ECD73D4FD0C7473416FA665B /* Measurement.swift */,
+				3F240383C6716653C4A7D9AB /* PreLibre2.swift */,
+				28D7C1506915D9B734F873B8 /* Sensor.swift */,
+				A1984622E01C5617012EB258 /* SensorData.swift */,
+				2422535D7CE21D8B63FB9131 /* SensorSerialNumber.swift */,
+				4522577AF31751431E90C5DD /* SensorState.swift */,
+			);
+			path = SensorContents;
+			sourceTree = "<group>";
+		};
+		8AFFD771DDDCF82367400FAB /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				6E43F6219279CF387212D7F6 /* Derived */,
+				C1F902D631CD4C5A130B3252 /* Sources */,
+				64768EA1F9DA5575954DEDD0 /* RawGlucose.xcframework */,
+			);
+			name = Project;
+			sourceTree = "<group>";
+		};
+		9312E7873BF8EA7A15DE7C63 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				34508FF7EF206B0A71783D55 /* Extensions */,
+				0F0B6F2CAA0C00AAF88D65AC /* Settings */,
+				EAB1ADE2756E0CCF38B32E9B /* GlucoseSampleValue.swift */,
+				81A374A047D8B75E69DA0ACA /* GlucoseValue.swift */,
+				60FC22BA726F6649A2745B64 /* HKQuantitySample+GlucoseKit.swift */,
+				757FB34F5D0CF94EB5CB14DD /* HKUnit.swift */,
+				EA04B428DAFF6F1985C87244 /* LocalizedString.swift */,
+				11D446623F4B8D367B3A6917 /* MessagePassing.swift */,
+				7CC1B7671AF5A9716EE9D01E /* NewGlucoseSample.swift */,
+				41BD2B1C74F9D16EE93068DA /* NotificationHelper.swift */,
+				B8F44E2D36B3A9390A8B5475 /* NumberFormatter.swift */,
+				0E2C6FD97E1E923EC5568FCA /* QuantityFormatter.swift */,
+				C32A4DA6A9CBD9222EA4749A /* SampleValue.swift */,
+				CA85AAED387A33BC6532E471 /* UnfairLock.swift */,
+				F2D2B4278DE312F03E0A74B8 /* WeakSynchronizedDelegate.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		96CC7B4CA2401F06C0D18FAD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1FC74DEE6F11EF8F56110B3B /* EnumeratedForEach.swift */,
+				EAF25DC98EB4499BF4893676 /* GenericObservableObject.swift */,
+				3AEE63F5AA8BE01E7DC3A2C8 /* NumericTextField.swift */,
+				0C8EEFDFA55620E10EA2D13D /* StatusMessage.swift */,
+				3A15D040BF6A184E0BD5DA50 /* ViewExtensions.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		BA903D0DA88F2E9D611758CD /* LibreTransmitterUI */ = {
+			isa = PBXGroup;
+			children = (
+				DEB8CCEAFDE8F598D7E35010 /* Controllers */,
+				EFB3FC0FDD3DA766F4A640DB /* Graphics */,
+				D6B4EB118B4D9AFE70F24282 /* SensorPairing */,
+				CDE3CBCF71354AD37AF54F97 /* Views */,
+				A451D67D4ED820F0E97A5E13 /* LibreTransmitterManager+UI.swift */,
+			);
+			path = LibreTransmitterUI;
+			sourceTree = "<group>";
+		};
+		BF113A7C458F3DB98882A7DA /* GlucoseAlgorithm */ = {
+			isa = PBXGroup;
+			children = (
+				2E0CF4EAFEC2B9BF953B3A62 /* GlucoseFromRaw.swift */,
+				8ECBDC06AF036F448F0DDBDC /* GlucoseSmoothing.swift */,
+			);
+			path = GlucoseAlgorithm;
+			sourceTree = "<group>";
+		};
+		C1F902D631CD4C5A130B3252 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F0559901CF2E4C9BCB41F564 /* LibreTransmitter */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		CDE3CBCF71354AD37AF54F97 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				751A0C5DF81CE45CA9EE9CC7 /* Settings */,
+				D12C4070AFDFCA3CA4200CCD /* Setup */,
+				3BE50FE8FAAD7BBC564241CC /* Styles */,
+				96CC7B4CA2401F06C0D18FAD /* Utilities */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D12C4070AFDFCA3CA4200CCD /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				6F130AEAA4DA7216456204DA /* BluetoothSelection.swift */,
+				78CE84C0361440ABDEDD38CD /* Libre2DirectSetup.swift */,
+				A3E2CF19A6DD87AF18318613 /* ModeSelectionView.swift */,
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
+		D6B4EB118B4D9AFE70F24282 /* SensorPairing */ = {
+			isa = PBXGroup;
+			children = (
+				90D8990F05D793A105F608E4 /* SensorPairing.swift */,
+				B26741BF3ADD329133356C84 /* SensorPairingService.swift */,
+			);
+			path = SensorPairing;
+			sourceTree = "<group>";
+		};
+		D7D3C65F4AE693C62B4196FD = {
+			isa = PBXGroup;
+			children = (
+				5FB5C35A3673DB3D245CBFEA /* Products */,
+				8AFFD771DDDCF82367400FAB /* Project */,
+			);
+			sourceTree = "<group>";
+		};
+		D97411EEB74E5CCCEB9AEF13 /* Observables */ = {
+			isa = PBXGroup;
+			children = (
+				3A9473C8AA0B3E9E0D61DB27 /* GlucoseInfo.swift */,
+				0D813AE851873FDC33D04CED /* SensorInfo.swift */,
+				EFC09E11071AA26611271395 /* TransmitterInfo.swift */,
+			);
+			path = Observables;
+			sourceTree = "<group>";
+		};
+		DEB8CCEAFDE8F598D7E35010 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				04A4063ADF5BABAAF7B14D6D /* LibreTransmitterSetupViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EFB3FC0FDD3DA766F4A640DB /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				DEDCBC6F021099C8423A5B4A /* bubble.png */,
+				0F6E4EEE74A3BE71248C8757 /* ic_bubble_mini_3-2.png */,
+				56753BC92E7FC938E95258E4 /* icons8-down-arrow-50.png */,
+				3E59A20FD3BC61AEF0D989AE /* icons8-drop-down-arrow-50.png */,
+				77393B786A2497664B12A6D2 /* icons8-schedule-50.png */,
+				4DAE3CC173A1426E9BF148EE /* icons8-slide-up-50.png */,
+				A61A7AE0B670D12D7DEE3FBF /* icons8-up-50.png */,
+				2C281050ABFD325E2A88D36C /* libresensor.png */,
+				5DE6C5E24283203ABC43B1EF /* miaomiao-small.png */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
+		F0559901CF2E4C9BCB41F564 /* LibreTransmitter */ = {
+			isa = PBXGroup;
+			children = (
+				1019F9AB8F982BADFAAA4204 /* Bluetooth */,
+				9312E7873BF8EA7A15DE7C63 /* Common */,
+				6D60E2749D9321EB72224838 /* LibreSensor */,
+				BA903D0DA88F2E9D611758CD /* LibreTransmitterUI */,
+				D97411EEB74E5CCCEB9AEF13 /* Observables */,
+				63B1F25385707C80C0CF47DE /* CompletionNotifying.swift */,
+				6EEA05A49684C83930FD5607 /* ConcreteGlucoseDisplayable.swift */,
+				16C6449A58A1B7CDE725969D /* DeviceLogEntryType.swift */,
+				4CD04512FC61D43325F466CB /* Features.swift */,
+				364D378AF3E4616E4C8530A7 /* LibreGlucose.swift */,
+				5DB8EA654CCEA3839A2CA86A /* LibreTransmitterManager.swift */,
+				CB1643DB889F51CE5450C021 /* OSLog.swift */,
+				8D8979F4C359F81C7BA5D585 /* SettingsNavigationViewController.swift */,
+			);
+			path = LibreTransmitter;
+			sourceTree = "<group>";
+		};
+		F5FCEA547C415776830FEA25 /* InfoPlists */ = {
+			isa = PBXGroup;
+			children = (
+				A8EB2AAD13ACE9D460D0087D /* LibreTransmitter-Info.plist */,
+			);
+			path = InfoPlists;
+			sourceTree = "<group>";
+		};
+		F91095662DE83CC3E8650345 /* Transmitter */ = {
+			isa = PBXGroup;
+			children = (
+				840EDC87D6FBE12365D787C0 /* BubbleTransmitter.swift */,
+				138CF104CA2E8CD8D1D40929 /* Libre2DirectTransmitter.swift */,
+				999D6064DE11284A879B4087 /* LibreTransmitterProxyManager.swift */,
+				BD5C50FBAAD7CC978BCFF76C /* LibreTransmitterProxyProtocol.swift */,
+				7557139CDD1A9B72D16E9B10 /* MiaomiaoTransmitter.swift */,
+				84C4E41CB5A0A444AE2D210A /* UUIDContainer.swift */,
+			);
+			path = Transmitter;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		630A3AA0E4173F97E7512A80 /* LibreTransmitter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B99E289B6D2643FB050D59C3 /* Build configuration list for PBXNativeTarget "LibreTransmitter" */;
+			buildPhases = (
+				18F473F06EB72F6713F63473 /* Sources */,
+				0F5AAE34B3330664A81FE927 /* Resources */,
+				C89577934D7AE8D4E466141E /* Frameworks */,
+				4BC2C601BD4800693694FEF8 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LibreTransmitter;
+			packageProductDependencies = (
+			);
+			productName = LibreTransmitter;
+			productReference = E3805D11143F3A232FF0DF43 /* LibreTransmitter.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9AF04CE868E3AF7A2CC60107 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 92FFA800AD038D000256DD6C /* Build configuration list for PBXProject "LibreTransmitter" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = D7D3C65F4AE693C62B4196FD;
+			productRefGroup = 5FB5C35A3673DB3D245CBFEA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				630A3AA0E4173F97E7512A80 /* LibreTransmitter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0F5AAE34B3330664A81FE927 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				347D49116EC7ADA5F3828890 /* bubble.png in Resources */,
+				6FD01DEF56FC62F544663F44 /* ic_bubble_mini_3-2.png in Resources */,
+				1C4CBC199AF4DBB25750E519 /* icons8-down-arrow-50.png in Resources */,
+				E8740B4BE6E9452615EBD5ED /* icons8-drop-down-arrow-50.png in Resources */,
+				80E5AE8D7BAC556E95245EE1 /* icons8-schedule-50.png in Resources */,
+				489CC010B49B208F491A299D /* icons8-slide-up-50.png in Resources */,
+				EC8F03A6496B0F473990CD3C /* icons8-up-50.png in Resources */,
+				20C7AAC1F5E5BEBACF05202E /* libresensor.png in Resources */,
+				FF024086FB4C75B60445BC40 /* miaomiao-small.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		18F473F06EB72F6713F63473 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6B07D9FFD44EAB1D5BAD9A9 /* TuistBundle+LibreTransmitter.swift in Sources */,
+				AAAB5385DA5A0C2903A83D48 /* BluetoothSearch.swift in Sources */,
+				AC2D193E36418903575EFD9B /* CBPeripheralExtensions.swift in Sources */,
+				9B6A5197A5415E5B8C6AB871 /* GenericThrottler.swift in Sources */,
+				63D435031B78E412CA31E8F0 /* LibreTransmitterMetadata.swift in Sources */,
+				765192C366784F5C3715C21A /* BubbleTransmitter.swift in Sources */,
+				119298DA0ACCDAC338E4EA77 /* Libre2DirectTransmitter.swift in Sources */,
+				CC2F884900C4381F99FB47C4 /* LibreTransmitterProxyManager.swift in Sources */,
+				A1644E2D8A287D4B6CB0ADAB /* LibreTransmitterProxyProtocol.swift in Sources */,
+				FEEF0245CCC67F7F3AD5B267 /* MiaomiaoTransmitter.swift in Sources */,
+				92B1F8BB702AEB1D4E9255A0 /* UUIDContainer.swift in Sources */,
+				FF49BC35D6E3610075E4171F /* CollectionExtensions.swift in Sources */,
+				155B61A4FFC47116669FA22E /* DataExtensions.swift in Sources */,
+				82B861EE7D08B51BD927EB83 /* DateExtensions.swift in Sources */,
+				FD69F5D9ADAFDFC5615A2B66 /* DoubleExtensions.swift in Sources */,
+				DE16761BE1476A31D0C3029F /* HashableClass.swift in Sources */,
+				9FCF36221030E0868A091166 /* Notification.swift in Sources */,
+				0BE33C24BEB744C6E203DFE6 /* TimeIntervalExtensions.swift in Sources */,
+				1329BDBF38FD5D98FC8EB077 /* GlucoseSampleValue.swift in Sources */,
+				BAAF24888AB9EB286F5E6D30 /* GlucoseValue.swift in Sources */,
+				8B52CE88E8BE678E51D17DE4 /* HKQuantitySample+GlucoseKit.swift in Sources */,
+				78D5ACDC0B76EE371E1B1069 /* HKUnit.swift in Sources */,
+				9E21B45B3CC970E5C43C7D13 /* LocalizedString.swift in Sources */,
+				8D9F43E8E277A802243FB59E /* MessagePassing.swift in Sources */,
+				DA1E3704857344FF83510973 /* NewGlucoseSample.swift in Sources */,
+				8A8D1BF1376CB26D12A4B2C8 /* NotificationHelper.swift in Sources */,
+				BC87075141842BB35CB886E2 /* NumberFormatter.swift in Sources */,
+				94F8C724652B08D4BEA6DD5E /* QuantityFormatter.swift in Sources */,
+				9AC50D0F4CE19E88D34B954C /* SampleValue.swift in Sources */,
+				BE089C707B69E80849B3C031 /* KeyChainManagerWrapper.swift in Sources */,
+				2E41E509DC4A883BE7A57B62 /* LogExport.swift in Sources */,
+				16F991090B7A40F7E5191963 /* UIApplication+metadata.swift in Sources */,
+				1150FBAE451EBF6E53FBF17F /* UserDefaults+Alarmsettings.swift in Sources */,
+				69EE8CE3A8EE88CFE9C91473 /* UserDefaults+Bluetooth.swift in Sources */,
+				6E414317FE3DD17ED435A93B /* UserDefaults+GlucoseSettings.swift in Sources */,
+				348B749D3133DA526BC932C1 /* UnfairLock.swift in Sources */,
+				B09AABAE1DA423B05A83921D /* WeakSynchronizedDelegate.swift in Sources */,
+				E2D75D5436559B4AE76CBFFA /* CompletionNotifying.swift in Sources */,
+				1C8F6EBECB9B54CEE8714E1E /* ConcreteGlucoseDisplayable.swift in Sources */,
+				DD801828508CCECC08EDBB7C /* DeviceLogEntryType.swift in Sources */,
+				2BAB7B91230E90A4BE20665A /* Features.swift in Sources */,
+				B7D0F4452FC290433EAE1CDD /* LibreGlucose.swift in Sources */,
+				A87FF5F49AD9AA5F7AA5764E /* Calibration.swift in Sources */,
+				1655E0AA5199AC15F5B9C2D9 /* GlucoseFromRaw.swift in Sources */,
+				59A10D8F55CD5D8A7EAF9217 /* GlucoseSmoothing.swift in Sources */,
+				4954A61C31B07A05FFF70FFC /* LibreError.swift in Sources */,
+				10ABAA112179EB06A501A80A /* LimitedQueue.swift in Sources */,
+				DD03649192DAA03F31865F00 /* CRC.swift in Sources */,
+				1294804BB1D46C5092C65138 /* Measurement.swift in Sources */,
+				7A482C99B9BC04D8E049236D /* PreLibre2.swift in Sources */,
+				046C77B538C7B2366596D22D /* Sensor.swift in Sources */,
+				FBAF5D0BA7A91A0CDC1A1024 /* SensorData.swift in Sources */,
+				055FF49BCD0ADDCBA6A03BA6 /* SensorSerialNumber.swift in Sources */,
+				ED52D051D57F71BE6926C9A7 /* SensorState.swift in Sources */,
+				F99D7763D6D5CCC56BFA6AC5 /* LibreTransmitterManager.swift in Sources */,
+				99AD3C0FF695507B28529A24 /* LibreTransmitterSetupViewController.swift in Sources */,
+				E7109F4CCE7B2B48050FFFCC /* LibreTransmitterManager+UI.swift in Sources */,
+				CA518A14AD93136AED1300EB /* SensorPairing.swift in Sources */,
+				9AE19B6531DE14A34CD287A1 /* SensorPairingService.swift in Sources */,
+				6D87B73A08ABD70D35A1C6BB /* CalibrationEditView.swift in Sources */,
+				5C288DB1DE9D10787FD1420F /* GlucoseSettingsView.swift in Sources */,
+				9414C2DFBBF714C672B5700E /* NotificationSettingsView.swift in Sources */,
+				3D6BD0A366292FA5321B2249 /* SettingsView.swift in Sources */,
+				64DBC973356986E3F782192B /* BluetoothSelection.swift in Sources */,
+				1F713D88D5F2A39138A3FC0C /* Libre2DirectSetup.swift in Sources */,
+				0B9733BAA44C0911B9D30443 /* ModeSelectionView.swift in Sources */,
+				BD1E9C7F895A3A5977539323 /* BlueButtonStyle.swift in Sources */,
+				2971D0246E5E9296245A0A92 /* ErrorTextFieldStyle.swift in Sources */,
+				B49E492BEA05EA018E6BC4AD /* EnumeratedForEach.swift in Sources */,
+				9F86F59B9CF71B61BC3A2460 /* GenericObservableObject.swift in Sources */,
+				98F86D66C0E4DF8C659EAA37 /* NumericTextField.swift in Sources */,
+				7ED2F6E935D0BE3FFD9941AD /* StatusMessage.swift in Sources */,
+				8861D9CC9198B982445B94AE /* ViewExtensions.swift in Sources */,
+				880EBB41DD4EEB26B7CDF43E /* OSLog.swift in Sources */,
+				E42C2053189209F87C566C8B /* GlucoseInfo.swift in Sources */,
+				01F7DDB2ACB65D0C00A8382A /* SensorInfo.swift in Sources */,
+				6A299FFFF4021898F96C7CD3 /* TransmitterInfo.swift in Sources */,
+				FC31EF7D6D58069EE25140E3 /* SettingsNavigationViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2F008F384184483B0263B2C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/.",
+				);
+				INFOPLIST_FILE = "Derived/InfoPlists/LibreTransmitter-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.tuist.LibreTransmitter;
+				PRODUCT_NAME = LibreTransmitter;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		62DDEA69C76B6C8552C362F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+					"SWIFT_PACKAGE=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					SWIFT_PACKAGE,
+				);
+				SWIFT_SUPPRESS_WARNINGS = YES;
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		ABF3D47AE3DBF24BCD4C0466 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"SWIFT_PACKAGE=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					SWIFT_PACKAGE,
+				);
+				SWIFT_SUPPRESS_WARNINGS = YES;
+				USE_HEADERMAP = NO;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B4690437D10EB1F7DA8BAE1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/.",
+				);
+				INFOPLIST_FILE = "Derived/InfoPlists/LibreTransmitter-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.tuist.LibreTransmitter;
+				PRODUCT_NAME = LibreTransmitter;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		92FFA800AD038D000256DD6C /* Build configuration list for PBXProject "LibreTransmitter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62DDEA69C76B6C8552C362F5 /* Debug */,
+				ABF3D47AE3DBF24BCD4C0466 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B99E289B6D2643FB050D59C3 /* Build configuration list for PBXNativeTarget "LibreTransmitter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B4690437D10EB1F7DA8BAE1A /* Debug */,
+				2F008F384184483B0263B2C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9AF04CE868E3AF7A2CC60107 /* Project object */;
+}

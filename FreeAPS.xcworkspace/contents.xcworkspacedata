@@ -4,13 +4,30 @@
    <FileRef
       location = "group:FreeAPS.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:Dependencies/CGMBLEKit/CGMBLEKit.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Dependencies/rileylink_ios/RileyLink.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Dependencies/LoopKit/LoopKit.xcodeproj">
-   </FileRef>
+   <Group
+      location = "group:Dependencies"
+      name = "Dependencies">
+      <FileRef
+         location = "group:LibreTransmitter/LibreTransmitter.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
+      name = "Dependencies">
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/SwiftDate/SwiftDate.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/SwiftMessages/SwiftMessages.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/Swinject/Swinject.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/swift-algorithms/swift-algorithms.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/swift-numerics/swift-numerics.xcodeproj">
+      </FileRef>
+   </Group>
 </Workspace>

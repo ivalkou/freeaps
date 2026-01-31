@@ -15,7 +15,8 @@ private struct PresentationDismissalKey: EnvironmentKey {
 
 
 extension EnvironmentValues {
-    public var dismiss: () -> Void {
+    /// Custom LoopKit dismiss action (renamed to avoid conflict with SwiftUI's dismiss)
+    public var loopKitDismiss: () -> Void {
         get { self[PresentationDismissalKey.self] }
         set { self[PresentationDismissalKey.self] = newValue }
     }

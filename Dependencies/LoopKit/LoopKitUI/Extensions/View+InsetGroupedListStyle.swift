@@ -9,7 +9,6 @@
 import SwiftUI
 
 
-// NOTE: In iOS 13, the InsetGroupedListStyle is "hacked" by using "GroupedListStyle" with a horizontal size class override.
 extension View {
 
     public func insetGroupedListStyle() -> some View {
@@ -17,17 +16,10 @@ extension View {
     }
 }
 
-fileprivate struct CustomInsetGroupedListStyle: ViewModifier, HorizontalSizeClassOverride {
+fileprivate struct CustomInsetGroupedListStyle: ViewModifier {
 
-    @ViewBuilder func body(content: Content) -> some View {
-        if #available(iOSApplicationExtension 14.0, *) {
-            content
-                .listStyle(InsetGroupedListStyle())
-        } else {
-            // Fallback on earlier versions
-            content
-                .listStyle(GroupedListStyle())
-                .environment(\.horizontalSizeClass, horizontalOverride)
-        }
+    func body(content: Content) -> some View {
+        content
+            .listStyle(InsetGroupedListStyle())
     }
 }
