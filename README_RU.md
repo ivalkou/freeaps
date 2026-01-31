@@ -12,7 +12,7 @@ FreeAPS X использует оригинальные JavaScript файлы or
 
 ## Требования к смартфону
 
-- Все iPhone с поддержкой iOS 15 и выше.
+- Все iPhone с поддержкой iOS 18 и выше.
 
 ## Поддерживаемые помпы
 
@@ -26,6 +26,86 @@ FreeAPS X использует оригинальные JavaScript файлы or
 - Omnipod "Eros" pods
 
 Для управления помпой необходимо устройство [RileyLink](https://getrileylink.org), OrangeLink, Pickle, GNARL, Emalink, DiaLink или аналоги.
+
+## Инструкция по сборке
+
+Проект использует [Tuist](https://tuist.io/) для генерации проекта и [mise](https://mise.jdx.dev/) для управления версиями инструментов.
+
+### Предварительные требования
+
+1. **Установите mise** (менеджер версий инструментов):
+   ```bash
+   curl https://mise.run | sh
+   ```
+
+   Добавьте в ваш профиль оболочки (`~/.zshrc` или `~/.bashrc`):
+   ```bash
+   eval "$(mise activate zsh)"  # или bash
+   ```
+
+   Перезапустите терминал или выполните `source ~/.zshrc`
+
+2. **Установите Xcode** из App Store (версия 16.0 или выше)
+
+### Первоначальная настройка
+
+1. **Клонируйте репозиторий:**
+   ```bash
+   git clone https://github.com/ivalkou/freeaps.git
+   cd freeaps
+   ```
+
+2. **Установите инструменты** (версия Tuist указана в mise.toml):
+   ```bash
+   mise install
+   ```
+
+3. **Создайте файл конфигурации:**
+   ```bash
+   cp .env.example .env
+   ```
+
+4. **Отредактируйте `.env`** и укажите ваш Apple Developer Team ID:
+   ```
+   TUIST_DEVELOPER_TEAM=YOUR_TEAM_ID
+   ```
+   Team ID можно найти в [Apple Developer Portal](https://developer.apple.com/account) -> Membership -> Team ID
+
+5. **Соберите зависимости** (XCFrameworks для LoopKit, RileyLink и др.):
+   ```bash
+   ./scripts/build-dependencies.sh
+   ```
+
+6. **Сгенерируйте проект Xcode:**
+   ```bash
+   mise exec -- tuist install
+   mise exec -- tuist generate
+   ```
+
+   Или если вы добавили активацию mise в профиль оболочки:
+   ```bash
+   tuist install
+   tuist generate
+   ```
+
+7. **Откройте проект** в Xcode:
+   ```bash
+   open FreeAPS.xcworkspace
+   ```
+
+### Перегенерация проекта
+
+После изменения `Project.swift`, `Tuist/Package.swift` или других конфигурационных файлов Tuist:
+
+```bash
+tuist generate
+```
+
+Если вы добавили новые SPM-зависимости:
+
+```bash
+tuist install && tuist generate
+```
 
 ## Текущее состояние FreeAPS X
 
@@ -74,6 +154,7 @@ FreeAPS X находится в состоянии активной разраб
 - Приложение для часов (beta)
 - Поддержка Enlite (beta)
 - Поддержка программы Здоровье, глюкоза (beta)
+- Ежедневное автоматическое резервное копирование настроек и данных
 
 ## Не реализовано (планируется в будущих версиях)
 

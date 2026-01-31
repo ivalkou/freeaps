@@ -24,5 +24,8 @@ final class ServiceAssembly: Assembly {
         // Migration service's
         container.register(AppInfo.self) { _ in BaseAppInfo() }
         container.register(MigrationManager.self) { r in BaseMigrationManager(resolver: r) }
+
+        // Backup service
+        container.register(BackupManager.self) { r in BaseBackupManager(resolver: r) }
     }
 }

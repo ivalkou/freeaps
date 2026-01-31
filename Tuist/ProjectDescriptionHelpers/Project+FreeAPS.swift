@@ -17,7 +17,7 @@ public enum FreeAPSConfig {
 
     // Computed bundle identifiers
     public static var bundleId: String {
-        "\(bundleIdPrefix).FreeAPS"
+        "\(bundleIdPrefix).\(developerTeam).FreeAPS"
     }
 
     public static var watchBundleId: String {

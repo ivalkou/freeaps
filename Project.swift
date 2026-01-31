@@ -51,6 +51,7 @@ let project = Project(
                 .external(name: "Algorithms"),
                 .external(name: "SwiftMessages"),
                 .external(name: "LibreTransmitter"),
+                .external(name: "ZIPFoundation"),
 
                 // Pre-built XCFrameworks (built from Dependencies/)
                 // Run scripts/build-dependencies.sh to build these

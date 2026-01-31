@@ -1,2 +1,5 @@
 [tools]
 tuist = "4.131.0"
+
+[env]
+_.file = ".env"

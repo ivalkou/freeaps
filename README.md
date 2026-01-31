@@ -12,7 +12,7 @@ FreeAPS X uses original JavaScript files of oref0 and provides a user interface 
 
 ## Smartphone requirements
 
-- All iPhones which support iOS 15 and up.
+- All iPhones which support iOS 18 and up.
 
 ## Supported pumps
 
@@ -26,6 +26,86 @@ To control an insulin pump FreeAPS X uses modified [rileylink_ios](https://githu
 - Omnipod "Eros" pods
 
 To control an insulin you need to have a [RileyLink](https://getrileylink.org), OrangeLink, Pickle, GNARL, Emalink, DiaLink or similar device
+
+## Build Instructions
+
+This project uses [Tuist](https://tuist.io/) for project generation and [mise](https://mise.jdx.dev/) for tool version management.
+
+### Prerequisites
+
+1. **Install mise** (tool version manager):
+   ```bash
+   curl https://mise.run | sh
+   ```
+
+   Add to your shell profile (`~/.zshrc` or `~/.bashrc`):
+   ```bash
+   eval "$(mise activate zsh)"  # or bash
+   ```
+
+   Restart your terminal or run `source ~/.zshrc`
+
+2. **Install Xcode** from the App Store (version 16.0 or later)
+
+### First-time Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ivalkou/freeaps.git
+   cd freeaps
+   ```
+
+2. **Install tools** (Tuist version is specified in mise.toml):
+   ```bash
+   mise install
+   ```
+
+3. **Create configuration file:**
+   ```bash
+   cp .env.example .env
+   ```
+
+4. **Edit `.env`** and set your Apple Developer Team ID:
+   ```
+   TUIST_DEVELOPER_TEAM=YOUR_TEAM_ID
+   ```
+   You can find your Team ID in [Apple Developer Portal](https://developer.apple.com/account) -> Membership -> Team ID
+
+5. **Build dependencies** (XCFrameworks for LoopKit, RileyLink, etc.):
+   ```bash
+   ./scripts/build-dependencies.sh
+   ```
+
+6. **Generate the Xcode project:**
+   ```bash
+   mise exec -- tuist install
+   mise exec -- tuist generate
+   ```
+
+   Or if you added mise activation to your shell profile:
+   ```bash
+   tuist install
+   tuist generate
+   ```
+
+7. **Open the project** in Xcode:
+   ```bash
+   open FreeAPS.xcworkspace
+   ```
+
+### Regenerating the Project
+
+After modifying `Project.swift`, `Tuist/Package.swift`, or other Tuist configuration files:
+
+```bash
+tuist generate
+```
+
+If you added new SPM dependencies:
+
+```bash
+tuist install && tuist generate
+```
 
 ## Current state of FreeAPS X
 
@@ -74,6 +154,7 @@ Bug reports and feature requests are accepted on the [Issues page](https://githu
 - Apple Watch app (beta)
 - Enlite support (beta)
 - Apple Health support for blood glucose (beta)
+- Daily automatic backup of settings and data
 
 ## Not implemented (plans for future)
 
@@ -86,4 +167,3 @@ Bug reports and feature requests are accepted on the [Issues page](https://githu
 
 - [English Telegram group](https://t.me/freeapsx_eng)
 - [Russian Telegram group](https://t.me/freeapsx)
-

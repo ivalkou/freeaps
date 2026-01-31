@@ -33,6 +33,11 @@ struct FreeAPSSettings: JSON, Equatable {
     var libreViewLastAllowUploadGlucose = false
     var libreViewFrequenceUploads = 0
     var libreViewNextUploadDelta = 0.0
+
+    // Backup Settings
+    var dailyBackupEnabled: Bool = true
+    var backupHour: Int = 12
+    var backupRetentionDays: Int = 7
 }
 
 extension FreeAPSSettings: Decodable {
@@ -154,6 +159,18 @@ extension FreeAPSSettings: Decodable {
 
         if let libreViewNextUploadDelta = try? container.decode(Double.self, forKey: .libreViewNextUploadDelta) {
             settings.libreViewNextUploadDelta = libreViewNextUploadDelta
+        }
+
+        if let dailyBackupEnabled = try? container.decode(Bool.self, forKey: .dailyBackupEnabled) {
+            settings.dailyBackupEnabled = dailyBackupEnabled
+        }
+
+        if let backupHour = try? container.decode(Int.self, forKey: .backupHour) {
+            settings.backupHour = backupHour
+        }
+
+        if let backupRetentionDays = try? container.decode(Int.self, forKey: .backupRetentionDays) {
+            settings.backupRetentionDays = backupRetentionDays
         }
 
         self = settings

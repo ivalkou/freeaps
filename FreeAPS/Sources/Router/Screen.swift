@@ -29,6 +29,7 @@ enum Screen: Identifiable, Hashable {
     case snooze
     case migration
     case garmin
+    case backupSettings
 
     var id: Int { String(reflecting: self).hashValue }
 }
@@ -90,6 +91,8 @@ extension Screen {
             Migration.RootView(resolver: resolver)
         case .garmin:
             GarminConfig.RootView(resolver: resolver)
+        case .backupSettings:
+            BackupSettings.RootView(resolver: resolver)
         }
     }
 

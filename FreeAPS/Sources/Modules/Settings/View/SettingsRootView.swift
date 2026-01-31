@@ -26,6 +26,7 @@ extension Settings {
                         Text("Apple Health").navigationLink(to: .healthkit, from: self)
                     }
                     Text("Notifications").navigationLink(to: .notificationsConfig, from: self)
+                    Text("Backup").navigationLink(to: .backupSettings, from: self)
                 }
 
                 Section(header: Text("Configuration")) {
