@@ -6,12 +6,9 @@ extension AppleHealthKit {
         @Injected() var healthKitManager: HealthKitManager!
 
         @Published var useAppleHealth = false
-        @Published var needShowInformationTextForSetPermissions = false
 
         override func subscribe() {
             useAppleHealth = settingsManager.settings.useAppleHealth
-
-            needShowInformationTextForSetPermissions = healthKitManager.areAllowAllPermissions
 
             subscribeSetting(\.useAppleHealth, on: $useAppleHealth) {
                 useAppleHealth = $0
@@ -19,25 +16,18 @@ extension AppleHealthKit {
                 guard let self = self else { return }
 
                 guard value else {
-                    self.needShowInformationTextForSetPermissions = false
                     return
                 }
 
                 self.healthKitManager.requestPermission { ok, error in
-                    DispatchQueue.main.async {
-                        self.needShowInformationTextForSetPermissions = !self.healthKitManager.checkAvailabilitySaveBG() || !self
-                            .healthKitManager.checkAvailabilitySaveCarbs()
-                    }
-
                     guard ok, error == nil else {
                         warning(.service, "Permission not granted for HealthKitManager", error: error)
                         return
                     }
 
-                    debug(.service, "Permission  granted HealthKitManager")
+                    debug(.service, "Permission granted HealthKitManager")
 
-                    self.healthKitManager.createObserver()
-                    self.healthKitManager.enableBackgroundDelivery()
+                    self.healthKitManager.configureManager()
                 }
             }
         }

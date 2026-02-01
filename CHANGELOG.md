@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [0.3.0] - 2026-02-01
 
 ### Added
+- **Apple Health insulin integration**: Sync bolus and basal insulin delivery to Apple Health
 - **Insulin recommendation tracking**: Store and display recommended insulin amount alongside actual bolus in treatment history
 - **Carbs notes**: Add ability to include notes when entering carbohydrates
 - **Manual glucose entry**: Add glucose readings manually from the app

@@ -18,16 +18,6 @@ extension AppleHealthKit {
                         .font(.caption)
                     }
                     .foregroundColor(Color.secondary)
-                    if state.needShowInformationTextForSetPermissions {
-                        HStack {
-                            Image(systemName: "exclamationmark.circle.fill")
-                            Text(
-                                "For read/write data from/to Apple Health you must give permissions in Settings > Health > Data Access"
-                            )
-                            .font(.caption)
-                        }
-                        .foregroundColor(Color.secondary)
-                    }
                 }
             }
             .onAppear(perform: configureView)
