@@ -244,5 +244,6 @@ let project = Project(
             ),
             archiveAction: .archiveAction(configuration: .release)
         )
-    ]
+    ],
+    resourceSynthesizers: []
 )

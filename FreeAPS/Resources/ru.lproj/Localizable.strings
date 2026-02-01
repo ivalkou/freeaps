@@ -1,0 +1,1145 @@
+/*
+  Localizable.strings
+  FreeAPS X
+*/
+/* -------------------------------- */
+/* Bolus screen when adding insulin */
+"Add insulin without actually bolusing" = "Добавить инсулин без болюса";
+
+/* Add insulin from source outside of pump */
+"Add %@ without bolusing" = "Добавить %@ без болюса";
+
+"Bolus" = "Болюс";
+
+"Close" = "Закрыть";
+
+/* Continue after added carbs without bolus */
+"Continue without bolus" = "Продолжить без болюса";
+
+/* Header */
+"Enact Bolus" = "Ввод болюса";
+
+/* Button */
+"Enact bolus" = "Ввести болюс";
+
+/*  */
+"Insulin recommended" = "Рекомендуется инсулина";
+
+/*  */
+"Insulin required" = "Необходимо инсулина";
+
+/* Bolus screen */
+"Recommendation" = "Рекомендация";
+
+/* Button */
+"Clear" = "Очистить";
+
+/* Button */
+"Done" = "Готово";
+
+/*  */
+"Wait please" = "Подождите";
+
+/*  */
+"Agree and continue" = "Согласиться и Продолжить";
+
+/* Enacted at a date */
+"Enacted at %@" = "Введено в %@";
+
+/* Home title */
+"Home" = "Главная";
+
+/* Looping in progress */
+"looping" = "выполняется";
+
+/* min ago since last loop */
+"min ago" = "мин. назад";
+
+/* Status Title */
+"No suggestion" = "Нет предложений";
+
+/* Replace pod text in Header */
+"Replace pod" = "Замените под";
+
+/* Suggested at a date */
+"Suggested at %@" = "Предложено в %@";
+
+/* Add carbs screen */
+"Add Carbs" = "Ввод углеводов";
+
+/* Add carbs header and button in Watch app. You can skip the last " " space. It's just for differentiation */
+"Add Carbs " = "Ввод углеводов";
+
+/* Fast Add carbs button */
+"Fast Add" = "Добавить быстро";
+
+/* Fast Add carbs button description */
+"Carbs will add and FreeAPX X will update forecasts without bolus" = "Углеводы будут добавлены без ввода болюса, FreeAPS X автоматически обновит прогнозы";
+
+/* Simple Add carbs button */
+"Simple Add" = "Просто добавить";
+
+/* Simple Add carbs button description*/
+"Carbs will add without bolus" = "Углеводы будут добавлены без ввода болюса";
+
+/*  */
+"Amount Carbs" = "Кол-во углеводов";
+
+/* Grams unit */
+"grams" = "грамм";
+
+/*  */
+"Carbs required" = "Требуются углеводы";
+
+/* */
+"Are you sure?" = "Вы уверены?";
+
+/* Bottom target temp */
+"Bottom target" = "Нижняя граница";
+
+/* Cancel preset name */
+"Cancel" = "Отмена";
+
+/*  */
+"Cancel Temp Target" = "Отменить временную цель";
+
+/* Custom temp target */
+"Custom" = "Своя";
+
+/*  */
+"Date" = "Дата";
+
+/*  */
+"Delete" = "Удалить";
+
+/* Delete preset temp target */
+"Delete preset \"%@\"" = "Удалить шаблон \"%@\"";
+
+/* Duration of target temp or temp basal */
+"Duration" = "Длительность";
+
+/*  */
+"Enact Temp Target" = "Временная цель";
+
+/*  */
+"Enter preset name" = "Название шаблона";
+
+/* Preset name */
+"Name" = "Название";
+
+/* minutes of target temp */
+"minutes" = "минут";
+
+/*  */
+"Presets" = "Шаблоны";
+
+/* Save preset name */
+"Save" = "Сохранить";
+
+/*  */
+"Save as preset" = "Сохранить как шаблон";
+
+/* Upper temp target limit */
+"Top target" = "Верхняя граница";
+
+/*  Temp target set for ... minutes */
+"for" = "на";
+
+/*  Temp target set for ... minutes */
+"min" = "мин";
+
+/*  */
+"Autotune" = "Автотюн";
+
+/*  */
+"Basal profile" = "Базальный профиль";
+
+/*  */
+"Carb ratio" = "Углеводный коефициент";
+
+/*  */
+"Delete autotune data" = "Удалить данные автотюна";
+
+/*  */
+"Run now" = "Выполнить";
+
+/*  */
+"Last run" = "Последний запуск";
+
+/*  */
+"Sensitivity" = "Чувствительность";
+
+/*  */
+"Use Autotune" = "Использовать автотюн";
+
+/* Add profile basal */
+"Add" = "Добавить";
+
+/*  */
+"Basal Profile" = "Базальный профиль";
+
+/* Rate basal profile */
+"Rate" = "Скорость";
+
+/*  */
+"Save on Pump" = "Сохранить на помпу";
+
+/*  */
+"Saving..." = "Сохранение...";
+
+/*  */
+"Schedule" = "График";
+
+/*  */
+"starts at" = "начинается в";
+
+/* Time basal profile */
+"Time" = "Время";
+
+/* */
+"Calculated Ratio" = "Рассчитанное соотношение";
+
+/* Carb Ratios header */
+"Carb Ratios" = "Углеводные коэффициенты";
+
+/*  */
+"Ratio" = "Коэффициент";
+
+/*  */
+"Autosens" = "Автосенс";
+
+/*  */
+"Calculated Sensitivity" = "Рассчитанная Чувствительность";
+
+/*  */
+"Insulin Sensitivities" = "Чувствительность к инсулину";
+
+/* */
+"Sensitivity Ratio" = "Коэффициент Чувствительности";
+
+/*  */
+"Dismiss" = "Отклонить";
+
+/*  */
+"Important message" = "Важное сообщение";
+
+/*  */
+"Amount" = "Количество";
+
+/* */
+"Cancel Temp Basal" = "Отменить ВБС";
+
+/* Enact
+Enact a temp Basal or a temp target */
+"Enact" = "Запустить";
+
+/* */
+"Manual Temp Basal" = "Ручная ВБС";
+
+/* Allow uploads data to different services */
+"Allow uploads" = "Разрешить выгрузку";
+
+/* API secret in NS */
+"API secret" = "API секрет";
+
+/* Connect to NS */
+"Connect" = "Подключить";
+
+/* Connected to NS */
+"Connected!" = "Подключено!";
+
+/* Connecting to NS */
+"Connecting..." = "Подключение...";
+
+/*  */
+"Invalid URL" = "Неверный URL";
+
+/*  */
+"Local glucose source" = "Локальный источник глюкозы";
+
+/* Header */
+"Nightscout Config" = "Nightscout";
+
+/*  */
+"Port" = "Порт";
+
+/*  */
+"URL" = "URL";
+
+/**/
+"Use local glucose server" = "Использовать локальный сервер глюкозы";
+
+/*  */
+"Edit settings json" = "Редактировать json настроек";
+
+/* */
+"Glucose units" = "Единицы измерения глюкозы";
+
+/*  */
+"Preferences" = "Предпочтения";
+
+/* Recommended Insulin Fraction in preferences */
+"Recommended Insulin Fraction" = "Рекомендуемая дробь инсулина";
+
+/* Do you want to show bolus screen after added carbs? */
+"Skip Bolus screen after carbs" = "Пропустить экран болюса после ввода углеводов";
+
+/* Allow remote control from NS */
+"Remote control" = "Удаленное управление";
+
+/* Add Medtronic pump */
+"Add Medtronic" = "Добавить Medtronic";
+
+/* Add Omnipod pump */
+"Add Omnipod" = "Добавить Omnipod";
+
+/* Add Simulator pump */
+"Add Simulator" = "Добавить Cимулятор";
+
+/* Insulin model */
+"Model" = "Модель";
+
+/*  */
+"Pump config" = "Настройка помпы";
+
+/*  */
+"Delivery limits" = "Предел подачи";
+
+/*  */
+"Duration of Insulin Action" = "Продолжительность Действия Инсулина";
+
+/* hours of duration of insulin activity */
+"hours" = "часов";
+
+/* Max setting */
+"Max Basal" = "Макс. Базал";
+
+/* Max setting */
+"Max Bolus" = "Макс. Болюс";
+
+/* */
+"Pump Settings" = "Настройки помпы";
+
+/* Insulin unit per hour */
+"U/hr" = "Ед/ч";
+
+/* Unit in number of units delivered (keep the space character!) */
+" U" = " Ед";
+
+/* /Insulin unit */
+"/U" = "/Ед";
+
+/* Insulin unit */
+"U" = "Ед";
+
+/* Unit per hour with space */
+" U/hr" = " Ед/ч";
+
+/* Number of units per hour*/
+"%@ U/hr" = "%@ Ед/ч";
+
+/* Number of units insulin delivered */
+"%@ U" = "%@ Eд";
+
+/*Carb ratio unit */
+"g/U" = "г/Eд";
+
+/* grams */
+" g" = " г";
+
+/* The short unit display string for grams */
+"g" = "г";
+
+/* when 0 U/hr */
+"0 U/hr" = "0 Ед/час";
+
+/* abbreviation for days */
+"d" = "д";
+
+/* abbreviation for hours */
+"h" = "ч";
+
+/* abbreviation for minutes */
+"m" = "мин";
+
+/*  */
+"Closed loop" = "Замкнутая петля";
+
+/* */
+"Configuration" = "Конфигурация";
+
+/* */
+"Devices" = "Устройства";
+
+/*  */
+"Pump" = "Помпа";
+
+/*  */
+"Services" = "Службы";
+
+/*  */
+"Settings" = "Настройки";
+
+/* 2 log files to share */
+"Share logs" = "Отправить журнал";
+
+/* Upper target */
+"High target" = "Верхняя цель";
+
+/* Lower target */
+"Low target" = "Нижняя цель";
+
+/*  */
+"Target Ranges" = "Целевой диапазон";
+
+/* When bolusing */
+"Bolusing" = "Подается болюс";
+
+/* */
+"Pump suspended" = "Помпа приостановлена";
+
+/* */
+"Middleware" = "Связующее ПО";
+
+/* Header */
+"History" = "История";
+
+/* CGM option */
+"Upload glucose to Nightscout" = "Загружать глюкозу в Nightscout";
+
+/* Type of CGM or glucose source */
+"Type" = "Тип";
+
+/* CGM */
+"CGM" = "CGM";
+
+/* CGM Transmitter ID */
+"Transmitter ID" = "ID трансмиттера";
+
+/* Other CGM setting */
+"Other" = "Прочее";
+
+/* Whatch app alert */
+"Set temp targets presets on iPhone first" = "Сначала установите временные цели в приложении на iPhone";
+
+/* Updating Watch app */
+"Updating..." = "Обновление...";
+
+/* Header for Temp targets in Watch app */
+"Temp Targets" = "Временные цели";
+
+/* Delete carbs from Treatments list*/
+"Delete carbs?" = "Удалить углеводы?";
+
+/* Treatments list */
+"Treatments" = "События";
+
+/* " min" in Treatments list */
+" min" = " мин";
+
+
+/* Calendar and Libre transmitter settings ---------------
+ */
+/* */
+"Configure Libre Transmitter" = "Настроить Libre Transmitter";
+
+/* */
+"Calibrations" = "Калибровки";
+
+/* */
+"Create events in calendar" = "Создавать событий в календаре";
+
+/* */
+"Calendar" = "Календарь";
+
+/* */
+"Other" = "Прочее";
+
+/* */
+"Libre Transmitter" = "Libre Transmitter";
+
+/* */
+"Libre Transmitters" = "Передатчики Libre";
+
+/* */
+"Bluetooth Transmitters" = "Bluetooth передатчики";
+
+/* */
+"Modes" = "Режимы";
+
+/* Libre 2 Direct */
+"Libre 2 Direct" = "Libre 2 прямое подключение";
+
+/* */
+"Select the third party transmitter you want to connect to" = "Выберите сторонний передатчик, к которому вы хотите подключиться";
+
+/* State was restored */
+"State was restored" = "Состояние восстановлено";
+
+/* The short unit display string for millimoles of glucose per liter */
+"mmol/L" = "ммоль/л";
+
+/* The short unit display string for milligrams of glucose per decilter */
+"mg/dL" = "мг/дл";
+
+/* */
+"Add calibration" = "Добавить калибровку";
+
+/* When adding capillary glucose meater reading */
+"Meter glucose" = "Показание глюкометра";
+
+/* */
+"Info" = "Инфо";
+
+/*v*/
+"Slope" = "Наклон";
+
+/* */
+"Intercept" = "Смещение";
+
+/* */
+"Chart" = "График";
+
+/* */
+"Remove" = "Удалить";
+
+/* */
+"Remove Last" = "Удалить последнюю";
+
+/* */
+"Remove All" = "Удалить все";
+
+/* */
+"About the Process" = "О процессе";
+
+/* */
+"Please make sure that your Libre 2 sensor is already activated and finished warming up. If you have other apps connecting to the sensor via bluetooth, these need to be shut down or uninstalled. \n\n You can only have one app communicating with the sensor via bluetooth. Then press the \"pariring and connection\" button below to start the process. Please note that the bluetooth connection might take up to a couple of minutes before it starts working." = "Пожалуйста, убедитесь, что датчик Libre 2 уже активирован и завершен прогрев. Если у вас есть другие приложения, подключающиеся к датчику через bluetooth, они должны быть выключены или удалены. Вы можете иметь только одно приложение для общения с сенсором через bluetooth. Затем нажмите на кнопку \"pariring and connection\" ниже, чтобы запустить процесс. Пожалуйста, обратите внимание, что Bluetooth-соединение может занять несколько минут до того, как он начнет работать.";
+
+/* */
+"Pairinginfo" = "Информация о сопряжении";
+
+/* */
+"PatchInfo" = "Информация о патче";
+
+/* */
+"Calibrationinfo" = "Информация о калибровке";
+
+/* */
+"Unknown" = "Неизвестно";
+
+/* */
+"Not paired yet" = "Нет сопряжения";
+
+/* */
+"Pair Sensor & connect" = "Привязать сенсор и подключить";
+
+/* */
+"Phone NFC required!" = "Необходим NFC в телефоне!";
+
+/* */
+"Your phone or app is not enabled for NFC communications, which is needed to pair to libre2 sensors" = "NFC недоступен. Он требуется для соединение с сенсором Libre2";
+
+/* Bluetooth Power Off */
+"Bluetooth Power Off" = "Bluetooth отключен";
+
+/* Please turn on Bluetooth */
+"Please turn on Bluetooth" = "Пожалуйста, включите Bluetooth";
+
+/* No Libre Transmitter Selected */
+"No Libre Transmitter Selected" = "Не выбран передатчик для Libre";
+
+/* Delete Transmitter and start anew. */
+"Delete CGMManager and start anew. Your libreoopweb credentials will be preserved" = "Удалить CGM и добавьте заново.";
+
+/* Invalid libre checksum */
+"Invalid libre checksum" = "Неверная контрольная сумма сенсора";
+
+/* Libre sensor was incorrectly read, CRCs were not valid */
+"Libre sensor was incorrectly read, CRCs were not valid" = "Сенсор прочитан некорректно, неверная контрольная сумма";
+
+/* Glucose */
+"Glucose" = "Глюкоза";
+
+/* LOWALERT! */
+"LOWALERT!" = "ГИПО!";
+
+/* HIGHALERT! */
+"HIGHALERT!" = "ГИПЕР!";
+
+/* (Snoozed)*/
+"(Snoozed)" = "(Заглушено)";
+
+/* Glucose: %@ */
+"Glucose: %@" = "Глюкоза: %@";
+
+/* Transmitter: %@%% */
+"Transmitter: %@%%" = "Передатчик: %@%%";
+
+/* No Sensor Detected */
+"No Sensor Detected" = "Сенсор не обнаружен";
+
+/* This might be an intermittent problem, but please check that your transmitter is tightly secured over your sensor */
+"This might be an intermittent problem, but please check that your transmitter is tightly secured over your sensor" = "Это может быть временная проблема, но пожалуйста, проверьте, что ваш передатчик надежно закрывает сенсор";
+
+/* New Sensor Detected */
+"New Sensor Detected" = "Обнаружен новый сенсор";
+
+/* Please wait up to 30 minutes before glucose readings are available! */
+"Please wait up to 30 minutes before glucose readings are available!" = "Пожалуйста, подождите до 30 минут перед тем, как будут доступны данные о глюкозе!";
+
+/* Invalid Glucose sample detected, try again later */
+"Invalid Glucose sample detected, try again later" = "Обнаружено невалидное значение глюкозы, повторите попытку позже";
+
+/* ensor might have temporarily stopped, fallen off or is too cold or too warm */
+"Sensor might have temporarily stopped, fallen off or is too cold or too warm" = "Сенсор временно остановлен, отсоединён или температура за рамками допустимой";
+
+/* Invalid Sensor Detected */
+"Invalid Sensor Detected" = "Обнаружен неверный сенсор";
+
+/* Detected sensor seems not to be a libre 1 sensor! */
+"Detected sensor seems not to be a libre 1 sensor!" = "Обнаруженный сенсор не является Libre 1 сенсором!";
+
+/* Detected sensor is invalid: %@ */
+"Detected sensor is invalid: %@" = "Обнаруженный сенсор невалиден: %@";
+
+/* Low Battery */
+"Low battery" = "Низкий заряд батареи";
+
+/* */
+"Invalid sensor" = "Сенсор неисправен";
+
+/* */
+"Sensor change" = "Смена сенсора";
+
+/* */
+"Sensor expires soon" = "Сенсор скоро закончится";
+
+/* Battery is running low %@, consider charging your %@ device as soon as possible */
+"Battery is running low %@, consider charging your %@ device as soon as possible" = "Батарея работает на низком уровне %@, попробуйте зарядить устройство %@ как можно скорее";
+
+/* Extracting calibrationdata from sensor */
+"Extracting calibrationdata from sensor" = "Извлечение данных калибровки из сенсора";
+
+/* Sensor Ending Soon */
+"Sensor Ending Soon" = "Сенсор скоро закончится";
+
+/* Current Sensor is Ending soon! Sensor Life left in %@ */
+"Current Sensor is Ending soon! Sensor Life left in %@" = "Сенсор скоро закончится! Осталась %@";
+
+/* */
+"Libre Bluetooth" = "Libre Bluetooth";
+
+/* */
+"Snooze Alerts" = "Отложить тревоги";
+
+/* */
+"Last measurement" = "Последнее измерение";
+
+/* */
+"Sensor Footer checksum" = "Контрольная сумма сенсора";
+
+/* */
+"Last Blood Sugar prediction" = "Последнее предсказание глюкозы";
+
+/* */
+"CurrentBG" = "Текущая ГК";
+
+/* */
+"Sensor Info" = "Информация о сенсоре";
+
+/* */
+"Sensor Age" = "Возраст сенсора";
+
+/* */
+"Sensor Age Left" = "Осталось";
+
+/* */
+"Sensor Endtime" = "Время окончания сенсора";
+
+/* */
+"Sensor State" = "Состояние сенсора";
+
+/* */
+"Sensor Serial" = "Серийный номер сенсора";
+
+/* */
+"Transmitter Info" = "Информация о передатчике";
+
+/* */
+"Hardware" = "Оборудование";
+
+/* */
+"Firmware" = "Версия прошивки";
+
+/* */
+"Connection State" = "Состояние соединения";
+
+/* */
+"Transmitter Type" = "Тип передатчика";
+
+/* */
+"Sensor Type" = "Тип сенсора";
+
+/* */
+"Factory Calibration Parameters" = "Параметры заводской калибровки";
+
+/* */
+"Valid for footer" = "Действителен для футера";
+
+/* */
+"Edit calibrations" = "Редактировать калибровки";
+
+/* */
+"edit calibration clicked" = "изменить калибровку нажато";
+
+/* */
+"Delete CGM" = "Удалить CGM";
+
+/* */
+"Are you sure you want to remove this cgm from loop?" = "Вы уверены, что хотите удалить этот CGM?";
+
+/* */
+"There is no undo" = "Это нельзя отменить!";
+
+/* */
+"Advanced" = "Расширенные";
+
+/* */
+"Alarms" = "Тревоги";
+
+/* */
+"Glucose Settings" = "Настройки глюкозы";
+
+/* */
+"Notifications" = "Уведомления";
+
+/* */
+"Export logs" = "Экспорт журналов";
+
+/* */
+"Export not available" = "Экспорт недоступен";
+
+/* */
+"Log export requires ios 15" = "Для экспорта журнала требуется ios 15";
+
+/* */
+"Got it!" = "Понятно!";
+
+/* */
+"Saved to %@" = "Сохранено в %@";
+
+/* */
+"No logs available" = "Нет доступных журналов";
+
+/* */
+"Glucose Notification visibility" = "Видимость уведомлений глюкозы";
+
+/* */
+"Always Notify Glucose" = "Всегда уведомлять о глюкозе";
+
+/* */
+"Notify per reading" = "Уведомлять за чтение";
+
+/* */
+"Value" = "Значение";
+
+/* */
+"Adds Phone Battery" = "Показывать заряд батареи телефона";
+
+/* */
+"Adds Transmitter Battery" = "Добавить батарею передатчика";
+
+/* */
+"Also vibrate" = "Вибрировать";
+
+/* */
+"Additional notification types" = "Дополнительные уведомления";
+
+/* */
+"Misc" = "Разное";
+
+/* */
+"Unit override" = "Переопределение единицы";
+
+/* */
+"Low" = "Низкий";
+
+/* */
+"High" = "Высокий";
+
+/* */
+"glucose" = "глюкоза";
+
+/* */
+"Schedule " = "Расписание ";
+
+/* */
+"tapped save schedules" = "выбрано сохранение расписаний";
+
+/* */
+"Error" = "Ошибка";
+
+/* */
+"Some ui element was incorrectly specified" = "Некорректно указан элемент ui";
+
+/* */
+"Success" = "Успех";
+
+/* */
+"Schedules were saved successfully!" = "Расписание успешно сохранено!";
+
+/* */
+"High Glucose Alarm active" = "Высокая тревога включена";
+
+/* */
+"Low Glucose Alarm active" = "Низкая тревога включена";
+
+/* */
+"No Glucose Alarm active" = "Тревога неактивна";
+
+/* */
+"snoozing until %@" = "отложена до %@";
+
+/* */
+"not snoozing" = "не отложена";
+
+/* */
+"nothing to see here" = "здесь ничего нет";
+
+/* */
+"snooze from testview clicked" = "snooze from testview clicked";
+
+/* */
+"will snooze for %@ until %@" = "будет отложена для %@ до %@";
+
+/* */
+"Click to Snooze Alerts" = "Нажмите, чтобы отложить тревоги";
+
+/* */
+"Strength" = "Сила";
+
+/* */
+"Hold the top of your iPhone near the sensor to pair" = "Держите верхнюю часть вашего iPhone рядом с сенсором для подключения";
+
+/* */
+"Sensor not found" = "Сенсор не найден";
+
+/* */
+"Also play alert sound" = "Использовать звук тревоги";
+
+/* */
+"Notification Settings" = "Настройки уведомлений";
+
+/* */
+"Found devices: %d" = "Найдено устройств: %d";
+
+/* */
+"Backfill options" = "Опции заполнения";
+
+/* */
+"Backfilling from trend is currently not well supported by Loop" = "Заполнение из тренда в настоящее время не поддерживается в Loop";
+
+/* */
+"Backfill from history" = "Заполнять из истории";
+
+/* */
+"Backfill from trend" = "Заполнять из тренда";
+
+/* */
+"Debug options" = "Опции отладки";
+
+/* */
+"Adds a lot of data to the Issue Report " = "Добавляет много данных в отчет об ошибках ";
+
+/* */
+"Persist sensordata" = "Хранить данные сенсора";
+
+/* */
+"Battery" = "Батарея";
+
+/* */
+"Also add source info" = "Дополнительная информация об источнике";
+
+/* */
+"Carbs Required Threshold" = "Порог необходимых углеводов";
+
+/* */
+"Carbs required: %d g" = "Необходимы углеводы: %d г";
+
+/* */
+"To prevent LOW required %d g of carbs" = "Для избежания ГИПО необходимо %d г углеводов";
+
+/* */
+"FreeAPS X not active" = "FreeAPS X неактивен";
+
+/* */
+"Last loop was more then %d min ago" = "Последний цикл был более %d минут назад";
+
+/* Glucose badge */
+"Show glucose on the app badge" = "Показывать глюкозу на значке приложения";
+
+/* */
+"Backfill glucose" = "Скачать глюкозу";
+
+/* About this source */
+"About this source" = "Об этом источнике";
+
+/* */
+"Bolus failed" = "Болюс не выполнен";
+
+/* */
+"Bolus failed or inaccurate. Check pump history before repeating." = "Болюс не выполнен или неточный. Перед повторением проверьте историю помпы.";
+
+/* */
+"Carbs" = "Углеводы";
+
+/* */
+"Temp Basal" = "Врем. базал";
+
+/* */
+"Temp Target" = "Врем. цель";
+
+/* */
+"Resume" = "Возобновление";
+
+/* */
+"Suspend" = "Остановка";
+
+/* */
+"Animated Background" = "Анимированный фон";
+
+/* Sensor day(s) */
+" day(s)" = "дн.";
+
+
+/* Headers for settings ----------------------- */
+"OpenAPS main settings" = "Основные настройки OpenAPS";
+
+"OpenAPS SMB settings" = "Настройки OpenAPS SMB";
+
+"OpenAPS targets settings" = "Настройки целей OpenAPS";
+
+"OpenAPS other settings" = "Другие настройки OpenAPS";
+
+/* Glucose Simulator CGM */
+"Glucose Simulator" = "Симулятор глюкозы";
+
+/* Restored state message */
+"Bluetooth State restored (APS restarted?). Found %d peripherals, and connected to %@ with identifier %@" = "Bluetooth состояние восстановлено (APS перезапущен?). Найдено %d периферийных устройств и подключено к %@ с идентификатором %@";
+
+/* Shared app group */
+"Shared app group for direct connection with Libre 1 transmitters or European Libre 2 sensors" = "Общая группа приложений для прямой связи с трансмиттерами Libre 1 или Европейскими датчиками Libre 2";
+
+/* Native G6 app */
+"Native G6 app" = "Родное приложение G6";
+
+/* Native G5 app */
+"Native G5 app" = "Родное приложение G5";
+
+/* Minilink transmitter */
+"Minilink transmitter" = "Передатчик Minilink";
+
+/* Simple simulator */
+"Simple simulator" = "Простой симулятор";
+
+/* Direct connection with Libre 1 transmitters or Libre 2 */
+"Direct connection with Libre 1 transmitters or European Libre 2 sensors" = "Прямое подключение к трансмиттерам Libre 1 или датчикам European Libre 2";
+
+/* Online or internal server */
+"Online or internal server" = "Онлайн или внутренний сервер";
+
+/* HealthKit intergration --------------------*/
+/* */
+"Apple Health" = "Apple Health";
+
+/* */
+"Connect to Apple Health" = "Подключить к Apple Health";
+
+/* Show when have not permissions for writing to Health */
+"For read/write data from/to Apple Health you must give permissions in Settings > Health > Data Access" = "Чтобы считывать и записывать данные из и в Apple Health вам необходимо дать соответствующие разрешения, перейдя в меню Настройки > Здоровье > Доступ к данным";
+
+/* */
+"After you create records in the Health app, please open FreeAPS X to help us guaranteed transfer changed data" = "После ручного создания записей в программе Здоровье пожалуйста откройте FreeAPS X, чтобы помочь нам гарантированно загрузить измененные данные";
+/* --------------------------------------------
+
+
+  Infotexts from openaps.docs and androidaps.docs
+  FreeAPS X
+*/
+/* ”Rewind Resets Autosens” */
+
+"This feature, enabled by default, resets the autosens ratio to neutral when you rewind your pump, on the assumption that this corresponds to a probable site change. Autosens will begin learning sensitivity anew from the time of the rewind, which may take up to 6 hours. If you usually rewind your pump independently of site changes, you may want to consider disabling this feature." = "Эта функция (включена по умолчанию), сбрасывает Автосенс к нейтральному при сбросе помпы, предполагая, что это связано со сменой канюли. Автосенс начнет учиться заново со времени сброса, что может занять до 6 часов. Если вы сбрасываете помпу отдельно от смены канюли, вам стоит отключить эту функцию.";
+
+/* "High Temptarget Raises Sensitivity" */
+"Defaults to false. When set to true, raises sensitivity (lower sensitivity ratio) for temp targets set to >= 111. Synonym for exercise_mode. The higher your temp target above 110 will result in more sensitive (lower) ratios, e.g., temp target of 120 results in sensitivity ratio of 0.75, while 140 results in 0.6 (with default halfBasalTarget of 160)." = "Делает систему менее агрессивной при высокой временной цели (выше 6.1 ммоль/л). Отлично для упражнений — установите высокую цель, и алгоритм снизит подачу инсулина для предотвращения гипогликемии во время активности.";
+
+/* "Low Temptarget Lowers Sensitivity" */
+"Defaults to false. When set to true, can lower sensitivity (higher sensitivity ratio) for temptargets <= 99. The lower your temp target below 100 will result in less sensitive (higher) ratios, e.g., temp target of 95 results in sensitivity ratio of 1.09, while 85 results in 1.33 (with default halfBasalTarget of 160)." = "Делает систему более агрессивной при низкой временной цели (ниже 5.5 ммоль/л). Полезно для быстрого снижения упрямых высоких значений или подготовки к еде с целью \"Скоро еда\".";
+
+/* "Sensitivity Raises Target" */
+"When true, raises BG target when autosens detects sensitivity" = "Когда система обнаруживает повышенную чувствительность к инсулину, она поднимает цель для предотвращения гипогликемии. Полезная функция безопасности при переменной чувствительности.";
+
+/* "Resistance Lowers Target" */
+"Defaults to false. When true, will lower BG target when autosens detects resistance" = "Когда система обнаруживает инсулинорезистентность, она снижает цель для более агрессивного контроля. Помогает поддерживать контроль во время болезни или гормональных изменений.";
+
+/* "Advanced Target Adjustments" */
+"This feature was previously enabled by default but will now default to false (will NOT be enabled automatically) in oref0 0.6.0 and beyond. (There is no need for this with 0.6.0). This feature lowers oref0's target BG automatically when current BG and eventualBG are high. This helps prevent and mitigate high BG, but automatically switches to low-temping to ensure that BG comes down smoothly toward your actual target. If you find this behavior too aggressive, you can disable this feature. If you do so, please let us know so we can better understand what settings work best for everyone." = "Автоматически снижает цель, когда текущая и прогнозируемая глюкоза высокие. Помогает предотвращать и корректировать высокие значения агрессивнее. Может показаться слишком агрессивным — отключите, если часто случаются гипогликемии после высоких значений.";
+
+/* "Exercise Mode" */
+"Defaults to false. When true, > 105 mg/dL high temp target adjusts sensitivityRatio for exercise_mode. Synonym for high_temptarget_raises_sensitivity" = "То же, что \"High Temptarget Raises Sensitivity\". При включении высокие временные цели (выше 5.8 ммоль/л) снижают подачу инсулина — идеально для тренировок. Используйте вместе с Half Basal Exercise Target.";
+
+/* "Wide BG Target Range" */
+"Defaults to false, which means by default only the low end of the pump's BG target range is used as OpenAPS target. This is a safety feature to prevent too-wide targets and less-optimal outcomes. Therefore the higher end of the target range is used only for avoiding bolus wizard overcorrections. Use wide_bg_target_range: true to force neutral temps over a wider range of eventualBGs." = "По умолчанию OpenAPS использует только нижнюю границу целевого диапазона для более точного контроля. Включите для использования всего диапазона, что даст меньше корректировок и более мягкий подход.";
+
+/* "Skip Neutral Temps" */
+"Defaults to false, so that FreeAPS X will set temps whenever it can, so it will be easier to see if the system is working, even when you are offline. This means FreeAPS X will set a “neutral” temp (same as your default basal) if no adjustments are needed. This is an old setting for OpenAPS to have the options to minimise sounds and notifications from the 'rig', that may wake you up during the night." = "По умолчанию значение false, так что OpenAPS будет устанавливать временные цели когда это возможно,  так будет проще увидеть, работает ли система даже в автономном режиме. Эта настройка означает, что OpenAPS установит «нейтральную» ВБС (такую же, как и исходная база по умолчанию), если изменения не нужны. Это старая настройка OpenAPS для минимизации звуков и уведомлений на помпе.";
+
+/* "Unsuspend If No Temp” */
+"Many people occasionally forget to resume / unsuspend their pump after reconnecting it. If you’re one of them, and you are willing to reliably set a zero temp basal whenever suspending and disconnecting your pump, this feature has your back. If enabled, it will automatically resume / unsuspend the pump if you forget to do so before your zero temp expires. As long as the zero temp is still running, it will leave the pump suspended." = "Многие люди иногда забывают возобновить подачу на помпе после повторного подключения. Если этот параметр включен, он автоматически возобновит / разблокирует помпу, если вы забыли сделать это до того, как срок ВБС истечет. До тех пор, пока ВБС работает, помпа будет приостановлена.";
+
+/* "Enable UAM" */
+"With this option enabled, the SMB algorithm can recognize unannounced meals. This is helpful, if you forget to tell FreeAPS X about your carbs or estimate your carbs wrong and the amount of entered carbs is wrong or if a meal with lots of fat and protein has a longer duration than expected. Without any carb entry, UAM can recognize fast glucose increasments caused by carbs, adrenaline, etc, and tries to adjust it with SMBs. This also works the opposite way: if there is a fast glucose decreasement, it can stop SMBs earlier." = "Распознаёт незаявленную еду и реагирует с помощью SMB. Необходимо для: забытых углеводов, недооценённых порций или жирной еды, которая усваивается дольше ожидаемого. Также обнаруживает быстрое падение и снижает инсулин. Рекомендуется включить при использовании SMB.";
+
+/* Enable SMB With COB" */
+
+"This enables supermicrobolus (SMB) while carbs on board (COB) are positive." = "Включает SMB только при наличии активных углеводов. Безопасный вариант для начала — система даёт микро-болюсы для покрытия еды, но не действует агрессивно в остальное время.";
+
+/* "Enable SMB With Temptarget" */
+"This enables supermicrobolus (SMB) with eating soon / low temp targets. With this feature enabled, any temporary target below 100mg/dL, such as a temp target of 99 (or 80, the typical eating soon target) will enable SMB." = "Включает SMB при низкой временной цели (ниже 5.5 ммоль/л). Используйте с целью \"Скоро еда\" для предварительного болюса. Система начнёт вводить инсулин при активации цели.";
+
+/* "Enable SMB Always" */
+"Defaults to false. When true, always enable supermicrobolus (unless disabled by high temptarget)." = "SMB будет регулярно вводить небольшие болюсы для поддержания глюкозы в норме. Используйте, когда уверены в своих настройках. Высокие временные цели по-прежнему отключают SMB для безопасности.";
+
+/* "Enable SMB After Carbs" */
+"Defaults to false. When true, enables supermicrobolus (SMB) for 6h after carbs, even with 0 carbs on board (COB)." = "SMB остаётся активным 6 часов после еды, даже когда активные углеводы обнулились. Полезно для жирной пищи с белком, которая усваивается медленно и вызывает отложенный рост глюкозы.";
+
+/* "Allow SMB With High Temptarget" */
+"Defaults to false. When true, allows supermicrobolus (if otherwise enabled) even with high temp targets." = "По умолчанию высокие временные цели (например, для упражнений) отключают SMB для безопасности. Включите, если хотите сохранить SMB при высоких целях. Не рекомендуется без особой необходимости.";
+
+/* "Use Custom Peak Time” */
+"Defaults to false. Setting to true allows changing insulinPeakTime" = "По умолчанию значение выключено. Включение параметра позволяет изменять пиковое время инсулина (insulinPeakTime)";
+
+/* "Suspend Zeros IOB” */
+"Default is false. Any existing temp basals during times the pump was suspended will be deleted and 0 temp basals to negate the profile basal rates during times pump is suspended will be added." = "По умолчанию false. Любые существующие ВБС во время остановки помпы будут удалены и заменены на нулевую BБС чтобы убрать профильные базальные скорости.";
+
+/* "Max IOB" */
+"Max IOB is the maximum amount of insulin on board from all sources – both basal (or SMB correction) and bolus insulin – that your loop is allowed to accumulate to treat higher-than-target BG. Unlike the other two OpenAPS safety settings (max_daily_safety_multiplier and current_basal_safety_multiplier), max_iob is set as a fixed number of units of insulin. As of now manual boluses are NOT limited by this setting. \n\n To test your basal rates during nighttime, you can modify the Max IOB setting to zero while in Closed Loop. This will enable low glucose suspend mode while testing your basal rates settings\n\n(Tip from https://www.loopandlearn.org/freeaps-x/#open-loop)." = "Макс IOB - это максимальное количество инсулина на борту из всех источников – как базального (или болюсов коррекции), так и болюсного инсулина – который ваш цикл может накапливать для компенсации высокого СК. В отличие от двух других параметров безопасности (max_daily_safety_multiplier и current_basal_safety_multiplier), max_iob устанавливается, как фиксированное количество единиц инсулина. На данный момент ручные болюсы НЕ ограничены этой настройкой. Для тестирования базальных скоростей в ночное время, вы можете изменить значение этого параметра на нуль находясь в замкнутом цикле. Это включит режим приостановки на низком сахаре, при тестировании настроек базальных скоростей. (https://www.loopandlearn.org/freeaps-x/#open-loop).";
+
+/* "Max Daily Safety Multiplier" */
+"This is an important OpenAPS safety limit. The default setting (which is unlikely to need adjusting) is 3. This means that OpenAPS will never be allowed to set a temporary basal rate that is more than 3x the highest hourly basal rate programmed in a user’s pump, or, if enabled, determined by autotune." = "По умолчанию (которое вряд ли потребуется изменить) равно 3. Важный предел безопасности. Это означает, что временная базальная скорость никогда не превысит 3x наибольшей почасовой базальной скорости, запрограммированной в помпе, или, если включено, определяется autotune.";
+
+/* "Current Basal Safety Multiplier" */
+"This is another important OpenAPS safety limit. The default setting (which is also unlikely to need adjusting) is 4. This means that OpenAPS will never be allowed to set a temporary basal rate that is more than 4x the current hourly basal rate programmed in a user’s pump, or, if enabled, determined by autotune." = "Значение по умолчанию (которое вряд ли потребуется изменить) 4. Это еще один важный предел безопасности. Это означает, что временная базальная скорость устанавливаемая алгоритмом, никогда не превысит 4x текущую базальную скорость, запрограммированную в помпе, или, если включено, определяется autotune.";
+
+/* "Autosens Max" */
+"This is a multiplier cap for autosens (and autotune) to set a 20% max limit on how high the autosens ratio can be, which in turn determines how high autosens can adjust basals, how low it can adjust ISF, and how low it can set the BG target." = "Значение по умолчанию: 1,2. Это множитель для autosens (и autotune) с лимитом 20% который определяет насколько высоко autosens может поднять базал, насколько низко опустить ISF (чувствительность к инсулину), и насколько низко опустить целевой СК.";
+
+/* "Autosens Min" */
+"The other side of the autosens safety limits, putting a cap on how low autosens can adjust basals, and how high it can adjust ISF and BG targets." = "По умолчанию: 0.7 Еще один параметр безопасности autosens, определяющий, как низко он может опускать базал и как высоко поднимать ISF (чувств к инсулину) и целевые СК.";
+
+/* "Half Basal Exercise Target" */
+"Set to a number, e.g. 160, which means when temp target is 160 mg/dL and exercise_mode=true, run 50% basal at this level (120 = 75%; 140 = 60%). This can be adjusted, to give you more control over your exercise modes." = "Значение временной цели, при которой базал снижается до 50%. Пример: установите 8.9 — цель 8.9 ммоль/л даёт 50% базала, 7.8 даёт 60%, 6.7 даёт 75%. Настройте в зависимости от того, как сильно падает глюкоза во время упражнений.";
+
+/* "Max COB" */
+"This defaults maxCOB to 120 because that’s the most a typical body can absorb over 4 hours. (If someone enters more carbs or stacks more; OpenAPS will just truncate dosing based on 120. Essentially, this just limits AMA as a safety cap against weird COB calculations due to fluky data.)" = "Максимальное значение углеводов. По умолчанию maxCOB составляет 120, потому что это максимальное значение, которое типичный организм может поглотить за 4 часа. (Если кто-то вводит больше углеводов OpenAPS просто сокращает дозировку принимая в расчет 120. По сути, это просто предел безопасности защищающий от странных расчетов COB из-за непостоянных данных.)";
+
+/* "Bolus Snooze DIA Divisor" */
+"Bolus snooze is enacted after you do a meal bolus, so the loop won’t counteract with low temps when you’ve just eaten. The example here and default is 2; so a 3 hour DIA means that bolus snooze will be gradually phased out over 1.5 hours (3DIA/2)." = "Откладывание болюсов (SMB) произойдет после того, как вы сделаете болюс на еду, и цикл не будет противостоять низкой временной цели, когда вы просто поели. Пример: здесь и по умолчанию 2; поэтому 5 часов DIA означает, что SMB будет отложены на 2,5 часа (5 DIA/2).";
+
+/* "Min 5m Carbimpact" */
+"This is a setting for default carb absorption impact per 5 minutes. The default is an expected 8 mg/dL/5min. This affects how fast COB is decayed in situations when carb absorption is not visible in BG deviations. The default of 8 mg/dL/5min corresponds to a minimum carb absorption rate of 24g/hr at a CSF of 4 mg/dL/g." = "Это количество углеводов поглощаемых за 5 минут. По умолчанию ожидается 8 мг/дл/5 мин. Это влияет на быстроту списания углеводов алгоритмом в ситуациях, когда при отклонениях СК поглощение углеводов не заметно. По умолчанию 8 мг/дл/5 мин что соответствует минимальной скорости поглощения углеводов 24 г/ч при CSF в 4 мг/дл/г.";
+
+/* "Autotune ISF Adjustment Fraction" */
+"The default of 0.5 for this value keeps autotune ISF closer to pump ISF via a weighted average of fullNewISF and pumpISF. 1.0 allows full adjustment, 0 is no adjustment from pump ISF." = "По умолчанию, 0,5 для этого значения позволяет ISF приблизиться к ISF профиля через среднее взвешенное значение fullNewISF (автотюн) и ISF профиля. 1,0 позволяет полностью регулировать, 0 не регулировать ISF профиля.";
+
+/* "Remaining Carbs Fraction" */
+"This is the fraction of carbs we’ll assume will absorb over 4h if we don’t yet see carb absorption." = "Это доля углеводов, которые предположительно будут поглощены спустя 4 часа, если алгоритм не увидит поглощения углеводов.";
+
+/* "Remaining Carbs Cap" */
+"This is the amount of the maximum number of carbs we’ll assume will absorb over 4h if we don’t yet see carb absorption." = "Это значение максимального количества углеводов, которое предположительно будет поглощено спустя 4 часа, если алгоритм не увидит поглощения углеводов.";
+
+/* "Max SMB Basal Minutes" */
+"Defaults to start at 30. This is the maximum minutes of basal that can be delivered as a single SMB with uncovered COB. This gives the ability to make SMB more aggressive if you choose. It is recommended that the value is set to start at 30, in line with the default, and if you choose to increase this value, do so in no more than 15 minute increments, keeping a close eye on the effects of the changes. It is not recommended to set this value higher than 90 mins, as this may affect the ability for the algorithm to safely zero temp. It is also recommended that pushover is used when setting the value to be greater than default, so that alerts are generated for any predicted lows or highs." = "Максимальный размер одной дозы SMB (рассчитывается как X минут базала). Начните с 30 минут. Увеличивайте шагами по 15 минут при необходимости более агрессивного дозирования. Максимум: 90 минут — большие значения могут помешать системе предотвратить гипогликемию.";
+
+/* "Max UAM SMB Basal Minutes" */
+"Defaults to start at 30. This is the maximum minutes of basal that can be delivered by UAM as a single SMB when IOB exceeds COB. This gives the ability to make UAM more or less aggressive if you choose. It is recommended that the value is set to start at 30, in line with the default, and if you choose to increase this value, do so in no more than 15 minute increments, keeping a close eye on the effects of the changes. Reducing the value will cause UAM to dose less insulin for each SMB. It is not recommended to set this value higher than 60 mins, as this may affect the ability for the algorithm to safely zero temp. It is also recommended that pushover is used when setting the value to be greater than default, so that alerts are generated for any predicted lows or highs." = "Максимальный размер SMB для незаявленной еды (когда нет активных углеводов). Меньшие значения делают UAM осторожнее, большие — агрессивнее. Начните с 30, меняйте постепенно. Максимум: 60 минут.";
+
+/* "SMB Interval" */
+"Minimum duration in minutes between two enacted SMBs" = "Минимальное время между дозами SMB. Меньшие значения позволяют чаще вводить микро-болюсы, но увеличивают риск накопления инсулина. По умолчанию (3 мин) подходит большинству.";
+
+/* "Bolus Increment" */
+"Smallest SMB / SMB increment in oref0. Minimum amount for Medtronic pumps is 0.1 U, whereas for Omnipod it's 0.05 U. The default value is 0.1." = "Минимальная доза SMB, которую может ввести система. Omnipod: 0.05 ед., Medtronic: 0.1 ед. Установите согласно возможностям вашей помпы.";
+
+/* "Insulin Peak Time" */
+"Time of maximum blood glucose lowering effect of insulin, in minutes. Beware: Oref assumes for ultra-rapid (Lyumjev) & rapid-acting (Fiasp) curves minimal (35 & 50 min) and maximal (100 & 120 min) applicable insulinPeakTimes. Using a custom insulinPeakTime outside these bounds will result in issues with FreeAPS-X, longer loop calculations and possible red loops." = "Пиковое время инсулина в минутах. Время необходимое инсулину для достижения максимального воздействия";
+
+/* "Carbs Req Threshold" */
+"Grams of carbsReq to trigger a pushover. Defaults to 1 (for 1 gram of carbohydrate). Can be increased if you only want to get Pushover for carbsReq at X threshold." = "Требуемое количество грамм углеводов для срабатывания оповещения pushover. По умолчанию 1 (для 1 грамма углевода). Можно увеличить только если вы хотите получить Pushover для carbsReq при X пороге.";
+
+/* "Noisy CGM Target Multiplier" */
+"Defaults to 1.3. Increase target by this amount when looping off raw/noisy CGM data" = "По умолчанию 1,3. Увеличивает цель на эту величину, когда цикл отключается из за шума сенсора";
+
+/* Libre View --------------------*/
+/* */
+"LibreView config" = "Настройки LibreView";
+
+/* Secription on LibreView settings screen */
+"To use LibreView, you need to enter credentials and create a connection" = "Для использования LibreView вам необходимо ввести данные авторизации и создать подключение";
+
+/* Button on LibreView settings screen */
+"Update a connection" = "Обновить подключение";
+
+/* Button on LibreView settings screen */
+"Create a connection" = "Создать подключение";
+
+/* Setting on LibreView settings screen */
+"Custom server" = "Собственный сервер";
+
+/* Section on LibreView settings screen */
+"Connection settings" = "Настройки подключения";
+
+/* Button on LibreView settings screen */
+"Remove a connection" = "Удалить подключение";
+
+/* Alert message on LibreView settings screen */
+"Please, set correct LibreView server" = "Пожалуйста, установите корректный адрес сервера";
+
+/* Setting on LibreView settings screen */
+"LibreView Server" = "Сервер LibreView";
+
+/* Button on LibreView settings screen */
+"Force upload glocose" = "Принудительная выгрузка глюкозы";
+
+/* Message after success uploading of glusoce to LibreView server */
+"Glucose was upload success" = "Глюкоза была успешно выгружена";
+
+"Last upload date to LibreLink is more, that current date. Try later or check preferences" = "Дата последней выгрузки больше текущей даты. Попробуйте позже или проверьте настройки";
+
+"Have not new glucose to upload" = "Новая глюкоза для выгрузки отсутсвует";
+
+"Wrong connection's token" = "Неверный токен безопасности";
+
+"Actions" = "Действия";
+
+"Frequency of uploads" = "Частота выгрузки";
+"Each Loop" = "Каждый цикл петли";
+"Every 15 minutes" = "Каждые 15 минут";
+"Every 30 minutes" = "Каждые 30 минут";
+"Every hour" = "Каждый час";
+"Every 4 hours" = "Каждые 4 часа";
+"Random upload, but less than 4 hours after the last one" = "Случайные выгрузки, но не менее 1 раза в 4 часа";
+"It is recommended to use random uploads, they are more natural" = "Рекомендовано использовать случайную частоту выгрузки, так как она более естественна";
+"Last upload on %@. Next upload no earlier than %@" = "Последняя выгрузка %@. Следующая не ранее, чем %@";
+
+/* Credentials and autentification --------------------*/
+/* */
+"Credentials" = "Данные для входа";
+
+/* */
+"Login" = "Логин";
+
+/* */
+"Password" = "Пароль";
+
+/* */
+"Wrong password or login" = "Неверный логин или пароль";
