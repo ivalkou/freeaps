@@ -6,7 +6,7 @@ public enum FreeAPSConfig {
     public static let appName = "FreeAPS X"
     public static let bundleIdPrefix = "ru.artpancreas"
     public static let appGroupIdSuffix = "loopkit.LoopGroup"
-    public static let buildVersion = "0.2.6"
+    public static let buildVersion = "0.3.0"
     public static let marketingVersion = "3.2.0"
 
     // Read from .env via Environment
