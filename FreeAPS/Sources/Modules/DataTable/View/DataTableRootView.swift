@@ -48,7 +48,12 @@ extension DataTable {
             .navigationBarTitleDisplayMode(.automatic)
             .navigationBarItems(
                 leading: Button("Close", action: state.hideModal),
-                trailing: state.mode == .glucose ? EditButton().asAny() : EmptyView().asAny()
+                trailing: state.mode == .glucose ? HStack {
+                    Button(action: { state.showModal(for: .addGlucose) }) {
+                        Image(systemName: "plus")
+                    }
+                    EditButton()
+                }.asAny() : EmptyView().asAny()
             )
         }
 
@@ -69,38 +74,46 @@ extension DataTable {
         }
 
         @ViewBuilder private func treatmentView(_ item: Treatment) -> some View {
-            HStack {
-                Image(systemName: "circle.fill").foregroundColor(item.color)
-                Text(dateFormatter.string(from: item.date))
-                    .moveDisabled(true)
-                Text(item.type.name)
-                Text(item.amountText).foregroundColor(.secondary)
-                if let duration = item.durationText {
-                    Text(duration).foregroundColor(.secondary)
-                }
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Image(systemName: "circle.fill").foregroundColor(item.color)
+                    Text(dateFormatter.string(from: item.date))
+                        .moveDisabled(true)
+                    Text(item.type.name)
+                    Text(item.amountText).foregroundColor(.secondary)
+                    if let duration = item.durationText {
+                        Text(duration).foregroundColor(.secondary)
+                    }
 
-                if item.type == .carbs {
-                    Spacer()
-                    Image(systemName: "xmark.circle").foregroundColor(.secondary)
-                        .contentShape(Rectangle())
-                        .padding(.vertical)
-                        .onTapGesture {
-                            removeCarbsAlert = Alert(
-                                title: Text("Delete carbs?"),
-                                message: Text(item.amountText),
-                                primaryButton: .destructive(
-                                    Text("Delete"),
-                                    action: {
-                                        state.deleteCarbs(item)
-                                    }
-                                ),
-                                secondaryButton: .cancel()
-                            )
-                            isRemoveCarbsAlertPresented = true
-                        }
-                        .alert(isPresented: $isRemoveCarbsAlertPresented) {
-                            removeCarbsAlert!
-                        }
+                    if item.type == .carbs {
+                        Spacer()
+                        Image(systemName: "xmark.circle").foregroundColor(.secondary)
+                            .contentShape(Rectangle())
+                            .padding(.vertical)
+                            .onTapGesture {
+                                removeCarbsAlert = Alert(
+                                    title: Text("Delete carbs?"),
+                                    message: Text(item.amountText),
+                                    primaryButton: .destructive(
+                                        Text("Delete"),
+                                        action: {
+                                            state.deleteCarbs(item)
+                                        }
+                                    ),
+                                    secondaryButton: .cancel()
+                                )
+                                isRemoveCarbsAlertPresented = true
+                            }
+                            .alert(isPresented: $isRemoveCarbsAlertPresented) {
+                                removeCarbsAlert!
+                            }
+                    }
+                }
+                if item.type == .carbs, let note = item.note, !note.isEmpty {
+                    Text(note)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .padding(.leading, 24)
                 }
             }
         }
@@ -109,6 +122,14 @@ extension DataTable {
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
                     Text(dateFormatter.string(from: item.glucose.dateString))
+                    if item.glucose.type == "manual" {
+                        Text("Manual")
+                            .font(.caption2)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(Capsule().fill(Color.orange))
+                    }
                     Spacer()
                     Text(item.glucose.glucose.map {
                         glucoseFormatter.string(from: Double(

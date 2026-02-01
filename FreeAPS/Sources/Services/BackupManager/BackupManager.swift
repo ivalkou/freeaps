@@ -23,6 +23,8 @@ final class BaseBackupManager: BackupManager, Injectable {
         OpenAPS.Settings.bgTargets,
         OpenAPS.Settings.settings,
         OpenAPS.Settings.profile,
+        OpenAPS.Settings.tempTargets,
+        OpenAPS.Settings.preferences,
         OpenAPS.Monitor.pumpHistory,
         OpenAPS.Monitor.iob,
         OpenAPS.Monitor.carbHistory,

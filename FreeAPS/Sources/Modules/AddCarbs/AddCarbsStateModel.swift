@@ -6,6 +6,7 @@ extension AddCarbs {
         @Injected() var apsManager: APSManager!
         @Published var carbs: Decimal = 0
         @Published var date = Date()
+        @Published var note: String = ""
         @Published var carbsRequired: Decimal?
 
         override func subscribe() {
@@ -19,7 +20,7 @@ extension AddCarbs {
             }
 
             carbsStorage.storeCarbs([
-                CarbsEntry(createdAt: date, carbs: carbs, enteredBy: CarbsEntry.manual)
+                CarbsEntry(createdAt: date, carbs: carbs, enteredBy: CarbsEntry.manual, note: note.isEmpty ? nil : note)
             ])
 
             showModal(for: .bolus(waitForSuggestion: true))
@@ -32,23 +33,10 @@ extension AddCarbs {
             }
 
             carbsStorage.storeCarbs([
-                CarbsEntry(createdAt: date, carbs: carbs, enteredBy: CarbsEntry.manual)
+                CarbsEntry(createdAt: date, carbs: carbs, enteredBy: CarbsEntry.manual, note: note.isEmpty ? nil : note)
             ])
 
             apsManager.determineBasalSync()
-            showModal(for: nil)
-        }
-
-        func addWithoutbolus() {
-            guard carbs > 0 else {
-                showModal(for: nil)
-                return
-            }
-
-            carbsStorage.storeCarbs([
-                CarbsEntry(createdAt: date, carbs: carbs, enteredBy: CarbsEntry.manual)
-            ])
-
             showModal(for: nil)
         }
     }

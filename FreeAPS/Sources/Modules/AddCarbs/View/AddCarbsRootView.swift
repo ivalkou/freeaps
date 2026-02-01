@@ -32,6 +32,7 @@ extension AddCarbs {
                         Text("grams").foregroundColor(.secondary)
                     }
                     DatePicker("Date", selection: $state.date)
+                    TextField("Note (what you ate)", text: $state.note)
                 }
 
                 Section {
@@ -44,17 +45,6 @@ extension AddCarbs {
                             .disabled(state.carbs <= 0)
                         Text(
                             "Carbs will add and FreeAPX X will update forecasts without bolus"
-                        )
-                        .font(.caption)
-                        .foregroundColor(Color.secondary)
-                    }
-                    .padding(.top, 5)
-                    VStack(alignment: .leading, spacing: 5) {
-                        Button { state.addWithoutbolus() }
-                        label: { Text("Simple Add") }
-                            .disabled(state.carbs <= 0)
-                        Text(
-                            "Carbs will add without bolus"
                         )
                         .font(.caption)
                         .foregroundColor(Color.secondary)

@@ -29,7 +29,8 @@ extension DataTable {
                         units: units,
                         type: .carbs,
                         date: $0.createdAt,
-                        amount: $0.carbs
+                        amount: $0.carbs,
+                        note: $0.note
                     )
                 }
 
