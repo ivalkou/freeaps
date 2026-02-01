@@ -28,7 +28,8 @@ let project = Project(
             sources: ["FreeAPS/Sources/**"],
             resources: [
                 "FreeAPS/Resources/Assets.xcassets",
-                "FreeAPS/Resources/*.lproj/**",
+                "FreeAPS/Resources/Localizable.xcstrings",
+                "FreeAPS/Resources/*.lproj/InfoPlist.strings",
                 .folderReference(path: "FreeAPS/Resources/javascript"),
                 .folderReference(path: "FreeAPS/Resources/json")
             ],
