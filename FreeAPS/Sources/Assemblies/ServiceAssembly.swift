@@ -25,7 +25,8 @@ final class ServiceAssembly: Assembly {
         container.register(AppInfo.self) { _ in BaseAppInfo() }
         container.register(MigrationManager.self) { r in BaseMigrationManager(resolver: r) }
 
-        // Backup service
+        // Backup service (singleton to keep timer running)
         container.register(BackupManager.self) { r in BaseBackupManager(resolver: r) }
+            .inObjectScope(.container)
     }
 }

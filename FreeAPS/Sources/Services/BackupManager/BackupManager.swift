@@ -40,6 +40,11 @@ final class BaseBackupManager: BackupManager, Injectable {
         injectServices(resolver)
         createBackupsDirectoryIfNeeded()
         subscribe()
+
+        // Check immediately on app launch if backup is needed
+        processQueue.async { [weak self] in
+            self?.checkAndPerformBackup()
+        }
     }
 
     private func createBackupsDirectoryIfNeeded() {
