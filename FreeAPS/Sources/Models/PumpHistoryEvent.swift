@@ -10,6 +10,7 @@ struct PumpHistoryEvent: JSON, Equatable {
     let rate: Decimal?
     let temp: TempType?
     let carbInput: Int?
+    var insulinRecommendation: Decimal?
 }
 
 enum EventType: String, JSON {
@@ -47,5 +48,6 @@ extension PumpHistoryEvent {
         case rate
         case temp
         case carbInput = "carb_input"
+        case insulinRecommendation = "insulin_recommendation"
     }
 }

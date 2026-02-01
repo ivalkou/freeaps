@@ -5,8 +5,6 @@ extension BackupSettings {
     struct RootView: BaseView {
         let resolver: Resolver
         @StateObject var state = StateModel()
-        @State private var shareURL: URL?
-        @State private var showShareSheet = false
 
         private var hourOptions: [Int] {
             Array(0 ... 23)
@@ -50,24 +48,14 @@ extension BackupSettings {
                 if !state.backups.isEmpty {
                     Section(header: Text("Existing Backups")) {
                         ForEach(state.backups, id: \.absoluteString) { backup in
-                            HStack {
-                                Text(backupDisplayName(backup))
-                                Spacer()
-                                Button(action: {
-                                    shareURL = backup
-                                    showShareSheet = true
-                                }) {
-                                    Image(systemName: "square.and.arrow.up")
+                            Text(backupDisplayName(backup))
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button(role: .destructive) {
+                                        state.deleteBackup(at: backup)
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
                                 }
-                                .buttonStyle(BorderlessButtonStyle())
-                            }
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                Button(role: .destructive) {
-                                    state.deleteBackup(at: backup)
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
-                                }
-                            }
                         }
                     }
                 }
@@ -75,11 +63,6 @@ extension BackupSettings {
             .onAppear(perform: configureView)
             .navigationBarTitle("Backup")
             .navigationBarTitleDisplayMode(.automatic)
-            .sheet(isPresented: $showShareSheet) {
-                if let url = shareURL {
-                    ShareSheet(activityItems: [url])
-                }
-            }
         }
 
         private func formatHour(_ hour: Int) -> String {

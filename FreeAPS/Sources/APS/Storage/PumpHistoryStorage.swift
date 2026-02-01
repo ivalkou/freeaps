@@ -20,6 +20,7 @@ final class BasePumpHistoryStorage: PumpHistoryStorage, Injectable {
     private let processQueue = DispatchQueue(label: "BasePumpHistoryStorage.processQueue")
     @Injected() private var storage: FileStorage!
     @Injected() private var broadcaster: Broadcaster!
+    @Injected() private var bolusRecommendationStorage: BolusRecommendationStorage!
 
     init(resolver: Resolver) {
         injectServices(resolver)
@@ -34,6 +35,12 @@ final class BasePumpHistoryStorage: PumpHistoryStorage, Injectable {
                     guard let dose = event.dose else { return [] }
                     let amount = Decimal(string: dose.unitsInDeliverableIncrements.description)
                     let minutes = Int((dose.endDate - dose.startDate).timeInterval / 60)
+                    // Match recommendation by bolus ID (if already matched) or by time (for new boluses)
+                    let recommendation = self.bolusRecommendationStorage.matchRecommendation(
+                        forBolusId: id,
+                        bolusDate: event.date,
+                        tolerance: 60
+                    )
                     return [PumpHistoryEvent(
                         id: id,
                         type: .bolus,
@@ -43,7 +50,8 @@ final class BasePumpHistoryStorage: PumpHistoryStorage, Injectable {
                         durationMin: nil,
                         rate: nil,
                         temp: nil,
-                        carbInput: nil
+                        carbInput: nil,
+                        insulinRecommendation: recommendation
                     )]
                 case .tempBasal:
                     guard let dose = event.dose else { return [] }
@@ -66,7 +74,8 @@ final class BasePumpHistoryStorage: PumpHistoryStorage, Injectable {
                             durationMin: Int(round(minutes)),
                             rate: nil,
                             temp: nil,
-                            carbInput: nil
+                            carbInput: nil,
+                            insulinRecommendation: nil
                         ),
                         PumpHistoryEvent(
                             id: "_" + id,
@@ -77,7 +86,8 @@ final class BasePumpHistoryStorage: PumpHistoryStorage, Injectable {
                             durationMin: nil,
                             rate: rate,
                             temp: .absolute,
-                            carbInput: nil
+                            carbInput: nil,
+                            insulinRecommendation: nil
                         )
                     ]
                 case .suspend:
@@ -91,7 +101,8 @@ final class BasePumpHistoryStorage: PumpHistoryStorage, Injectable {
                             durationMin: nil,
                             rate: nil,
                             temp: nil,
-                            carbInput: nil
+                            carbInput: nil,
+                            insulinRecommendation: nil
                         )
                     ]
                 case .resume:
@@ -105,7 +116,8 @@ final class BasePumpHistoryStorage: PumpHistoryStorage, Injectable {
                             durationMin: nil,
                             rate: nil,
                             temp: nil,
-                            carbInput: nil
+                            carbInput: nil,
+                            insulinRecommendation: nil
                         )
                     ]
                 case .rewind:
@@ -119,7 +131,8 @@ final class BasePumpHistoryStorage: PumpHistoryStorage, Injectable {
                             durationMin: nil,
                             rate: nil,
                             temp: nil,
-                            carbInput: nil
+                            carbInput: nil,
+                            insulinRecommendation: nil
                         )
                     ]
                 case .prime:
@@ -133,7 +146,8 @@ final class BasePumpHistoryStorage: PumpHistoryStorage, Injectable {
                             durationMin: nil,
                             rate: nil,
                             temp: nil,
-                            carbInput: nil
+                            carbInput: nil,
+                            insulinRecommendation: nil
                         )
                     ]
                 default:
@@ -157,7 +171,8 @@ final class BasePumpHistoryStorage: PumpHistoryStorage, Injectable {
                     durationMin: nil,
                     rate: nil,
                     temp: nil,
-                    carbInput: carbs
+                    carbInput: carbs,
+                    insulinRecommendation: nil
                 )
             ]
             self.storeEvents(eventsToStore)
@@ -281,7 +296,8 @@ final class BasePumpHistoryStorage: PumpHistoryStorage, Injectable {
                 durationMin: 0,
                 rate: nil,
                 temp: nil,
-                carbInput: nil
+                carbInput: nil,
+                insulinRecommendation: nil
             ),
             PumpHistoryEvent(
                 id: "_" + basalID,
@@ -292,7 +308,8 @@ final class BasePumpHistoryStorage: PumpHistoryStorage, Injectable {
                 durationMin: nil,
                 rate: 0,
                 temp: .absolute,
-                carbInput: nil
+                carbInput: nil,
+                insulinRecommendation: nil
             )
         ]
 

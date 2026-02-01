@@ -7,6 +7,7 @@ extension Bolus {
         @Injected() var apsManager: APSManager!
         @Injected() var broadcaster: Broadcaster!
         @Injected() var pumpHistotyStorage: PumpHistoryStorage!
+        @Injected() var bolusRecommendationStorage: BolusRecommendationStorage!
         @Published var amount: Decimal = 0
         @Published var insulinRecommended: Decimal = 0
         @Published var insulinRequired: Decimal = 0
@@ -38,6 +39,12 @@ extension Bolus {
             }
 
             let maxAmount = Double(min(amount, provider.pumpSettings().maxBolus))
+            let recommendation = insulinRecommended
+
+            // Store recommendation BEFORE sending to pump, so it's available when pump event arrives
+            if recommendation > 0 {
+                bolusRecommendationStorage.storeRecommendation(recommendation, at: Date())
+            }
 
             unlockmanager.unlock()
                 .sink { _ in } receiveValue: { [weak self] _ in
@@ -65,7 +72,8 @@ extension Bolus {
                         durationMin: nil,
                         rate: nil,
                         temp: nil,
-                        carbInput: nil
+                        carbInput: nil,
+                        insulinRecommendation: insulinRecommended > 0 ? insulinRecommended : nil
                     )
                 ]
             )

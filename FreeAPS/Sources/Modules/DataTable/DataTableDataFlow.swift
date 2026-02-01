@@ -60,6 +60,7 @@ enum DataTable {
         let secondAmount: Decimal?
         let duration: Decimal?
         let note: String?
+        let insulinRecommendation: Decimal?
 
         private var numberFormater: NumberFormatter {
             let formatter = NumberFormatter()
@@ -76,7 +77,8 @@ enum DataTable {
             amount: Decimal? = nil,
             secondAmount: Decimal? = nil,
             duration: Decimal? = nil,
-            note: String? = nil
+            note: String? = nil,
+            insulinRecommendation: Decimal? = nil
         ) {
             self.id = id
             self.units = units
@@ -86,6 +88,7 @@ enum DataTable {
             self.secondAmount = secondAmount
             self.duration = duration
             self.note = note
+            self.insulinRecommendation = insulinRecommendation
         }
 
         init(
@@ -95,7 +98,8 @@ enum DataTable {
             amount: Decimal? = nil,
             secondAmount: Decimal? = nil,
             duration: Decimal? = nil,
-            note: String? = nil
+            note: String? = nil,
+            insulinRecommendation: Decimal? = nil
         ) {
             self.units = units
             self.type = type
@@ -104,6 +108,7 @@ enum DataTable {
             self.secondAmount = secondAmount
             self.duration = duration
             self.note = note
+            self.insulinRecommendation = insulinRecommendation
         }
 
         static func == (lhs: Treatment, rhs: Treatment) -> Bool {

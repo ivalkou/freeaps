@@ -7,6 +7,9 @@ final class StorageAssembly: Assembly {
             Foundation.FileManager.default
         }
         container.register(FileStorage.self) { _ in BaseFileStorage() }
+        container.register(BolusRecommendationStorage.self) { r in
+            BaseBolusRecommendationStorage(resolver: r)
+        }.inObjectScope(.container)
         container.register(PumpHistoryStorage.self) { r in BasePumpHistoryStorage(resolver: r) }
         container.register(GlucoseStorage.self) { r in BaseGlucoseStorage(resolver: r) }
         container.register(TempTargetsStorage.self) { r in BaseTempTargetsStorage(resolver: r) }

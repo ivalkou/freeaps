@@ -26,6 +26,13 @@ extension DataTable {
             return formatter
         }
 
+        private var insulinFormatter: NumberFormatter {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            formatter.maximumFractionDigits = 2
+            return formatter
+        }
+
         var body: some View {
             VStack {
                 Picker("Mode", selection: $state.mode) {
@@ -111,6 +118,12 @@ extension DataTable {
                 }
                 if item.type == .carbs, let note = item.note, !note.isEmpty {
                     Text(note)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .padding(.leading, 24)
+                }
+                if item.type == .bolus, let rec = item.insulinRecommendation, rec > 0 {
+                    Text("Recommended: \(insulinFormatter.string(from: rec as NSNumber) ?? "0") U")
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .padding(.leading, 24)
