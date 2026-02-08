@@ -311,6 +311,15 @@ extension Home {
                             .padding(8)
                     }.foregroundColor(.loopYellow)
                     Spacer()
+                    Button { state.showModal(for: .addEvent) }
+                    label: {
+                        Image(systemName: "calendar.badge.plus")
+                            .renderingMode(.template)
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .padding(8)
+                    }.foregroundColor(.secondary)
+                    Spacer()
                     Button { state.showModal(for: .bolus(waitForSuggestion: false)) }
                     label: {
                         Image("bolus")

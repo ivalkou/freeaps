@@ -7,6 +7,7 @@ enum DataTable {
     enum Mode: String, Hashable, Identifiable, CaseIterable {
         case treatments
         case glucose
+        case events
 
         var id: String { rawValue }
 
@@ -17,6 +18,8 @@ enum DataTable {
                 name = "Treatments"
             case .glucose:
                 name = "Glucose"
+            case .events:
+                name = "Events"
             }
             return NSLocalizedString(name, comment: "History Mode")
         }
@@ -202,4 +205,6 @@ protocol DataTableProvider: Provider {
     func glucose() -> [BloodGlucose]
     func deleteCarbs(_ treatment: DataTable.Treatment)
     func deleteGlucose(id: String)
+    func events() -> [EventEntry]
+    func deleteEvent(id: String)
 }

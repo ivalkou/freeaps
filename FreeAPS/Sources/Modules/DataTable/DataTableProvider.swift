@@ -6,6 +6,7 @@ extension DataTable {
         @Injected() var tempTargetsStorage: TempTargetsStorage!
         @Injected() var glucoseStorage: GlucoseStorage!
         @Injected() var carbsStorage: CarbsStorage!
+        @Injected() var eventStorage: EventStorage!
         @Injected() var nightscoutManager: NightscoutManager!
         @Injected() var healthkitManager: HealthKitManager!
 
@@ -33,6 +34,14 @@ extension DataTable {
         func deleteGlucose(id: String) {
             glucoseStorage.removeGlucose(ids: [id])
             healthkitManager.deleteGlucose(syncID: id)
+        }
+
+        func events() -> [EventEntry] {
+            eventStorage.recent().sorted { $0.createdAt > $1.createdAt }
+        }
+
+        func deleteEvent(id: String) {
+            eventStorage.deleteEvent(id: id)
         }
     }
 }

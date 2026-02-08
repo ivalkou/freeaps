@@ -28,7 +28,8 @@ final class BaseBackupManager: BackupManager, Injectable {
         OpenAPS.Monitor.pumpHistory,
         OpenAPS.Monitor.iob,
         OpenAPS.Monitor.carbHistory,
-        OpenAPS.Monitor.glucose
+        OpenAPS.Monitor.glucose,
+        OpenAPS.FreeAPS.events
     ]
 
     private var backupsDirectory: URL {

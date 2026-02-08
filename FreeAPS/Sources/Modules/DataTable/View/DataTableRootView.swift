@@ -47,6 +47,7 @@ extension DataTable {
                     switch state.mode {
                     case .treatments: treatmentsList
                     case .glucose: glucoseList
+                    case .events: eventsList
                     }
                 }
             }
@@ -55,12 +56,20 @@ extension DataTable {
             .navigationBarTitleDisplayMode(.automatic)
             .navigationBarItems(
                 leading: Button("Close", action: state.hideModal),
-                trailing: state.mode == .glucose ? HStack {
-                    Button(action: { state.showModal(for: .addGlucose) }) {
-                        Image(systemName: "plus")
+                trailing: Group {
+                    if state.mode == .glucose {
+                        HStack {
+                            Button(action: { state.showModal(for: .addGlucose) }) {
+                                Image(systemName: "plus")
+                            }
+                            EditButton()
+                        }
+                    } else if state.mode == .events {
+                        Button(action: { state.showModal(for: .addEvent) }) {
+                            Image(systemName: "plus")
+                        }
                     }
-                    EditButton()
-                }.asAny() : EmptyView().asAny()
+                }
             )
         }
 
@@ -158,6 +167,46 @@ extension DataTable {
 
         private func deleteGlucose(at offsets: IndexSet) {
             state.deleteGlucose(at: offsets[offsets.startIndex])
+        }
+
+        private var eventsList: some View {
+            List {
+                ForEach(state.events) { event in
+                    eventView(event)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            state.showModal(for: .editEvent(event: event))
+                        }
+                }.onDelete(perform: deleteEvent)
+            }
+        }
+
+        @ViewBuilder private func eventView(_ event: EventEntry) -> some View {
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Image(systemName: "circle.fill").foregroundColor(.purple)
+                    Text(dateFormatter.string(from: event.createdAt))
+                    Text(event.name)
+                    Spacer()
+                }
+                if let endAt = event.endAt {
+                    Text(
+                        String(
+                            format: NSLocalizedString("Until: %@", comment: "Event end time"),
+                            dateFormatter.string(from: endAt)
+                        )
+                    )
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .padding(.leading, 24)
+                }
+            }
+        }
+
+        private func deleteEvent(at offsets: IndexSet) {
+            for index in offsets {
+                state.deleteEvent(state.events[index])
+            }
         }
     }
 }

@@ -86,5 +86,7 @@ extension OpenAPS {
         static let tempTargetsPresets = "freeaps/temptargets_presets.json"
         static let calibrations = "freeaps/calibrations.json"
         static let bolusRecommendations = "freeaps/bolus_recommendations.json"
+        static let events = "freeaps/events.json"
+        static let recentEventNames = "freeaps/recent_event_names.json"
     }
 }

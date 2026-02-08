@@ -31,6 +31,8 @@ enum Screen: Identifiable, Hashable {
     case migration
     case garmin
     case backupSettings
+    case addEvent
+    case editEvent(event: EventEntry)
 
     var id: Int { String(reflecting: self).hashValue }
 }
@@ -96,6 +98,10 @@ extension Screen {
             GarminConfig.RootView(resolver: resolver)
         case .backupSettings:
             BackupSettings.RootView(resolver: resolver)
+        case .addEvent:
+            AddEvent.RootView(resolver: resolver)
+        case let .editEvent(event):
+            AddEvent.RootView(resolver: resolver, editingEvent: event)
         }
     }
 

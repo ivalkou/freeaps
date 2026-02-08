@@ -6,17 +6,20 @@ extension DataTable {
         @Published var mode: Mode = .treatments
         @Published var treatments: [Treatment] = []
         @Published var glucose: [Glucose] = []
+        @Published var events: [EventEntry] = []
         var units: GlucoseUnits = .mmolL
 
         override func subscribe() {
             units = settingsManager.settings.units
             setupTreatments()
             setupGlucose()
+            setupEvents()
             broadcaster.register(SettingsObserver.self, observer: self)
             broadcaster.register(PumpHistoryObserver.self, observer: self)
             broadcaster.register(TempTargetsObserver.self, observer: self)
             broadcaster.register(CarbsObserver.self, observer: self)
             broadcaster.register(GlucoseObserver.self, observer: self)
+            broadcaster.register(EventsObserver.self, observer: self)
         }
 
         private func setupTreatments() {
@@ -109,6 +112,16 @@ extension DataTable {
             let id = glucose[index].id
             provider.deleteGlucose(id: id)
         }
+
+        func setupEvents() {
+            DispatchQueue.main.async {
+                self.events = self.provider.events()
+            }
+        }
+
+        func deleteEvent(_ event: EventEntry) {
+            provider.deleteEvent(id: event.id)
+        }
     }
 }
 
@@ -117,7 +130,8 @@ extension DataTable.StateModel:
     PumpHistoryObserver,
     TempTargetsObserver,
     CarbsObserver,
-    GlucoseObserver
+    GlucoseObserver,
+    EventsObserver
 {
     func settingsDidChange(_: FreeAPSSettings) {
         setupTreatments()
@@ -137,5 +151,9 @@ extension DataTable.StateModel:
 
     func glucoseDidUpdate(_: [BloodGlucose]) {
         setupGlucose()
+    }
+
+    func eventsDidUpdate(_: [EventEntry]) {
+        setupEvents()
     }
 }
