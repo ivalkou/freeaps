@@ -27,6 +27,10 @@ extension DataTable {
             healthkitManager.deleteCarbs(syncID: treatment.id.uuidString)
         }
 
+        func deleteTempTarget(_ treatment: Treatment) {
+            tempTargetsStorage.deleteTempTarget(at: treatment.date)
+        }
+
         func glucose() -> [BloodGlucose] {
             glucoseStorage.recent().sorted { $0.date > $1.date }
         }

@@ -14,6 +14,7 @@ protocol TempTargetsStorage {
     func storePresets(_ targets: [TempTarget])
     func presets() -> [TempTarget]
     func current() -> TempTarget?
+    func deleteTempTarget(at date: Date)
 }
 
 final class BaseTempTargetsStorage: TempTargetsStorage, Injectable {
@@ -115,5 +116,20 @@ final class BaseTempTargetsStorage: TempTargetsStorage, Injectable {
 
     func presets() -> [TempTarget] {
         storage.retrieve(OpenAPS.FreeAPS.tempTargetsPresets, as: [TempTarget].self)?.reversed() ?? []
+    }
+
+    func deleteTempTarget(at date: Date) {
+        processQueue.sync {
+            let file = OpenAPS.Settings.tempTargets
+            var allValues = storage.retrieve(file, as: [TempTarget].self) ?? []
+            guard let entryIndex = allValues.firstIndex(where: { $0.createdAt == date }) else {
+                return
+            }
+            allValues.remove(at: entryIndex)
+            storage.save(allValues, as: file)
+            broadcaster.notify(TempTargetsObserver.self, on: processQueue) {
+                $0.tempTargetsDidUpdate(allValues)
+            }
+        }
     }
 }

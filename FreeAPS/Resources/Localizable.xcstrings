@@ -48993,6 +48993,46 @@
           }
         }
       }
+    },
+    "Delete temp target?": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить временную цель?"
+          }
+        }
+      }
+    },
+    "Delete?": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить?"
+          }
+        }
+      }
+    },
+    "Note (what you ate)": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Заметка (что вы ели)"
+          }
+        }
+      }
+    },
+    "Recent Carbs": {
+      "localizations": {
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Недавние углеводы"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

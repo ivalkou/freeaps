@@ -12,6 +12,9 @@ protocol CarbsStorage {
     func recent() -> [CarbsEntry]
     func nightscoutTretmentsNotUploaded() -> [NigtscoutTreatment]
     func deleteCarbs(at date: Date)
+    func recentCarbPresets() -> [RecentCarbPreset]
+    func storeRecentCarbPreset(_ preset: RecentCarbPreset)
+    func deleteRecentCarbPreset(_ preset: RecentCarbPreset)
 }
 
 final class BaseCarbsStorage: CarbsStorage, Injectable {
@@ -85,5 +88,27 @@ final class BaseCarbsStorage: CarbsStorage, Injectable {
             )
         }
         return Array(Set(treatments).subtracting(Set(uploaded)))
+    }
+
+    func recentCarbPresets() -> [RecentCarbPreset] {
+        storage.retrieve(OpenAPS.FreeAPS.recentCarbPresets, as: [RecentCarbPreset].self) ?? []
+    }
+
+    func storeRecentCarbPreset(_ preset: RecentCarbPreset) {
+        let trimmed = preset.name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty, preset.carbs > 0 else { return }
+        var presets = recentCarbPresets()
+        presets.removeAll { $0.name == trimmed && $0.carbs == preset.carbs }
+        presets.insert(RecentCarbPreset(name: trimmed, carbs: preset.carbs), at: 0)
+        if presets.count > 40 {
+            presets = Array(presets.prefix(20))
+        }
+        storage.save(presets, as: OpenAPS.FreeAPS.recentCarbPresets)
+    }
+
+    func deleteRecentCarbPreset(_ preset: RecentCarbPreset) {
+        var presets = recentCarbPresets()
+        presets.removeAll { $0.name == preset.name && $0.carbs == preset.carbs }
+        storage.save(presets, as: OpenAPS.FreeAPS.recentCarbPresets)
     }
 }

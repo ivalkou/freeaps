@@ -88,5 +88,6 @@ extension OpenAPS {
         static let bolusRecommendations = "freeaps/bolus_recommendations.json"
         static let events = "freeaps/events.json"
         static let recentEventNames = "freeaps/recent_event_names.json"
+        static let recentCarbPresets = "freeaps/recent_carb_presets.json"
     }
 }

@@ -8,6 +8,7 @@ extension DataTable {
         @Published var glucose: [Glucose] = []
         @Published var events: [EventEntry] = []
         var units: GlucoseUnits = .mmolL
+        private var glucoseData: [BloodGlucose] = []
 
         override func subscribe() {
             units = settingsManager.settings.units
@@ -99,13 +100,19 @@ extension DataTable {
         }
 
         func setupGlucose() {
+            let data = provider.glucose()
             DispatchQueue.main.async {
-                self.glucose = self.provider.glucose().map(Glucose.init)
+                self.glucoseData = data
+                self.glucose = data.map(Glucose.init)
             }
         }
 
         func deleteCarbs(_ treatment: Treatment) {
             provider.deleteCarbs(treatment)
+        }
+
+        func deleteTempTarget(_ treatment: Treatment) {
+            provider.deleteTempTarget(treatment)
         }
 
         func deleteGlucose(at index: Int) {
@@ -121,6 +128,22 @@ extension DataTable {
 
         func deleteEvent(_ event: EventEntry) {
             provider.deleteEvent(id: event.id)
+        }
+
+        func nearestGlucose(to date: Date) -> BloodGlucose? {
+            let maxInterval: TimeInterval = 15 * 60
+            var closest: BloodGlucose?
+            var closestInterval: TimeInterval = .greatestFiniteMagnitude
+            for bg in glucoseData {
+                guard bg.glucose != nil else { continue }
+                let interval = abs(bg.dateString.timeIntervalSince(date))
+                if interval < closestInterval {
+                    closestInterval = interval
+                    closest = bg
+                }
+            }
+            guard closestInterval <= maxInterval else { return nil }
+            return closest
         }
     }
 }
